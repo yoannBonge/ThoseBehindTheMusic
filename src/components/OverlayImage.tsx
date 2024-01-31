@@ -51,6 +51,9 @@ const Wrapper = styled.div`
   height: auto;
   margin: auto;
   overflow: hidden;
+  border-radius: 20px;
+  z-index: 3;
+  box-sizing: content-box;
   cursor: pointer;
 `;
 
@@ -66,8 +69,9 @@ const Filter = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: 98.7%;
   height: auto;
+  border: 5px solid rgba(147, 28, 28, 0.7);
   border-radius: 20px;
   z-index: 1;
 `;

@@ -35,7 +35,7 @@ const StyledSlider = styled(Slider)`
   .slick-next::before {
     font-family: "FontAwesome";
     font-size: 3.5em;
-    color: black;
+    color: rgba(147, 28, 28, 0.7);
     cursor: pointer;
   }
 

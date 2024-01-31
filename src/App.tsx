@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Home from "./pages/Landing";
-import MainIndex from "./pages/MainIndex";
+import Categories from "./pages/Categories";
 
 ///////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
@@ -29,7 +29,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route path='/main-index' element={<MainIndex />}></Route>
+          <Route path='/main-index' element={<Categories />}></Route>
         </Routes>
       </BrowserRouter>
     </>

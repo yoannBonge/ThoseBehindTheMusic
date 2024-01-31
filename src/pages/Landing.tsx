@@ -46,17 +46,19 @@ function Landing() {
         <WelcomeDiv>
           <Title>Those Behind The Music</Title>
           <About>
-            Des musiciens qui travaillent plus ou moins souvent dans l'ombre et
-            que je tente (humblement et de manière non exhaustive, quoique) de
-            répertorier au sein de ce site , voilà la raison d'être de ce
-            dernier.
+            Ce site a pour but de répertorier (de manière non exhaustive,
+            quoique) les <strong>compositeurs</strong> qui travaillent plus ou
+            moins souvent dans l'ombre du travail d'autres artistes, dans les
+            domaines de la <strong>musique</strong>, du <strong>cinéma</strong>{" "}
+            et du <strong>jeu vidéo</strong>.
             <br /> <br />
             "Mélomane" depuis mon plus jeune âge, je souhaite à travers ce site
             partager ma passion pour la musique tous styles et supports
             confondus en présentant la plupart des compositeurs dont j'admire le
             travail, et plus largement ceux que je juge légitimes à apparaître
             ici. Je suis très "Hip-Hop" à la base, mais j'aime tout donc il y en
-            aura pour tous les goûts.{" "}
+            aura pour tous les goûts. Cliquez sur le vinyl pour découvrir ces
+            artistes !{" "}
           </About>
         </WelcomeDiv>
       </Wrapper>
