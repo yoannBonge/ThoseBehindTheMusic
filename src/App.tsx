@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Home from "./pages/Landing";
 import Categories from "./pages/Categories";
+import Videogame from "./pages/Videogame";
 
 ///////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
@@ -29,7 +30,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>
-          <Route path='/main-index' element={<Categories />}></Route>
+          <Route path='/categories' element={<Categories />}></Route>
+          <Route path='/videogame' element={<Videogame />}></Route>
         </Routes>
       </BrowserRouter>
     </>

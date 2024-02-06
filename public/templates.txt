@@ -1,0 +1,58 @@
+//////////////////////////////////////MUSIQUE
+
+{
+     "id": "1",
+     "category": "music",
+     "name": "DJ Premier",
+     "birthName": "Christopher Edward Martin",
+     "birth": "21 mars 1966",
+     "birthPlace": "Houston, Texas - USA",
+     "countryFlag": "US",
+     "death": "",
+     "picture": "dj-premier.jpg" ,
+     "musicalGenre": "hip-hop",
+     "related": ["Gangstarr", "Nas", "Royce Da 5'9"],
+     "hitSongs": ["https://www.youtube.com/watch?v=VC4ORS5n9Hg",
+                   "https://www.youtube.com/watch?v=y9lNbNGbo24",
+                   "https://www.youtube.com/watch?v=R4qa2qBnNFY"]  
+}
+
+
+
+
+//////////////////////////////////////CINEMA
+
+{
+     "id": "2",
+     "category": "cinema",
+     "name": "Ennio Morricone",
+     "birth": "10 novembre 1928",
+     "birthPlace": "Rome - Italie",
+     "countryFlag": "IT",
+     "death": "",
+     "picture": "ennio-morricone.webp" ,
+     "related": ["Le Bon, la Brute et le Truand", "Il était une fois en Amérique", "Le Professionnel"],
+     "famousSoundtracks": ["https://www.youtube.com/watch?v=LdLQf1Ef9Ns&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=2",
+                            "https://www.youtube.com/watch?v=PYI09PMNazw&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=1",
+                            "https://www.youtube.com/watch?v=Uoq0j6Hf3Es&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=11"]
+}
+
+
+
+
+//////////////////////////////////////JEU VIDEO
+
+{
+     "id": "3",
+     "category": "videogame",
+     "name": "Koji Kondo",
+     "birth": "13 août 1961",
+     "birthPlace": "Nagoya - Japon",
+     "countryFlag": "JP",
+     "death": "",
+     "picture": "koji-kondo.webp" ,
+     "related": ["Super Mario Bros", "The Legend of Zelda", "Pilotwings"],
+     "famousSoundtracks": ["https://www.youtube.com/watch?v=NTa6Xbzfq1U",
+                            "https://www.youtube.com/watch?v=cGufy1PAeTU",
+                            "https://www.youtube.com/watch?v=0hEYvdMoF2g"]
+}

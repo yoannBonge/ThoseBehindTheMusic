@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 
-interface OverlayImageProps {
+interface OverlayCarouselProps {
   imageUrl: string;
   title: string;
   children: React.ReactNode;
+  onClick: () => Promise<void>;
 }
 
 const moveUp = keyframes`
@@ -119,7 +120,12 @@ const Description = styled.div<{ isHovered: boolean }>`
         `};
 `;
 
-function OverlayImage({ imageUrl, title, children }: OverlayImageProps) {
+function OverlayCarousel({
+  imageUrl,
+  title,
+  children,
+  onClick,
+}: OverlayCarouselProps) {
   const [hoverState, setHoverState] = useState(false);
   return (
     <Wrapper
@@ -128,6 +134,9 @@ function OverlayImage({ imageUrl, title, children }: OverlayImageProps) {
       }}
       onMouseOut={() => {
         setHoverState(false);
+      }}
+      onClick={async () => {
+        await onClick();
       }}
     >
       <Image src={imageUrl} alt={title}></Image>
@@ -138,4 +147,4 @@ function OverlayImage({ imageUrl, title, children }: OverlayImageProps) {
   );
 }
 
-export default OverlayImage;
+export default OverlayCarousel;

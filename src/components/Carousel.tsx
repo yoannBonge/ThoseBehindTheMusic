@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
-import OverlayImage from "./OverlayImage";
+import OverlayCarousel from "./OverlayCarousel";
 
 ///////////////////////////////////////////////STYLE
 const StyledSlider = styled(Slider)`
@@ -50,6 +51,7 @@ const StyledSlider = styled(Slider)`
 
 ///////////////////////////////////////////////COMPONENT
 function Carousel() {
+  const navigate = useNavigate();
   const settings = {
     infinite: true,
     speed: 1000,
@@ -63,7 +65,11 @@ function Carousel() {
 
   return (
     <StyledSlider {...settings}>
-      <OverlayImage imageUrl='music.webp' title='Musique'>
+      <OverlayCarousel
+        imageUrl='music.webp'
+        title='Musique'
+        onClick={async () => navigate("/music")}
+      >
         <p>
           Les producteurs de musique qui oeuvrent souvent dans l'ombre des
           interprètes (s'ils ne sont pas eux-mêmes interprètes). Des musiciens
@@ -71,23 +77,31 @@ function Carousel() {
           producteurs de musique assistée par ordinateur, découvrez ces artisans
           du son et quelques-unes de leurs plus illustres oeuvres.
         </p>
-      </OverlayImage>
-      <OverlayImage imageUrl='cinema.webp' title='Cinéma'>
+      </OverlayCarousel>
+      <OverlayCarousel
+        imageUrl='cinema.webp'
+        title='Cinéma'
+        onClick={async () => navigate("/cinema")}
+      >
         <p>
           Les compositeurs de bandes originales de films, dont certaines ont
           tant participé au succès de films et séries, dont certaines
           résonneront toujours en nous en ressassant des scènes cultes. L'art
           d'accompagner l'image en sonnant juste.
         </p>
-      </OverlayImage>
-      <OverlayImage imageUrl='videogames.webp' title='Jeu Vidéo'>
+      </OverlayCarousel>
+      <OverlayCarousel
+        imageUrl='videogames.webp'
+        title='Jeu Vidéo'
+        onClick={async () => navigate("/videogame")}
+      >
         <p>
           Les compositeurs qui se sont spécialisés dans la musique de jeu vidéo
           et qui, de fait, ont grandement participé au succès de certains jeux.
           Avec ou sans limitations techniques, ils ont su marquer la culture par
           leur créativité.
         </p>
-      </OverlayImage>
+      </OverlayCarousel>
     </StyledSlider>
   );
 }

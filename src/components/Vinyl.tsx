@@ -22,10 +22,10 @@ const VinylPicture = styled.img`
 ///////////////////////////////////////////////COMPONENT
 function Vinyl() {
   //////////////////////////BEHAVIOR
-  const handleClick = () => {
-    navigate("/main-index");
-  };
   const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/categories");
+  };
 
   //////////////////////////RENDER
   return (
