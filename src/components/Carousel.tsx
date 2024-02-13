@@ -4,7 +4,7 @@ import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
 import OverlayCarousel from "./OverlayCarousel";
 
-///////////////////////////////////////////////STYLE
+/////////////////////////////////////////////////////////////////////////////STYLE
 const StyledSlider = styled(Slider)`
   width: 50vw;
   height: 30vw;
@@ -49,7 +49,7 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-///////////////////////////////////////////////COMPONENT
+/////////////////////////////////////////////////////////////////////////////COMPONENT
 function Carousel() {
   const navigate = useNavigate();
   const settings = {

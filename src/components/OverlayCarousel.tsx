@@ -8,6 +8,7 @@ interface OverlayCarouselProps {
   onClick: () => Promise<void>;
 }
 
+/////////////////////////////////////////////////////////////////////////////STYLE
 const moveUp = keyframes`
   from {
     transform: translate(-50%,-50%)
@@ -120,13 +121,16 @@ const Description = styled.div<{ isHovered: boolean }>`
         `};
 `;
 
+/////////////////////////////////////////////////////////////////////////////COMPONENT
 function OverlayCarousel({
   imageUrl,
   title,
   children,
   onClick,
 }: OverlayCarouselProps) {
+  //////////////////////////////////////////////////////////////STATE
   const [hoverState, setHoverState] = useState(false);
+  //////////////////////////////////////////////////////////////RENDER
   return (
     <Wrapper
       onMouseOver={() => {

@@ -11,6 +11,7 @@
     "death": "",
     "picture": "dj-premier.jpg" ,
     "musicalGenre": "hip-hop",
+    "bio": "Un des plus illustres, si ce n'est LE plus illustre producteur de hip hop américain 'old school', DJ Premier est une légende vivante.",
     "related": ["Gangstarr", "Nas", "Royce Da 5'9"],
     "hitSongs": ["https://www.youtube.com/watch?v=VC4ORS5n9Hg",
                   "https://www.youtube.com/watch?v=y9lNbNGbo24",
@@ -40,10 +41,11 @@
     "countryFlag": "JP",
     "death": "",
     "picture": "koji-kondo.webp" ,
+    "bio": "Créateur génial des musiques de jeux vidéos iconiques de la marque Nintendo tels que Super Mario Bros et The Legend of Zelda, Koji Kondo a composé les musiques les plus célèbres du jeu vidéo, tout simplement.",
     "related": ["Super Mario Bros", "The Legend of Zelda", "Pilotwings"],
-    "famousSoundtracks": ["NTa6Xbzfq1U",
-                           "cGufy1PAeTU",
-                           "0hEYvdMoF2g"]
+    "famousSoundtracks": ["https://www.youtube.com/watch?v=NTa6Xbzfq1U",
+                           "https://www.youtube.com/watch?v=cGufy1PAeTU",
+                           "https://www.youtube.com/watch?v=0hEYvdMoF2g"]
 },
 {
     "id": "4",
@@ -54,8 +56,9 @@
     "countryFlag": "GB",
     "death": "",
     "picture": "david-wise.webp" ,
+    "bio": "Compositeur de génie surtout connu pour son travail sur la saga Donkey Kong, David Wise a su s'affranchir des limitations techniques sur des supports tels que la Nintendo Super Nes pour nous livrer certaines des plus belles musiques du jeu vidéo.",
     "related": ["Donkey Kong Country", "Battletoads in Battlemaniacs", "Yooka-Laylee"],
-    "famousSoundtracks": ["-5rAjOjTGtc",
-                           "lndBgOrTWxo",
-                           "E-DW-YTXDKU"]
+    "famousSoundtracks": ["https://www.youtube.com/watch?v=-5rAjOjTGtc",
+                           "https://www.youtube.com/watch?v=lndBgOrTWxo",
+                           "https://www.youtube.com/watch?v=E-DW-YTXDKU"]
 }]

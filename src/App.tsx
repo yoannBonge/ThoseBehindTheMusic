@@ -4,7 +4,7 @@ import Home from "./pages/Landing";
 import Categories from "./pages/Categories";
 import Videogame from "./pages/Videogame";
 
-///////////////////////////////////////////////STYLE
+/////////////////////////////////////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
    @font-face {
     font-family: 'rangile';
@@ -22,7 +22,7 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     } `;
 
-///////////////////////////////////////////////COMPONENT
+/////////////////////////////////////////////////////////////////////////////COMPONENT
 function App() {
   return (
     <>
