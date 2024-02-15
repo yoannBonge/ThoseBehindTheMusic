@@ -1,7 +1,7 @@
 
 
 [{
-    "id": "1",
+    "id": "bru6O",
     "category": "music",
     "name": "DJ Premier",
     "birthname": "Christopher Edward Martin",
@@ -10,7 +10,7 @@
     "countryFlag": "US",
     "death": "",
     "picture": "dj-premier.jpg" ,
-    "musicalGenre": "hip-hop",
+    "musicalGenre": "Hip-Hop",
     "bio": "Un des plus illustres, si ce n'est LE plus illustre producteur de hip hop américain 'old school', DJ Premier est une légende vivante.",
     "related": ["Gangstarr", "Nas", "Royce Da 5'9"],
     "hitSongs": ["https://www.youtube.com/watch?v=VC4ORS5n9Hg",
@@ -19,11 +19,11 @@
     
 },
 {
-    "id": "2",
+    "id": "CRa93",
     "category": "cinema",
     "name": "Ennio Morricone",
     "birth": "10 novembre 1928",
-    "birthPlace": "Rome - Italie",
+    "birthPlace": "Rome, Italie",
     "countryFlag": "IT",
     "death": "",
     "picture": "ennio-morricone.webp" ,
@@ -33,11 +33,11 @@
                            "https://www.youtube.com/watch?v=Uoq0j6Hf3Es&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=11"]
 },
 {
-    "id": "3",
+    "id": "cSI70",
     "category": "videogame",
     "name": "Koji Kondo",
     "birth": "13 août 1961",
-    "birthPlace": "Nagoya - Japon",
+    "birthPlace": "Nagoya, Japon",
     "countryFlag": "JP",
     "death": "",
     "picture": "koji-kondo.webp" ,
@@ -48,11 +48,11 @@
                            "https://www.youtube.com/watch?v=0hEYvdMoF2g"]
 },
 {
-    "id": "4",
+    "id": "WusRh",
     "category": "videogame",
     "name": "David Wise",
     "birth": "1967",
-    "birthPlace": "Leicester - UK",
+    "birthPlace": "Leicester, UK",
     "countryFlag": "GB",
     "death": "",
     "picture": "david-wise.webp" ,
@@ -61,4 +61,22 @@
     "famousSoundtracks": ["https://www.youtube.com/watch?v=-5rAjOjTGtc",
                            "https://www.youtube.com/watch?v=lndBgOrTWxo",
                            "https://www.youtube.com/watch?v=E-DW-YTXDKU"]
+},
+{
+    "id": "iDzeW",
+    "category": "music",
+    "name": "Harry Fraud",
+    "birthname": "Rory William Quigley",
+    "birth": "26 janvier 1987",
+    "birthPlace": "New York City - USA",
+    "countryFlag": "US",
+    "death": "",
+    "picture": "harry-fraud.webp" ,
+    "musicalGenre": "Hip-Hop",
+    "bio": "Beatmaker ayant notamment produit pour Wiz Khalifa ou French Montana, Harry Fraud a un style plutôt reconnaissable et a forgé de sa patte le style de quelques gros noms du Hip-Hop américain.",
+    "related": ["Wiz Khalifa", "French Montana", "Curren$y"],
+    "hitSongs": ["https://www.youtube.com/watch?v=p4HSmFLYCWU",
+                  "https://www.youtube.com/watch?v=l2c1EwgyVLc",
+                  "https://www.youtube.com/watch?v=7ohbKidZLiA"]
+    
 }]

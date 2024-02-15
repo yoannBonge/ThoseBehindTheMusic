@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Home from "./pages/Landing";
 import Categories from "./pages/Categories";
+import Music from "./pages/Music";
 import Videogame from "./pages/Videogame";
+import Cinema from "./pages/Cinema";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
@@ -31,6 +33,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
+          <Route path='/music' element={<Music />}></Route>
+          <Route path='/cinema' element={<Cinema />}></Route>
           <Route path='/videogame' element={<Videogame />}></Route>
         </Routes>
       </BrowserRouter>

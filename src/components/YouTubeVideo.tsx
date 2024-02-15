@@ -1,3 +1,4 @@
+import React, { memo } from "react";
 import { useRef, useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
@@ -23,13 +24,14 @@ const Video = styled(ReactPlayer)`
   width: 100%;
   height: 100%;
   border: 2px solid #b6afaf;
+  border-bottom: none;
   border-radius: 15px;
   overflow: hidden;
 `;
 
 const Timeline = styled.div`
   position: absolute;
-  bottom: -1.4%;
+  bottom: -0.7%;
   left: 0.4%;
   width: 100%;
   height: 0.6em;
@@ -44,15 +46,16 @@ const ProgressContainer = styled.div`
   overflow: hidden;
 `;
 
-interface ProgressProps {
-  progress: number;
-}
-
-const Progress = styled.div<ProgressProps>`
-  height: 101.4%;
-  width: ${({ progress }) => progress}%;
-  background-color: #ff0000;
-`;
+// Here, I used "memo" without which the "rangile" font reloads with each change in the progress state.
+const Progress = React.memo(({ progress }: { progress: number }) => (
+  <div
+    style={{
+      height: "100%",
+      width: `${progress}%`,
+      backgroundColor: "#ff0000",
+    }}
+  />
+));
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function YoutubeVideo({
   url,

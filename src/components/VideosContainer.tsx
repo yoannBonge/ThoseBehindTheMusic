@@ -1,19 +1,6 @@
-import { useState } from "react";
+import { Composer } from "../common/types";
+import { useEffect, useState } from "react";
 import YoutubeVideo from "./YoutubeVideo";
-
-interface Composer {
-  id: string;
-  category: string;
-  name: string;
-  birth: string;
-  birthPlace: string;
-  countryFlag: string;
-  death?: string;
-  picture: string;
-  bio: string;
-  related: string[];
-  famousSoundtracks: string[];
-}
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function VideosContainer({
@@ -25,6 +12,14 @@ function VideosContainer({
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
 
   //////////////////////////////////////////////////////////////BEHAVIOR
+  const tracks = currentArtistInfos.famousSoundtracks
+    ? currentArtistInfos.famousSoundtracks
+    : currentArtistInfos.hitSongs;
+
+  if (!tracks) {
+    return null;
+  }
+
   const handlePlay = (videoUrl: string) => {
     if (currentVideoUrl !== videoUrl) {
       setCurrentVideoUrl("");
@@ -37,26 +32,30 @@ function VideosContainer({
     }
   };
 
+  useEffect(() => {
+    setCurrentVideoUrl("");
+  }, [currentArtistInfos]);
+
   //////////////////////////////////////////////////////////////RENDER
   return (
     <>
       <YoutubeVideo
-        url={currentArtistInfos.famousSoundtracks[0]}
-        playing={currentVideoUrl === currentArtistInfos.famousSoundtracks[0]}
+        url={tracks[0]}
+        playing={currentVideoUrl === tracks[0]}
         onPause={() => setCurrentVideoUrl("")}
-        onPlay={() => handlePlay(currentArtistInfos.famousSoundtracks[0])}
+        onPlay={() => handlePlay(tracks[0])}
       />
       <YoutubeVideo
-        url={currentArtistInfos.famousSoundtracks[1]}
-        playing={currentVideoUrl === currentArtistInfos.famousSoundtracks[1]}
+        url={tracks[1]}
+        playing={currentVideoUrl === tracks[1]}
         onPause={() => setCurrentVideoUrl("")}
-        onPlay={() => handlePlay(currentArtistInfos.famousSoundtracks[1])}
+        onPlay={() => handlePlay(tracks[1])}
       />
       <YoutubeVideo
-        url={currentArtistInfos.famousSoundtracks[2]}
-        playing={currentVideoUrl === currentArtistInfos.famousSoundtracks[2]}
+        url={tracks[2]}
+        playing={currentVideoUrl === tracks[2]}
         onPause={() => setCurrentVideoUrl("")}
-        onPlay={() => handlePlay(currentArtistInfos.famousSoundtracks[2])}
+        onPlay={() => handlePlay(tracks[2])}
       />
     </>
   );

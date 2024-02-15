@@ -1,32 +1,12 @@
 import { Composer } from "../common/types";
 import { getCategoryColor } from "../common/colors";
-import styled, { css, keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import { OverlayContainer, Overlay } from "../common/shared-components";
 import { useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
 // Some components appearing in the render are shared and come from "/shared-components".
-
-const SnowTV = styled.video<{ isSnowingTV: boolean }>`
-  height: 36%;
-  position: absolute;
-  top: 18%;
-  left: 12%;
-  transform: rotate(-1deg) skewX(1deg);
-  z-index: 1;
-  display: ${({ isSnowingTV }) => (isSnowingTV ? "block" : "none")};
-`;
-
-const CRTFilter = styled.img`
-  width: 40%;
-  position: absolute;
-  top: 15%;
-  left: 15%;
-  opacity: 0.2;
-  transform: rotate(-1deg) skewX(1deg);
-  z-index: 1;
-`;
 
 const pictureFadeInOut = keyframes`
   0% {
@@ -40,17 +20,17 @@ const pictureFadeInOut = keyframes`
   }
 `;
 
-const VideogameArtistPicture = styled.img<{ isFadingPicture: boolean }>`
-  width: 48%;
+const MusicArtistPicture = styled.img<{ isArtistSwitching: boolean }>`
+  width: 35%;
   position: absolute;
-  top: 17%;
-  left: 10%;
-  transform: rotate(-1deg) skewX(1deg);
+  top: 4%;
+  left: 20.8%;
+  transform: rotate(-1deg) skewX(-1deg);
   z-index: 0;
-  ${({ isFadingPicture }) =>
-    isFadingPicture &&
+  ${({ isArtistSwitching }) =>
+    isArtistSwitching &&
     css`
-      animation: ${pictureFadeInOut} 0.6s linear;
+      animation: ${pictureFadeInOut} 0.75s linear;
     `}
 `;
 
@@ -67,44 +47,45 @@ const buttonsBlink = (categoryColor: string) => keyframes`
 `;
 
 const ModelOverlayNavigateIndication = styled.span`
-  font-family: "Press Start 2P";
+  font-family: "Afacad";
+  font-weight: 800;
   color: white;
   position: absolute;
   z-index: 2;
 `;
 
 const OverlayPrevIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 2.4vh;
-  bottom: -27%;
-  right: 43%;
-  transform: rotate(15deg) skewX(10deg);
+  font-size: 5vh;
+  bottom: 15%;
+  right: 5%;
+  transform: rotate(-4.5deg) skewX(-1deg);
 `;
 const OverlayNextIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 2.7vh;
-  bottom: -30.5%;
-  right: -0.5%;
-  transform: rotate(4deg) skewX(-1deg);
+  font-size: 5vh;
+  bottom: 15%;
+  right: 6%;
+  transform: rotate(-4.5deg) skewX(-2deg);
 `;
 
 const ModelOverlayButton = styled.div`
-  width: 9vh;
-  height: 15vh;
+  width: 12vh;
+  height: 9vh;
   position: absolute;
   cursor: pointer;
   z-index: 2;
 `;
 
 const OverlayPrevButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
-  bottom: 25%;
-  right: 37.5%;
+  top: 39.5%;
+  left: 15%;
   &:hover > ${OverlayPrevIndication} {
     animation: ${({ categoryColor }) => buttonsBlink(categoryColor)} 0.6s
       infinite;
   }
 `;
 const OverlayNextButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
-  bottom: 22%;
-  right: 18%;
+  top: 35%;
+  left: 50%;
   &:hover > ${OverlayNextIndication} {
     animation: ${({ categoryColor }) => buttonsBlink(categoryColor)} 0.6s
       infinite;
@@ -112,7 +93,7 @@ const OverlayNextButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
-function OverlayVideogame({
+function OverlayMusic({
   currentArtistInfos,
   handlePrevArtist,
   handleNextArtist,
@@ -123,44 +104,31 @@ function OverlayVideogame({
 }) {
   const categoryColor = getCategoryColor(currentArtistInfos.category);
 
-  const [isFadingPicture, setIsFadingPicture] = useState(false);
-  const [isSnowingTV, setIsSnowingTV] = useState(false);
+  const [isArtistSwitching, setIsArtistSwitching] = useState(false);
 
   const handleClickPrevArtist = () => {
-    setIsFadingPicture(true);
-    setIsSnowingTV(true);
+    setIsArtistSwitching(true);
     handlePrevArtist();
     setTimeout(() => {
-      setIsSnowingTV(false);
-    }, 500);
-    setTimeout(() => {
-      setIsFadingPicture(false);
+      setIsArtistSwitching(false);
     }, 800);
   };
 
   const handleClickNextArtist = () => {
-    setIsFadingPicture(true);
-    setIsSnowingTV(true);
+    setIsArtistSwitching(true);
     handleNextArtist();
     setTimeout(() => {
-      setIsSnowingTV(false);
-    }, 500);
-    setTimeout(() => {
-      setIsFadingPicture(false);
+      setIsArtistSwitching(false);
     }, 800);
   };
+
   //////////////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer>
-      <Overlay src='videogame-overlay.webp' />
-      <SnowTV isSnowingTV={isSnowingTV} autoPlay muted loop>
-        <source src='tv-snow.mp4' type='video/mp4' />
-        Votre navigateur ne peut afficher la vidéo de changement d'artiste.
-      </SnowTV>
-      <CRTFilter src='filtre.webp' />
-      <VideogameArtistPicture
-        isFadingPicture={isFadingPicture}
+      <Overlay src='music-overlay.webp' />
+      <MusicArtistPicture
         src={currentArtistInfos.picture}
+        isArtistSwitching={isArtistSwitching}
       />
       <OverlayPrevButton
         categoryColor={categoryColor}
@@ -178,4 +146,4 @@ function OverlayVideogame({
   );
 }
 
-export default OverlayVideogame;
+export default OverlayMusic;

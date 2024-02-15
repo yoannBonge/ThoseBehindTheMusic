@@ -7,7 +7,7 @@ import {
   ModelImageInfosSeparationLine,
 } from "../common/shared-components";
 import Header from "../components/Header";
-import OverlayVideogame from "../components/OverlayVideogame";
+import OverlayCinema from "../components/OverlayCinema";
 import ArtistInfosWrapper from "../components/ArtistInfosWrapper";
 import { useEffect, useState } from "react";
 
@@ -16,12 +16,12 @@ import { useEffect, useState } from "react";
 // Some components appearing in the render are shared and come from "/shared-components".
 
 const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
-  left: calc(55%);
+  left: calc(54%);
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
-function Videogame() {
+function Cinema() {
   //////////////////////////////////////////////////////////////STATE
-  const [videogameInfos, setVideogameInfos] = useState<Composer[]>([]);
+  const [CinemaInfos, setCinemaInfos] = useState<Composer[]>([]);
   const [currentArtistIndex, setCurrentArtistIndex] = useState<number>(0);
   const [isArtistContentFading, setisArtistContentFading] = useState(false);
 
@@ -30,14 +30,14 @@ function Videogame() {
     const fetchData = async () => {
       const response = await fetch("/composers.json");
       const infos: Composer[] = await response.json();
-      const data = infos.filter((item) => item.category === "videogame");
+      const data = infos.filter((item) => item.category === "cinema");
       data.sort((a, b) => a.name.localeCompare(b.name));
-      setVideogameInfos(data);
+      setCinemaInfos(data);
     };
     fetchData();
   }, []);
 
-  const currentArtistInfos = videogameInfos[currentArtistIndex];
+  const currentArtistInfos = CinemaInfos[currentArtistIndex];
   if (!currentArtistInfos) {
     return null;
   }
@@ -48,7 +48,7 @@ function Videogame() {
     setisArtistContentFading(true);
     setTimeout(() => {
       setCurrentArtistIndex((prevIndex) =>
-        prevIndex === 0 ? videogameInfos.length - 1 : prevIndex - 1
+        prevIndex === 0 ? CinemaInfos.length - 1 : prevIndex - 1
       );
       setisArtistContentFading(false);
     }, 400);
@@ -58,7 +58,7 @@ function Videogame() {
     setisArtistContentFading(true);
     setTimeout(() => {
       setCurrentArtistIndex((prevIndex) =>
-        prevIndex === videogameInfos.length - 1 ? 0 : prevIndex + 1
+        prevIndex === CinemaInfos.length - 1 ? 0 : prevIndex + 1
       );
       setisArtistContentFading(false);
     }, 400);
@@ -69,7 +69,7 @@ function Videogame() {
       <Header />
       <Wrapper>
         <ArtistPresentation>
-          <OverlayVideogame
+          <OverlayCinema
             currentArtistInfos={currentArtistInfos}
             handlePrevArtist={handlePrevArtist}
             handleNextArtist={handleNextArtist}
@@ -85,4 +85,4 @@ function Videogame() {
   );
 }
 
-export default Videogame;
+export default Cinema;

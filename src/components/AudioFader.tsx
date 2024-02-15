@@ -7,7 +7,7 @@ interface AudioFaderProps {
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const Channel = styled.div`
-  display: inline-block;
+  display: flex;
   height: 100%;
   max-height: 100px;
   margin: 0 1em;
