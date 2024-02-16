@@ -8,7 +8,7 @@ const StyledHeader = styled.header`
   top: 0%;
   background-color: #000000;
   width: 100%;
-  height: 5.5vw;
+  height: 10vh;
   align-items: center;
   gap: 2em;
   z-index: 100;
@@ -21,13 +21,14 @@ const StyledHeader = styled.header`
   }
 
   img {
-    width: 2.5vw;
+    width: 4vh;
     margin: 0 1em;
   }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Header() {
+  // console.log("RENDER HEADER");
   return (
     <StyledHeader>
       <img src='tbtm-logo.webp' alt='logo du site ThoseBehindTheMusic' />

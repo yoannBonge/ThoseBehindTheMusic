@@ -63,6 +63,8 @@ function Carousel() {
     fade: true,
   };
 
+  // console.log("RENDER CAROUSEL");
+
   return (
     <StyledSlider {...settings}>
       <OverlayCarousel

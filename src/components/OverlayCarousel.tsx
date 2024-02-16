@@ -78,7 +78,7 @@ const Image = styled.img`
   z-index: 1;
 `;
 
-const Title = styled.h3<{ isHovered: boolean }>`
+const Title = styled.h3<{ $isHovered: boolean }>`
   position: absolute;
   top: 38%;
   left: 50%;
@@ -88,7 +88,7 @@ const Title = styled.h3<{ isHovered: boolean }>`
   color: white;
   z-index: 3;
   animation: ${(props) =>
-    props.isHovered
+    props.$isHovered
       ? css`
           ${moveUp} 0.3s ease-out forwards
         `
@@ -97,7 +97,7 @@ const Title = styled.h3<{ isHovered: boolean }>`
         `};
 `;
 
-const Description = styled.div<{ isHovered: boolean }>`
+const Description = styled.div<{ $isHovered: boolean }>`
   position: absolute;
   top: 70%;
   left: 50%;
@@ -108,11 +108,11 @@ const Description = styled.div<{ isHovered: boolean }>`
   font-weight: 600;
   text-align: center;
   z-index: 3;
-  opacity: ${(props) => (props.isHovered ? 1 : 0)};
-  pointer-events: ${(props) => (props.isHovered ? "auto" : "none")};
+  opacity: ${(props) => (props.$isHovered ? 1 : 0)};
+  pointer-events: ${(props) => (props.$isHovered ? "auto" : "none")};
   transition: opacity 0.2s ease-out;
   animation: ${(props) =>
-    props.isHovered
+    props.$isHovered
       ? css`
           ${moveDownFadeIn} 0.3s ease-out
         `
@@ -130,6 +130,7 @@ function OverlayCarousel({
 }: OverlayCarouselProps) {
   //////////////////////////////////////////////////////////////STATE
   const [hoverState, setHoverState] = useState(false);
+  // console.log("RENDER OVERLAY CAROUSEL");
   //////////////////////////////////////////////////////////////RENDER
   return (
     <Wrapper
@@ -145,8 +146,8 @@ function OverlayCarousel({
     >
       <Image src={imageUrl} alt={title}></Image>
       <Filter />
-      <Title isHovered={hoverState}>{title}</Title>
-      <Description isHovered={hoverState}>{children}</Description>
+      <Title $isHovered={hoverState}>{title}</Title>
+      <Description $isHovered={hoverState}>{children}</Description>
     </Wrapper>
   );
 }

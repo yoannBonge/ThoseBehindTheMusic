@@ -1,12 +1,16 @@
 import { Composer } from "../common/types";
 import { getCategoryColor } from "../common/colors";
 import styled, { keyframes, css } from "styled-components";
-import { OverlayContainer, Overlay } from "../common/shared-components";
+import {
+  OverlayContainer,
+  Overlay,
+} from "../common/shared-and-isolated-components";
 import { useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are shared and come from "/shared-components".
+// Some components appearing in the render are shared and
+// come from "/shared-and-isolated-components".
 
 const pictureFadeInOut = keyframes`
   0% {
@@ -20,26 +24,26 @@ const pictureFadeInOut = keyframes`
   }
 `;
 
-const MusicArtistPicture = styled.img<{ isArtistSwitching: boolean }>`
+const MusicArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
   width: 35%;
   position: absolute;
   top: 4%;
   left: 20.8%;
   transform: rotate(-1deg) skewX(-1deg);
   z-index: 0;
-  ${({ isArtistSwitching }) =>
-    isArtistSwitching &&
+  ${({ $isArtistSwitching }) =>
+    $isArtistSwitching &&
     css`
       animation: ${pictureFadeInOut} 0.75s linear;
     `}
 `;
 
-const buttonsBlink = (categoryColor: string) => keyframes`
+const buttonsBlink = ($categoryColor: string) => keyframes`
   0% {
     color: white;
   }
   50% {
-    color: ${categoryColor};
+    color: ${$categoryColor};
   }
   100% {
     color: white;
@@ -75,19 +79,23 @@ const ModelOverlayButton = styled.div`
   z-index: 2;
 `;
 
-const OverlayPrevButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
+const OverlayPrevButton = styled(ModelOverlayButton)<{
+  $categoryColor: string;
+}>`
   top: 39.5%;
   left: 15%;
   &:hover > ${OverlayPrevIndication} {
-    animation: ${({ categoryColor }) => buttonsBlink(categoryColor)} 0.6s
+    animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
       infinite;
   }
 `;
-const OverlayNextButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
+const OverlayNextButton = styled(ModelOverlayButton)<{
+  $categoryColor: string;
+}>`
   top: 35%;
   left: 50%;
   &:hover > ${OverlayNextIndication} {
-    animation: ${({ categoryColor }) => buttonsBlink(categoryColor)} 0.6s
+    animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
       infinite;
   }
 `;
@@ -122,22 +130,24 @@ function OverlayMusic({
     }, 800);
   };
 
+  // console.log("RENDER OVERLAY MUSIC");
+
   //////////////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer>
       <Overlay src='music-overlay.webp' />
       <MusicArtistPicture
         src={currentArtistInfos.picture}
-        isArtistSwitching={isArtistSwitching}
+        $isArtistSwitching={isArtistSwitching}
       />
       <OverlayPrevButton
-        categoryColor={categoryColor}
+        $categoryColor={categoryColor}
         onClick={handleClickPrevArtist}
       >
         <OverlayPrevIndication>PREV</OverlayPrevIndication>
       </OverlayPrevButton>
       <OverlayNextButton
-        categoryColor={categoryColor}
+        $categoryColor={categoryColor}
         onClick={handleClickNextArtist}
       >
         <OverlayNextIndication>NEXT</OverlayNextIndication>

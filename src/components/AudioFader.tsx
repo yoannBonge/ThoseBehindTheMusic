@@ -44,7 +44,7 @@ const FaderTrack = styled.div`
   }
 `;
 
-const Fader = styled.div<{ switched: boolean }>`
+const Fader = styled.div<{ $switched: boolean }>`
   height: 1.3rem;
   width: 2.5rem;
   background: linear-gradient(
@@ -64,8 +64,8 @@ const Fader = styled.div<{ switched: boolean }>`
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: transform 0.4s ease-in;
-  transform: ${({ switched }) =>
-    switched ? "translateX(400%)" : "translateX(0%)"};
+  transform: ${({ $switched }) =>
+    $switched ? "translateX(400%)" : "translateX(0%)"};
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
@@ -74,7 +74,7 @@ function AudioFader({ switched, onToggle }: AudioFaderProps) {
     <Channel>
       <Slider>
         <FaderTrack>
-          <Fader switched={switched} onClick={onToggle} />
+          <Fader $switched={switched} onClick={onToggle} />
         </FaderTrack>
       </Slider>
     </Channel>

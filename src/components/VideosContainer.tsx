@@ -36,6 +36,8 @@ function VideosContainer({
     setCurrentVideoUrl("");
   }, [currentArtistInfos]);
 
+  // console.log("RENDER VIDEO CONTAINER");
+
   //////////////////////////////////////////////////////////////RENDER
   return (
     <>

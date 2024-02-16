@@ -130,6 +130,8 @@ function OverlayCinema({
     }, 800);
   };
 
+  // console.log("RENDER OVERLAY CINEMA");
+
   //////////////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer>

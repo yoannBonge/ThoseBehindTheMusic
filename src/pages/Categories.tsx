@@ -5,7 +5,7 @@ import Carousel from "../components/Carousel";
 /////////////////////////////////////////////////////////////////////////////STYLE
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ const VideoBackground = styled.video`
 
 const ContentContainer = styled.div`
   position: absolute;
-  top: 39%;
+  top: 44%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
@@ -40,6 +40,7 @@ const Title = styled.h2`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Categories() {
+  // console.log("RENDER PAGE CATEGORIES");
   return (
     <>
       <Header />

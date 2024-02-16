@@ -2,10 +2,10 @@ import { Composer } from "../common/types";
 import { getCategoryColor } from "../common/colors";
 import styled from "styled-components";
 import {
-  Wrapper,
+  PageWrapper,
   ArtistPresentation,
   ModelImageInfosSeparationLine,
-} from "../common/shared-components";
+} from "../common/shared-and-isolated-components";
 import Header from "../components/Header";
 import OverlayMusic from "../components/OverlayMusic";
 import ArtistInfosWrapper from "../components/ArtistInfosWrapper";
@@ -13,10 +13,11 @@ import { useEffect, useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are shared and come from "/shared-components".
+// Some components appearing in the render are shared and
+// come from "/shared-and-isolated-components".
 
 const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
-  left: calc(54%);
+  left: calc(55%);
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Music() {
@@ -63,24 +64,27 @@ function Music() {
       setisArtistContentFading(false);
     }, 400);
   };
+
+  // console.log("RENDER PAGE MUSIC");
+
   //////////////////////////////////////////////////////////////RENDER
   return (
     <>
       <Header />
-      <Wrapper>
+      <PageWrapper>
         <ArtistPresentation>
           <OverlayMusic
             currentArtistInfos={currentArtistInfos}
             handlePrevArtist={handlePrevArtist}
             handleNextArtist={handleNextArtist}
           />
-          <ImageInfosSeparationLine categoryColor={categoryColor} />
+          <ImageInfosSeparationLine $categoryColor={categoryColor} />
           <ArtistInfosWrapper
             currentArtistInfos={currentArtistInfos}
             isArtistContentFading={!isArtistContentFading}
           />
         </ArtistPresentation>
-      </Wrapper>
+      </PageWrapper>
     </>
   );
 }

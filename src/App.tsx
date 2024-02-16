@@ -16,8 +16,9 @@ const GlobalStyle = createGlobalStyle`
   }
     body {
         width: 100vw;
+        height: 90vh;
         overflow-x: hidden;
-        margin: 5em 0 0 0;
+        margin: 10vh 0 0 0;
         background-image: url("musical-background-1.jpeg");
         background-attachment: fixed;
         background-position: center;
@@ -26,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function App() {
+  // console.log("RENDER APP");
   return (
     <>
       <GlobalStyle />

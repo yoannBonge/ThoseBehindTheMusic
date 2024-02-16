@@ -27,6 +27,8 @@ function Vinyl() {
     navigate("/categories");
   };
 
+  // console.log("RENDER VINYL");
+
   //////////////////////////////////////////////////////RENDER
   return (
     <VinylContainer>

@@ -6,15 +6,15 @@ import Vinyl from "../components/Vinyl";
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 100vw;
-  height: 40vw;
+  width: 100%;
+  height: 90vh;
   justify-content: space-between;
 `;
 
 const WelcomeDiv = styled.div`
   width: 50%;
   background-color: white;
-  height: 41vw;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,6 +38,7 @@ const About = styled.p`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Landing() {
+  // console.log("RENDER PAGE LANDING");
   return (
     <>
       <Header />

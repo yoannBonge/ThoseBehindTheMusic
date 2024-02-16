@@ -10,11 +10,11 @@ interface YoutubeVideoChildProps {
   onPlay: () => void;
 }
 
-/////////////////////////////////////////////////////////////////////////////COMPONENT
+/////////////////////////////////////////////////////////////////////////////STYLE
 const VideoContainer = styled.div`
   position: relative;
   width: 30%;
-  height: 90%;
+  height: 100%;
 `;
 
 const Video = styled(ReactPlayer)`
@@ -56,6 +56,7 @@ const Progress = React.memo(({ progress }: { progress: number }) => (
     }}
   />
 ));
+
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function YoutubeVideo({
   url,
@@ -132,6 +133,9 @@ function YoutubeVideo({
   const handleVideoEnded = () => {
     setindexComponent(1);
   };
+
+  // console.log("RENDER YOUTUBE VIDEO");
+
   //////////////////////////////////////////////////////////////RENDER
   return (
     <VideoContainer key={indexComponent}>
