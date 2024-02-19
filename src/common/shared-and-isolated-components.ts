@@ -69,26 +69,39 @@ export const PageWrapper = styled.div`
         export const IdentityInfos = styled.div`
         height: 36%;
         margin-left: 1.2rem;
+        line-height: 2.1em;
       `;
 
             export const ArtistInfosElement = styled.li`
+            display: flex;
             list-style-type: none;
+            max-width: 50vw;
             color: white;
             font-family: "Afacad";
-            font-size: 1.5em;
+            font-size: 1.2em;
             `;
 
                 export const Property = styled.span<{ $categoryColor: string }>`
+                display: inline;
                 color: ${(props) => props.$categoryColor};
                 font-family: "Afacad";
                 font-size: 1.5rem;
                 `;
 
-                export const CountryFlag = styled(ReactCountryFlag)`
+                export const ArtistInfo = styled.span`
+                max-width: 30vw;
+                color: white;
+                font-family: "Afacad";
                 font-size: 1.3em;
-                margin: 0 0.5em;
+                margin-left: 0.3em;
                 `;
 
+                    export const CountryFlag = styled(ReactCountryFlag)`
+                    font-size: 1.3em;
+                    margin: 0 0.5em;
+                    `;
+
+            
                 export const NotableWorksContainer = styled.div`
                 display: flex;
                 align-items: baseline;
@@ -97,14 +110,14 @@ export const PageWrapper = styled.div`
                     export const NotableWorksList = styled.ul`
                     padding-left: 0.3em;
                     margin: 0;
-                    line-height: 1.3em;
+                    line-height: 1.4em;
                     `;
 
                         export const NotableWorksElement = styled.li`
                         list-style-type: none;
                         color: white;
                         font-family: "Afacad";
-                        font-size: 1em;
+                        font-size: 1.3em;
                         `;
 
             //PARENT: ArtistInfosContent

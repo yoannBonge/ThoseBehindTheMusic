@@ -37,7 +37,7 @@ const VideosWrapper = styled.div<{ $category: string }>`
         case "videogame":
           return "101.3%";
         case "cinema":
-          return "110%";
+          return "103%";
         default:
           return "103%";
       }

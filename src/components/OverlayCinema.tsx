@@ -1,20 +1,13 @@
 import { Composer } from "../common/types";
 import { getCategoryColor } from "../common/colors";
 import styled, { keyframes, css } from "styled-components";
+import {
+  OverlayContainer,
+  Overlay,
+} from "../common/shared-and-isolated-components";
 import { useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
-const OverlayContainer = styled.div`
-  position: relative;
-  display: flex;
-  height: 100%;
-  z-index: 2;
-`;
-
-const Overlay = styled.img`
-  height: 100%;
-  z-index: 2;
-`;
 
 const pictureFadeInOut = keyframes`
   0% {
@@ -28,15 +21,25 @@ const pictureFadeInOut = keyframes`
   }
 `;
 
-const CinemaArtistPicture = styled.img<{ isArtistSwitching: boolean }>`
-  width: 35%;
+const ArtistPictureContainer = styled.div`
+  width: 54%;
   position: absolute;
-  top: 4%;
-  left: 20.8%;
-  transform: rotate(-1deg) skewX(-1deg);
-  z-index: 0;
-  ${({ isArtistSwitching }) =>
-    isArtistSwitching &&
+  top: 31.8%;
+  left: 9.4%;
+  perspective: 800px;
+  transform: rotate(5.2deg);
+`;
+
+const CinemaArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
+  width: 70.6%;
+  height: 9.4vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(45deg) skew(8deg, 0deg);
+  z-index: 1;
+  ${({ $isArtistSwitching }) =>
+    $isArtistSwitching &&
     css`
       animation: ${pictureFadeInOut} 0.75s linear;
     `}
@@ -44,56 +47,68 @@ const CinemaArtistPicture = styled.img<{ isArtistSwitching: boolean }>`
 
 const buttonsBlinkAnimation = (categoryColor: string) => keyframes`
   0% {
-    color: white;
+    color: #e4cba5;
   }
   50% {
     color: ${categoryColor};
   }
   100% {
-    color: white;
+    color: #e4cba5;
   }
 `;
 
-const ModelOverlayNavigateIndication = styled.span`
-  font-family: "Afacad";
-  font-weight: 800;
-  color: white;
+const ModelOverlayNavigateIndication = styled.div`
+  display: flex;
+  flex-direction: column;
+  line-height: 1em;
+  font-family: "Ultra";
+  font-weight: 100;
+  color: #e4cba5;
   position: absolute;
   z-index: 2;
 `;
 
 const OverlayPrevIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 5vh;
-  bottom: 15%;
-  right: 5%;
-  transform: rotate(-4.5deg) skewX(-1deg);
+  font-size: 3.5vh;
+  bottom: 14%;
+  left: 20%;
+  transform: rotate(-0.5deg) skew(0deg, -1deg);
 `;
 const OverlayNextIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 5vh;
+  font-size: 2.7vh;
   bottom: 15%;
   right: 6%;
-  transform: rotate(-4.5deg) skewX(-2deg);
+  transform: rotate(-1deg) skew(0deg, 2deg);
 `;
 
 const ModelOverlayButton = styled.div`
-  width: 12vh;
-  height: 9vh;
+  background-color: #2b0501;
+  width: 5vh;
+  height: 20vh;
   position: absolute;
+  border: 4px solid #0f0b08;
+  border-radius: 2px;
   cursor: pointer;
   z-index: 2;
 `;
 
 const OverlayPrevButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
-  top: 39.5%;
-  left: 15%;
+  width: 5vh;
+  height: 20vh;
+  top: 29.6%;
+  left: 5%;
+  transform: rotate(-1deg) skew(0deg, 2deg);
   &:hover > ${OverlayPrevIndication} {
     animation: ${({ categoryColor }) => buttonsBlinkAnimation(categoryColor)}
       0.6s infinite;
   }
 `;
 const OverlayNextButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
-  top: 35%;
-  left: 50%;
+  width: 3vh;
+  height: 15.5vh;
+  top: 33.5%;
+  left: 41.4%;
+  transform: rotate(-1.4deg) skew(0deg, 5deg);
   &:hover > ${OverlayNextIndication} {
     animation: ${({ categoryColor }) => buttonsBlinkAnimation(categoryColor)}
       0.6s infinite;
@@ -136,21 +151,34 @@ function OverlayCinema({
   return (
     <OverlayContainer>
       <Overlay src='cinema-overlay.webp' />
-      <CinemaArtistPicture
-        src={currentArtistInfos.picture}
-        isArtistSwitching={isArtistSwitching}
-      />
+      <ArtistPictureContainer>
+        <CinemaArtistPicture
+          src={currentArtistInfos.picture}
+          $isArtistSwitching={isArtistSwitching}
+        />
+      </ArtistPictureContainer>
+
       <OverlayPrevButton
         categoryColor={categoryColor}
         onClick={handleClickPrevArtist}
       >
-        <OverlayPrevIndication>PREV</OverlayPrevIndication>
+        <OverlayPrevIndication>
+          <span>P</span>
+          <span>R</span>
+          <span>E</span>
+          <span>V</span>
+        </OverlayPrevIndication>
       </OverlayPrevButton>
       <OverlayNextButton
         categoryColor={categoryColor}
         onClick={handleClickNextArtist}
       >
-        <OverlayNextIndication>NEXT</OverlayNextIndication>
+        <OverlayNextIndication>
+          <span>N</span>
+          <span>E</span>
+          <span>X</span>
+          <span>T</span>
+        </OverlayNextIndication>
       </OverlayNextButton>
     </OverlayContainer>
   );

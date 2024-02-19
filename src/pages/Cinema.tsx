@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 // come from "/shared-and-isolated-components".
 
 const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
-  left: calc(54%);
+  left: calc(55%);
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Cinema() {

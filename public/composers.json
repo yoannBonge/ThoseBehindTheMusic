@@ -25,8 +25,9 @@
     "birth": "10 novembre 1928",
     "birthPlace": "Rome, Italie",
     "countryFlag": "IT",
-    "death": "",
+    "death": "06 juillet 2020",
     "picture": "ennio-morricone.webp" ,
+    "bio": "Célèbre et prolifique compositeur de musique de cinéma, Ennio Morricone a participé au succès de grands classiques du cinéma, notamment certains des plus gros succès de Sergio Leone ou Quentin Tarantino.",
     "related": ["Le Bon, la Brute et le Truand", "Il était une fois en Amérique", "Le Professionnel"],
     "famousSoundtracks": ["https://www.youtube.com/watch?v=LdLQf1Ef9Ns&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=2?privacy-enhanced=true",
                            "https://www.youtube.com/watch?v=PYI09PMNazw&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=1?privacy-enhanced=true",
@@ -73,10 +74,25 @@
     "death": "",
     "picture": "harry-fraud.webp" ,
     "musicalGenre": "Hip-Hop",
-    "bio": "Beatmaker ayant notamment produit pour Wiz Khalifa ou French Montana, Harry Fraud a un style plutôt reconnaissable et a forgé de sa patte le style de quelques gros noms du Hip-Hop américain.",
+    "bio": "Beatmaker ayant notamment produit pour Wiz Khalifa ou French Montana, Harry Fraud a un style plutôt reconnaissable et a marqué de sa patte l'identité sonore de quelques gros noms du hip hop américain.",
     "related": ["Wiz Khalifa", "French Montana", "Curren$y"],
     "hitSongs": ["https://www.youtube.com/watch?v=p4HSmFLYCWU?privacy-enhanced=true",
                   "https://www.youtube.com/watch?v=l2c1EwgyVLc?privacy-enhanced=true",
                   "https://www.youtube.com/watch?v=7ohbKidZLiA?privacy-enhanced=true"]
     
+},
+{
+    "id": "wxIaI",
+    "category": "cinema",
+    "name": "Hans Zimmer",
+    "birth": "12 septembre 1957",
+    "birthPlace": "Francfort-sur-le-Main, Allemagne",
+    "countryFlag": "DE",
+    "death": "",
+    "picture": "hans-zimmer.webp" ,
+    "bio": "Incontournable compositeur de musique de film au son épique et si reconnaissable, Hans Zimmer a composé les musiques de longs-métrages cultes tels que le Roi Lion, Gladiator ou encore Inception.",
+    "related": ["Le Roi Lion", "Gladiator", "Inception"],
+    "famousSoundtracks": ["https://www.youtube.com/watch?v=-yOZEiHLuVU?privacy-enhanced=true",
+                           "https://www.youtube.com/watch?v=RakhywpkY-k?privacy-enhanced=true",
+                           "https://www.youtube.com/watch?v=UDVtMYqUAyw?privacy-enhanced=true"]
 }]

@@ -3,6 +3,7 @@ import { getCategoryColor } from "../common/colors";
 import {
   IdentityInfos,
   ArtistInfosElement,
+  ArtistInfo,
   Property,
   CountryFlag,
   NotableWorksContainer,
@@ -32,27 +33,29 @@ function ArtistInfos({ currentArtistInfos }: { currentArtistInfos: Composer }) {
       <IdentityInfos>
         <ArtistInfosElement>
           <Property $categoryColor={categoryColor}>Naissance : </Property>
-          {currentArtistInfos.birth} - {currentArtistInfos.birthPlace}{" "}
-          <CountryFlag countryCode={currentArtistInfos.countryFlag} svg />
+          <ArtistInfo>
+            {currentArtistInfos.birth} - {currentArtistInfos.birthPlace}{" "}
+            <CountryFlag countryCode={currentArtistInfos.countryFlag} svg />
+          </ArtistInfo>
         </ArtistInfosElement>
         {currentArtistInfos.birthname && (
           <ArtistInfosElement>
             <Property $categoryColor={categoryColor}>
               Nom de naissance :{" "}
             </Property>
-            {currentArtistInfos.birthname}
+            <ArtistInfo>{currentArtistInfos.birthname}</ArtistInfo>
           </ArtistInfosElement>
         )}
         {currentArtistInfos.death !== "" && (
           <ArtistInfosElement>
             <Property $categoryColor={categoryColor}>Décès : </Property>
-            {currentArtistInfos.death}{" "}
+            <ArtistInfo>{currentArtistInfos.death} </ArtistInfo>
           </ArtistInfosElement>
         )}
         {currentArtistInfos.musicalGenre && (
           <ArtistInfosElement>
             <Property $categoryColor={categoryColor}>Genre musical : </Property>
-            {currentArtistInfos.musicalGenre}
+            <ArtistInfo>{currentArtistInfos.musicalGenre}</ArtistInfo>
           </ArtistInfosElement>
         )}
         <ArtistInfosElement>
