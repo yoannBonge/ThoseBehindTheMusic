@@ -81,14 +81,14 @@ export const PageWrapper = styled.div`
             font-size: 1.2em;
             `;
 
-                export const Property = styled.span<{ $categoryColor: string }>`
+                export const PropertyName = styled.span<{ $categoryColor: string }>`
                 display: inline;
                 color: ${(props) => props.$categoryColor};
                 font-family: "Afacad";
                 font-size: 1.5rem;
                 `;
 
-                export const ArtistInfo = styled.span`
+                export const PropertyContent = styled.span`
                 max-width: 30vw;
                 color: white;
                 font-family: "Afacad";
@@ -98,7 +98,7 @@ export const PageWrapper = styled.div`
 
                     export const CountryFlag = styled(ReactCountryFlag)`
                     font-size: 1.3em;
-                    margin: 0 0.5em;
+                    margin: -0.1em 0.5em 0 0.5em;
                     `;
 
             
@@ -121,6 +121,17 @@ export const PageWrapper = styled.div`
                         `;
 
             //PARENT: ArtistInfosContent
+            export const PhotoSource = styled.span`
+            font-family: "Afacad";
+            font-size: 1em;
+            color: white;
+            line-height: 1em;
+            position: absolute;
+            opacity: 0.5;
+            left: 1%;
+            bottom: 41%;
+            `;
+
             export const SeparationLine = styled.div<{ $categoryColor: string }>`
             width: 56%;
             height: 2px;
@@ -130,7 +141,6 @@ export const PageWrapper = styled.div`
             `;
 
             export const MainWrapper = styled.div`
-            /* background-color: rebeccapurple; */
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -152,18 +162,6 @@ export const PageWrapper = styled.div`
                   height: 77%;
                   margin-top: 1em;
                 `;
-
-                    export const Bio = styled.p`
-                      font-family: "Afacad";
-                      font-size: 1.5em;
-                      margin: 0;
-                      width: 40vw;
-                      color: white;
-                      line-height: 1.2em;
-                      overflow-y: auto;
-                      overflow-wrap: break-word;
-                      word-wrap: break-word;
-                    `;
 
 
 

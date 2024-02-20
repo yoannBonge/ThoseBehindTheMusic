@@ -10,6 +10,7 @@ export interface Composer {
   countryFlag: string;
   death?: string;
   picture: string;
+  pictureSource: string;
   musicalGenre?: string;
   bio: string;
   related: string[];

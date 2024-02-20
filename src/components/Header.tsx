@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
   width: 100%;
   height: 10vh;
   align-items: center;
-  gap: 2em;
+  gap: 3em;
   z-index: 100;
 
   a {
@@ -33,6 +33,9 @@ function Header() {
     <StyledHeader>
       <img src='tbtm-logo.webp' alt='logo du site ThoseBehindTheMusic' />
       <NavLink to='/'>Accueil</NavLink>
+      <NavLink to='/music'>Musique</NavLink>
+      <NavLink to='/cinema'>Cinéma</NavLink>
+      <NavLink to='/videogame'>Jeu Vidéo</NavLink>
     </StyledHeader>
   );
 }

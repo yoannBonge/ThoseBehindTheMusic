@@ -12,6 +12,7 @@ import ArtistInfos from "./ArtistInfos";
 // come from "/shared-and-isolated-components".
 
 const ArtistInfosContent = styled.div<{ $isArtistContentFading: boolean }>`
+  position: relative;
   display: flex;
   align-items: flex-start;
   flex-direction: column;

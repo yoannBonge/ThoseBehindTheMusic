@@ -119,6 +119,17 @@ const OverlayNextButton = styled(ModelOverlayButton)<{
   }
 `;
 
+const OverlaySource = styled.span`
+  font-family: "Afacad";
+  font-size: 1em;
+  color: white;
+  position: absolute;
+  opacity: 0.4;
+  right: 1%;
+  bottom: 1%;
+  z-index: 2;
+`;
+
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function OverlayVideogame({
   currentArtistInfos,
@@ -184,6 +195,9 @@ function OverlayVideogame({
       >
         <OverlayNextIndication>NEXT</OverlayNextIndication>
       </OverlayNextButton>
+      <OverlaySource>
+        crédits image overlay : dalay-lamma on www.deviantart.com
+      </OverlaySource>
     </OverlayContainer>
   );
 }

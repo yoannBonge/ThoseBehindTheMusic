@@ -45,12 +45,12 @@ const CinemaArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
     `}
 `;
 
-const buttonsBlinkAnimation = (categoryColor: string) => keyframes`
+const buttonsBlinkAnimation = ($categoryColor: string) => keyframes`
   0% {
     color: #e4cba5;
   }
   50% {
-    color: ${categoryColor};
+    color: ${$categoryColor};
   }
   100% {
     color: #e4cba5;
@@ -92,27 +92,42 @@ const ModelOverlayButton = styled.div`
   z-index: 2;
 `;
 
-const OverlayPrevButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
+const OverlayPrevButton = styled(ModelOverlayButton)<{
+  $categoryColor: string;
+}>`
   width: 5vh;
   height: 20vh;
   top: 29.6%;
   left: 5%;
   transform: rotate(-1deg) skew(0deg, 2deg);
   &:hover > ${OverlayPrevIndication} {
-    animation: ${({ categoryColor }) => buttonsBlinkAnimation(categoryColor)}
+    animation: ${({ $categoryColor }) => buttonsBlinkAnimation($categoryColor)}
       0.6s infinite;
   }
 `;
-const OverlayNextButton = styled(ModelOverlayButton)<{ categoryColor: string }>`
+const OverlayNextButton = styled(ModelOverlayButton)<{
+  $categoryColor: string;
+}>`
   width: 3vh;
   height: 15.5vh;
   top: 33.5%;
   left: 41.4%;
   transform: rotate(-1.4deg) skew(0deg, 5deg);
   &:hover > ${OverlayNextIndication} {
-    animation: ${({ categoryColor }) => buttonsBlinkAnimation(categoryColor)}
+    animation: ${({ $categoryColor }) => buttonsBlinkAnimation($categoryColor)}
       0.6s infinite;
   }
+`;
+
+const OverlaySource = styled.span`
+  font-family: "Afacad";
+  font-size: 1em;
+  color: white;
+  position: absolute;
+  opacity: 0.4;
+  right: 1%;
+  bottom: 1%;
+  z-index: 2;
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
@@ -159,7 +174,7 @@ function OverlayCinema({
       </ArtistPictureContainer>
 
       <OverlayPrevButton
-        categoryColor={categoryColor}
+        $categoryColor={categoryColor}
         onClick={handleClickPrevArtist}
       >
         <OverlayPrevIndication>
@@ -170,7 +185,7 @@ function OverlayCinema({
         </OverlayPrevIndication>
       </OverlayPrevButton>
       <OverlayNextButton
-        categoryColor={categoryColor}
+        $categoryColor={categoryColor}
         onClick={handleClickNextArtist}
       >
         <OverlayNextIndication>
@@ -180,6 +195,7 @@ function OverlayCinema({
           <span>T</span>
         </OverlayNextIndication>
       </OverlayNextButton>
+      <OverlaySource>crédits image overlay : www.timeout.com</OverlaySource>
     </OverlayContainer>
   );
 }

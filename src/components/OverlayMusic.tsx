@@ -100,6 +100,17 @@ const OverlayNextButton = styled(ModelOverlayButton)<{
   }
 `;
 
+const OverlaySource = styled.span`
+  font-family: "Afacad";
+  font-size: 1em;
+  color: white;
+  position: absolute;
+  opacity: 0.4;
+  right: 1%;
+  bottom: 1%;
+  z-index: 2;
+`;
+
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function OverlayMusic({
   currentArtistInfos,
@@ -152,6 +163,7 @@ function OverlayMusic({
       >
         <OverlayNextIndication>NEXT</OverlayNextIndication>
       </OverlayNextButton>
+      <OverlaySource>crédits image overlay : www.wallpapers.com</OverlaySource>
     </OverlayContainer>
   );
 }

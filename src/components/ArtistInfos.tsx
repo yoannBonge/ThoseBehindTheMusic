@@ -3,12 +3,13 @@ import { getCategoryColor } from "../common/colors";
 import {
   IdentityInfos,
   ArtistInfosElement,
-  ArtistInfo,
-  Property,
+  PropertyName,
+  PropertyContent,
   CountryFlag,
   NotableWorksContainer,
   NotableWorksList,
   NotableWorksElement,
+  PhotoSource,
   SeparationLine,
 } from "../common/shared-and-isolated-components";
 import BioAndVideos from "./BioAndVideos";
@@ -32,37 +33,41 @@ function ArtistInfos({ currentArtistInfos }: { currentArtistInfos: Composer }) {
     <>
       <IdentityInfos>
         <ArtistInfosElement>
-          <Property $categoryColor={categoryColor}>Naissance : </Property>
-          <ArtistInfo>
+          <PropertyName $categoryColor={categoryColor}>
+            Naissance :{" "}
+          </PropertyName>
+          <PropertyContent>
             {currentArtistInfos.birth} - {currentArtistInfos.birthPlace}{" "}
             <CountryFlag countryCode={currentArtistInfos.countryFlag} svg />
-          </ArtistInfo>
+          </PropertyContent>
         </ArtistInfosElement>
         {currentArtistInfos.birthname && (
           <ArtistInfosElement>
-            <Property $categoryColor={categoryColor}>
+            <PropertyName $categoryColor={categoryColor}>
               Nom de naissance :{" "}
-            </Property>
-            <ArtistInfo>{currentArtistInfos.birthname}</ArtistInfo>
+            </PropertyName>
+            <PropertyContent>{currentArtistInfos.birthname}</PropertyContent>
           </ArtistInfosElement>
         )}
         {currentArtistInfos.death !== "" && (
           <ArtistInfosElement>
-            <Property $categoryColor={categoryColor}>Décès : </Property>
-            <ArtistInfo>{currentArtistInfos.death} </ArtistInfo>
+            <PropertyName $categoryColor={categoryColor}>Décès : </PropertyName>
+            <PropertyContent>{currentArtistInfos.death} </PropertyContent>
           </ArtistInfosElement>
         )}
         {currentArtistInfos.musicalGenre && (
           <ArtistInfosElement>
-            <Property $categoryColor={categoryColor}>Genre musical : </Property>
-            <ArtistInfo>{currentArtistInfos.musicalGenre}</ArtistInfo>
+            <PropertyName $categoryColor={categoryColor}>
+              Genre musical :{" "}
+            </PropertyName>
+            <PropertyContent>{currentArtistInfos.musicalGenre}</PropertyContent>
           </ArtistInfosElement>
         )}
         <ArtistInfosElement>
           <NotableWorksContainer>
-            <Property $categoryColor={categoryColor}>
+            <PropertyName $categoryColor={categoryColor}>
               Oeuvres notables :{" "}
-            </Property>
+            </PropertyName>
             <NotableWorksList>
               <NotableWorksElement>
                 {currentArtistInfos.related[0]}
@@ -77,6 +82,9 @@ function ArtistInfos({ currentArtistInfos }: { currentArtistInfos: Composer }) {
           </NotableWorksContainer>
         </ArtistInfosElement>
       </IdentityInfos>
+      <PhotoSource>
+        crédits photo de l'artiste : <br /> {currentArtistInfos.pictureSource}
+      </PhotoSource>
       <SeparationLine $categoryColor={categoryColor} />
       <BioAndVideos currentArtistInfos={currentArtistInfos} />
     </>

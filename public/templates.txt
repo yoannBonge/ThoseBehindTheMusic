@@ -1,20 +1,22 @@
 //////////////////////////////////////MUSIQUE
 
 {
-     "id": "1",
-     "category": "music",
-     "name": "DJ Premier",
-     "birthName": "Christopher Edward Martin",
-     "birth": "21 mars 1966",
-     "birthPlace": "Houston, Texas - USA",
-     "countryFlag": "US",
-     "death": "",
-     "picture": "dj-premier.jpg" ,
-     "musicalGenre": "hip-hop",
-     "related": ["Gangstarr", "Nas", "Royce Da 5'9"],
-     "hitSongs": ["https://www.youtube.com/watch?v=VC4ORS5n9Hg",
-                   "https://www.youtube.com/watch?v=y9lNbNGbo24",
-                   "https://www.youtube.com/watch?v=R4qa2qBnNFY"]  
+     "id": "bru6O",
+    "category": "music",
+    "name": "DJ Premier",
+    "birthname": "Christopher Edward Martin",
+    "birth": "21 mars 1966",
+    "birthPlace": "Houston, Texas - USA",
+    "countryFlag": "US",
+    "death": "",
+    "picture": "dj-premier.webp",
+    "pictureSource": "",
+    "musicalGenre": "Hip-Hop",
+    "bio": "Un des plus illustres, si ce n'est LE plus illustre producteur de hip hop américain 'old school', DJ Premier est une légende vivante.",
+    "related": ["Gangstarr", "Nas", "Royce Da 5'9"],
+    "hitSongs": ["https://www.youtube.com/watch?v=VC4ORS5n9Hg?privacy-enhanced=true",
+                  "https://www.youtube.com/watch?v=y9lNbNGbo24?privacy-enhanced=true",
+                  "https://www.youtube.com/watch?v=R4qa2qBnNFY?privacy-enhanced=true"]  
 }
 
 
@@ -23,18 +25,20 @@
 //////////////////////////////////////CINEMA
 
 {
-     "id": "2",
-     "category": "cinema",
-     "name": "Ennio Morricone",
-     "birth": "10 novembre 1928",
-     "birthPlace": "Rome - Italie",
-     "countryFlag": "IT",
-     "death": "",
-     "picture": "ennio-morricone.webp" ,
-     "related": ["Le Bon, la Brute et le Truand", "Il était une fois en Amérique", "Le Professionnel"],
-     "famousSoundtracks": ["https://www.youtube.com/watch?v=LdLQf1Ef9Ns&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=2",
-                            "https://www.youtube.com/watch?v=PYI09PMNazw&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=1",
-                            "https://www.youtube.com/watch?v=Uoq0j6Hf3Es&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=11"]
+     "id": "CRa93",
+    "category": "cinema",
+    "name": "Ennio Morricone",
+    "birth": "10 novembre 1928",
+    "birthPlace": "Rome, Italie",
+    "countryFlag": "IT",
+    "death": "06 juillet 2020",
+    "picture": "ennio-morricone.webp",
+    "pictureSource": "",
+    "bio": "Célèbre et prolifique compositeur de musique de cinéma, Ennio Morricone a participé au succès de grands classiques du cinéma, notamment certains des plus gros succès de Sergio Leone ou Quentin Tarantino.",
+    "related": ["Le Bon, la Brute et le Truand", "Il était une fois en Amérique", "Le Professionnel"],
+    "famousSoundtracks": ["https://www.youtube.com/watch?v=LdLQf1Ef9Ns&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=2?privacy-enhanced=true",
+                           "https://www.youtube.com/watch?v=PYI09PMNazw&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=1?privacy-enhanced=true",
+                           "https://www.youtube.com/watch?v=Uoq0j6Hf3Es&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=11?privacy-enhanced=true"]
 }
 
 
@@ -43,16 +47,20 @@
 //////////////////////////////////////JEU VIDEO
 
 {
-     "id": "3",
-     "category": "videogame",
-     "name": "Koji Kondo",
-     "birth": "13 août 1961",
-     "birthPlace": "Nagoya - Japon",
-     "countryFlag": "JP",
-     "death": "",
-     "picture": "koji-kondo.webp" ,
-     "related": ["Super Mario Bros", "The Legend of Zelda", "Pilotwings"],
-     "famousSoundtracks": ["https://www.youtube.com/watch?v=NTa6Xbzfq1U",
-                            "https://www.youtube.com/watch?v=cGufy1PAeTU",
-                            "https://www.youtube.com/watch?v=0hEYvdMoF2g"]
+     "id": "cSI70",
+    "category": "videogame",
+    "name": "Koji Kondo",
+    "birth": "13 août 1961",
+    "birthPlace": "Nagoya, Japon",
+    "countryFlag": "JP",
+    "death": "",
+    "picture": "koji-kondo.webp",
+    "pictureSource": "",
+    "bio": "Créateur génial des musiques de jeux vidéos iconiques de la marque Nintendo tels que Super Mario Bros et The Legend of Zelda, Koji Kondo a composé les musiques les plus célèbres du jeu vidéo, tout simplement.",
+    "related": ["Super Mario Bros", "The Legend of Zelda", "Pilotwings"],
+    "famousSoundtracks": ["https://www.youtube.com/watch?v=NTa6Xbzfq1U?privacy-enhanced=true",
+                           "https://www.youtube.com/watch?v=cGufy1PAeTU?privacy-enhanced=true",
+                           "https://www.youtube.com/watch?v=0hEYvdMoF2g?privacy-enhanced=true"]
 }
+
+Largeur images max : 500

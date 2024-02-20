@@ -3,13 +3,13 @@ import {
   MainWrapper,
   BioAndVideosSwitch,
   BioAndVideosWrapper,
-  Bio,
 } from "../common/shared-and-isolated-components";
 import AudioFader from "./AudioFader";
 import VideosContainer from "./VideosContainer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Composer } from "../common/types";
 import { getCategoryColor } from "../common/colors";
+import Bio from "./Bio";
 
 //////////////////////////////////////////////////////////////STYLE
 
@@ -55,6 +55,7 @@ function BioAndVideos({
   const [isBioAndVideosContentShifted, setisBioAndVideosContentShifted] =
     useState(false);
   const [isSwitched, setIsSwitched] = useState(false);
+  const [bioContent, setBioContent] = useState<string>("");
 
   //////////////////////////////////////////////////////BEHAVIOR
   const categoryColor = getCategoryColor(currentArtistInfos.category);
@@ -62,6 +63,20 @@ function BioAndVideos({
     setisBioAndVideosContentShifted(!isBioAndVideosContentShifted);
     setIsSwitched(!isSwitched);
   };
+
+  useEffect(() => {
+    const fetchBio = async () => {
+      try {
+        const response = await fetch(currentArtistInfos.bio);
+        const data = await response.text();
+        setBioContent(data);
+      } catch (error) {
+        console.error("Error fetching bio:", error);
+      }
+    };
+
+    fetchBio();
+  }, [currentArtistInfos.bio]);
 
   // console.log("RENDER BIO AND VIDEOS");
   return (
@@ -76,7 +91,7 @@ function BioAndVideos({
       </BioAndVideosSwitch>
       <BioAndVideosWrapper>
         <BioAndVideosContent $shifted={isBioAndVideosContentShifted}>
-          <Bio>{currentArtistInfos.bio}</Bio>
+          <Bio bioContent={bioContent} />
           <VideosWrapper $category={currentArtistInfos.category}>
             <VideosContainer
               currentArtistInfos={currentArtistInfos}
