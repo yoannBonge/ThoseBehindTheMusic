@@ -46,7 +46,7 @@ function Categories() {
       <Header />
       <Wrapper>
         <VideoBackground autoPlay muted loop>
-          <source src='categories-background.mp4' type='video/mp4' />
+          <source src='categories-background-video.mp4' type='video/mp4' />
           Votre navigateur ne peut afficher la vidéo d'arrière-plan.
         </VideoBackground>
         <ContentContainer>

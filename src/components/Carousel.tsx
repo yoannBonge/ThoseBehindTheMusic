@@ -68,7 +68,7 @@ function Carousel() {
   return (
     <StyledSlider {...settings}>
       <OverlayCarousel
-        imageUrl='music.webp'
+        imageUrl='music-carousel.webp'
         title='Musique'
         onClick={async () => navigate("/music")}
       >
@@ -81,7 +81,7 @@ function Carousel() {
         </p>
       </OverlayCarousel>
       <OverlayCarousel
-        imageUrl='cinema.webp'
+        imageUrl='cinema-carousel.webp'
         title='Cinéma'
         onClick={async () => navigate("/cinema")}
       >
@@ -93,7 +93,7 @@ function Carousel() {
         </p>
       </OverlayCarousel>
       <OverlayCarousel
-        imageUrl='videogames.webp'
+        imageUrl='videogames-carousel.webp'
         title='Jeu Vidéo'
         onClick={async () => navigate("/videogame")}
       >

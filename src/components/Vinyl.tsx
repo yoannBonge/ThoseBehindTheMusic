@@ -32,7 +32,7 @@ function Vinyl() {
   //////////////////////////////////////////////////////RENDER
   return (
     <VinylContainer>
-      <VinylPicture src='vinyl-comp.webp' onClick={() => handleClick()} />
+      <VinylPicture src='vinyl.webp' onClick={() => handleClick()} />
     </VinylContainer>
   );
 }

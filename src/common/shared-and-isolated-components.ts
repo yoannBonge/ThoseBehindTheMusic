@@ -52,7 +52,7 @@ export const PageWrapper = styled.div`
         export const ArtistInfosContainer = styled.div`
         display: flex;
         height: 100%;
-        background-image: url("black-background.webp");
+        background-image: url("acoustic-panel-background.webp");
         background-size: cover;
         z-index: 0;
         `;

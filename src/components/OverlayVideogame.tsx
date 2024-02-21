@@ -175,10 +175,10 @@ function OverlayVideogame({
     <OverlayContainer>
       <Overlay src='videogame-overlay.webp' />
       <SnowTV $isSnowingTV={isSnowingTV} autoPlay muted loop>
-        <source src='tv-snow.mp4' type='video/mp4' />
+        <source src='tv-snow-video.mp4' type='video/mp4' />
         Votre navigateur ne peut afficher la vidéo de changement d'artiste.
       </SnowTV>
-      <CRTFilter src='filtre.webp' />
+      <CRTFilter src='crt-filter.webp' />
       <VideogameArtistPicture
         $isFadingPicture={isFadingPicture}
         src={currentArtistInfos.picture}

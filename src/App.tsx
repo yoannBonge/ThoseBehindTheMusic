@@ -19,9 +19,9 @@ const GlobalStyle = createGlobalStyle`
         height: 90vh;
         overflow-x: hidden;
         margin: 10vh 0 0 0;
-        background-image: url("musical-background-1.jpeg");
+        /* background-image: url("musical-background-1.jpeg");
         background-attachment: fixed;
-        background-position: center;
+        background-position: center; */
         box-sizing: border-box;
     } `;
 

@@ -50,12 +50,12 @@ const moveUpFadeOut = keyframes`
 const Wrapper = styled.div`
   position: relative;
   width: 50vw;
-  height: auto;
+  height: 72vh;
   margin: auto;
   overflow: hidden;
   border-radius: 20px;
   z-index: 3;
-  box-sizing: content-box;
+  box-sizing: border-box;
   cursor: pointer;
 `;
 
@@ -72,7 +72,7 @@ const Filter = styled.div`
 
 const Image = styled.img`
   width: 98.7%;
-  height: auto;
+  height: 98%;
   border: 5px solid rgba(147, 28, 28, 0.7);
   border-radius: 20px;
   z-index: 1;

@@ -32,8 +32,8 @@
     "bio": "/biographies/ennio-morricone.txt",
     "related": ["Le Bon, la Brute et le Truand", "Il était une fois en Amérique", "Le Professionnel"],
     "famousSoundtracks": ["https://www.youtube.com/watch?v=LdLQf1Ef9Ns&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=2?privacy-enhanced=true",
-                           "https://www.youtube.com/watch?v=PYI09PMNazw&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=1?privacy-enhanced=true",
-                           "https://www.youtube.com/watch?v=Uoq0j6Hf3Es&list=PL6q3G4kgyGxky6XOF4CYtwBl1CJUXObE8&index=11?privacy-enhanced=true"]
+                           "https://www.youtube.com/watch?v=cCEwUFtjAr4?privacy-enhanced=true",
+                           "https://www.youtube.com/watch?v=diKcaqRwuss?privacy-enhanced=true"]
 },
 {
     "id": "cSI70",
@@ -45,7 +45,7 @@
     "death": "",
     "picture": "koji-kondo.webp",
     "pictureSource": "www.last.fm",
-    "bio": "",
+    "bio": "/biographies/koji-kondo.txt",
     "related": ["Super Mario Bros", "The Legend of Zelda", "Pilotwings"],
     "famousSoundtracks": ["https://www.youtube.com/watch?v=NTa6Xbzfq1U?privacy-enhanced=true",
                            "https://www.youtube.com/watch?v=cGufy1PAeTU?privacy-enhanced=true",
@@ -61,7 +61,7 @@
     "death": "",
     "picture": "david-wise.webp",
     "pictureSource": "www.ign.com",
-    "bio": "",
+    "bio": "/biographies/david-wise.txt",
     "related": ["Donkey Kong Country", "Battletoads in Battlemaniacs", "Yooka-Laylee"],
     "famousSoundtracks": ["https://www.youtube.com/watch?v=-5rAjOjTGtc?privacy-enhanced=true",
                            "https://www.youtube.com/watch?v=lndBgOrTWxo?privacy-enhanced=true",
@@ -96,7 +96,7 @@
     "death": "",
     "picture": "hans-zimmer.webp",
     "pictureSource": "www.linternaute.fr",
-    "bio": "",
+    "bio": "/biographies/hans-zimmer.txt",
     "related": ["Le Roi Lion", "Gladiator", "Inception"],
     "famousSoundtracks": ["https://www.youtube.com/watch?v=-yOZEiHLuVU?privacy-enhanced=true",
                            "https://www.youtube.com/watch?v=RakhywpkY-k?privacy-enhanced=true",
