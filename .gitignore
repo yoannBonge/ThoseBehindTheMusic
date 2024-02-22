@@ -7,15 +7,23 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# Node.js dependencies
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# Production build
+dist/
+dist-ssr/
+backend/dist/
+frontend/dist/
+
+# Local files
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+.vscode/
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
@@ -25,3 +33,6 @@ dist-ssr
 
 # Custom files
 IDGen.js
+
+# Ignore .env files
+backend/.env
