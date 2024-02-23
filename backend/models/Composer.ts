@@ -3,7 +3,6 @@ import { ComposerDocument, ComposerModel } from "../common/types";
 import uniqueValidator from "mongoose-unique-validator";
 
 const composerSchema: Schema<ComposerDocument> = new Schema({
-  id: { type: String, required: true, unique: true },
   category: { type: String, required: true },
   name: { type: String, required: true, unique: true },
   birthname: { type: String, required: false, unique: true },

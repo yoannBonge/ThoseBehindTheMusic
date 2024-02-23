@@ -4,12 +4,10 @@ import { Request, Response } from "express";
 import { SharpRequest } from "../middleware/sharp-config";
 // import path from "path";
 
-export const createComposer = (req: SharpRequest, res: Response) => {
+export const createComposer = (req: any, res: Response) => {
   //On transforme les données du corps de la requête en objet JSON dont on pourra extraire les données
   //facilement.
   const composerObject = JSON.parse(req.body.composer);
-  //On supprime le champ _id généré par MongoDB.
-  delete composerObject._id;
   //On crée donc un objet "artiste" en récupérant toutes les infos du corps de la requête, et on crée
   //une URL pour l'image chargée.
   const composer = new Composer({

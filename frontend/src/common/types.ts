@@ -1,7 +1,6 @@
 //////////////////////////////////////INTERFACES
 
 export interface Composer {
-  id: string;
   category: string;
   name: string;
   birthname?: string;
@@ -16,13 +15,4 @@ export interface Composer {
   related: string[];
   hitSongs?: string[];
   famousSoundtracks?: string[];
-  }
-
-
-
-
-
-
-
-
-  
+}

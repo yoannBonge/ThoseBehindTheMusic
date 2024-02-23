@@ -2,10 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import sharp from "sharp";
 import path from "path";
 
-interface MulterFile {
-  buffer?: Buffer;
-  originalname: string;
-}
+interface MulterFile extends Express.Multer.File {}
 
 export interface SharpRequest extends Request {
   file?: MulterFile;
