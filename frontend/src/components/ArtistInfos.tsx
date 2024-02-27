@@ -1,5 +1,5 @@
-import { Composer } from "../common/types";
-import { getCategoryColor } from "../common/colors";
+import { Composer } from "../utils/constants";
+import { getCategoryColor } from "../utils/constants";
 import {
   IdentityInfos,
   ArtistInfosElement,
@@ -11,7 +11,7 @@ import {
   NotableWorksElement,
   PhotoSource,
   SeparationLine,
-} from "../common/shared-and-isolated-components";
+} from "../utils/constants";
 import BioAndVideos from "./BioAndVideos";
 
 /////////////////////////////////////////////////////////////////////////////STYLE

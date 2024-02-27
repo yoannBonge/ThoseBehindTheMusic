@@ -1,10 +1,7 @@
-import { Composer } from "../common/types";
-import { getCategoryColor } from "../common/colors";
+import { Composer } from "../utils/constants";
+import { getCategoryColor } from "../utils/constants";
 import styled, { css, keyframes } from "styled-components";
-import {
-  OverlayContainer,
-  Overlay,
-} from "../common/shared-and-isolated-components";
+import { OverlayContainer, Overlay } from "../utils/constants";
 import { useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////STYLE

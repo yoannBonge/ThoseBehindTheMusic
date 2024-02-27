@@ -3,12 +3,12 @@ import {
   MainWrapper,
   BioAndVideosSwitch,
   BioAndVideosWrapper,
-} from "../common/shared-and-isolated-components";
+} from "../utils/constants";
 import AudioFader from "./AudioFader";
 import VideosContainer from "./VideosContainer";
 import { useEffect, useState } from "react";
-import { Composer } from "../common/types";
-import { getCategoryColor } from "../common/colors";
+import { Composer } from "../utils/constants";
+import { getCategoryColor } from "../utils/constants";
 import Bio from "./Bio";
 
 //////////////////////////////////////////////////////////////STYLE

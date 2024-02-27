@@ -1,4 +1,4 @@
-import { Composer } from "../common/types";
+import { Composer } from "../utils/constants";
 import { useEffect, useState } from "react";
 import YoutubeVideo from "./YoutubeVideo";
 

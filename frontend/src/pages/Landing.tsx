@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Header from "../components/Header";
 import Vinyl from "../components/Vinyl";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -41,7 +40,6 @@ function Landing() {
   // console.log("RENDER PAGE LANDING");
   return (
     <>
-      <Header />
       <Wrapper>
         <Vinyl />
         <WelcomeDiv>

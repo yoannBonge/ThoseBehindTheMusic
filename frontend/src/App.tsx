@@ -5,6 +5,7 @@ import Categories from "./pages/Categories";
 import Music from "./pages/Music";
 import Videogame from "./pages/Videogame";
 import Cinema from "./pages/Cinema";
+import Header from "./components/Header";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
@@ -29,9 +30,10 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   // console.log("RENDER APP");
   return (
-    <>
+    <BrowserRouter>
       <GlobalStyle />
-      <BrowserRouter>
+      <div>
+        <Header />
         <Routes>
           <Route path='/' element={<Home />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
@@ -39,8 +41,8 @@ function App() {
           <Route path='/cinema' element={<Cinema />}></Route>
           <Route path='/videogame' element={<Videogame />}></Route>
         </Routes>
-      </BrowserRouter>
-    </>
+      </div>
+    </BrowserRouter>
   );
 }
 

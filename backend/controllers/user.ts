@@ -8,17 +8,27 @@ dotenv.config();
 import User from "../models/User";
 
 export const signup = (req: Request, res: Response) => {
-  bcrypt
-    .hash(req.body.password, 10)
-    .then((hash: string) => {
-      const user = new User({
-        email: req.body.email,
-        password: hash,
-      });
-      user
-        .save()
-        .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
-        .catch((error: any) => res.status(400).json({ error }));
+  User.findOne({ email: req.body.email })
+    .then((existingUser: any) => {
+      if (existingUser) {
+        return res.status(400).json({
+          message: "Un compte est déjà affilié à cette adresse mail.",
+        });
+      }
+
+      bcrypt
+        .hash(req.body.password, 10)
+        .then((hash: string) => {
+          const user = new User({
+            email: req.body.email,
+            password: hash,
+          });
+          user
+            .save()
+            .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
+            .catch((error: any) => res.status(400).json({ error }));
+        })
+        .catch((error: any) => res.status(500).json({ error }));
     })
     .catch((error: any) => res.status(500).json({ error }));
 };
@@ -29,7 +39,7 @@ export const login = (req: Request, res: Response) => {
       if (!user) {
         return res
           .status(401)
-          .json({ message: "Paire login/mot de passe incorrecte" });
+          .json({ message: "Paire email/mot de passe incorrecte" });
       }
       bcrypt
         .compare(req.body.password, user.password)
@@ -37,7 +47,7 @@ export const login = (req: Request, res: Response) => {
           if (!valid) {
             return res
               .status(401)
-              .json({ message: "Paire login/mot de passe incorrecte" });
+              .json({ message: "Paire email/mot de passe incorrecte" });
           }
           res.status(200).json({
             userId: user._id,

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Header from "../components/Header";
 import Carousel from "../components/Carousel";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -43,7 +42,6 @@ function Categories() {
   // console.log("RENDER PAGE CATEGORIES");
   return (
     <>
-      <Header />
       <Wrapper>
         <VideoBackground autoPlay muted loop>
           <source src='categories-background-video.mp4' type='video/mp4' />

@@ -1,9 +1,6 @@
-import { Composer } from "../common/types";
+import { Composer } from "../utils/constants";
 import styled from "styled-components";
-import {
-  ArtistInfosContainer,
-  ArtistName,
-} from "../common/shared-and-isolated-components";
+import { ArtistInfosContainer, ArtistName } from "../utils/constants";
 import ArtistInfos from "./ArtistInfos";
 
 /////////////////////////////////////////////////////////////////////////////STYLE

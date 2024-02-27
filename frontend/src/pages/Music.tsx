@@ -1,12 +1,11 @@
-import { Composer } from "../common/types";
-import { getCategoryColor } from "../common/colors";
+import { Composer } from "../utils/constants";
+import { getCategoryColor } from "../utils/constants";
 import styled from "styled-components";
 import {
   PageWrapper,
   ArtistPresentation,
   ModelImageInfosSeparationLine,
-} from "../common/shared-and-isolated-components";
-import Header from "../components/Header";
+} from "../utils/constants";
 import OverlayMusic from "../components/OverlayMusic";
 import ArtistInfosWrapper from "../components/ArtistInfosWrapper";
 import { useEffect, useState } from "react";
@@ -70,7 +69,6 @@ function Music() {
   //////////////////////////////////////////////////////////////RENDER
   return (
     <>
-      <Header />
       <PageWrapper>
         <ArtistPresentation>
           <OverlayMusic

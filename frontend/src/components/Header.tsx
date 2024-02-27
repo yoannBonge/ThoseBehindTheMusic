@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
+import LoginModal from "./LoginModal";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const StyledHeader = styled.header`
@@ -38,7 +40,7 @@ const Categories = styled.div`
   gap: 3em;
 `;
 
-const Login = styled.span`
+const Login = styled.span<{ onClick: () => void }>`
   display: flex;
   color: white;
   text-decoration: none;
@@ -51,6 +53,21 @@ const Login = styled.span`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Header() {
+  const [showModal, setShowModal] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const setIsLoggedIn = (loggedIn: boolean) => {
+    setIsUserLoggedIn(loggedIn);
+  };
+
   // console.log("RENDER HEADER");
   return (
     <StyledHeader>
@@ -63,7 +80,14 @@ function Header() {
           <NavLink to='/videogame'>Jeu Vidéo</NavLink>
         </Categories>
       </LogoAndCategories>
-      <Login>Se Connecter</Login>
+      <Login onClick={openModal}>
+        {isUserLoggedIn ? "Se Déconnecter" : "Se Connecter"}
+      </Login>
+      <LoginModal
+        showModal={showModal}
+        closeModal={closeModal}
+        setIsLoggedIn={setIsLoggedIn}
+      />
     </StyledHeader>
   );
 }
