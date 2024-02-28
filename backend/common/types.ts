@@ -3,6 +3,7 @@ import { Document, Model } from "mongoose";
 export interface IUser extends Document {
   email: string;
   password: string;
+  admin: boolean;
 }
 
 export interface IComposer extends Document {

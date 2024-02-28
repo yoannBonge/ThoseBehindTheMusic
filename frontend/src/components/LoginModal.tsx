@@ -134,11 +134,11 @@ const CloseButton = styled.button<{ onClick: () => void }>`
 `;
 
 function LoginModal({
-  showModal,
+  showLoginModal,
   closeModal,
   setIsLoggedIn,
 }: {
-  showModal: boolean;
+  showLoginModal: boolean;
   closeModal: () => void;
   setIsLoggedIn: (loggedIn: boolean) => void;
 }) {
@@ -149,8 +149,6 @@ function LoginModal({
     }, 500);
   };
   const [isSwitchedToSignup, setIsSwitchedToSignup] = useState(false);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [isLoggedOut, setIsLoggedOut] = useState(false);
 
   const toggleContent = () => {
     setIsSwitchedToSignup(!isSwitchedToSignup);
@@ -169,15 +167,9 @@ function LoginModal({
     }, 1500);
   };
 
-  // const handleLogoutSuccess = () => {
-  //   setTimeout(() => {
-  //     setIsLoggedOut(true);
-  //   }, 1500);
-  // };
-
   return (
     <StyledModal
-      isOpen={showModal}
+      isOpen={showLoginModal}
       onRequestClose={handleCloseModal}
       shouldCloseOnOverlayClick={true}
       closeTimeoutMS={500}

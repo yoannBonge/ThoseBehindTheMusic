@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
+import LogoutModal from "./LogoutModal";
+import { checkAdminStatus } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const StyledHeader = styled.header`
@@ -53,15 +55,23 @@ const Login = styled.span<{ onClick: () => void }>`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Header() {
-  const [showModal, setShowModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
+  const isAdmin = checkAdminStatus();
+
   const openModal = () => {
-    setShowModal(true);
+    if (isUserLoggedIn === true) {
+      setShowLogoutModal(true);
+    } else {
+      setShowLoginModal(true);
+    }
   };
 
   const closeModal = () => {
-    setShowModal(false);
+    setShowLoginModal(false);
+    setShowLogoutModal(false);
   };
 
   const setIsLoggedIn = (loggedIn: boolean) => {
@@ -78,13 +88,21 @@ function Header() {
           <NavLink to='/music'>Musique</NavLink>
           <NavLink to='/cinema'>Cinéma</NavLink>
           <NavLink to='/videogame'>Jeu Vidéo</NavLink>
+          {isUserLoggedIn && isAdmin && (
+            <NavLink to='/contribute'>Contribuer</NavLink>
+          )}
         </Categories>
       </LogoAndCategories>
       <Login onClick={openModal}>
         {isUserLoggedIn ? "Se Déconnecter" : "Se Connecter"}
       </Login>
       <LoginModal
-        showModal={showModal}
+        showLoginModal={showLoginModal}
+        closeModal={closeModal}
+        setIsLoggedIn={setIsLoggedIn}
+      />
+      <LogoutModal
+        showLogoutModal={showLogoutModal}
         closeModal={closeModal}
         setIsLoggedIn={setIsLoggedIn}
       />

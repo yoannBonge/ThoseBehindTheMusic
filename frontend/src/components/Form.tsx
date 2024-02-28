@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
-import { API_ROUTES, APP_ROUTES } from "../utils/constants";
+import { API_ROUTES } from "../utils/constants";
 
 type FormInputs = {
   email: string;
@@ -124,6 +124,8 @@ function Form({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       }
       if (onLoginSuccess && responseData.token) {
         sessionStorage.setItem("token", responseData.token);
+        const isAdmin = responseData.isAdmin || false;
+        sessionStorage.setItem("isAdmin", JSON.stringify(isAdmin));
         onLoginSuccess();
       }
 

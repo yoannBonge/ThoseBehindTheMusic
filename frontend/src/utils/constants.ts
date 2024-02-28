@@ -26,12 +26,14 @@ const API_URL = "http://localhost:4000";
 export const API_ROUTES = {
   SIGN_UP: `${API_URL}/api/auth/signup`,
   LOG_IN: `${API_URL}/api/auth/login`,
+  LOG_OUT: `${API_URL}/api/auth/logout`,
   COMPOSERS: `${API_URL}/api/composers`,
 };
 
 export const APP_ROUTES = {
   SIGN_UP: "/Inscription",
   LOG_IN: "/Connexion",
+  LOG_OUT: "/Déconnexion",
   ADD_COMPOSER: "/Ajouter",
   COMPOSER: "/artiste/:id",
 };
@@ -55,6 +57,27 @@ export function getCategoryColor(category: string): string {
       return "#ffffff";
   }
 }
+
+////////////////////////////////////// FUNCTION TO CHECK IF ADMIN
+export const checkAdminStatus = () => {
+  const token = sessionStorage.getItem("token");
+  if (!token) {
+    return false;
+  }
+
+  try {
+    const decodedToken = JSON.parse(atob(token.split(".")[1]));
+
+    if (decodedToken.isAdmin) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error("Erreur lors de la vérification du statut isAdmin :", error);
+    return false;
+  }
+};
 
 ////////////////////////////////////// COMPONENTS
 
