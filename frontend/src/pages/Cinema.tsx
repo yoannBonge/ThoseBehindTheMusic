@@ -1,4 +1,4 @@
-import { Composer } from "../utils/constants";
+import { API_ROUTES, Composer } from "../utils/constants";
 import { getCategoryColor } from "../utils/constants";
 import styled from "styled-components";
 import {
@@ -28,11 +28,29 @@ function Cinema() {
   //////////////////////////////////////////////////////////////BEHAVIOR
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/composers.json");
-      const infos: Composer[] = await response.json();
-      const data = infos.filter((item) => item.category === "cinema");
-      data.sort((a, b) => a.name.localeCompare(b.name));
-      setCinemaInfos(data);
+      const apiUrl = API_ROUTES.GET_COMPOSERS;
+      try {
+        const response = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error(
+            "Une erreur s'est produite lors de la récupération des données."
+          );
+        }
+        const infos: Composer[] = await response.json();
+
+        const filteredData = infos.filter((item) => item.category === "cinema");
+
+        filteredData.sort((a, b) => a.name.localeCompare(b.name));
+
+        setCinemaInfos(filteredData);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchData();
   }, []);

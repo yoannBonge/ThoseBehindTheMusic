@@ -66,7 +66,9 @@ function ArtistInfos({ currentArtistInfos }: { currentArtistInfos: Composer }) {
         <ArtistInfosElement>
           <NotableWorksContainer>
             <PropertyName $categoryColor={categoryColor}>
-              Oeuvres notables :{" "}
+              {currentArtistInfos.musicalGenre
+                ? "A produit notamment pour :"
+                : "Oeuvres notables :"}
             </PropertyName>
             <NotableWorksList>
               <NotableWorksElement>

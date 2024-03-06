@@ -1,7 +1,8 @@
 import Modal from "react-modal";
 import styled from "styled-components";
-import Form from "./Form";
+import LogForm from "./LogForm";
 import { useState } from "react";
+import { useAuth } from "../utils/AuthContext";
 
 /////// The code below is a trick to style the overlay of a react-modal when using styled-components.
 interface Props extends ReactModal.Props {
@@ -136,12 +137,12 @@ const CloseButton = styled.button<{ onClick: () => void }>`
 function LoginModal({
   showLoginModal,
   closeModal,
-  setIsLoggedIn,
 }: {
   showLoginModal: boolean;
   closeModal: () => void;
-  setIsLoggedIn: (loggedIn: boolean) => void;
 }) {
+  const { login } = useAuth();
+
   const handleCloseModal = () => {
     closeModal();
     setTimeout(() => {
@@ -163,7 +164,7 @@ function LoginModal({
   const handleLoginSuccess = () => {
     setTimeout(() => {
       closeModal();
-      setIsLoggedIn(true);
+      login();
     }, 1500);
   };
 
@@ -178,14 +179,14 @@ function LoginModal({
         <LoginWrapper isSwitchedToSignup={isSwitchedToSignup}>
           <h2>Connexion</h2>
           <p>Si vous avez déjà un compte, entrez vos identifiants :</p>
-          <Form formType='login' onLoginSuccess={handleLoginSuccess} />
+          <LogForm formType='login' onLoginSuccess={handleLoginSuccess} />
           <LoginOrSignup onClick={toggleContent}>Créer un compte</LoginOrSignup>
         </LoginWrapper>
 
         <SignupWrapper isSwitchedToSignup={!isSwitchedToSignup}>
           <h2>Créer un compte</h2>
           <p>Veuillez entrer votre adresse mail ainsi qu'un mot de passe :</p>
-          <Form formType='signup' onSignupSuccess={handleSignupSuccess} />
+          <LogForm formType='signup' onSignupSuccess={handleSignupSuccess} />
           <LoginOrSignup onClick={toggleContent}>
             Revenir à la page de connexion
           </LoginOrSignup>

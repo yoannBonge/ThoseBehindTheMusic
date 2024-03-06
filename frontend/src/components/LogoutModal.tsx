@@ -2,6 +2,8 @@ import Modal from "react-modal";
 import styled from "styled-components";
 import { useState } from "react";
 import { API_ROUTES } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../utils/AuthContext";
 
 /////// The code below is a trick to style the overlay of a react-modal when using styled-components.
 interface Props extends ReactModal.Props {
@@ -111,9 +113,12 @@ const ConfirmationButton = styled(Button)<{
   cursor: ${({ $isSubmitting }) => ($isSubmitting ? "not-allowed" : "pointer")};
 `;
 
-const CancelButton = styled(Button)`
-  background-color: #0c832c;
-  cursor: pointer;
+const CancelButton = styled(Button)<{
+  $isSubmitting: boolean;
+}>`
+  background-color: ${({ $isSubmitting }) =>
+    $isSubmitting ? "#626262" : "#0c832c"};
+  cursor: ${({ $isSubmitting }) => ($isSubmitting ? "not-allowed" : "pointer")};
 `;
 
 const ErrorMessage = styled.span`
@@ -148,22 +153,24 @@ const CloseButton = styled.button<{ onClick: () => void }>`
 function LogoutModal({
   showLogoutModal,
   closeModal,
-  setIsLoggedIn,
 }: {
   showLogoutModal: boolean;
   closeModal: () => void;
-  setIsLoggedIn: (loggedIn: boolean) => void;
 }) {
+  const { logout } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
+  const navigate = useNavigate();
+
   const handleLogout = async () => {
     setIsSubmitting(true);
-    let apiUrl = "";
+
     try {
+      let apiUrl = "";
       apiUrl = API_ROUTES.LOG_OUT;
-      setSuccessMessage("Vous êtes bien déconnecté(e)");
+      setSuccessMessage("Vous êtes bien déconnecté(e).");
       const token = sessionStorage.getItem("token");
 
       const response = await fetch(apiUrl, {
@@ -180,7 +187,7 @@ function LogoutModal({
         setSuccessMessage(null);
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
-      console.log(responseData);
+      // console.log(responseData);
 
       if (responseData.token) {
         sessionStorage.removeItem("token");
@@ -189,13 +196,19 @@ function LogoutModal({
       console.error(error.message);
       setErrorMessage(error.message);
     }
-    setIsSubmitting(false);
     setTimeout(() => {
-      closeModal();
-      setIsLoggedIn(false);
+      logout();
       setTimeout(() => {
-        setSuccessMessage(null);
+        setSuccessMessage("Redirection vers la page d'accueil du site...");
       }, 500);
+      setTimeout(() => {
+        closeModal();
+        navigate("/");
+      }, 2000);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSuccessMessage(null);
+      }, 2500);
     }, 1500);
   };
 
@@ -218,7 +231,9 @@ function LogoutModal({
         <ConfirmationButton onClick={handleLogout} $isSubmitting={isSubmitting}>
           Confirmer
         </ConfirmationButton>
-        <CancelButton onClick={handleCloseModal}>Annuler</CancelButton>
+        <CancelButton onClick={handleCloseModal} $isSubmitting={isSubmitting}>
+          Annuler
+        </CancelButton>
       </ButtonsWrapper>
       {errorMessage === null && successMessage && (
         <SuccessMessage>{successMessage}</SuccessMessage>

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import LoginModal from "./LoginModal";
 import LogoutModal from "./LogoutModal";
-import { checkAdminStatus } from "../utils/constants";
+import { useAuth } from "../utils/AuthContext";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const StyledHeader = styled.header`
@@ -55,14 +55,12 @@ const Login = styled.span<{ onClick: () => void }>`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Header() {
+  const { isLoggedIn, isAdmin } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
-  const isAdmin = checkAdminStatus();
 
   const openModal = () => {
-    if (isUserLoggedIn === true) {
+    if (isLoggedIn) {
       setShowLogoutModal(true);
     } else {
       setShowLoginModal(true);
@@ -72,10 +70,6 @@ function Header() {
   const closeModal = () => {
     setShowLoginModal(false);
     setShowLogoutModal(false);
-  };
-
-  const setIsLoggedIn = (loggedIn: boolean) => {
-    setIsUserLoggedIn(loggedIn);
   };
 
   // console.log("RENDER HEADER");
@@ -88,24 +82,16 @@ function Header() {
           <NavLink to='/music'>Musique</NavLink>
           <NavLink to='/cinema'>Cinéma</NavLink>
           <NavLink to='/videogame'>Jeu Vidéo</NavLink>
-          {isUserLoggedIn && isAdmin && (
+          {isLoggedIn && isAdmin && (
             <NavLink to='/contribute'>Contribuer</NavLink>
           )}
         </Categories>
       </LogoAndCategories>
       <Login onClick={openModal}>
-        {isUserLoggedIn ? "Se Déconnecter" : "Se Connecter"}
+        {isLoggedIn ? "Se Déconnecter" : "Se Connecter"}
       </Login>
-      <LoginModal
-        showLoginModal={showLoginModal}
-        closeModal={closeModal}
-        setIsLoggedIn={setIsLoggedIn}
-      />
-      <LogoutModal
-        showLogoutModal={showLogoutModal}
-        closeModal={closeModal}
-        setIsLoggedIn={setIsLoggedIn}
-      />
+      <LoginModal showLoginModal={showLoginModal} closeModal={closeModal} />
+      <LogoutModal showLogoutModal={showLogoutModal} closeModal={closeModal} />
     </StyledHeader>
   );
 }

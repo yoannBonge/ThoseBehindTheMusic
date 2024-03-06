@@ -10,18 +10,17 @@ export interface IComposer extends Document {
   id: string;
   category: string;
   name: string;
-  birthname?: string;
+  birthName?: string;
   birth: string;
   birthPlace: string;
-  countryFlag: string;
+  // countryFlag: string;
   death?: string;
-  picture: string;
+  picture: Buffer;
   pictureSource: string;
   musicalGenre?: string;
-  bio: string;
+  bio: Buffer;
   related: string[];
-  hitSongs?: string[];
-  famousSoundtracks?: string[];
+  selectedWorks: string[];
 }
 
 export type UserDocument = IUser & Document;

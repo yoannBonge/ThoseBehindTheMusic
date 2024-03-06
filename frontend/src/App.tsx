@@ -1,3 +1,4 @@
+import { AuthProvider } from "./utils/AuthContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
@@ -6,7 +7,7 @@ import Categories from "./pages/Categories";
 import Music from "./pages/Music";
 import Cinema from "./pages/Cinema";
 import Videogame from "./pages/Videogame";
-import AddArtist from "./pages/Videogame";
+import AddArtist from "./pages/AddArtist";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
@@ -30,21 +31,24 @@ const GlobalStyle = createGlobalStyle`
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function App() {
   // console.log("RENDER APP");
+
   return (
-    <BrowserRouter>
-      <GlobalStyle />
-      <div>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Home />}></Route>
-          <Route path='/categories' element={<Categories />}></Route>
-          <Route path='/music' element={<Music />}></Route>
-          <Route path='/cinema' element={<Cinema />}></Route>
-          <Route path='/videogame' element={<Videogame />}></Route>
-          <Route path='/contribute' element={<AddArtist />}></Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <GlobalStyle />
+        <div>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Home />}></Route>
+            <Route path='/categories' element={<Categories />}></Route>
+            <Route path='/music' element={<Music />}></Route>
+            <Route path='/cinema' element={<Cinema />}></Route>
+            <Route path='/videogame' element={<Videogame />}></Route>
+            <Route path='/contribute' element={<AddArtist />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

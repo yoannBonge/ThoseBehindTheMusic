@@ -53,17 +53,21 @@ export const login = (req: Request, res: Response) => {
 
           const isAdmin = user.admin;
 
+          const token = jwt.sign(
+            {
+              userId: user._id,
+              isAdmin: isAdmin,
+            },
+            process.env.JWT_SECRET!,
+            { expiresIn: "2H" }
+          );
+
           res.status(200).json({
             userId: user._id,
-            token: jwt.sign(
-              {
-                userId: user._id,
-                isAdmin: isAdmin,
-              },
-              process.env.JWT_SECRET!,
-              { expiresIn: "2H" }
-            ),
+            token: token,
+            isAdmin: isAdmin,
           });
+          console.log(token);
         })
         .catch((error: any) => res.status(500).json({ error }));
     })

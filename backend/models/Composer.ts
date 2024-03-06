@@ -5,18 +5,17 @@ import uniqueValidator from "mongoose-unique-validator";
 const composerSchema: Schema<ComposerDocument> = new Schema({
   category: { type: String, required: true },
   name: { type: String, required: true, unique: true },
-  birthname: { type: String, required: false, unique: true },
+  birthName: { type: String, required: false, unique: true },
   birth: { type: String, required: true },
   birthPlace: { type: String, required: true },
-  countryFlag: { type: String, required: true },
+  // countryFlag: { type: String, required: true },
   death: { type: String, required: false },
-  picture: { type: String, required: true, unique: true },
+  picture: { type: Buffer, required: true, unique: true },
   pictureSource: { type: String, required: true },
   musicalGenre: { type: String, required: false },
-  bio: { type: String, required: true, unique: true },
+  bio: { type: Buffer, required: true, unique: true },
   related: [{ type: String, required: true }],
-  hitSongs: [{ type: String, required: false, unique: true }],
-  famousSoundtracks: [{ type: String, required: false, unique: true }],
+  selectedWorks: [{ type: String, required: false, unique: true }],
 });
 
 composerSchema.plugin(uniqueValidator);

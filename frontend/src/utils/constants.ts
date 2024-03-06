@@ -6,18 +6,17 @@ import ReactCountryFlag from "react-country-flag";
 export interface Composer {
   category: string;
   name: string;
-  birthname?: string;
+  birthName?: string;
   birth: string;
   birthPlace: string;
   countryFlag: string;
   death?: string;
-  picture: string;
+  picture: any;
   pictureSource: string;
   musicalGenre?: string;
-  bio: string;
+  bio: any;
   related: string[];
-  hitSongs?: string[];
-  famousSoundtracks?: string[];
+  selectedWorks: string[];
 }
 
 ////////////////////////////////////// API ROUTES
@@ -27,7 +26,8 @@ export const API_ROUTES = {
   SIGN_UP: `${API_URL}/api/auth/signup`,
   LOG_IN: `${API_URL}/api/auth/login`,
   LOG_OUT: `${API_URL}/api/auth/logout`,
-  COMPOSERS: `${API_URL}/api/composers`,
+  ADD_COMPOSER: `${API_URL}/api/composers/add-composer`,
+  GET_COMPOSERS: `${API_URL}/api/composers/get-composers`,
 };
 
 export const APP_ROUTES = {
@@ -35,7 +35,7 @@ export const APP_ROUTES = {
   LOG_IN: "/Connexion",
   LOG_OUT: "/Déconnexion",
   ADD_COMPOSER: "/Ajouter",
-  COMPOSER: "/artiste/:id",
+  COMPOSER: "/Artiste/:id",
 };
 
 ////////////////////////////////////// COLORS
@@ -58,25 +58,127 @@ export function getCategoryColor(category: string): string {
   }
 }
 
-////////////////////////////////////// FUNCTION TO CHECK IF ADMIN
-export const checkAdminStatus = () => {
-  const token = sessionStorage.getItem("token");
-  if (!token) {
-    return false;
-  }
+////////////////////////////////////// FUNCTION TO HANDLE ADD COMPOSER PICTURE IN ADD ARTIST FORM
+export const handleAddPhoto = (
+  event: React.MouseEvent<HTMLButtonElement>,
+  setValidImageUrl: (url: string | null) => void,
+  setIsBlinkingToAlert: (value: boolean) => void
+) => {
+  event.preventDefault();
 
-  try {
-    const decodedToken = JSON.parse(atob(token.split(".")[1]));
+  const photoInput = document.getElementById("picture") as HTMLInputElement;
 
-    if (decodedToken.isAdmin) {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    console.error("Erreur lors de la vérification du statut isAdmin :", error);
-    return false;
+  if (photoInput) {
+    photoInput.value = "";
+
+    const handleChange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      const file = target.files?.[0];
+
+      if (file) {
+        const image = new Image();
+        const reader = new FileReader();
+
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target) {
+            const imgSrc = e.target.result as string;
+            image.src = imgSrc;
+            image.onload = () => {
+              const width = image.width;
+              const height = image.height;
+
+              if (width > height) {
+                console.log("Image valide");
+                setValidImageUrl(null);
+                setValidImageUrl(imgSrc);
+              } else {
+                console.log("L'image n'est pas en orientation paysage.");
+                setValidImageUrl(null);
+                setIsBlinkingToAlert(true);
+                setTimeout(() => {
+                  setIsBlinkingToAlert(false);
+                }, 2000);
+              }
+
+              URL.revokeObjectURL(image.src);
+
+              photoInput.removeEventListener("change", handleChange);
+            };
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    photoInput.addEventListener("change", handleChange);
+    photoInput.click();
   }
+};
+
+////////////////////////////////////// FUNCTION TO HANDLE ADD COMPOSER BIO TEXT FILE IN ADD ARTIST FORM
+export const handleAddBio = (
+  event: React.MouseEvent<HTMLButtonElement>,
+  setValidTextFileSrc: (url: string | null) => void,
+  setIsBlinkingToAlert: (value: boolean) => void
+) => {
+  event.preventDefault();
+
+  const textInput = document.getElementById("bio") as HTMLInputElement;
+
+  if (textInput) {
+    textInput.value = "";
+
+    const handleChange = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      const file = target.files?.[0];
+
+      if (file) {
+        const maxSizeInBytes = 20 * 1024;
+
+        if (file.size > maxSizeInBytes) {
+          console.log(
+            "Le fichier dépasse la taille maximale autorisée de 20 Ko."
+          );
+          setValidTextFileSrc(null);
+          setIsBlinkingToAlert(true);
+          setTimeout(() => {
+            setIsBlinkingToAlert(false);
+          }, 2000);
+        } else if (!file.name.endsWith(".txt")) {
+          console.log("Le fichier doit être au format .txt.");
+          setIsBlinkingToAlert(true);
+          setTimeout(() => {
+            setIsBlinkingToAlert(false);
+          }, 2000);
+        } else {
+          const reader = new FileReader();
+
+          reader.onload = (e: ProgressEvent<FileReader>) => {
+            if (e.target) {
+              const textSrc = e.target.result as string;
+              setValidTextFileSrc(textSrc);
+            }
+          };
+          reader.readAsText(file);
+        }
+
+        textInput.removeEventListener("change", handleChange);
+      }
+    };
+
+    textInput.addEventListener("change", handleChange);
+    textInput.click();
+  }
+};
+
+////////////////////////////////////// FUNCTION TO CHECK IF THERE IS DUPLICATE STRING VALUES INTO FORM
+export const isDuplicateStringValue = (
+  valuesArray: string[],
+  value: string,
+  currentIndex: number
+) => {
+  return valuesArray.some((item, index) => {
+    return item === value && index !== currentIndex;
+  });
 };
 
 ////////////////////////////////////// COMPONENTS

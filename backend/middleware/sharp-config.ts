@@ -5,7 +5,10 @@ import path from "path";
 interface MulterFile extends Express.Multer.File {}
 
 export interface SharpRequest extends Request {
-  file?: MulterFile;
+  files: {
+    picture?: MulterFile[];
+    bio?: MulterFile[];
+  };
   sharpFileName?: string;
 }
 
@@ -14,38 +17,48 @@ const sharpTreatment = (
   res: Response,
   next: NextFunction
 ) => {
-  // On vérifie si la requête contient un fichier et si ce dernier a un contenu binaire
-  if (req.file && req.file.buffer) {
-    const name = req.file.originalname.split(" ").join("_");
-    const extension = path.extname(name);
-    const fileName = name.replace(extension, "");
-    const outputFileName = `${fileName}_${Date.now()}.webp`;
-    const outputPath = path.join(__dirname, "..", "images", outputFileName);
+  const {
+    picture,
+    bio,
+  }: { picture?: Express.Multer.File[]; bio?: Express.Multer.File[] } =
+    req.files;
+  console.log("Picture:", picture);
+  console.log("Bio:", bio);
 
-    sharp(req.file.buffer)
-      .toFormat("webp", { quality: 50 })
-      .resize(300, 500, {
-        fit: sharp.fit.inside,
-        withoutEnlargement: true,
-      })
-      .toFile(outputPath, (error) => {
-        if (error) {
-          console.error("Sharp error:", error);
-          return res
-            .status(500)
-            .json({ error: "Erreur lors de l'optimisation de l'image." });
-        }
-
-        // On stocke le nom du fichier généré par Sharp dans req.sharpFileName (pour l'utiliser
-        // dans les contrôleurs)
-        req.sharpFileName = outputFileName;
-
-        next();
-      });
-  } else {
-    console.log("Image non modifiée");
-    next();
+  if (!picture || !Array.isArray(picture) || !picture[0]?.buffer) {
+    console.log("Aucun fichier 'picture' trouvé dans la requête");
+    return next();
   }
+
+  if (!bio || !Array.isArray(bio) || !bio[0]?.buffer) {
+    console.log("Aucun fichier 'bio' trouvé dans la requête");
+    return next();
+  }
+
+  const bioFileName = path.parse(bio[0].originalname).name;
+  const pictureBuffer = picture[0].buffer;
+  const name = bioFileName;
+  const extension = path.extname(picture[0].originalname);
+  const fileName = name.replace(extension, "");
+  const outputFileName = `${fileName}.webp`;
+  const outputPath = path.join(__dirname, "..", "images", outputFileName);
+  console.log(outputPath);
+
+  sharp(pictureBuffer)
+    .resize(500)
+    .toFormat("webp", { quality: 50 })
+    .toFile(outputPath, (error) => {
+      if (error) {
+        console.error("Sharp error:", error);
+        return res
+          .status(500)
+          .json({ error: "Erreur lors de l'optimisation de l'image." });
+      }
+
+      req.sharpFileName = outputFileName;
+      console.log("Image formatée avec succès !");
+      next();
+    });
 };
 
 export default sharpTreatment;

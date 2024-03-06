@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled from "styled-components";
 import { API_ROUTES } from "../utils/constants";
+import { useAuth } from "../utils/AuthContext";
 
 type FormInputs = {
   email: string;
@@ -69,6 +70,11 @@ const SubmitButton = styled.button<{
   border-radius: 4px;
   padding: 0.3em;
   cursor: ${({ $isSubmitting }) => ($isSubmitting ? "not-allowed" : "pointer")};
+  &:disabled {
+    background-color: #cccccc;
+    color: #454545;
+    cursor: not-allowed;
+  }
 `;
 
 type FormProps = {
@@ -77,16 +83,19 @@ type FormProps = {
   onLoginSuccess?: () => void;
 };
 
-function Form({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
+function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
-  } = useForm<FormInputs>();
+    formState: { errors, isValid },
+  } = useForm<FormInputs>({
+    mode: "onChange",
+  });
 
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     setIsSubmitting(true);
@@ -124,8 +133,11 @@ function Form({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       }
       if (onLoginSuccess && responseData.token) {
         sessionStorage.setItem("token", responseData.token);
-        const isAdmin = responseData.isAdmin || false;
-        sessionStorage.setItem("isAdmin", JSON.stringify(isAdmin));
+        sessionStorage.setItem(
+          "isAdmin",
+          responseData.isAdmin === true ? "true" : "false"
+        );
+        login();
         onLoginSuccess();
       }
 
@@ -134,7 +146,9 @@ function Form({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       console.error(error.message);
       setErrorMessage(error.message);
     }
-    setIsSubmitting(false);
+    setTimeout(() => {
+      setIsSubmitting(false);
+    }, 2000);
   };
 
   const passwordValidation = {
@@ -188,6 +202,7 @@ function Form({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
         type='submit'
         $isSubmitting={isSubmitting}
         formType={formType}
+        disabled={!isValid}
       >
         {formType === "login" ? "Se connecter" : "Créer mon compte"}
       </SubmitButton>
@@ -199,4 +214,4 @@ function Form({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
   );
 }
 
-export default Form;
+export default LogForm;

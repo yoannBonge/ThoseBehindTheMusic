@@ -7,14 +7,14 @@ import * as composersCtrl from "../controllers/composers";
 const router: Router = express.Router();
 
 router.post(
-  "/",
+  "/add-composer",
   auth as any,
   multerUpload as any,
   sharpTreatment as any,
   composersCtrl.createComposer
 );
 router.get("/:id", composersCtrl.getOneComposer);
-router.get("/", composersCtrl.getAllComposers);
-router.delete("/:id", auth as any, composersCtrl.deleteComposer);
+router.get("/get-composers", composersCtrl.getAllComposers);
+// router.delete("/:id", auth as any, composersCtrl.deleteComposer);
 
 export default router;

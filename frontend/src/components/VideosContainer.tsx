@@ -12,9 +12,7 @@ function VideosContainer({
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
 
   //////////////////////////////////////////////////////////////BEHAVIOR
-  const tracks = currentArtistInfos.famousSoundtracks
-    ? currentArtistInfos.famousSoundtracks
-    : currentArtistInfos.hitSongs;
+  const tracks = currentArtistInfos.selectedWorks;
 
   if (!tracks) {
     return null;
