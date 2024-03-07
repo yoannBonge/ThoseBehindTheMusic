@@ -3,6 +3,8 @@ import {
   MainWrapper,
   BioAndVideosSwitch,
   BioAndVideosWrapper,
+  arrayBufferToBase64,
+  convertBufferToString,
 } from "../utils/constants";
 import AudioFader from "./AudioFader";
 import VideosContainer from "./VideosContainer";
@@ -67,11 +69,13 @@ function BioAndVideos({
   useEffect(() => {
     const fetchBio = async () => {
       try {
-        const response = await fetch(currentArtistInfos.bio);
-        const data = await response.text();
-        setBioContent(data);
+        const textData = convertBufferToString(currentArtistInfos.bio.data);
+        setBioContent(textData);
       } catch (error) {
-        console.error("Error fetching bio:", error);
+        console.error(
+          "Erreur lors de la tentative de récupération des données du fichier bio:",
+          error
+        );
       }
     };
 

@@ -6,18 +6,13 @@ import { Request, Response } from "express";
 export const createComposer = (req: any, res: Response) => {
   const composerObject = req.body;
 
-  //On crée donc un objet "artiste" en récupérant toutes les infos du corps de la requête, on crée
-  //une URL pour l'image chargée.
-  const pictureUrl = req.sharpFileName
-    ? `${req.protocol}://${req.get("host")}/images/${req.sharpFileName}`
-    : null;
-  console.log("URL de l'image : ", pictureUrl);
+  // On crée donc un objet "artiste" en récupérant toutes les infos du corps de la requête et en ajoutant
+  // les fichiers éventuellement traités.
 
   const composer = new Composer({
     ...composerObject,
-    pictureUrl: pictureUrl,
-    picture: req.files.picture[0].buffer,
-    bio: req.files.bio[0].buffer,
+    picture: req.pictureBuffer,
+    bio: req.bioBuffer,
   });
   // console.log("Objet composer à enregistrer : ", composer);
   composer
@@ -90,6 +85,12 @@ export const getOneComposer = (req: Request, res: Response) => {
 
 export const getAllComposers = (req: Request, res: Response) => {
   Composer.find()
-    .then((composers) => res.status(200).json(composers))
-    .catch((error) => res.status(400).json({ error }));
+    .then((composers) => {
+      console.log("Compositeurs récupérés avec succès :", composers);
+      res.status(200).json(composers);
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la récupération des compositeurs :", error);
+      res.status(400).json({ error });
+    });
 };

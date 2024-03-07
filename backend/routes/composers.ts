@@ -13,8 +13,9 @@ router.post(
   sharpTreatment as any,
   composersCtrl.createComposer
 );
-router.get("/:id", composersCtrl.getOneComposer);
 router.get("/get-composers", composersCtrl.getAllComposers);
+router.get("/:id", composersCtrl.getOneComposer);
+
 // router.delete("/:id", auth as any, composersCtrl.deleteComposer);
 
 export default router;

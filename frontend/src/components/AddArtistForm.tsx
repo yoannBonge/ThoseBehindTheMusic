@@ -292,6 +292,7 @@ function AddArtistForm() {
       }
       formData.append("birth", data.birth);
       formData.append("birthPlace", data.birthPlace);
+      formData.append("countryFlag", data.countryFlag);
       {
         data.death && formData.append("death", data.death);
       }
@@ -449,6 +450,27 @@ function AddArtistForm() {
         />
         {errors.birthPlace && (
           <ErrorMessage>{errors.birthPlace.message}</ErrorMessage>
+        )}
+      </FormField>
+
+      <FormField>
+        <label htmlFor='countryFlag'>
+          Code ISO du pays de naissance du compositeur <br />
+          <SubLabel>(ex: pour la France : "fr")</SubLabel>
+        </label>
+        <input
+          id='countryFlag'
+          type='text'
+          {...register("countryFlag", {
+            required: "Ce champ est requis",
+            pattern: {
+              value: /^[a-zA-Z]{2}$/i,
+              message: "Le code ISO doit strictement contenir deux lettres",
+            },
+          })}
+        />
+        {errors.countryFlag && (
+          <ErrorMessage>{errors.countryFlag.message}</ErrorMessage>
         )}
       </FormField>
 

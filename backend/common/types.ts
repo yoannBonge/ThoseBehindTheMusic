@@ -13,7 +13,7 @@ export interface IComposer extends Document {
   birthName?: string;
   birth: string;
   birthPlace: string;
-  // countryFlag: string;
+  countryFlag: string;
   death?: string;
   picture: Buffer;
   pictureSource: string;

@@ -1,8 +1,8 @@
-import { Composer } from "../utils/constants";
+import { Composer, arrayBufferToBase64 } from "../utils/constants";
 import { getCategoryColor } from "../utils/constants";
 import styled, { keyframes, css } from "styled-components";
 import { OverlayContainer, Overlay } from "../utils/constants";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -157,6 +157,10 @@ function OverlayCinema({
     }, 800);
   };
 
+  const artistPictureData = currentArtistInfos.picture.data;
+  const base64String = arrayBufferToBase64(artistPictureData);
+  const artistPictureUrl = `data:image/jpeg;base64,${base64String}`;
+
   // console.log("RENDER OVERLAY CINEMA");
 
   //////////////////////////////////////////////////////////////RENDER
@@ -165,7 +169,7 @@ function OverlayCinema({
       <Overlay src='cinema-overlay.webp' />
       <ArtistPictureContainer>
         <CinemaArtistPicture
-          src={currentArtistInfos.picture}
+          src={artistPictureUrl}
           $isArtistSwitching={isArtistSwitching}
         />
       </ArtistPictureContainer>

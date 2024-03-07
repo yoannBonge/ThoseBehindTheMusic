@@ -8,7 +8,7 @@ const composerSchema: Schema<ComposerDocument> = new Schema({
   birthName: { type: String, required: false, unique: true },
   birth: { type: String, required: true },
   birthPlace: { type: String, required: true },
-  // countryFlag: { type: String, required: true },
+  countryFlag: { type: String, required: true },
   death: { type: String, required: false },
   picture: { type: Buffer, required: true, unique: true },
   pictureSource: { type: String, required: true },

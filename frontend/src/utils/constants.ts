@@ -88,11 +88,9 @@ export const handleAddPhoto = (
               const height = image.height;
 
               if (width > height) {
-                console.log("Image valide");
                 setValidImageUrl(null);
                 setValidImageUrl(imgSrc);
               } else {
-                console.log("L'image n'est pas en orientation paysage.");
                 setValidImageUrl(null);
                 setIsBlinkingToAlert(true);
                 setTimeout(() => {
@@ -112,6 +110,26 @@ export const handleAddPhoto = (
     photoInput.addEventListener("change", handleChange);
     photoInput.click();
   }
+};
+
+////////////////////////////////////// FUNCTION TO CONVERT BINARY PICTURE OF DATABASE IN BASE64
+export function arrayBufferToBase64(buffer: number[]): string {
+  let binary = "";
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+
+  return window.btoa(binary);
+}
+
+////////////////////////////////////// FUNCTION TO CONVERT BINARY BIO OF DATABASE IN STRING
+export const convertBufferToString = (buffer: number[]): string => {
+  const decoder = new TextDecoder("utf-8");
+  const text = decoder.decode(new Uint8Array(buffer));
+  return text;
 };
 
 ////////////////////////////////////// FUNCTION TO HANDLE ADD COMPOSER BIO TEXT FILE IN ADD ARTIST FORM

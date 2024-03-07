@@ -30,18 +30,14 @@ function Cinema() {
     const fetchData = async () => {
       const apiUrl = API_ROUTES.GET_COMPOSERS;
       try {
-        const response = await fetch(apiUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(apiUrl);
         if (!response.ok) {
           throw new Error(
             "Une erreur s'est produite lors de la récupération des données."
           );
         }
         const infos: Composer[] = await response.json();
+        // console.log(infos);
 
         const filteredData = infos.filter((item) => item.category === "cinema");
 
