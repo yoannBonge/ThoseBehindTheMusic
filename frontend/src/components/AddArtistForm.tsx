@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled, { css, keyframes } from "styled-components";
 import { useAuth } from "../utils/AuthContext";
@@ -222,6 +222,7 @@ const SubmitButtonAndMessageContainer = styled.div`
   height: 5em;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 0.5em;
   align-self: center;
   gap: 0.8em;
@@ -233,6 +234,7 @@ const SubmitButton = styled.button<{
   background-color: ${({ $isSubmitting }) =>
     $isSubmitting ? "#626262" : "#0c832c"};
   color: white;
+  width: 7em;
   font-family: "Afacad";
   font-size: 1.1em;
   border-radius: 4px;
@@ -245,14 +247,18 @@ const SubmitButton = styled.button<{
   }
 `;
 
-function AddArtistForm() {
+function AddArtistForm({
+  onFormSubmitSuccess,
+}: {
+  onFormSubmitSuccess: () => void;
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isBlinkingToAlert, setIsBlinkingToAlert] = useState(false);
   const [validImageUrl, setValidImageUrl] = useState<string | null>(null);
   const [validTextFileSrc, setValidTextFileSrc] = useState<string | null>(null);
-  const { login } = useAuth();
+  const { isLoggedIn, isAdmin } = useAuth();
 
   const handleAddPhotoClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -264,6 +270,16 @@ function AddArtistForm() {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     handleAddBio(event, setValidTextFileSrc, setIsBlinkingToAlert);
+  };
+
+  let imageRef = useRef<File | null>(null);
+  let bioRef = useRef<File | null>(null);
+
+  const resetImageAndBio = () => {
+    imageRef.current = null;
+    setValidImageUrl(null);
+    bioRef.current = null;
+    setValidTextFileSrc(null);
   };
 
   const {
@@ -283,6 +299,12 @@ function AddArtistForm() {
       let apiUrl = API_ROUTES.ADD_COMPOSER;
       const token = sessionStorage.getItem("token");
 
+      if (!isLoggedIn || !isAdmin) {
+        throw new Error(
+          "Vous devez être administrateur pour soumettre le formulaire."
+        );
+      }
+
       // Creation of a FormData object for data to send
       const formData = new FormData();
       formData.append("category", data.category);
@@ -296,12 +318,12 @@ function AddArtistForm() {
       {
         data.death && formData.append("death", data.death);
       }
-      formData.append("picture", data.picture[0]);
+      imageRef.current && formData.append("picture", imageRef.current);
       formData.append("pictureSource", data.pictureSource);
       {
         data.musicalGenre && formData.append("musicalGenre", data.musicalGenre);
       }
-      formData.append("bio", data.bio[0]);
+      bioRef.current && formData.append("bio", bioRef.current);
       formData.append("related", data.related[0]);
       formData.append("related", data.related[1]);
       formData.append("related", data.related[2]);
@@ -323,27 +345,28 @@ function AddArtistForm() {
         setSuccessMessage(null);
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
+      ////////////////////////////SUCCESS
+      setSuccessMessage("Artiste enregistré !");
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSuccessMessage(null);
+        reset();
+        resetImageAndBio();
+        onFormSubmitSuccess();
+      }, 2000);
+      ////////////////////////////ERROR
     } catch (error: any) {
       console.error(error.message);
       setErrorMessage(error.message);
       setTimeout(() => {
         setErrorMessage(null);
+        setIsSubmitting(false);
       }, 2000);
     }
-    setSuccessMessage("Artiste enregistré !");
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSuccessMessage(null);
-    }, 2000);
   };
 
   return (
-    <FormWrapper
-      onSubmit={handleSubmit(onSubmit)}
-      // action='/add-composer'
-      // method='POST'
-      // encType='multipart/form-data'
-    >
+    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       <FormRadioGroup>
         <label htmlFor='category'>Catégorie du compositeur</label>
         <RadioGroupContainer>
@@ -476,7 +499,8 @@ function AddArtistForm() {
 
       <FormField>
         <label htmlFor='death'>
-          Si le compositeur est décédé, la date de son décès
+          Si le compositeur est décédé, la date de son décès <br />
+          <SubLabel>(Sinon, laissez ce champ vide)</SubLabel>
         </label>
         <input
           id='death'
@@ -512,6 +536,11 @@ function AddArtistForm() {
           {...register("picture", {
             required: "Vous devez sélectionner une photo du compositeur",
           })}
+          onChange={(e) => {
+            if (e.target.files && e.target.files.length > 0) {
+              imageRef.current = e.target.files[0];
+            }
+          }}
         />
       </ImageInput>
       <FormField>
@@ -547,7 +576,7 @@ function AddArtistForm() {
           type='text'
           {...register("musicalGenre", {
             pattern: {
-              value: /^[a-zA-Z]{3,}$/,
+              value: /^(?=.{3})[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ -/]*$/,
               message:
                 "Veuillez saisir le style de musique du compositeur (ex: Rock)",
             },
@@ -583,6 +612,11 @@ function AddArtistForm() {
             required:
               "Vous devez charger une présentation du compositeur au format .txt",
           })}
+          onChange={(e) => {
+            if (e.target.files && e.target.files.length > 0) {
+              bioRef.current = e.target.files[0];
+            }
+          }}
         />
       </BioInput>
       <FormField>

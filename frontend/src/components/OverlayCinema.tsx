@@ -2,7 +2,7 @@ import { Composer, arrayBufferToBase64 } from "../utils/constants";
 import { getCategoryColor } from "../utils/constants";
 import styled, { keyframes, css } from "styled-components";
 import { OverlayContainer, Overlay } from "../utils/constants";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -21,19 +21,19 @@ const pictureFadeInOut = keyframes`
 const ArtistPictureContainer = styled.div`
   width: 54%;
   position: absolute;
-  top: 31.8%;
-  left: 9.4%;
+  top: 38.4%;
+  left: 12%;
   perspective: 800px;
   transform: rotate(5.2deg);
 `;
 
 const CinemaArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
-  width: 70.6%;
-  height: 9.4vw;
+  width: 82%;
+  height: 11.2vw;
   position: absolute;
   top: 0;
   left: 0;
-  transform: rotateY(45deg) skew(8deg, 0deg);
+  transform: rotateY(36deg) skew(8deg, 0deg);
   z-index: 1;
   ${({ $isArtistSwitching }) =>
     $isArtistSwitching &&
@@ -66,22 +66,20 @@ const ModelOverlayNavigateIndication = styled.div`
 `;
 
 const OverlayPrevIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 3.5vh;
-  bottom: 14%;
-  left: 20%;
-  transform: rotate(-0.5deg) skew(0deg, -1deg);
+  font-size: 4.5vh;
+  bottom: 11%;
+  left: 21%;
+  transform: rotate(-0.5deg) skew(0deg, 1deg);
 `;
 const OverlayNextIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 2.7vh;
-  bottom: 15%;
-  right: 6%;
-  transform: rotate(-1deg) skew(0deg, 2deg);
+  font-size: 3.3vh;
+  bottom: 10%;
+  right: 11%;
+  transform: rotate(-2deg) skew(0deg, 2deg);
 `;
 
 const ModelOverlayButton = styled.div`
   background-color: #2b0501;
-  width: 5vh;
-  height: 20vh;
   position: absolute;
   border: 4px solid #0f0b08;
   border-radius: 2px;
@@ -92,11 +90,11 @@ const ModelOverlayButton = styled.div`
 const OverlayPrevButton = styled(ModelOverlayButton)<{
   $categoryColor: string;
 }>`
-  width: 5vh;
-  height: 20vh;
-  top: 29.6%;
+  width: 7vh;
+  height: 23vh;
+  top: 36.5%;
   left: 5%;
-  transform: rotate(-1deg) skew(0deg, 2deg);
+  transform: rotate(-1deg) skew(0deg, -1deg);
   &:hover > ${OverlayPrevIndication} {
     animation: ${({ $categoryColor }) => buttonsBlinkAnimation($categoryColor)}
       0.6s infinite;
@@ -105,10 +103,10 @@ const OverlayPrevButton = styled(ModelOverlayButton)<{
 const OverlayNextButton = styled(ModelOverlayButton)<{
   $categoryColor: string;
 }>`
-  width: 3vh;
-  height: 15.5vh;
-  top: 33.5%;
-  left: 41.4%;
+  width: 5vh;
+  height: 16.7vh;
+  top: 41.7%;
+  left: 50%;
   transform: rotate(-1.4deg) skew(0deg, 5deg);
   &:hover > ${OverlayNextIndication} {
     animation: ${({ $categoryColor }) => buttonsBlinkAnimation($categoryColor)}

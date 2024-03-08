@@ -1,4 +1,4 @@
-import { API_ROUTES, Composer } from "../utils/constants";
+import { Composer } from "../utils/constants";
 import { getCategoryColor } from "../utils/constants";
 import styled from "styled-components";
 import {
@@ -8,7 +8,8 @@ import {
 } from "../utils/constants";
 import OverlayCinema from "../components/OverlayCinema";
 import ArtistInfosWrapper from "../components/ArtistInfosWrapper";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useComposers } from "../utils/ComposersContext";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -16,42 +17,21 @@ import { useEffect, useState } from "react";
 // come from "/shared-and-isolated-components".
 
 const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
-  left: calc(55%);
+  left: calc(54.6%);
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Cinema() {
   //////////////////////////////////////////////////////////////STATE
-  const [CinemaInfos, setCinemaInfos] = useState<Composer[]>([]);
+  const composersInfos: Composer[] = useComposers();
   const [currentArtistIndex, setCurrentArtistIndex] = useState<number>(0);
   const [isArtistContentFading, setisArtistContentFading] = useState(false);
 
   //////////////////////////////////////////////////////////////BEHAVIOR
-  useEffect(() => {
-    const fetchData = async () => {
-      const apiUrl = API_ROUTES.GET_COMPOSERS;
-      try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-          throw new Error(
-            "Une erreur s'est produite lors de la récupération des données."
-          );
-        }
-        const infos: Composer[] = await response.json();
-        // console.log(infos);
+  const filteredData = composersInfos
+    .filter((item) => item.category === "cinema")
+    .sort((a, b) => a.name.localeCompare(b.name));
 
-        const filteredData = infos.filter((item) => item.category === "cinema");
-
-        filteredData.sort((a, b) => a.name.localeCompare(b.name));
-
-        setCinemaInfos(filteredData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const currentArtistInfos = CinemaInfos[currentArtistIndex];
+  const currentArtistInfos = filteredData[currentArtistIndex];
   if (!currentArtistInfos) {
     return null;
   }
@@ -62,7 +42,7 @@ function Cinema() {
     setisArtistContentFading(true);
     setTimeout(() => {
       setCurrentArtistIndex((prevIndex) =>
-        prevIndex === 0 ? CinemaInfos.length - 1 : prevIndex - 1
+        prevIndex === 0 ? filteredData.length - 1 : prevIndex - 1
       );
       setisArtistContentFading(false);
     }, 400);
@@ -72,7 +52,7 @@ function Cinema() {
     setisArtistContentFading(true);
     setTimeout(() => {
       setCurrentArtistIndex((prevIndex) =>
-        prevIndex === CinemaInfos.length - 1 ? 0 : prevIndex + 1
+        prevIndex === filteredData.length - 1 ? 0 : prevIndex + 1
       );
       setisArtistContentFading(false);
     }, 400);

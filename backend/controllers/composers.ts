@@ -86,7 +86,7 @@ export const getOneComposer = (req: Request, res: Response) => {
 export const getAllComposers = (req: Request, res: Response) => {
   Composer.find()
     .then((composers) => {
-      console.log("Compositeurs récupérés avec succès :", composers);
+      console.log("Compositeurs récupérés avec succès");
       res.status(200).json(composers);
     })
     .catch((error) => {

@@ -3,7 +3,6 @@ import {
   MainWrapper,
   BioAndVideosSwitch,
   BioAndVideosWrapper,
-  arrayBufferToBase64,
   convertBufferToString,
 } from "../utils/constants";
 import AudioFader from "./AudioFader";

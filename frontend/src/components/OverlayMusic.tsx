@@ -1,4 +1,4 @@
-import { Composer } from "../utils/constants";
+import { Composer, arrayBufferToBase64 } from "../utils/constants";
 import { getCategoryColor } from "../utils/constants";
 import styled, { keyframes, css } from "styled-components";
 import { OverlayContainer, Overlay } from "../utils/constants";
@@ -21,12 +21,22 @@ const pictureFadeInOut = keyframes`
   }
 `;
 
-const MusicArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
-  width: 35%;
+const ArtistPictureContainer = styled.div`
+  width: 33.3%;
   position: absolute;
-  top: 4%;
-  left: 20.8%;
-  transform: rotate(-1deg) skewX(-1deg);
+  top: 34.3%;
+  left: 31.2%;
+  perspective: 700px;
+  transform: rotate(-14deg);
+`;
+
+const MusicArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
+  width: 100%;
+  height: 9.4em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(-24deg) skew(-10deg, 5deg);
   z-index: 0;
   ${({ $isArtistSwitching }) =>
     $isArtistSwitching &&
@@ -56,21 +66,20 @@ const ModelOverlayNavigateIndication = styled.span`
 `;
 
 const OverlayPrevIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 5vh;
-  bottom: 15%;
-  right: 5%;
-  transform: rotate(-4.5deg) skewX(-1deg);
+  font-size: 4.7vh;
+  bottom: 1%;
+  left: 11.7%;
+  transform: rotate(-0.5deg) skewX(-2deg);
 `;
 const OverlayNextIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 5vh;
-  bottom: 15%;
-  right: 6%;
-  transform: rotate(-4.5deg) skewX(-2deg);
+  font-size: 5.4vh;
+  bottom: 6%;
+  left: 16%;
+  transform: rotate(0.5deg) skewX(-1deg);
 `;
 
 const ModelOverlayButton = styled.div`
-  width: 12vh;
-  height: 9vh;
+  background-color: #0d0b14;
   position: absolute;
   cursor: pointer;
   z-index: 2;
@@ -79,8 +88,11 @@ const ModelOverlayButton = styled.div`
 const OverlayPrevButton = styled(ModelOverlayButton)<{
   $categoryColor: string;
 }>`
-  top: 39.5%;
-  left: 15%;
+  width: 13.4vh;
+  height: 6.3vh;
+  top: 60.8%;
+  left: 34.4%;
+  transform: rotate(-1deg) skewX(-1deg);
   &:hover > ${OverlayPrevIndication} {
     animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
       infinite;
@@ -89,8 +101,11 @@ const OverlayPrevButton = styled(ModelOverlayButton)<{
 const OverlayNextButton = styled(ModelOverlayButton)<{
   $categoryColor: string;
 }>`
-  top: 35%;
-  left: 50%;
+  width: 17.3vh;
+  height: 7.6vh;
+  top: 59.1%;
+  left: 57.1%;
+  transform: rotate(-2deg) skewX(-3deg);
   &:hover > ${OverlayNextIndication} {
     animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
       infinite;
@@ -138,16 +153,22 @@ function OverlayMusic({
     }, 800);
   };
 
+  const artistPictureData = currentArtistInfos.picture.data;
+  const base64String = arrayBufferToBase64(artistPictureData);
+  const artistPictureUrl = `data:image/jpeg;base64,${base64String}`;
+
   // console.log("RENDER OVERLAY MUSIC");
 
   //////////////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer>
       <Overlay src='music-overlay.webp' />
-      <MusicArtistPicture
-        src={currentArtistInfos.picture}
-        $isArtistSwitching={isArtistSwitching}
-      />
+      <ArtistPictureContainer>
+        <MusicArtistPicture
+          src={artistPictureUrl}
+          $isArtistSwitching={isArtistSwitching}
+        />
+      </ArtistPictureContainer>
       <OverlayPrevButton
         $categoryColor={categoryColor}
         onClick={handleClickPrevArtist}
@@ -160,7 +181,9 @@ function OverlayMusic({
       >
         <OverlayNextIndication>NEXT</OverlayNextIndication>
       </OverlayNextButton>
-      <OverlaySource>crédits image overlay : www.wallpapers.com</OverlaySource>
+      <OverlaySource>
+        crédits image overlay : www.tdbproduction.cz
+      </OverlaySource>
     </OverlayContainer>
   );
 }

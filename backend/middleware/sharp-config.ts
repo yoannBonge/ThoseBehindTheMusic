@@ -34,7 +34,7 @@ const sharpTreatment = async (
   try {
     const pictureBuffer = await sharp(picture[0].buffer)
       .resize(500)
-      .toFormat("webp")
+      .webp({ quality: 60 })
       .toBuffer();
 
     console.log("Image traitée avec succès !");

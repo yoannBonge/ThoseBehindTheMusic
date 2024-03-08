@@ -1,4 +1,4 @@
-import { Composer } from "../utils/constants";
+import { Composer, arrayBufferToBase64 } from "../utils/constants";
 import { getCategoryColor } from "../utils/constants";
 import styled, { css, keyframes } from "styled-components";
 import { OverlayContainer, Overlay } from "../utils/constants";
@@ -42,10 +42,11 @@ const pictureFadeInOut = keyframes`
 `;
 
 const VideogameArtistPicture = styled.img<{ $isFadingPicture: boolean }>`
-  width: 48%;
+  width: 40%;
+  height: 38%;
   position: absolute;
   top: 17%;
-  left: 10%;
+  left: 15%;
   transform: rotate(-1deg) skewX(1deg);
   z-index: 0;
   ${({ $isFadingPicture }) =>
@@ -166,6 +167,10 @@ function OverlayVideogame({
     }, 800);
   };
 
+  const artistPictureData = currentArtistInfos.picture.data;
+  const base64String = arrayBufferToBase64(artistPictureData);
+  const artistPictureUrl = `data:image/jpeg;base64,${base64String}`;
+
   // console.log("RENDER OVERLAY VIDEOGAME");
   //////////////////////////////////////////////////////////////RENDER
   return (
@@ -178,7 +183,7 @@ function OverlayVideogame({
       <CRTFilter src='crt-filter.webp' />
       <VideogameArtistPicture
         $isFadingPicture={isFadingPicture}
-        src={currentArtistInfos.picture}
+        src={artistPictureUrl}
       />
       <OverlayPrevButton
         $categoryColor={categoryColor}

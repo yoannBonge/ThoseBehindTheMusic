@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { PageWrapper } from "../utils/constants";
 import Scrollbar from "smooth-scrollbar";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import AddArtistForm from "../components/AddArtistForm";
 
 const Wrapper = styled(PageWrapper)`
@@ -43,6 +43,7 @@ const FormContainer = styled.div`
 function AddArtist() {
   const formRef = useRef(null);
   const scrollbarRef = useRef<Scrollbar | null>(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() => {
     if (formRef.current) {
@@ -62,7 +63,12 @@ function AddArtist() {
         scrollbarRef.current.destroy();
       }
     };
-  }, []);
+  }, [formSubmitted]);
+
+  const handleFormSubmitSuccess = () => {
+    setFormSubmitted(!formSubmitted);
+  };
+
   return (
     <Wrapper>
       <ContentWrapper>
@@ -72,7 +78,7 @@ function AddArtist() {
           que vous souhaiter voir apparaître sur le site.
         </p>
         <FormContainer ref={formRef}>
-          <AddArtistForm />
+          <AddArtistForm onFormSubmitSuccess={handleFormSubmitSuccess} />
         </FormContainer>
       </ContentWrapper>
     </Wrapper>

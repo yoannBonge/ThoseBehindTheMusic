@@ -8,7 +8,6 @@ const errorHandler = (
 ) => {
   console.error("Une erreur s'est produite :", err);
 
-  // Envoi d'une réponse au client avec le statut 500
   res.status(500).json({
     error: "Une erreur s'est produite sur le serveur.",
   });

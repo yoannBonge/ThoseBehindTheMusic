@@ -40,9 +40,9 @@ export const APP_ROUTES = {
 
 ////////////////////////////////////// COLORS
 const colors = {
-  music: "#5854DB",
-  cinema: "#FBA40A",
-  videogame: "#C90944",
+  music: "#A84BE5",
+  cinema: "#CA9708",
+  videogame: "#464E98",
 };
 
 export function getCategoryColor(category: string): string {
@@ -224,6 +224,7 @@ export const ArtistPresentation = styled.div`
 
 //PARENT : OverlayMusic/OverlayCinema/OverlayVideogame
 export const OverlayContainer = styled.div`
+  background-color: black;
   position: relative;
   display: flex;
   height: 100%;

@@ -67,7 +67,7 @@ export const login = (req: Request, res: Response) => {
             token: token,
             isAdmin: isAdmin,
           });
-          console.log(token);
+          // console.log(token);
         })
         .catch((error: any) => res.status(500).json({ error }));
     })

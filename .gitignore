@@ -33,6 +33,7 @@ frontend/dist/
 
 # Custom files
 IDGen.js
+composers.json
 
 # Ignore .env files
 backend/.env

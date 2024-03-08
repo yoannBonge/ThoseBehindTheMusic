@@ -41,15 +41,15 @@ function ArtistInfos({ currentArtistInfos }: { currentArtistInfos: Composer }) {
             <CountryFlag countryCode={currentArtistInfos.countryFlag} svg />
           </PropertyContent>
         </ArtistInfosElement>
-        {currentArtistInfos.birthname && (
+        {currentArtistInfos.birthName && (
           <ArtistInfosElement>
             <PropertyName $categoryColor={categoryColor}>
               Nom de naissance :{" "}
             </PropertyName>
-            <PropertyContent>{currentArtistInfos.birthname}</PropertyContent>
+            <PropertyContent>{currentArtistInfos.birthName}</PropertyContent>
           </ArtistInfosElement>
         )}
-        {currentArtistInfos.death !== "" && (
+        {currentArtistInfos.death && (
           <ArtistInfosElement>
             <PropertyName $categoryColor={categoryColor}>Décès : </PropertyName>
             <PropertyContent>{currentArtistInfos.death} </PropertyContent>

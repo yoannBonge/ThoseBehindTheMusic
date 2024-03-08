@@ -8,7 +8,8 @@ import {
 } from "../utils/constants";
 import OverlayMusic from "../components/OverlayMusic";
 import ArtistInfosWrapper from "../components/ArtistInfosWrapper";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useComposers } from "../utils/ComposersContext";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -21,23 +22,16 @@ const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Music() {
   //////////////////////////////////////////////////////////////STATE
-  const [musicInfos, setMusicInfos] = useState<Composer[]>([]);
+  const composersInfos: Composer[] = useComposers();
   const [currentArtistIndex, setCurrentArtistIndex] = useState<number>(0);
   const [isArtistContentFading, setisArtistContentFading] = useState(false);
 
   //////////////////////////////////////////////////////////////BEHAVIOR
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("/composers.json");
-      const infos: Composer[] = await response.json();
-      const data = infos.filter((item) => item.category === "music");
-      data.sort((a, b) => a.name.localeCompare(b.name));
-      setMusicInfos(data);
-    };
-    fetchData();
-  }, []);
+  const filteredData = composersInfos
+    .filter((item) => item.category === "music")
+    .sort((a, b) => a.name.localeCompare(b.name));
 
-  const currentArtistInfos = musicInfos[currentArtistIndex];
+  const currentArtistInfos = filteredData[currentArtistIndex];
   if (!currentArtistInfos) {
     return null;
   }
@@ -48,7 +42,7 @@ function Music() {
     setisArtistContentFading(true);
     setTimeout(() => {
       setCurrentArtistIndex((prevIndex) =>
-        prevIndex === 0 ? musicInfos.length - 1 : prevIndex - 1
+        prevIndex === 0 ? filteredData.length - 1 : prevIndex - 1
       );
       setisArtistContentFading(false);
     }, 400);
@@ -58,7 +52,7 @@ function Music() {
     setisArtistContentFading(true);
     setTimeout(() => {
       setCurrentArtistIndex((prevIndex) =>
-        prevIndex === musicInfos.length - 1 ? 0 : prevIndex + 1
+        prevIndex === filteredData.length - 1 ? 0 : prevIndex + 1
       );
       setisArtistContentFading(false);
     }, 400);
