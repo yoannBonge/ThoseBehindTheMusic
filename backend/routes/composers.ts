@@ -14,8 +14,13 @@ router.post(
   composersCtrl.createComposer
 );
 router.get("/get-composers", composersCtrl.getAllComposers);
-router.get("/:id", composersCtrl.getOneComposer);
-
-// router.delete("/:id", auth as any, composersCtrl.deleteComposer);
+router.get("/:id", composersCtrl.getComposerById);
+router.put(
+  "/update-composer/:id",
+  auth as any,
+  multerUpload as any,
+  sharpTreatment as any,
+  composersCtrl.updateComposer
+);
 
 export default router;

@@ -29,7 +29,6 @@ app.use(cors());
 
 app.options("*", cors());
 
-// app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
 app.use(errorHandler);

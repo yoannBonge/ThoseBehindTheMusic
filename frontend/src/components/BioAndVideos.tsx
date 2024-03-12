@@ -48,9 +48,9 @@ const VideosWrapper = styled.div<{ $category: string }>`
 
 //////////////////////////////////////////////////////////////COMPONENT
 function BioAndVideos({
-  currentArtistInfos,
+  currentComposerInfos,
 }: {
-  currentArtistInfos: Composer;
+  currentComposerInfos: Composer;
 }) {
   //////////////////////////////////////////////////////////////STATE
   const [isBioAndVideosContentShifted, setisBioAndVideosContentShifted] =
@@ -59,7 +59,7 @@ function BioAndVideos({
   const [bioContent, setBioContent] = useState<string>("");
 
   //////////////////////////////////////////////////////BEHAVIOR
-  const categoryColor = getCategoryColor(currentArtistInfos.category);
+  const categoryColor = getCategoryColor(currentComposerInfos.category);
   const handleSwitchBioAndVideosContent = () => {
     setisBioAndVideosContentShifted(!isBioAndVideosContentShifted);
     setIsSwitched(!isSwitched);
@@ -68,7 +68,7 @@ function BioAndVideos({
   useEffect(() => {
     const fetchBio = async () => {
       try {
-        const textData = convertBufferToString(currentArtistInfos.bio.data);
+        const textData = convertBufferToString(currentComposerInfos.bio.data);
         setBioContent(textData);
       } catch (error) {
         console.error(
@@ -79,9 +79,11 @@ function BioAndVideos({
     };
 
     fetchBio();
-  }, [currentArtistInfos.bio]);
+  }, [currentComposerInfos.bio]);
 
   // console.log("RENDER BIO AND VIDEOS");
+
+  //////////////////////////////////////////////////////RENDER
   return (
     <MainWrapper>
       <BioAndVideosSwitch $categoryColor={categoryColor}>
@@ -95,9 +97,9 @@ function BioAndVideos({
       <BioAndVideosWrapper>
         <BioAndVideosContent $shifted={isBioAndVideosContentShifted}>
           <Bio bioContent={bioContent} />
-          <VideosWrapper $category={currentArtistInfos.category}>
+          <VideosWrapper $category={currentComposerInfos.category}>
             <VideosContainer
-              currentArtistInfos={currentArtistInfos}
+              currentComposerInfos={currentComposerInfos}
             ></VideosContainer>
           </VideosWrapper>
         </BioAndVideosContent>

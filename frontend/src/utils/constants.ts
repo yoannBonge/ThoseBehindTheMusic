@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import ReactCountryFlag from "react-country-flag";
+// import { Link, NavLink } from "react-router-dom";
 
 ////////////////////////////////////// INTERFACES
 
 export interface Composer {
+  _id: string;
   category: string;
   name: string;
   birthName?: string;
@@ -28,14 +30,9 @@ export const API_ROUTES = {
   LOG_OUT: `${API_URL}/api/auth/logout`,
   ADD_COMPOSER: `${API_URL}/api/composers/add-composer`,
   GET_COMPOSERS: `${API_URL}/api/composers/get-composers`,
-};
-
-export const APP_ROUTES = {
-  SIGN_UP: "/Inscription",
-  LOG_IN: "/Connexion",
-  LOG_OUT: "/Déconnexion",
-  ADD_COMPOSER: "/Ajouter",
-  COMPOSER: "/Artiste/:id",
+  GET_COMPOSER_BY_ID: (id: string) => `${API_URL}/api/composers/${id}`,
+  UPDATE_COMPOSER: (id: string) =>
+    `${API_URL}/api/composers/update-composer/${id}`,
 };
 
 ////////////////////////////////////// COLORS
@@ -58,7 +55,7 @@ export function getCategoryColor(category: string): string {
   }
 }
 
-////////////////////////////////////// FUNCTION TO HANDLE ADD COMPOSER PICTURE IN ADD ARTIST FORM
+////////////////////////////////////// FUNCTION TO HANDLE ADD COMPOSER PICTURE IN ADD COMPOSER FORM
 export const handleAddPhoto = (
   event: React.MouseEvent<HTMLButtonElement>,
   setValidImageUrl: (url: string | null) => void,
@@ -132,7 +129,7 @@ export const convertBufferToString = (buffer: number[]): string => {
   return text;
 };
 
-////////////////////////////////////// FUNCTION TO HANDLE ADD COMPOSER BIO TEXT FILE IN ADD ARTIST FORM
+////////////////////////////////////// FUNCTION TO HANDLE ADD COMPOSER BIO TEXT FILE IN ADD COMPOSER FORM
 export const handleAddBio = (
   event: React.MouseEvent<HTMLButtonElement>,
   setValidTextFileSrc: (url: string | null) => void,
@@ -214,7 +211,7 @@ export const PageWrapper = styled.div`
   background-color: black;
 `;
 
-export const ArtistPresentation = styled.div`
+export const ComposerPresentation = styled.div`
   position: relative;
   display: flex;
   width: 100%;
@@ -250,7 +247,7 @@ export const ModelImageInfosSeparationLine = styled.div<{
   z-index: 2;
 `;
 
-export const ArtistInfosContainer = styled.div`
+export const ComposerInfosContainer = styled.div`
   display: flex;
   height: 100%;
   background-image: url("acoustic-panel-background.webp");
@@ -258,22 +255,22 @@ export const ArtistInfosContainer = styled.div`
   z-index: 0;
 `;
 
-//PARENT: ArtistInfosContent
-export const ArtistName = styled.h2`
+//PARENT: ComposerInfosContent
+export const ComposerName = styled.h2`
   color: white;
   font-family: "Bebas Neue";
   font-size: 6em;
   margin: 0.1em 0 0 1.2rem;
 `;
 
-// PARENT: ArtistInfosContent
+// PARENT: ComposerInfosContent
 export const IdentityInfos = styled.div`
   height: 36%;
   margin-left: 1.2rem;
   line-height: 2.1em;
 `;
 
-export const ArtistInfosElement = styled.li`
+export const ComposerInfosElement = styled.li`
   display: flex;
   list-style-type: none;
   max-width: 50vw;
@@ -320,7 +317,7 @@ export const NotableWorksElement = styled.li`
   font-size: 1.3em;
 `;
 
-//PARENT: ArtistInfosContent
+//PARENT: ComposerInfosContent
 export const PhotoSource = styled.span`
   font-family: "Afacad";
   font-size: 1em;
@@ -331,6 +328,21 @@ export const PhotoSource = styled.span`
   left: 1%;
   bottom: 41%;
 `;
+
+// export const ModifyButton = styled(Link)<{ $categoryColor: string }>`
+//   font-family: "Afacad";
+//   font-size: 0.9em;
+//   background-color: ${(props) => props.$categoryColor};
+//   color: white;
+//   text-decoration: none;
+//   padding: 0.2em;
+//   position: absolute;
+//   left: 0%;
+//   top: 0%;
+//   border-radius: 0 0 8px 0;
+//   border: none;
+//   cursor: pointer;
+// `;
 
 export const SeparationLine = styled.div<{ $categoryColor: string }>`
   width: 56%;

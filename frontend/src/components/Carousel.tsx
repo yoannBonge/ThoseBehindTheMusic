@@ -65,6 +65,7 @@ function Carousel() {
 
   // console.log("RENDER CAROUSEL");
 
+  //////////////////////////////////////////////////////RENDER
   return (
     <StyledSlider {...settings}>
       <OverlayCarousel

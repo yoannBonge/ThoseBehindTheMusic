@@ -20,7 +20,7 @@ const StyledHeader = styled.header`
   a {
     color: white;
     text-decoration: none;
-    font-family: "rangile";
+    font-family: "Bakbak One";
     font-size: 1.7em;
   }
 `;
@@ -46,7 +46,7 @@ const Login = styled.span<{ onClick: () => void }>`
   display: flex;
   color: white;
   text-decoration: none;
-  font-family: "rangile";
+  font-family: "Bakbak One";
   font-size: 1.7em;
   margin-right: 1em;
   padding: 0.5em 0;
@@ -55,10 +55,14 @@ const Login = styled.span<{ onClick: () => void }>`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Header() {
-  const { isLoggedIn, isAdmin } = useAuth();
+  //////////////////////////////////////////////////////STATE
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
+  //////////////////////////////////////////////////////CONTEXT
+  const { isLoggedIn, isAdmin } = useAuth();
+
+  //////////////////////////////////////////////////////BEHAVIOR
   const openModal = () => {
     if (isLoggedIn) {
       setShowLogoutModal(true);
@@ -73,6 +77,8 @@ function Header() {
   };
 
   // console.log("RENDER HEADER");
+
+  //////////////////////////////////////////////////////RENDER
   return (
     <StyledHeader>
       <LogoAndCategories>
@@ -83,7 +89,7 @@ function Header() {
           <NavLink to='/cinema'>Cinéma</NavLink>
           <NavLink to='/videogame'>Jeu Vidéo</NavLink>
           {isLoggedIn && isAdmin && (
-            <NavLink to='/contribute'>Contribuer</NavLink>
+            <NavLink to='/add-composer'>Contribuer</NavLink>
           )}
         </Categories>
       </LogoAndCategories>

@@ -4,15 +4,15 @@ import YoutubeVideo from "./YoutubeVideo";
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function VideosContainer({
-  currentArtistInfos,
+  currentComposerInfos,
 }: {
-  currentArtistInfos: Composer;
+  currentComposerInfos: Composer;
 }) {
   //////////////////////////////////////////////////////////////STATE
   const [currentVideoUrl, setCurrentVideoUrl] = useState("");
 
   //////////////////////////////////////////////////////////////BEHAVIOR
-  const tracks = currentArtistInfos.selectedWorks;
+  const tracks = currentComposerInfos.selectedWorks;
 
   if (!tracks) {
     return null;
@@ -32,7 +32,7 @@ function VideosContainer({
 
   useEffect(() => {
     setCurrentVideoUrl("");
-  }, [currentArtistInfos]);
+  }, [currentComposerInfos]);
 
   // console.log("RENDER VIDEO CONTAINER");
 

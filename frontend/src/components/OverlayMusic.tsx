@@ -7,7 +7,7 @@ import { useState } from "react";
 /////////////////////////////////////////////////////////////////////////////STYLE
 
 // Some components appearing in the render are shared and
-// come from "/shared-and-isolated-components".
+// come from "/utils/constants".
 
 const pictureFadeInOut = keyframes`
   0% {
@@ -21,7 +21,7 @@ const pictureFadeInOut = keyframes`
   }
 `;
 
-const ArtistPictureContainer = styled.div`
+const ComposerPictureContainer = styled.div`
   width: 33.3%;
   position: absolute;
   top: 34.3%;
@@ -30,7 +30,7 @@ const ArtistPictureContainer = styled.div`
   transform: rotate(-14deg);
 `;
 
-const MusicArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
+const MusicComposerPicture = styled.img<{ $isComposerSwitching: boolean }>`
   width: 100%;
   height: 9.4em;
   position: absolute;
@@ -38,8 +38,8 @@ const MusicArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
   left: 0;
   transform: rotateY(-24deg) skew(-10deg, 5deg);
   z-index: 0;
-  ${({ $isArtistSwitching }) =>
-    $isArtistSwitching &&
+  ${({ $isComposerSwitching }) =>
+    $isComposerSwitching &&
     css`
       animation: ${pictureFadeInOut} 0.75s linear;
     `}
@@ -125,37 +125,39 @@ const OverlaySource = styled.span`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function OverlayMusic({
-  currentArtistInfos,
-  handlePrevArtist,
-  handleNextArtist,
+  currentComposerInfos,
+  handlePrevComposer,
+  handleNextComposer,
 }: {
-  currentArtistInfos: Composer;
-  handlePrevArtist: () => void;
-  handleNextArtist: () => void;
+  currentComposerInfos: Composer;
+  handlePrevComposer: () => void;
+  handleNextComposer: () => void;
 }) {
-  const categoryColor = getCategoryColor(currentArtistInfos.category);
+  //////////////////////////////////////////////////////STATE
+  const [isComposerSwitching, setIsComposerSwitching] = useState(false);
 
-  const [isArtistSwitching, setIsArtistSwitching] = useState(false);
+  //////////////////////////////////////////////////////BEHAVIOR
+  const categoryColor = getCategoryColor(currentComposerInfos.category);
 
-  const handleClickPrevArtist = () => {
-    setIsArtistSwitching(true);
-    handlePrevArtist();
+  const handleClickPrevComposer = () => {
+    setIsComposerSwitching(true);
+    handlePrevComposer();
     setTimeout(() => {
-      setIsArtistSwitching(false);
+      setIsComposerSwitching(false);
     }, 800);
   };
 
-  const handleClickNextArtist = () => {
-    setIsArtistSwitching(true);
-    handleNextArtist();
+  const handleClickNextComposer = () => {
+    setIsComposerSwitching(true);
+    handleNextComposer();
     setTimeout(() => {
-      setIsArtistSwitching(false);
+      setIsComposerSwitching(false);
     }, 800);
   };
 
-  const artistPictureData = currentArtistInfos.picture.data;
-  const base64String = arrayBufferToBase64(artistPictureData);
-  const artistPictureUrl = `data:image/jpeg;base64,${base64String}`;
+  const composerPictureData = currentComposerInfos.picture.data;
+  const base64String = arrayBufferToBase64(composerPictureData);
+  const composerPictureUrl = `data:image/jpeg;base64,${base64String}`;
 
   // console.log("RENDER OVERLAY MUSIC");
 
@@ -163,21 +165,21 @@ function OverlayMusic({
   return (
     <OverlayContainer>
       <Overlay src='music-overlay.webp' />
-      <ArtistPictureContainer>
-        <MusicArtistPicture
-          src={artistPictureUrl}
-          $isArtistSwitching={isArtistSwitching}
+      <ComposerPictureContainer>
+        <MusicComposerPicture
+          src={composerPictureUrl}
+          $isComposerSwitching={isComposerSwitching}
         />
-      </ArtistPictureContainer>
+      </ComposerPictureContainer>
       <OverlayPrevButton
         $categoryColor={categoryColor}
-        onClick={handleClickPrevArtist}
+        onClick={handleClickPrevComposer}
       >
         <OverlayPrevIndication>PREV</OverlayPrevIndication>
       </OverlayPrevButton>
       <OverlayNextButton
         $categoryColor={categoryColor}
-        onClick={handleClickNextArtist}
+        onClick={handleClickNextComposer}
       >
         <OverlayNextIndication>NEXT</OverlayNextIndication>
       </OverlayNextButton>

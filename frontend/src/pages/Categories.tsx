@@ -30,7 +30,7 @@ const ContentContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-family: "rangile";
+  font-family: "Bakbak One";
   margin: 0.4em 0 0.3em 0;
   font-size: 3.5em;
   color: rgba(147, 28, 28, 0.9);
@@ -40,6 +40,8 @@ const Title = styled.h2`
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Categories() {
   // console.log("RENDER PAGE CATEGORIES");
+
+  //////////////////////////////////////////////////////RENDER
   return (
     <>
       <Wrapper>

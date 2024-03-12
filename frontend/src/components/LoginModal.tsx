@@ -26,6 +26,8 @@ const ReactModalAdapter: React.FunctionComponent<Props> = ({
 };
 
 /////// Then i use a styled(ReactModalAdapter)
+
+/////////////////////////////////////////////////////////////////////////////STYLE
 const StyledModal = styled(ReactModalAdapter)`
   &__overlay {
     background-color: rgba(0, 0, 0, 0.7);
@@ -67,7 +69,7 @@ const StyledModal = styled(ReactModalAdapter)`
     z-index: 4;
   }
   h2 {
-    font-family: "Rangile";
+    font-family: "Bakbak One";
     font-size: 3em;
     color: white;
     margin: 0.7em 0 0.3em 0;
@@ -91,24 +93,24 @@ const ContentWrapper = styled.div`
   width: 76vw;
 `;
 
-const LoginWrapper = styled.div<{ isSwitchedToSignup: boolean }>`
+const LoginWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: ${({ isSwitchedToSignup }) =>
-    isSwitchedToSignup ? "translateX(-100%)" : "translateX(18.5%)"};
+  transform: ${({ $isSwitchedToSignup }) =>
+    $isSwitchedToSignup ? "translateX(-100%)" : "translateX(18.5%)"};
   transition: transform 0.5s ease;
   z-index: 0;
 `;
 
-const SignupWrapper = styled.div<{ isSwitchedToSignup: boolean }>`
+const SignupWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: ${({ isSwitchedToSignup }) =>
-    isSwitchedToSignup ? "translateX(40%)" : "translateX(-81%)"};
+  transform: ${({ $isSwitchedToSignup }) =>
+    $isSwitchedToSignup ? "translateX(40%)" : "translateX(-81%)"};
   transition: transform 0.5s ease;
   z-index: 0;
 `;
@@ -134,6 +136,7 @@ const CloseButton = styled.button<{ onClick: () => void }>`
   cursor: pointer;
 `;
 
+/////////////////////////////////////////////////////////////////////////////COMPONENT
 function LoginModal({
   showLoginModal,
   closeModal,
@@ -141,15 +144,18 @@ function LoginModal({
   showLoginModal: boolean;
   closeModal: () => void;
 }) {
+  //////////////////////////////////////////////////////STATE
+  const [isSwitchedToSignup, setIsSwitchedToSignup] = useState(false);
+  //////////////////////////////////////////////////////CONTEXT
   const { login } = useAuth();
 
+  //////////////////////////////////////////////////////BEHAVIOR
   const handleCloseModal = () => {
     closeModal();
     setTimeout(() => {
       setIsSwitchedToSignup(false);
     }, 500);
   };
-  const [isSwitchedToSignup, setIsSwitchedToSignup] = useState(false);
 
   const toggleContent = () => {
     setIsSwitchedToSignup(!isSwitchedToSignup);
@@ -168,6 +174,9 @@ function LoginModal({
     }, 1500);
   };
 
+  // console.log("RENDER LOGIN MODAL");
+
+  //////////////////////////////////////////////////////RENDER
   return (
     <StyledModal
       isOpen={showLoginModal}
@@ -176,14 +185,14 @@ function LoginModal({
       closeTimeoutMS={500}
     >
       <ContentWrapper>
-        <LoginWrapper isSwitchedToSignup={isSwitchedToSignup}>
+        <LoginWrapper $isSwitchedToSignup={isSwitchedToSignup}>
           <h2>Connexion</h2>
           <p>Si vous avez déjà un compte, entrez vos identifiants :</p>
           <LogForm formType='login' onLoginSuccess={handleLoginSuccess} />
           <LoginOrSignup onClick={toggleContent}>Créer un compte</LoginOrSignup>
         </LoginWrapper>
 
-        <SignupWrapper isSwitchedToSignup={!isSwitchedToSignup}>
+        <SignupWrapper $isSwitchedToSignup={!isSwitchedToSignup}>
           <h2>Créer un compte</h2>
           <p>Veuillez entrer votre adresse mail ainsi qu'un mot de passe :</p>
           <LogForm formType='signup' onSignupSuccess={handleSignupSuccess} />

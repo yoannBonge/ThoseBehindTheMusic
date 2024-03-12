@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import styled, { css, keyframes } from "styled-components";
 import { useAuth } from "../utils/AuthContext";
@@ -9,7 +9,9 @@ import {
   handleAddBio,
   isDuplicateStringValue,
 } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
+/////////////////////////////////////////////////////////////////////////////STYLE
 const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
@@ -96,17 +98,17 @@ const blinkAnimation = keyframes`
 `;
 
 const Indication = styled.span<{
-  blinkAlert: boolean;
-  validImage?: string | null;
-  validTextFile?: string | null;
+  $blinkAlert: boolean;
+  $validImage?: string | null;
+  $validTextFile?: string | null;
 }>`
   font-family: "Afacad";
   font-size: 1em;
   color: ${(props) =>
-    props.validImage || props.validTextFile ? "#0f9d35" : "#374e66"};
+    props.$validImage || props.$validTextFile ? "#0f9d35" : "#374e66"};
   margin: 0.5em 0 0.8em 0;
   animation: ${(props) =>
-    props.blinkAlert
+    props.$blinkAlert
       ? css`
           ${blinkAnimation} 0.7s infinite
         `
@@ -161,10 +163,10 @@ const BioLabel = styled.label`
 `;
 
 const BookIcon = styled.i<{
-  validTextFile: string | null;
+  $validTextFile: string | null;
   className: string;
 }>`
-  opacity: ${(props) => (props.validTextFile ? 1 : 0.2)};
+  opacity: ${(props) => (props.$validTextFile ? 1 : 0.2)};
 `;
 
 const BioInput = styled.div`
@@ -234,7 +236,7 @@ const SubmitButton = styled.button<{
   background-color: ${({ $isSubmitting }) =>
     $isSubmitting ? "#626262" : "#0c832c"};
   color: white;
-  width: 7em;
+  width: 7.2em;
   font-family: "Afacad";
   font-size: 1.1em;
   border-radius: 4px;
@@ -247,18 +249,25 @@ const SubmitButton = styled.button<{
   }
 `;
 
-function AddArtistForm({
+/////////////////////////////////////////////////////////////////////////////COMPONENT
+function AddComposerForm({
   onFormSubmitSuccess,
+  $initialValues,
 }: {
   onFormSubmitSuccess: () => void;
+  $initialValues?: Composer | null;
 }) {
+  //////////////////////////////////////////////////////////////STATE
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isBlinkingToAlert, setIsBlinkingToAlert] = useState(false);
   const [validImageUrl, setValidImageUrl] = useState<string | null>(null);
   const [validTextFileSrc, setValidTextFileSrc] = useState<string | null>(null);
+  //////////////////////////////////////////////////////////////CONTEXT
   const { isLoggedIn, isAdmin } = useAuth();
+  //////////////////////////////////////////////////////////////BEHAVIOR
+  const navigate = useNavigate();
 
   const handleAddPhotoClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -287,17 +296,34 @@ function AddArtistForm({
     handleSubmit,
     reset,
     getValues,
+    setValue,
+    trigger,
     formState: { errors, isValid },
   } = useForm<Composer>({
-    mode: "onChange",
+    mode: "all",
   });
+
+  useEffect(() => {
+    if ($initialValues) {
+      Object.keys($initialValues).forEach((key) => {
+        setValue(key as keyof Composer, $initialValues[key as keyof Composer], {
+          shouldValidate: true,
+        });
+        trigger(key as keyof Composer);
+        trigger();
+      });
+    }
+  }, [$initialValues]);
 
   const onSubmit: SubmitHandler<Composer> = async (data) => {
     setIsSubmitting(true);
 
     try {
-      let apiUrl = API_ROUTES.ADD_COMPOSER;
-      const token = sessionStorage.getItem("token");
+      const apiUrl = $initialValues
+        ? API_ROUTES.UPDATE_COMPOSER($initialValues._id)
+        : API_ROUTES.ADD_COMPOSER;
+      const method = $initialValues ? "PUT" : "POST";
+      const token = localStorage.getItem("token");
 
       if (!isLoggedIn || !isAdmin) {
         throw new Error(
@@ -305,7 +331,6 @@ function AddArtistForm({
         );
       }
 
-      // Creation of a FormData object for data to send
       const formData = new FormData();
       formData.append("category", data.category);
       formData.append("name", data.name);
@@ -332,7 +357,7 @@ function AddArtistForm({
       formData.append("selectedWorks", data.selectedWorks[2]);
 
       const response = await fetch(apiUrl, {
-        method: "POST",
+        method: method,
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -346,18 +371,27 @@ function AddArtistForm({
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
       ////////////////////////////SUCCESS
-      setSuccessMessage("Artiste enregistré !");
+      const successMessage = $initialValues
+        ? "Compositeur modifié !"
+        : "Compositeur enregistré !";
+      setSuccessMessage(successMessage);
+
       setTimeout(() => {
         setIsSubmitting(false);
         setSuccessMessage(null);
         reset();
         resetImageAndBio();
         onFormSubmitSuccess();
+
+        if ($initialValues) {
+          const redirectUrl = `/${$initialValues.category}`;
+          navigate(redirectUrl);
+        }
       }, 2000);
-      ////////////////////////////ERROR
     } catch (error: any) {
       console.error(error.message);
       setErrorMessage(error.message);
+
       setTimeout(() => {
         setErrorMessage(null);
         setIsSubmitting(false);
@@ -365,6 +399,9 @@ function AddArtistForm({
     }
   };
 
+  // console.log("RENDER ADD COMPOSER FORM");
+
+  //////////////////////////////////////////////////////////////RENDER
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       <FormRadioGroup>
@@ -524,7 +561,7 @@ function AddArtistForm({
           <i className='fa-solid fa-camera'></i>
         )}
         <button onClick={handleAddPhotoClick}>Ajouter Photo</button>
-        <Indication blinkAlert={isBlinkingToAlert} validImage={validImageUrl}>
+        <Indication $blinkAlert={isBlinkingToAlert} $validImage={validImageUrl}>
           {validImageUrl
             ? "Cette photo est valide, vous pouvez continuer"
             : "La photo doit être en orientation 'paysage'"}
@@ -592,13 +629,13 @@ function AddArtistForm({
       </BioLabel>
       <BioInput>
         <BookIcon
-          validTextFile={validTextFileSrc}
+          $validTextFile={validTextFileSrc}
           className='fa-solid fa-book'
         ></BookIcon>
         <button onClick={handleAddBioClick}>Ajouter Bio</button>
         <Indication
-          blinkAlert={isBlinkingToAlert}
-          validTextFile={validTextFileSrc}
+          $blinkAlert={isBlinkingToAlert}
+          $validTextFile={validTextFileSrc}
         >
           {validTextFileSrc
             ? "Ce fichier est valide, vous pouvez continuer"
@@ -697,7 +734,9 @@ function AddArtistForm({
           $isSubmitting={isSubmitting}
           disabled={!isValid}
         >
-          Ajouter l'artiste
+          {$initialValues
+            ? "Modifier le compositeur"
+            : "Ajouter le compositeur"}
         </SubmitButton>
         {errorMessage === null && successMessage && (
           <SuccessMessage>{successMessage}</SuccessMessage>
@@ -708,4 +747,4 @@ function AddArtistForm({
   );
 }
 
-export default AddArtistForm;
+export default AddComposerForm;

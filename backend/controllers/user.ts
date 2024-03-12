@@ -87,7 +87,7 @@ export const logout = (req: Request, res: Response) => {
   } catch (error) {
     res.status(401).json({
       message:
-        "Votre connexion a probablement expiré, vous êtes donc déjà déconnecté()e",
+        "Votre connexion a probablement expiré, vous êtes donc déjà déconnecté(e)",
     });
   }
 };

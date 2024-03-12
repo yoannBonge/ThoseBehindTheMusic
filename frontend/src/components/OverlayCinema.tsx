@@ -5,7 +5,6 @@ import { OverlayContainer, Overlay } from "../utils/constants";
 import { useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
-
 const pictureFadeInOut = keyframes`
   0% {
     opacity: 1;
@@ -18,7 +17,7 @@ const pictureFadeInOut = keyframes`
   }
 `;
 
-const ArtistPictureContainer = styled.div`
+const ComposerPictureContainer = styled.div`
   width: 54%;
   position: absolute;
   top: 38.4%;
@@ -27,7 +26,7 @@ const ArtistPictureContainer = styled.div`
   transform: rotate(5.2deg);
 `;
 
-const CinemaArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
+const CinemaComposerPicture = styled.img<{ $isComposerSwitching: boolean }>`
   width: 82%;
   height: 11.2vw;
   position: absolute;
@@ -35,8 +34,8 @@ const CinemaArtistPicture = styled.img<{ $isArtistSwitching: boolean }>`
   left: 0;
   transform: rotateY(36deg) skew(8deg, 0deg);
   z-index: 1;
-  ${({ $isArtistSwitching }) =>
-    $isArtistSwitching &&
+  ${({ $isComposerSwitching }) =>
+    $isComposerSwitching &&
     css`
       animation: ${pictureFadeInOut} 0.75s linear;
     `}
@@ -127,37 +126,39 @@ const OverlaySource = styled.span`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function OverlayCinema({
-  currentArtistInfos,
-  handlePrevArtist,
-  handleNextArtist,
+  currentComposerInfos,
+  handlePrevComposer,
+  handleNextComposer,
 }: {
-  currentArtistInfos: Composer;
-  handlePrevArtist: () => void;
-  handleNextArtist: () => void;
+  currentComposerInfos: Composer;
+  handlePrevComposer: () => void;
+  handleNextComposer: () => void;
 }) {
-  const categoryColor = getCategoryColor(currentArtistInfos.category);
+  //////////////////////////////////////////////////////STATE
+  const [isComposerSwitching, setIsComposerSwitching] = useState(false);
 
-  const [isArtistSwitching, setIsArtistSwitching] = useState(false);
+  //////////////////////////////////////////////////////BEHAVIOR
+  const categoryColor = getCategoryColor(currentComposerInfos.category);
 
-  const handleClickPrevArtist = () => {
-    setIsArtistSwitching(true);
-    handlePrevArtist();
+  const handleClickPrevComposer = () => {
+    setIsComposerSwitching(true);
+    handlePrevComposer();
     setTimeout(() => {
-      setIsArtistSwitching(false);
+      setIsComposerSwitching(false);
     }, 800);
   };
 
-  const handleClickNextArtist = () => {
-    setIsArtistSwitching(true);
-    handleNextArtist();
+  const handleClickNextComposer = () => {
+    setIsComposerSwitching(true);
+    handleNextComposer();
     setTimeout(() => {
-      setIsArtistSwitching(false);
+      setIsComposerSwitching(false);
     }, 800);
   };
 
-  const artistPictureData = currentArtistInfos.picture.data;
-  const base64String = arrayBufferToBase64(artistPictureData);
-  const artistPictureUrl = `data:image/jpeg;base64,${base64String}`;
+  const composerPictureData = currentComposerInfos.picture.data;
+  const base64String = arrayBufferToBase64(composerPictureData);
+  const composerPictureUrl = `data:image/jpeg;base64,${base64String}`;
 
   // console.log("RENDER OVERLAY CINEMA");
 
@@ -165,16 +166,16 @@ function OverlayCinema({
   return (
     <OverlayContainer>
       <Overlay src='cinema-overlay.webp' />
-      <ArtistPictureContainer>
-        <CinemaArtistPicture
-          src={artistPictureUrl}
-          $isArtistSwitching={isArtistSwitching}
+      <ComposerPictureContainer>
+        <CinemaComposerPicture
+          src={composerPictureUrl}
+          $isComposerSwitching={isComposerSwitching}
         />
-      </ArtistPictureContainer>
+      </ComposerPictureContainer>
 
       <OverlayPrevButton
         $categoryColor={categoryColor}
-        onClick={handleClickPrevArtist}
+        onClick={handleClickPrevComposer}
       >
         <OverlayPrevIndication>
           <span>P</span>
@@ -185,7 +186,7 @@ function OverlayCinema({
       </OverlayPrevButton>
       <OverlayNextButton
         $categoryColor={categoryColor}
-        onClick={handleClickNextArtist}
+        onClick={handleClickNextComposer}
       >
         <OverlayNextIndication>
           <span>N</span>

@@ -7,7 +7,7 @@ import { useState } from "react";
 /////////////////////////////////////////////////////////////////////////////STYLE
 
 // Some components appearing in the render are shared and
-// come from "/shared-and-isolated-components".
+// come from "/utils/constants".
 
 const SnowTV = styled.video<{ $isSnowingTV: boolean }>`
   height: 36%;
@@ -41,7 +41,7 @@ const pictureFadeInOut = keyframes`
   }
 `;
 
-const VideogameArtistPicture = styled.img<{ $isFadingPicture: boolean }>`
+const VideogameComposerPicture = styled.img<{ $isFadingPicture: boolean }>`
   width: 40%;
   height: 38%;
   position: absolute;
@@ -130,23 +130,25 @@ const OverlaySource = styled.span`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function OverlayVideogame({
-  currentArtistInfos,
-  handlePrevArtist,
-  handleNextArtist,
+  currentComposerInfos,
+  handlePrevComposer,
+  handleNextComposer,
 }: {
-  currentArtistInfos: Composer;
-  handlePrevArtist: () => void;
-  handleNextArtist: () => void;
+  currentComposerInfos: Composer;
+  handlePrevComposer: () => void;
+  handleNextComposer: () => void;
 }) {
-  const categoryColor = getCategoryColor(currentArtistInfos.category);
-
+  //////////////////////////////////////////////////////STATE
   const [isFadingPicture, setIsFadingPicture] = useState(false);
   const [isSnowingTV, setIsSnowingTV] = useState(false);
 
-  const handleClickPrevArtist = () => {
+  //////////////////////////////////////////////////////BEHAVIOR
+  const categoryColor = getCategoryColor(currentComposerInfos.category);
+
+  const handleClickPrevComposer = () => {
     setIsFadingPicture(true);
     setIsSnowingTV(true);
-    handlePrevArtist();
+    handlePrevComposer();
     setTimeout(() => {
       setIsSnowingTV(false);
     }, 500);
@@ -155,10 +157,10 @@ function OverlayVideogame({
     }, 800);
   };
 
-  const handleClickNextArtist = () => {
+  const handleClickNextComposer = () => {
     setIsFadingPicture(true);
     setIsSnowingTV(true);
-    handleNextArtist();
+    handleNextComposer();
     setTimeout(() => {
       setIsSnowingTV(false);
     }, 500);
@@ -167,33 +169,34 @@ function OverlayVideogame({
     }, 800);
   };
 
-  const artistPictureData = currentArtistInfos.picture.data;
-  const base64String = arrayBufferToBase64(artistPictureData);
-  const artistPictureUrl = `data:image/jpeg;base64,${base64String}`;
+  const composerPictureData = currentComposerInfos.picture.data;
+  const base64String = arrayBufferToBase64(composerPictureData);
+  const composerPictureUrl = `data:image/jpeg;base64,${base64String}`;
 
   // console.log("RENDER OVERLAY VIDEOGAME");
-  //////////////////////////////////////////////////////////////RENDER
+
+  //////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer>
       <Overlay src='videogame-overlay.webp' />
       <SnowTV $isSnowingTV={isSnowingTV} autoPlay muted loop>
         <source src='tv-snow-video.mp4' type='video/mp4' />
-        Votre navigateur ne peut afficher la vidéo de changement d'artiste.
+        Votre navigateur ne peut afficher la vidéo de changement d'Composere.
       </SnowTV>
       <CRTFilter src='crt-filter.webp' />
-      <VideogameArtistPicture
+      <VideogameComposerPicture
         $isFadingPicture={isFadingPicture}
-        src={artistPictureUrl}
+        src={composerPictureUrl}
       />
       <OverlayPrevButton
         $categoryColor={categoryColor}
-        onClick={handleClickPrevArtist}
+        onClick={handleClickPrevComposer}
       >
         <OverlayPrevIndication>PREV</OverlayPrevIndication>
       </OverlayPrevButton>
       <OverlayNextButton
         $categoryColor={categoryColor}
-        onClick={handleClickNextArtist}
+        onClick={handleClickNextComposer}
       >
         <OverlayNextIndication>NEXT</OverlayNextIndication>
       </OverlayNextButton>

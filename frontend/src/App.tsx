@@ -7,22 +7,27 @@ import Categories from "./pages/Categories";
 import Music from "./pages/Music";
 import Cinema from "./pages/Cinema";
 import Videogame from "./pages/Videogame";
-import AddArtist from "./pages/AddArtist";
+import AddComposer from "./pages/AddComposer";
 import { ComposersProvider } from "./utils/ComposersContext";
+import ModifyComposer from "./pages/ModifyComposer";
+import ReactModal from "react-modal";
+
+ReactModal.setAppElement("#root");
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
-   @font-face {
-    font-family: 'rangile';
+   /* @font-face {
+    font-family: 'Rangile';
     src: url('./src/fonts/rangile.woff2') format("woff2");
     font-weight: normal;
     font-style: normal;
-  }
+  } */
     body {
         width: 100vw;
         height: 90vh;
         overflow-x: hidden;
         margin: 10vh 0 0 0;
+        background-color: #D1DDCC;
         /* background-image: url("musical-background-1.jpeg");
         background-attachment: fixed;
         background-position: center; */
@@ -41,12 +46,13 @@ function App() {
           <div>
             <Header />
             <Routes>
-              <Route path='/' element={<Home />}></Route>
-              <Route path='/categories' element={<Categories />}></Route>
-              <Route path='/music' element={<Music />}></Route>
-              <Route path='/cinema' element={<Cinema />}></Route>
-              <Route path='/videogame' element={<Videogame />}></Route>
-              <Route path='/contribute' element={<AddArtist />}></Route>
+              <Route path='/' element={<Home />} />
+              <Route path='/categories' element={<Categories />} />
+              <Route path='/music' element={<Music />} />
+              <Route path='/cinema' element={<Cinema />} />
+              <Route path='/videogame' element={<Videogame />} />
+              <Route path='/add-composer' element={<AddComposer />} />
+              <Route path='/modify-composer/:id' element={<ModifyComposer />} />
             </Routes>
           </div>
         </BrowserRouter>

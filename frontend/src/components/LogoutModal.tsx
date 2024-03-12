@@ -27,6 +27,8 @@ const ReactModalAdapter: React.FunctionComponent<Props> = ({
 };
 
 /////// Then i use a styled(ReactModalAdapter)
+
+/////////////////////////////////////////////////////////////////////////////STYLE
 const StyledModal = styled(ReactModalAdapter)`
   &__overlay {
     background-color: rgba(0, 0, 0, 0.7);
@@ -69,7 +71,7 @@ const StyledModal = styled(ReactModalAdapter)`
     z-index: 4;
   }
   h2 {
-    font-family: "Rangile";
+    font-family: "Bakbak One";
     font-size: 3em;
     color: white;
     margin: 0.7em 0 0.3em 0;
@@ -149,7 +151,7 @@ const CloseButton = styled.button<{ onClick: () => void }>`
   border-radius: 5px;
   cursor: pointer;
 `;
-
+/////////////////////////////////////////////////////////////////////////////COMPONENT
 function LogoutModal({
   showLogoutModal,
   closeModal,
@@ -157,11 +159,15 @@ function LogoutModal({
   showLogoutModal: boolean;
   closeModal: () => void;
 }) {
-  const { logout } = useAuth();
+  //////////////////////////////////////////////////////STATE
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
+  //////////////////////////////////////////////////////CONTEXT
+  const { logout } = useAuth();
+
+  //////////////////////////////////////////////////////BEHAVIOR
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -171,7 +177,7 @@ function LogoutModal({
       let apiUrl = "";
       apiUrl = API_ROUTES.LOG_OUT;
       setSuccessMessage("Vous êtes bien déconnecté(e).");
-      const token = sessionStorage.getItem("token");
+      const token = localStorage.getItem("token");
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -187,10 +193,9 @@ function LogoutModal({
         setSuccessMessage(null);
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
-      // console.log(responseData);
 
       if (responseData.token) {
-        sessionStorage.removeItem("token");
+        localStorage.removeItem("token");
       }
     } catch (error: any) {
       console.error(error.message);
@@ -208,6 +213,7 @@ function LogoutModal({
       setTimeout(() => {
         setIsSubmitting(false);
         setSuccessMessage(null);
+        setErrorMessage(null);
       }, 2500);
     }, 1500);
   };
@@ -216,6 +222,9 @@ function LogoutModal({
     closeModal();
   };
 
+  // console.log("RENDER LOGOUT MODAL");
+
+  //////////////////////////////////////////////////////RENDER
   return (
     <StyledModal
       isOpen={showLogoutModal}

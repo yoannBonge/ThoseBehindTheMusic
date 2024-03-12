@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { API_ROUTES } from "../utils/constants";
 import { useAuth } from "../utils/AuthContext";
 
+/////////////////////////////////////////////////////////////////////////////STYLE
 type FormInputs = {
   email: string;
   password: string;
@@ -59,7 +60,7 @@ const SuccessMessage = styled.span`
 
 const SubmitButton = styled.button<{
   $isSubmitting: boolean;
-  formType: string;
+  $formType: string;
 }>`
   background-color: ${({ $isSubmitting }) =>
     $isSubmitting ? "#626262" : "#0c832c"};
@@ -83,11 +84,16 @@ type FormProps = {
   onLoginSuccess?: () => void;
 };
 
+/////////////////////////////////////////////////////////////////////////////COMPONENT
 function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
+  //////////////////////////////////////////////////////STATE
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  //////////////////////////////////////////////////////CONTEXT
   const { login } = useAuth();
+
+  //////////////////////////////////////////////////////BEHAVIOR
   const {
     register,
     handleSubmit,
@@ -122,7 +128,6 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
         setSuccessMessage(null);
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
-      console.log(responseData);
 
       if (onSignupSuccess) {
         onSignupSuccess();
@@ -132,16 +137,14 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
         }, 1500);
       }
       if (onLoginSuccess && responseData.token) {
-        sessionStorage.setItem("token", responseData.token);
-        sessionStorage.setItem(
+        localStorage.setItem("token", responseData.token);
+        localStorage.setItem(
           "isAdmin",
           responseData.isAdmin === true ? "true" : "false"
         );
         login();
         onLoginSuccess();
       }
-
-      //////////////////////////////////////////////////////////
     } catch (error: any) {
       console.error(error.message);
       setErrorMessage(error.message);
@@ -168,13 +171,19 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
     },
   };
 
+  // console.log("RENDER LOGFORM");
+
+  //////////////////////////////////////////////////////RENDER
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       <FormField>
-        <label htmlFor='email'>E-mail</label>
+        <label htmlFor={formType === "login" ? "login-email" : "signup-email"}>
+          E-mail
+        </label>
         <input
-          id='email'
+          id={formType === "login" ? "login-email" : "signup-email"}
           type='email'
+          autoComplete='email'
           {...register("email", {
             required: "Ce champ est requis",
             pattern: {
@@ -187,10 +196,17 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       </FormField>
 
       <FormField>
-        <label htmlFor='password'>Mot de passe</label>
+        <label
+          htmlFor={formType === "login" ? "login-password" : "signup-password"}
+        >
+          Mot de passe
+        </label>
         <input
-          id='password'
+          id={formType === "login" ? "login-password" : "signup-password"}
           type='password'
+          autoComplete={
+            formType === "login" ? "current-password" : "new-password"
+          }
           {...register("password", passwordValidation)}
         />
         {errors.password && (
@@ -201,7 +217,7 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       <SubmitButton
         type='submit'
         $isSubmitting={isSubmitting}
-        formType={formType}
+        $formType={formType}
         disabled={!isValid}
       >
         {formType === "login" ? "Se connecter" : "Créer mon compte"}

@@ -83,7 +83,7 @@ const Title = styled.h3<{ $isHovered: boolean }>`
   top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Rangile";
+  font-family: "Bakbak One";
   font-size: 4em;
   color: white;
   z-index: 3;
@@ -130,6 +130,7 @@ function OverlayCarousel({
 }: OverlayCarouselProps) {
   //////////////////////////////////////////////////////////////STATE
   const [hoverState, setHoverState] = useState(false);
+
   // console.log("RENDER OVERLAY CAROUSEL");
   //////////////////////////////////////////////////////////////RENDER
   return (

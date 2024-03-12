@@ -3,18 +3,18 @@ import { getCategoryColor } from "../utils/constants";
 import styled from "styled-components";
 import {
   PageWrapper,
-  ArtistPresentation,
+  ComposerPresentation,
   ModelImageInfosSeparationLine,
 } from "../utils/constants";
 import OverlayVideogame from "../components/OverlayVideogame";
-import ArtistInfosWrapper from "../components/ArtistInfosWrapper";
+import ComposerInfosWrapper from "../components/ComposerInfosWrapper";
 import { useState } from "react";
 import { useComposers } from "../utils/ComposersContext";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
 // Some components appearing in the render are shared and
-// come from "/shared-and-isolated-components".
+// come from "/utils/constants".
 
 const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
   left: calc(56%);
@@ -22,60 +22,57 @@ const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Videogame() {
   //////////////////////////////////////////////////////////////STATE
-  const composersInfos: Composer[] = useComposers();
-  const [currentArtistIndex, setCurrentArtistIndex] = useState<number>(0);
-  const [isArtistContentFading, setisArtistContentFading] = useState(false);
+  const [currentComposerIndex, setCurrentComposerIndex] = useState<number>(0);
+  const [isComposerContentFading, setisComposerContentFading] = useState(false);
+  //////////////////////////////////////////////////////////////CONTEXT
+  const videogameComposers: Composer[] = useComposers().videogameComposers;
 
   //////////////////////////////////////////////////////////////BEHAVIOR
-  const filteredData = composersInfos
-    .filter((item) => item.category === "videogame")
-    .sort((a, b) => a.name.localeCompare(b.name));
-
-  const currentArtistInfos = filteredData[currentArtistIndex];
-  if (!currentArtistInfos) {
+  const currentComposerInfos = videogameComposers[currentComposerIndex];
+  if (!currentComposerInfos) {
     return null;
   }
 
-  const categoryColor = getCategoryColor(currentArtistInfos.category);
+  const categoryColor = getCategoryColor(currentComposerInfos.category);
 
-  const handlePrevArtist = () => {
-    setisArtistContentFading(true);
+  const handlePrevComposer = () => {
+    setisComposerContentFading(true);
     setTimeout(() => {
-      setCurrentArtistIndex((prevIndex) =>
-        prevIndex === 0 ? filteredData.length - 1 : prevIndex - 1
+      setCurrentComposerIndex((prevIndex) =>
+        prevIndex === 0 ? videogameComposers.length - 1 : prevIndex - 1
       );
-      setisArtistContentFading(false);
+      setisComposerContentFading(false);
     }, 400);
   };
 
-  const handleNextArtist = () => {
-    setisArtistContentFading(true);
+  const handleNextComposer = () => {
+    setisComposerContentFading(true);
     setTimeout(() => {
-      setCurrentArtistIndex((prevIndex) =>
-        prevIndex === filteredData.length - 1 ? 0 : prevIndex + 1
+      setCurrentComposerIndex((prevIndex) =>
+        prevIndex === videogameComposers.length - 1 ? 0 : prevIndex + 1
       );
-      setisArtistContentFading(false);
+      setisComposerContentFading(false);
     }, 400);
   };
 
   // console.log("RENDER PAGE VIDEOGAME");
 
-  //////////////////////////////////////////////////////////////RENDER
+  //////////////////////////////////////////////////////RENDER
   return (
     <>
       <PageWrapper>
-        <ArtistPresentation>
+        <ComposerPresentation>
           <OverlayVideogame
-            currentArtistInfos={currentArtistInfos}
-            handlePrevArtist={handlePrevArtist}
-            handleNextArtist={handleNextArtist}
+            currentComposerInfos={currentComposerInfos}
+            handlePrevComposer={handlePrevComposer}
+            handleNextComposer={handleNextComposer}
           />
           <ImageInfosSeparationLine $categoryColor={categoryColor} />
-          <ArtistInfosWrapper
-            currentArtistInfos={currentArtistInfos}
-            isArtistContentFading={!isArtistContentFading}
+          <ComposerInfosWrapper
+            currentComposerInfos={currentComposerInfos}
+            isComposerContentFading={!isComposerContentFading}
           />
-        </ArtistPresentation>
+        </ComposerPresentation>
       </PageWrapper>
     </>
   );

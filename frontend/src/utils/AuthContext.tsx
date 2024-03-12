@@ -1,4 +1,10 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 interface AuthContextType {
   isLoggedIn: boolean;
@@ -25,17 +31,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+      const isAdminValue = localStorage.getItem("isAdmin");
+      setIsAdmin(isAdminValue === "true");
+    }
+  }, []);
+
   const login = () => {
     setIsLoggedIn(true);
-    const isAdminValue = sessionStorage.getItem("isAdmin");
+    const isAdminValue = localStorage.getItem("isAdmin");
     setIsAdmin(isAdminValue === "true");
   };
 
   const logout = () => {
     setIsLoggedIn(false);
     setIsAdmin(false);
-    sessionStorage.removeItem("token");
-    sessionStorage.removeItem("isAdmin");
+    localStorage.removeItem("token");
+    localStorage.removeItem("isAdmin");
   };
 
   const authContextValue: AuthContextType = {
