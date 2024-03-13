@@ -18,6 +18,9 @@ import { useComposers } from "../utils/ComposersContext";
 
 const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
   left: calc(56%);
+  @supports (-moz-appearance: none) {
+    left: calc(59%);
+  }
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Videogame() {

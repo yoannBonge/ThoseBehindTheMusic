@@ -18,6 +18,9 @@ import { useComposers } from "../utils/ComposersContext";
 
 const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
   left: calc(55%);
+  @supports (-moz-appearance: none) {
+    left: calc(58%);
+  }
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Music() {

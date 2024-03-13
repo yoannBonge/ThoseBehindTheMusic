@@ -59,7 +59,7 @@ export const login = (req: Request, res: Response) => {
               isAdmin: isAdmin,
             },
             process.env.JWT_SECRET!,
-            { expiresIn: "2H" }
+            { expiresIn: "4H" }
           );
 
           res.status(200).json({

@@ -221,7 +221,7 @@ const SuccessMessage = styled.span`
 `;
 
 const SubmitButtonAndMessageContainer = styled.div`
-  height: 5em;
+  height: 7em;
   display: flex;
   flex-direction: column;
   align-items: center;

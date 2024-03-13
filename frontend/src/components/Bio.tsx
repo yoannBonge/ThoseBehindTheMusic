@@ -28,7 +28,7 @@ function Bio({ bioContent }: { bioContent: string }) {
   useEffect(() => {
     if (bioRef.current) {
       scrollbarRef.current = Scrollbar.init(bioRef.current, {
-        alwaysShowTracks: false,
+        alwaysShowTracks: true,
         continuousScrolling: true,
         damping: 0.01,
       });

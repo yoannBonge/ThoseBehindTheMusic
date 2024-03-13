@@ -10,6 +10,9 @@ const StyledSlider = styled(Slider)`
   height: 30vw;
   align-items: center;
   position: relative;
+  @supports (-moz-appearance: none) {
+    height: 31vw;
+  }
   .slick-prev,
   .slick-next {
     position: absolute;

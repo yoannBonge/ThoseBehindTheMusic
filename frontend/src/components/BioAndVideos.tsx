@@ -21,6 +21,9 @@ const BioAndVideosContent = styled.div<{ $shifted: boolean }>`
   transition: transform 0.4s ease-in-out;
   transform: ${(props) =>
     props.$shifted ? "translateX(-100%)" : "translateX(0)"};
+  @supports (-moz-appearance: none) {
+    height: 107%;
+  }
 `;
 
 const VideosWrapper = styled.div<{ $category: string }>`
@@ -44,6 +47,23 @@ const VideosWrapper = styled.div<{ $category: string }>`
       }
     }}
   );
+  @supports (-moz-appearance: none) {
+    width: 38.3vw;
+    transform: translateX(
+      ${(props) => {
+        switch (props.$category) {
+          case "music":
+            return "101%";
+          case "videogame":
+            return "100%";
+          case "cinema":
+            return "101.6%";
+          default:
+            return "103%";
+        }
+      }}
+    );
+  }
 `;
 
 //////////////////////////////////////////////////////////////COMPONENT

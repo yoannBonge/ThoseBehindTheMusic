@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 90vh;
   justify-content: space-between;
+  overflow: hidden;
 `;
 
 const WelcomeDiv = styled.div`
@@ -24,6 +25,10 @@ const Title = styled.h1`
   color: black;
   font-family: "Bakbak One";
   font-size: 4em;
+  @supports (-moz-appearance: none) {
+    line-height: 1em;
+    margin-left: 0.3em;
+  }
 `;
 
 const About = styled.p`
@@ -59,7 +64,7 @@ function Landing() {
             base, mais j'aime tout donc il y en aura pour tous les goûts.
             <br />
             Cliquez sur le vinyl pour découvrir ces artistes ainsi que
-            quelques-unes de leurs meilleures œuvres !{" "}
+            quelques-unes de leurs meilleures productions !{" "}
           </About>
         </WelcomeDiv>
       </Wrapper>

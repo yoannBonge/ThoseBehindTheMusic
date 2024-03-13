@@ -261,6 +261,9 @@ export const ComposerName = styled.h2`
   font-family: "Bebas Neue";
   font-size: 6em;
   margin: 0.1em 0 0 1.2rem;
+  @supports (-moz-appearance: none) {
+    font-size: 5.5em;
+  }
 `;
 
 // PARENT: ComposerInfosContent
@@ -327,6 +330,9 @@ export const PhotoSource = styled.span`
   opacity: 0.5;
   left: 1%;
   bottom: 41%;
+  @supports (-moz-appearance: none) {
+    bottom: 44%;
+  }
 `;
 
 // export const ModifyButton = styled(Link)<{ $categoryColor: string }>`
