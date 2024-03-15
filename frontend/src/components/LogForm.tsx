@@ -110,10 +110,8 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       let apiUrl = "";
       if (formType === "signup") {
         apiUrl = API_ROUTES.SIGN_UP;
-        setSuccessMessage("Compte créé avec succès");
       } else if (formType === "login") {
         apiUrl = API_ROUTES.LOG_IN;
-        setSuccessMessage("Vous êtes bien connecté(e)");
       }
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -125,29 +123,42 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       const responseData = await response.json();
 
       if (!response.ok) {
-        setSuccessMessage(null);
+        // setSuccessMessage(null);
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
 
       if (onSignupSuccess) {
+        setErrorMessage(null);
         onSignupSuccess();
+        setSuccessMessage("Compte créé avec succès");
+
         setTimeout(() => {
           setSuccessMessage(null);
           reset();
         }, 1500);
       }
+
       if (onLoginSuccess && responseData.token) {
         localStorage.setItem("token", responseData.token);
+        localStorage.setItem("email", responseData.email);
         localStorage.setItem(
           "isAdmin",
           responseData.isAdmin === true ? "true" : "false"
         );
+        setSuccessMessage("Vous êtes bien connecté(e)");
         login();
         onLoginSuccess();
+
+        setTimeout(() => {
+          setSuccessMessage(null);
+        }, 2000);
       }
     } catch (error: any) {
       console.error(error.message);
       setErrorMessage(error.message);
+      setTimeout(() => {
+        setErrorMessage(null);
+      }, 2000);
     }
     setTimeout(() => {
       setIsSubmitting(false);
@@ -225,7 +236,9 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       {errorMessage === null && successMessage && (
         <SuccessMessage>{successMessage}</SuccessMessage>
       )}
-      {errorMessage && <ErrorSubmitMessage>{errorMessage}</ErrorSubmitMessage>}
+      {successMessage === null && errorMessage && (
+        <ErrorSubmitMessage>{errorMessage}</ErrorSubmitMessage>
+      )}
     </FormWrapper>
   );
 }

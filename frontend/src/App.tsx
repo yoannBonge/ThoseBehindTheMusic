@@ -11,6 +11,7 @@ import AddComposer from "./pages/AddComposer";
 import { ComposersProvider } from "./utils/ComposersContext";
 import ModifyComposer from "./pages/ModifyComposer";
 import ReactModal from "react-modal";
+import SuggestComposer from "./pages/SuggestComposer";
 
 ReactModal.setAppElement("#root");
 
@@ -53,6 +54,7 @@ function App() {
               <Route path='/videogame' element={<Videogame />} />
               <Route path='/add-composer' element={<AddComposer />} />
               <Route path='/modify-composer/:id' element={<ModifyComposer />} />
+              <Route path='/suggest-composer' element={<SuggestComposer />} />
             </Routes>
           </div>
         </BrowserRouter>

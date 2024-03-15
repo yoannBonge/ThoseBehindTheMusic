@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import ReactCountryFlag from "react-country-flag";
 // import { Link, NavLink } from "react-router-dom";
 
@@ -21,6 +21,20 @@ export interface Composer {
   selectedWorks: string[];
 }
 
+export interface Contribution {
+  category: string;
+  name: string;
+  birth: string;
+  birthPlace: string;
+  death?: string;
+  picture: any;
+  pictureSource: string;
+  musicalGenre?: string;
+  related: string[];
+  selectedWorks: string[];
+  contributorName: string;
+}
+
 ////////////////////////////////////// API ROUTES
 
 const API_URL = "http://localhost:4000";
@@ -33,6 +47,7 @@ export const API_ROUTES = {
   GET_COMPOSER_BY_ID: (id: string) => `${API_URL}/api/composers/${id}`,
   UPDATE_COMPOSER: (id: string) =>
     `${API_URL}/api/composers/update-composer/${id}`,
+  SUGGEST_COMPOSER: `${API_URL}/api/mail/suggest-composer`,
 };
 
 ////////////////////////////////////// COLORS
@@ -202,7 +217,7 @@ export const isDuplicateStringValue = (
 // that do not need to be re-rendered unnecessarily, displayed in the order of rendering,
 // allowing for control over their styles (parent-dependent values).
 
-//PARENT : PAGES
+///////////////////////////////////////////////PARENT : PAGES Music/Cinema/Videogame
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -219,7 +234,7 @@ export const ComposerPresentation = styled.div`
   /* overflow: hidden; */
 `;
 
-//PARENT : OverlayMusic/OverlayCinema/OverlayVideogame
+///////////////////////////////////////////////PARENT : OverlayMusic/OverlayCinema/OverlayVideogame
 export const OverlayContainer = styled.div`
   background-color: black;
   position: relative;
@@ -233,7 +248,7 @@ export const Overlay = styled.img`
   z-index: 2;
 `;
 
-//PARENT: PAGES
+///////////////////////////////////////////////PAGES Music/Cinema/Videogame
 export const ModelImageInfosSeparationLine = styled.div<{
   $categoryColor: string;
 }>`
@@ -255,7 +270,7 @@ export const ComposerInfosContainer = styled.div`
   z-index: 0;
 `;
 
-//PARENT: ComposerInfosContent
+///////////////////////////////////////////////PARENT: ComposerInfosContent
 export const ComposerName = styled.h2`
   color: white;
   font-family: "Bebas Neue";
@@ -266,7 +281,7 @@ export const ComposerName = styled.h2`
   }
 `;
 
-// PARENT: ComposerInfosContent
+///////////////////////////////////////////////PARENT: ComposerInfosContent
 export const IdentityInfos = styled.div`
   height: 36%;
   margin-left: 1.2rem;
@@ -320,7 +335,7 @@ export const NotableWorksElement = styled.li`
   font-size: 1.3em;
 `;
 
-//PARENT: ComposerInfosContent
+///////////////////////////////////////////////PARENT: ComposerInfosContent
 export const PhotoSource = styled.span`
   font-family: "Afacad";
   font-size: 1em;
@@ -334,21 +349,6 @@ export const PhotoSource = styled.span`
     bottom: 44%;
   }
 `;
-
-// export const ModifyButton = styled(Link)<{ $categoryColor: string }>`
-//   font-family: "Afacad";
-//   font-size: 0.9em;
-//   background-color: ${(props) => props.$categoryColor};
-//   color: white;
-//   text-decoration: none;
-//   padding: 0.2em;
-//   position: absolute;
-//   left: 0%;
-//   top: 0%;
-//   border-radius: 0 0 8px 0;
-//   border: none;
-//   cursor: pointer;
-// `;
 
 export const SeparationLine = styled.div<{ $categoryColor: string }>`
   width: 56%;
@@ -379,4 +379,191 @@ export const BioAndVideosWrapper = styled.div`
   width: 100%;
   height: 77%;
   margin-top: 1em;
+`;
+
+///////////////////////////////////////////////PARENT : ComposerForm/SuggestForm
+export const FormWrapper = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0.5em 0.5em 0.5em;
+  gap: 1.5em;
+`;
+
+export const FormRadioGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.7em;
+  label {
+    color: black;
+    font-family: "Afacad";
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+`;
+
+export const RadioGroupContainer = styled.div`
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+  }
+  input {
+    height: 1.6em;
+    border-radius: 4px;
+  }
+  label {
+    font-weight: 400;
+  }
+`;
+
+export const FormField = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 2px;
+  label {
+    color: black;
+    font-family: "Afacad";
+    font-size: 1.1em;
+    font-weight: 500;
+  }
+  input {
+    width: 62%;
+    height: 1.6em;
+    border-radius: 4px;
+    &:focus {
+      outline-color: #374e66;
+    }
+  }
+  div {
+    margin-bottom: 0.6em;
+  }
+`;
+
+export const SubLabel = styled.span`
+  color: black;
+  font-family: "Afacad";
+  font-size: 1em;
+  font-weight: 400;
+`;
+
+export const ImageLabel = styled.label`
+  color: black;
+  font-family: "Afacad";
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-bottom: -1.1em;
+  overflow: hidden;
+`;
+
+export const blinkAnimation = keyframes`
+  0%, 50%, 100% {
+    color: #374e66;
+  }
+  25%, 75% {
+    color: red;
+  }
+`;
+
+export const Indication = styled.span<{
+  $blinkAlert: boolean;
+  $validImage?: string | null;
+  $validTextFile?: string | null;
+}>`
+  font-family: "Afacad";
+  font-size: 1em;
+  color: ${(props) =>
+    props.$validImage || props.$validTextFile ? "#0f9d35" : "#374e66"};
+  margin: 0.5em 0 0.8em 0;
+  animation: ${(props) =>
+    props.$blinkAlert
+      ? css`
+          ${blinkAnimation} 0.7s infinite
+        `
+      : "none"};
+`;
+
+export const ImageInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 50%;
+  height: 20em;
+  background-color: #e8f1f6;
+  border: 2px solid #374e66;
+  border-radius: 4px;
+  img {
+    width: 70%;
+  }
+  i {
+    font-family: "FontAwesome";
+    font-size: 9em;
+    color: #374e66;
+  }
+  button {
+    font-family: "Afacad";
+    font-size: 1.2em;
+    color: #374e66;
+    background-color: #cbd6dc;
+    border: none;
+    padding: 0.5em 1em;
+    margin-top: 0.3em;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+      color: #cbd6dc;
+      background-color: #374e66;
+    }
+  }
+  input {
+    display: none;
+  }
+`;
+
+export const ErrorMessage = styled.span`
+  color: #fb2c2c;
+  font-family: "Afacad";
+  font-size: 1em;
+  font-weight: 500;
+  display: flex;
+`;
+
+export const SuccessMessage = styled.span`
+  color: #34971b;
+  font-family: "Afacad";
+  font-size: 1em;
+  font-weight: 500;
+  display: flex;
+`;
+
+export const SubmitButtonAndMessageContainer = styled.div`
+  height: 6em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5em;
+  align-self: center;
+  gap: 0.8em;
+`;
+
+export const SubmitButton = styled.button<{
+  $isSubmitting: boolean;
+}>`
+  background-color: ${({ $isSubmitting }) =>
+    $isSubmitting ? "#626262" : "#0c832c"};
+  color: white;
+  width: 7.2em;
+  font-family: "Afacad";
+  font-size: 1.1em;
+  border-radius: 4px;
+  padding: 0.3em;
+  cursor: ${({ $isSubmitting }) => ($isSubmitting ? "not-allowed" : "pointer")};
+  &:disabled {
+    background-color: #b0b0b0;
+    color: #454545;
+    cursor: not-allowed;
+  }
 `;

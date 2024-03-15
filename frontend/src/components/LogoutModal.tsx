@@ -197,6 +197,9 @@ function LogoutModal({
       if (responseData.token) {
         localStorage.removeItem("token");
       }
+      if (responseData.email) {
+        localStorage.removeItem("email");
+      }
     } catch (error: any) {
       console.error(error.message);
       setErrorMessage(error.message);

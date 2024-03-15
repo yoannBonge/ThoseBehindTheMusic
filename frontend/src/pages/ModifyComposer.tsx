@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { API_ROUTES, Composer, PageWrapper } from "../utils/constants";
 import Scrollbar from "smooth-scrollbar";
 import { useEffect, useRef, useState } from "react";
-import AddComposerForm from "../components/AddComposerForm";
+import ComposerForm from "../components/ComposerForm";
 import { useParams } from "react-router-dom";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -123,7 +123,7 @@ function ModifyComposer() {
           mettre à jour.
         </p>
         <FormContainer ref={formRef}>
-          <AddComposerForm
+          <ComposerForm
             $initialValues={composer}
             onFormSubmitSuccess={handleFormSubmitSuccess}
           />

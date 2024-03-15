@@ -8,7 +8,7 @@ export interface IUser extends Document {
 
 export interface IComposer extends Document {
   id: string;
-  category: string;
+  category: "music" | "cinema" | "videogame";
   name: string;
   birthName?: string;
   birth: string;

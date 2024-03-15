@@ -89,8 +89,9 @@ function Header() {
           <NavLink to='/cinema'>Cinéma</NavLink>
           <NavLink to='/videogame'>Jeu Vidéo</NavLink>
           {isLoggedIn && isAdmin && (
-            <NavLink to='/add-composer'>Contribuer</NavLink>
+            <NavLink to='/add-composer'>Ajouter</NavLink>
           )}
+          {isLoggedIn && <NavLink to='/suggest-composer'>Contribuer</NavLink>}
         </Categories>
       </LogoAndCategories>
       <Login onClick={openModal}>

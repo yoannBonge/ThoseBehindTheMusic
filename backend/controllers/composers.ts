@@ -6,8 +6,8 @@ import { Request, Response } from "express";
 export const createComposer = (req: any, res: Response) => {
   const composerObject = req.body;
 
-  // On crée donc un objet "compositeur" en récupérant toutes les infos du corps de la requête et en ajoutant
-  // les fichiers éventuellement traités.
+  // On crée donc un objet "composer" en récupérant toutes les infos du corps de la requête et en ajoutant
+  // les fichiers en buffer éventuellement traités.
 
   const composer = new Composer({
     ...composerObject,

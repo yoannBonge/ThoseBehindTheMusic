@@ -1,261 +1,35 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import styled, { css, keyframes } from "styled-components";
 import { useAuth } from "../utils/AuthContext";
 import {
   API_ROUTES,
-  Composer,
+  Contribution,
+  ErrorMessage,
+  FormField,
+  FormRadioGroup,
+  FormWrapper,
+  ImageInput,
+  ImageLabel,
+  Indication,
+  RadioGroupContainer,
+  SubLabel,
+  SubmitButton,
+  SubmitButtonAndMessageContainer,
+  SuccessMessage,
   handleAddPhoto,
-  handleAddBio,
   isDuplicateStringValue,
 } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
-const FormWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0 0.5em 0.5em 0.5em;
-  gap: 1.5em;
-`;
 
-const FormRadioGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 0.7em;
-  label {
-    color: black;
-    font-family: "Afacad";
-    font-size: 1.1em;
-    font-weight: 500;
-  }
-`;
-
-const RadioGroupContainer = styled.div`
-  div {
-    display: flex;
-    align-items: center;
-    gap: 0.7em;
-  }
-  input {
-    height: 1.6em;
-    border-radius: 4px;
-  }
-  label {
-    font-weight: 400;
-  }
-`;
-
-const FormField = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  gap: 2px;
-  label {
-    color: black;
-    font-family: "Afacad";
-    font-size: 1.1em;
-    font-weight: 500;
-  }
-  input {
-    width: 62%;
-    height: 1.6em;
-    border-radius: 4px;
-    &:focus {
-      outline-color: #374e66;
-    }
-  }
-  div {
-    margin-bottom: 0.6em;
-  }
-`;
-
-const SubLabel = styled.span`
-  color: black;
-  font-family: "Afacad";
-  font-size: 1em;
-  font-weight: 400;
-`;
-
-const ImageLabel = styled.label`
-  color: black;
-  font-family: "Afacad";
-  font-size: 1.1em;
-  font-weight: 500;
-  margin-bottom: -1.1em;
-  overflow: hidden;
-`;
-
-const blinkAnimation = keyframes`
-  0%, 50%, 100% {
-    color: #374e66;
-  }
-  25%, 75% {
-    color: red;
-  }
-`;
-
-const Indication = styled.span<{
-  $blinkAlert: boolean;
-  $validImage?: string | null;
-  $validTextFile?: string | null;
-}>`
-  font-family: "Afacad";
-  font-size: 1em;
-  color: ${(props) =>
-    props.$validImage || props.$validTextFile ? "#0f9d35" : "#374e66"};
-  margin: 0.5em 0 0.8em 0;
-  animation: ${(props) =>
-    props.$blinkAlert
-      ? css`
-          ${blinkAnimation} 0.7s infinite
-        `
-      : "none"};
-`;
-
-const ImageInput = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  width: 50%;
-  height: 20em;
-  background-color: #e8f1f6;
-  border: 2px solid #374e66;
-  border-radius: 4px;
-  img {
-    width: 70%;
-  }
-  i {
-    font-family: "FontAwesome";
-    font-size: 9em;
-    color: #374e66;
-  }
-  button {
-    font-family: "Afacad";
-    font-size: 1.2em;
-    color: #374e66;
-    background-color: #cbd6dc;
-    border: none;
-    padding: 0.5em 1em;
-    margin-top: 0.3em;
-    border-radius: 10px;
-    cursor: pointer;
-    &:hover {
-      color: #cbd6dc;
-      background-color: #374e66;
-    }
-  }
-  input {
-    display: none;
-  }
-`;
-
-const BioLabel = styled.label`
-  color: black;
-  font-family: "Afacad";
-  font-size: 1.1em;
-  font-weight: 500;
-  margin-bottom: -1.1em;
-  overflow: hidden;
-`;
-
-const BookIcon = styled.i<{
-  $validTextFile: string | null;
-  className: string;
-}>`
-  opacity: ${(props) => (props.$validTextFile ? 1 : 0.2)};
-`;
-
-const BioInput = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  width: 50%;
-  height: 12em;
-  background-color: #e8f1f6;
-  border: 2px solid #374e66;
-  border-radius: 4px;
-  i {
-    font-family: "FontAwesome";
-    font-size: 5em;
-    color: #374e66;
-  }
-  button {
-    font-family: "Afacad";
-    font-size: 1.2em;
-    color: #374e66;
-    background-color: #cbd6dc;
-    border: none;
-    padding: 0.5em 1em;
-    margin-top: 0.5em;
-    border-radius: 10px;
-    cursor: pointer;
-    &:hover {
-      color: #cbd6dc;
-      background-color: #374e66;
-    }
-  }
-  input {
-    display: none;
-  }
-`;
-
-const ErrorMessage = styled.span`
-  color: #fb2c2c;
-  font-family: "Afacad";
-  font-size: 1em;
-  font-weight: 500;
-  display: flex;
-`;
-
-const SuccessMessage = styled.span`
-  color: #34971b;
-  font-family: "Afacad";
-  font-size: 1em;
-  font-weight: 500;
-  display: flex;
-`;
-
-const SubmitButtonAndMessageContainer = styled.div`
-  height: 7em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 0.5em;
-  align-self: center;
-  gap: 0.8em;
-`;
-
-const SubmitButton = styled.button<{
-  $isSubmitting: boolean;
-}>`
-  background-color: ${({ $isSubmitting }) =>
-    $isSubmitting ? "#626262" : "#0c832c"};
-  color: white;
-  width: 7.2em;
-  font-family: "Afacad";
-  font-size: 1.1em;
-  border-radius: 4px;
-  padding: 0.3em;
-  cursor: ${({ $isSubmitting }) => ($isSubmitting ? "not-allowed" : "pointer")};
-  &:disabled {
-    background-color: #b0b0b0;
-    color: #454545;
-    cursor: not-allowed;
-  }
-`;
+// Some components appearing in the render are shared and
+// come from "/utils/constants".
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
-function AddComposerForm({
+function SuggestForm({
   onFormSubmitSuccess,
-  $initialValues,
 }: {
   onFormSubmitSuccess: () => void;
-  $initialValues?: Composer | null;
 }) {
   //////////////////////////////////////////////////////////////STATE
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -263,11 +37,9 @@ function AddComposerForm({
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isBlinkingToAlert, setIsBlinkingToAlert] = useState(false);
   const [validImageUrl, setValidImageUrl] = useState<string | null>(null);
-  const [validTextFileSrc, setValidTextFileSrc] = useState<string | null>(null);
   //////////////////////////////////////////////////////////////CONTEXT
-  const { isLoggedIn, isAdmin } = useAuth();
+  const { isLoggedIn, email } = useAuth();
   //////////////////////////////////////////////////////////////BEHAVIOR
-  const navigate = useNavigate();
 
   const handleAddPhotoClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -275,20 +47,11 @@ function AddComposerForm({
     handleAddPhoto(event, setValidImageUrl, setIsBlinkingToAlert);
   };
 
-  const handleAddBioClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    handleAddBio(event, setValidTextFileSrc, setIsBlinkingToAlert);
-  };
-
   let imageRef = useRef<File | null>(null);
-  let bioRef = useRef<File | null>(null);
 
-  const resetImageAndBio = () => {
+  const resetImage = () => {
     imageRef.current = null;
     setValidImageUrl(null);
-    bioRef.current = null;
-    setValidTextFileSrc(null);
   };
 
   const {
@@ -296,72 +59,82 @@ function AddComposerForm({
     handleSubmit,
     reset,
     getValues,
-    setValue,
-    trigger,
     formState: { errors, isValid },
-  } = useForm<Composer>({
+  } = useForm<Contribution>({
     mode: "all",
   });
 
-  useEffect(() => {
-    if ($initialValues) {
-      Object.keys($initialValues).forEach((key) => {
-        setValue(key as keyof Composer, $initialValues[key as keyof Composer], {
-          shouldValidate: true,
-        });
-        trigger(key as keyof Composer);
-        trigger();
-      });
-    }
-  }, [$initialValues]);
-
-  const onSubmit: SubmitHandler<Composer> = async (data) => {
+  const onSubmit: SubmitHandler<Contribution> = async (data) => {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = $initialValues
-        ? API_ROUTES.UPDATE_COMPOSER($initialValues._id)
-        : API_ROUTES.ADD_COMPOSER;
-      const method = $initialValues ? "PUT" : "POST";
       const token = localStorage.getItem("token");
 
-      if (!isLoggedIn || !isAdmin) {
+      if (!isLoggedIn) {
         throw new Error(
-          "Vous devez être administrateur pour soumettre le formulaire."
+          "Vous devez avoir un compte et être connecté pour proposer un compositeur."
         );
       }
 
-      const formData = new FormData();
-      formData.append("category", data.category);
-      formData.append("name", data.name);
-      {
-        data.birthName && formData.append("birthName", data.birthName);
+      let emailContent = `L'utilisateur "${data.contributorName}" enregistré sous l'adresse
+      e-mail : "${email}" vient de vous suggérer l'ajout de "${data.name}" à la
+      base de données de votre site ! Voici les informations du compositeur proposé :<br><br>`;
+
+      emailContent += `Catégorie : ${data.category}<br><br>`;
+      emailContent += `Nom : ${data.name}<br><br>`;
+      emailContent += `Date de naissance : ${data.birth}<br><br>`;
+      emailContent += `Lieu de naissance : ${data.birthPlace}<br><br>`;
+      if (data.death) {
+        emailContent += `Date de décès : ${data.death}<br><br>`;
       }
-      formData.append("birth", data.birth);
-      formData.append("birthPlace", data.birthPlace);
-      formData.append("countryFlag", data.countryFlag);
-      {
-        data.death && formData.append("death", data.death);
+      if (data.musicalGenre) {
+        emailContent += `Genre musical : ${data.musicalGenre}<br><br>`;
       }
-      imageRef.current && formData.append("picture", imageRef.current);
-      formData.append("pictureSource", data.pictureSource);
-      {
-        data.musicalGenre && formData.append("musicalGenre", data.musicalGenre);
+      emailContent += `Artistes ou œuvres liés :<br>`;
+      data.related.forEach((related, index) => {
+        emailContent += `  ${index + 1}. ${related}<br>`;
+      });
+      emailContent += `<br>Productions sélectionnées :<br>`;
+      data.selectedWorks.forEach((work, index) => {
+        emailContent += `  ${index + 1}. ${work}<br>`;
+      });
+
+      // ADD PICTURE
+      if (imageRef.current) {
+        const file = imageRef.current;
+        const reader = new FileReader();
+
+        // PICTURE PROMISE
+        const readImage = new Promise<string>((resolve, reject) => {
+          reader.onload = () => {
+            const imageDataUrl = reader.result?.toString() || "";
+            resolve(imageDataUrl);
+          };
+          reader.onerror = reject;
+        });
+
+        // PICTURE READING
+        reader.readAsDataURL(file);
+
+        const imageDataUrl = await readImage;
+        emailContent += "<br><br>Image choisie :<br>";
+        emailContent += `<div style="max-width: 600px;">
+        <img src="${imageDataUrl}" alt="Image du compositeur" style="max-width: 100%; height: auto;" /><br>
+    </div>`;
       }
-      bioRef.current && formData.append("bio", bioRef.current);
-      formData.append("related", data.related[0]);
-      formData.append("related", data.related[1]);
-      formData.append("related", data.related[2]);
-      formData.append("selectedWorks", data.selectedWorks[0]);
-      formData.append("selectedWorks", data.selectedWorks[1]);
-      formData.append("selectedWorks", data.selectedWorks[2]);
+      emailContent += `<br>Source de l'image : ${data.pictureSource}`;
+      const apiUrl = API_ROUTES.SUGGEST_COMPOSER;
 
       const response = await fetch(apiUrl, {
-        method: method,
+        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
-        body: formData,
+        body: JSON.stringify({
+          emailContent: emailContent,
+          contentType: "text/html",
+        }),
       });
 
       const responseData = await response.json();
@@ -371,22 +144,15 @@ function AddComposerForm({
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
       ////////////////////////////SUCCESS
-      const successMessage = $initialValues
-        ? "Compositeur modifié !"
-        : "Compositeur enregistré !";
+      const successMessage = "Suggestion envoyée, merci !";
       setSuccessMessage(successMessage);
 
       setTimeout(() => {
         setIsSubmitting(false);
         setSuccessMessage(null);
         reset();
-        resetImageAndBio();
+        resetImage();
         onFormSubmitSuccess();
-
-        if ($initialValues) {
-          const redirectUrl = `/${$initialValues.category}`;
-          navigate(redirectUrl);
-        }
       }, 2000);
     } catch (error: any) {
       console.error(error.message);
@@ -399,7 +165,7 @@ function AddComposerForm({
     }
   };
 
-  // console.log("RENDER ADD COMPOSER FORM");
+  // console.log("RENDER SUGGEST FORM");
 
   //////////////////////////////////////////////////////////////RENDER
   return (
@@ -456,28 +222,6 @@ function AddComposerForm({
         />
         {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
       </FormField>
-      <FormField>
-        <label htmlFor='birthName'>
-          Nom de naissance du compositeur <br></br>{" "}
-          <SubLabel>
-            (si différent du nom de scène, sinon laissez ce champ vide)
-          </SubLabel>
-        </label>
-        <input
-          id='birthName'
-          type='text'
-          {...register("birthName", {
-            pattern: {
-              value: /^(?=.*[a-zA-Z]{2,}.*[a-zA-Z]{2,})[\w\s]+$/,
-              message:
-                "Veuillez saisir le nom de naissance complet du compositeur",
-            },
-          })}
-        />
-        {errors.birthName && (
-          <ErrorMessage>{errors.birthName.message}</ErrorMessage>
-        )}
-      </FormField>
 
       <FormField>
         <label htmlFor='birth'>Date de naissance du compositeur</label>
@@ -514,27 +258,6 @@ function AddComposerForm({
       </FormField>
 
       <FormField>
-        <label htmlFor='countryFlag'>
-          Code ISO du pays de naissance du compositeur <br />
-          <SubLabel>(ex: pour la France : "fr")</SubLabel>
-        </label>
-        <input
-          id='countryFlag'
-          type='text'
-          {...register("countryFlag", {
-            required: "Ce champ est requis",
-            pattern: {
-              value: /^[a-zA-Z]{2}$/i,
-              message: "Le code ISO doit strictement contenir deux lettres",
-            },
-          })}
-        />
-        {errors.countryFlag && (
-          <ErrorMessage>{errors.countryFlag.message}</ErrorMessage>
-        )}
-      </FormField>
-
-      <FormField>
         <label htmlFor='death'>
           Si le compositeur est décédé, la date de son décès <br />
           <SubLabel>(Sinon, laissez ce champ vide)</SubLabel>
@@ -564,14 +287,22 @@ function AddComposerForm({
         <Indication $blinkAlert={isBlinkingToAlert} $validImage={validImageUrl}>
           {validImageUrl
             ? "Cette photo est valide, vous pouvez continuer"
-            : "La photo doit être en orientation 'paysage'"}
+            : "La photo doit être en orientation 'paysage' (plus large que haute)"}
         </Indication>
         <input
           id='picture'
           type='file'
-          accept='.jpg, .jpeg, .png, .webp'
+          accept='.jpg, .jpeg, .png, .webp, .avif'
           {...register("picture", {
             required: "Vous devez sélectionner une photo du compositeur",
+            validate: {
+              fileSize: (value) => {
+                if (value && value[0] && value[0].size > 4 * 1024 * 1024) {
+                  return "La poids du fichier est trop élevé. Veuillez sélectionner un fichier de moins de 4 MB.";
+                }
+                return true;
+              },
+            },
           })}
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) {
@@ -583,7 +314,7 @@ function AddComposerForm({
       <FormField>
         <label htmlFor='pictureSource'>
           Site sur lequel vous avez trouvé la photo et auteur de la photo <br />
-          <SubLabel>(nom du site requis)</SubLabel>
+          <SubLabel>(au minimum le nom du site)</SubLabel>
         </label>
         <input
           id='pictureSource'
@@ -593,7 +324,7 @@ function AddComposerForm({
               value:
                 /(?:\b(?:https?|ftp):\/\/|www\.)[\w-]+\.[a-zA-Z]{2,}(?:\/\S*)?/i,
               message:
-                "Veuillez saisir au moins l'adresse du site web d'où provient la photo",
+                "Saisissez au moins l'adresse du site web d'où provient la photo (ex: www.unsplash.com)",
             },
             required: true,
           })}
@@ -624,41 +355,9 @@ function AddComposerForm({
         )}
       </FormField>
 
-      <BioLabel htmlFor='bio'>
-        Chargez une présentation du compositeur au format .txt
-      </BioLabel>
-      <BioInput>
-        <BookIcon
-          $validTextFile={validTextFileSrc}
-          className='fa-solid fa-book'
-        ></BookIcon>
-        <button onClick={handleAddBioClick}>Ajouter Bio</button>
-        <Indication
-          $blinkAlert={isBlinkingToAlert}
-          $validTextFile={validTextFileSrc}
-        >
-          {validTextFileSrc
-            ? "Ce fichier est valide, vous pouvez continuer"
-            : "Le fichier doit être au format .txt et ne pas excéder 20 Ko"}
-        </Indication>
-        <input
-          id='bio'
-          type='file'
-          accept='.txt'
-          {...register("bio", {
-            required:
-              "Vous devez charger une présentation du compositeur au format .txt",
-          })}
-          onChange={(e) => {
-            if (e.target.files && e.target.files.length > 0) {
-              bioRef.current = e.target.files[0];
-            }
-          }}
-        />
-      </BioInput>
       <FormField>
         <label htmlFor='related'>
-          Artistes ou œuvres lié(e)s au compositeur <br />
+          Trois Artistes ou œuvres lié(e)s au compositeur <br />
           <SubLabel>
             (ex: pour Quincy Jones =&gt; Michael Jackson, Hans Zimmer =&gt; Le
             Roi Lion...)
@@ -691,10 +390,11 @@ function AddComposerForm({
       <FormField>
         <label htmlFor='selectedWorks'>
           Veuillez renseigner les liens de vidéos YouTube de{" "}
-          <u>trois morceaux</u> illustres du compositeur <br />
+          <u>trois productions du compositeur</u>
+          <br />
           <SubLabel>
-            (Accédez à une musique ou un clip sur YouTube et copiez-collez le
-            lien de la barre d'adresse dans les champs ci-dessous)
+            (Accédez à chaque musique ou clip sur YouTube et copiez-collez les
+            liens de la barre d'adresse dans les champs ci-dessous)
           </SubLabel>
         </label>
         {[1, 2, 3].map((index) => (
@@ -712,7 +412,7 @@ function AddComposerForm({
                     ) || "Vous avez déjà inséré le lien de ce morceau",
                 },
                 required:
-                  "Vous devez insérer trois liens YouTube de morceaux du compositeur",
+                  "Vous devez insérer trois liens YouTube de productions du compositeur",
                 pattern: {
                   value: /^https:\/\/www\.youtube\.com\/watch\?v=/,
                   message:
@@ -728,15 +428,30 @@ function AddComposerForm({
           </div>
         ))}
       </FormField>
+
+      <FormField>
+        <label htmlFor='contributorName'>Votre nom (ou alias)</label>
+        <input
+          id='contributorName'
+          type='text'
+          {...register("contributorName", {
+            required: "Ce champ est requis",
+            pattern: {
+              value: /^[A-Za-z0-9._%+-]*[A-Za-z][A-Za-z0-9._%+-]*[A-Za-z0-9]$/i,
+              message: "Indiquez votre nom ou alias",
+            },
+          })}
+        />
+        {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+      </FormField>
+
       <SubmitButtonAndMessageContainer>
         <SubmitButton
           type='submit'
           $isSubmitting={isSubmitting}
           disabled={!isValid}
         >
-          {$initialValues
-            ? "Modifier le compositeur"
-            : "Ajouter le compositeur"}
+          Envoyer votre suggestion
         </SubmitButton>
         {errorMessage === null && successMessage && (
           <SuccessMessage>{successMessage}</SuccessMessage>
@@ -747,4 +462,4 @@ function AddComposerForm({
   );
 }
 
-export default AddComposerForm;
+export default SuggestForm;

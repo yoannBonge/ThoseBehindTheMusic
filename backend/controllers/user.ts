@@ -65,6 +65,7 @@ export const login = (req: Request, res: Response) => {
           res.status(200).json({
             userId: user._id,
             token: token,
+            email: user.email,
             isAdmin: isAdmin,
           });
           // console.log(token);

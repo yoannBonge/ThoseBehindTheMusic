@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { PageWrapper } from "../utils/constants";
 import Scrollbar from "smooth-scrollbar";
 import { useEffect, useRef, useState } from "react";
-import ComposerForm from "../components/ComposerForm";
+import SuggestForm from "../components/SuggestForm";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const Wrapper = styled(PageWrapper)`
@@ -36,13 +36,13 @@ const ContentWrapper = styled.div`
 `;
 
 const FormContainer = styled.div`
-  height: 56.4vh;
+  height: 52vh;
   width: 59.5vw;
   overflow: hidden;
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
-function AddComposer() {
+function SuggestComposer() {
   //////////////////////////////////////////////////////STATE
   const [formSubmitted, setFormSubmitted] = useState(false);
   //////////////////////////////////////////////////////REF
@@ -74,26 +74,25 @@ function AddComposer() {
     setFormSubmitted(!formSubmitted);
   };
 
-  // console.log("RENDER PAGE ADD COMPOSER");
+  // console.log("RENDER PAGE SUGGEST COMPOSER");
 
   //////////////////////////////////////////////////////RENDER
   return (
     <Wrapper>
       <ContentWrapper>
-        <h2>Ajouter un compositeur</h2>
+        <h2>Proposer un compositeur</h2>
         <p>
-          Veuillez renseigner toutes les informations suivantes concernant un
-          compositeur que vous souhaiter voir apparaître sur le site.
+          Veuillez renseigner les informations suivantes concernant un
+          compositeur que vous souhaiteriez voir apparaître sur le site puis
+          soumettez le formulaire pour que votre suggestion soit transmise à
+          l'administrateur du site. Merci d'avance pour votre contribution !
         </p>
         <FormContainer ref={formRef}>
-          <ComposerForm
-            $initialValues={null}
-            onFormSubmitSuccess={handleFormSubmitSuccess}
-          />
+          <SuggestForm onFormSubmitSuccess={handleFormSubmitSuccess} />
         </FormContainer>
       </ContentWrapper>
     </Wrapper>
   );
 }
 
-export default AddComposer;
+export default SuggestComposer;

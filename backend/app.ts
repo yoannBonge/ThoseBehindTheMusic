@@ -1,11 +1,11 @@
 import express, { Application, Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
-import path from "path";
 import dotenv from "dotenv";
 import cors from "cors";
 
 import composersRoutes from "./routes/composers";
 import userRoutes from "./routes/user";
+import mailRoutes from "./routes/mail";
 import errorHandler from "./middleware/errorHandler";
 
 dotenv.config();
@@ -24,13 +24,15 @@ const connectDB = async () => {
 
 connectDB();
 
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 app.use(cors());
 
 app.options("*", cors());
 
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
+app.use("/api/mail", mailRoutes);
+
 app.use(errorHandler);
 
 export default app;
