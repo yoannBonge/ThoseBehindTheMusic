@@ -7,9 +7,6 @@ import { useParams } from "react-router-dom";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are shared and
-// come from "/utils/constants".
-
 const Wrapper = styled(PageWrapper)`
   background-image: url("/tape-background.webp");
   background-size: cover;
@@ -41,7 +38,7 @@ const ContentWrapper = styled.div`
 `;
 
 const FormContainer = styled.div`
-  height: 60vh;
+  height: 56.4vh;
   width: 59.5vw;
   overflow: hidden;
 `;
