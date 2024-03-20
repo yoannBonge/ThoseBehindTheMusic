@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 import { API_ROUTES } from "../utils/constants";
-import { useAuth } from "../utils/AuthContext";
+import { useAuth } from "../utils/context/auth/useAuth";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 type FormInputs = {
@@ -140,6 +140,7 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
 
       if (onLoginSuccess && responseData.token) {
         localStorage.setItem("token", responseData.token);
+        localStorage.setItem("tokenExpiration", responseData.tokenExpiration);
         localStorage.setItem("email", responseData.email);
         localStorage.setItem(
           "isAdmin",

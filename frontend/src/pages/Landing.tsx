@@ -63,8 +63,8 @@ function Landing() {
             juge légitimes à apparaître ici. J'écoute beaucoup de Hip Hop à la
             base, mais j'aime tout donc il y en aura pour tous les goûts.
             <br />
-            Cliquez sur le vinyl pour découvrir ces artistes ainsi que
-            quelques-unes de leurs meilleures productions !{" "}
+            Cliquez sur le vinyl pour découvrir ces artistes et un aperçu de
+            leurs meilleures productions !{" "}
           </About>
         </WelcomeDiv>
       </Wrapper>

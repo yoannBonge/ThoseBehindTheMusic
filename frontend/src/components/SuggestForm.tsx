@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useAuth } from "../utils/AuthContext";
+import { SubmitHandler, useForm } from "react-hook-form";
 import {
   API_ROUTES,
   Contribution,
@@ -19,6 +18,7 @@ import {
   handleAddPhoto,
   isDuplicateStringValue,
 } from "../utils/constants";
+import { useAuth } from "../utils/context/auth/useAuth";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -47,7 +47,7 @@ function SuggestForm({
     handleAddPhoto(event, setValidImageUrl, setIsBlinkingToAlert);
   };
 
-  let imageRef = useRef<File | null>(null);
+  const imageRef = useRef<File | null>(null);
 
   const resetImage = () => {
     imageRef.current = null;
@@ -295,14 +295,6 @@ function SuggestForm({
           accept='.jpg, .jpeg, .png, .webp, .avif'
           {...register("picture", {
             required: "Vous devez sélectionner une photo du compositeur",
-            validate: {
-              fileSize: (value) => {
-                if (value && value[0] && value[0].size > 4 * 1024 * 1024) {
-                  return "La poids du fichier est trop élevé. Veuillez sélectionner un fichier de moins de 4 MB.";
-                }
-                return true;
-              },
-            },
           })}
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) {

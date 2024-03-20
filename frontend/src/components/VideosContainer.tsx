@@ -1,5 +1,7 @@
-import { Composer } from "../utils/constants";
+/* eslint-disable react-hooks/rules-of-hooks */
+//ESLint believes useEffect is rendered conditionally
 import { useEffect, useState } from "react";
+import { Composer } from "../utils/constants";
 import YoutubeVideo from "./YoutubeVideo";
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

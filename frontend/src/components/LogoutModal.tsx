@@ -1,9 +1,9 @@
-import Modal from "react-modal";
-import styled from "styled-components";
 import { useState } from "react";
-import { API_ROUTES } from "../utils/constants";
+import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../utils/AuthContext";
+import styled from "styled-components";
+import { API_ROUTES } from "../utils/constants";
+import { useAuth } from "../utils/context/auth/useAuth";
 
 /////// The code below is a trick to style the overlay of a react-modal when using styled-components.
 interface Props extends ReactModal.Props {

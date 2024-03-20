@@ -1,8 +1,8 @@
+import { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
+import { useAuth } from "../utils/context/auth/useAuth";
 import LogForm from "./LogForm";
-import { useState } from "react";
-import { useAuth } from "../utils/AuthContext";
 
 /////// The code below is a trick to style the overlay of a react-modal when using styled-components.
 interface Props extends ReactModal.Props {

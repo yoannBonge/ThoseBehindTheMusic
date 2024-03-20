@@ -1,15 +1,15 @@
-import { Composer } from "../utils/constants";
-import { getCategoryColor } from "../utils/constants";
+import { useState } from "react";
 import styled from "styled-components";
+import ComposerInfosWrapper from "../components/ComposerInfosWrapper";
+import OverlayMusic from "../components/OverlayMusic";
 import {
-  PageWrapper,
+  Composer,
   ComposerPresentation,
   ModelImageInfosSeparationLine,
+  PageWrapper,
+  getCategoryColor,
 } from "../utils/constants";
-import OverlayMusic from "../components/OverlayMusic";
-import ComposerInfosWrapper from "../components/ComposerInfosWrapper";
-import { useState } from "react";
-import { useComposers } from "../utils/ComposersContext";
+import { useComposers } from "../utils/context/composers/useComposers";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 

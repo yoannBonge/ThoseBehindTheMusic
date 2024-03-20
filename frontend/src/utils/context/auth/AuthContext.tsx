@@ -1,12 +1,6 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  ReactNode,
-  useEffect,
-} from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 
-interface AuthContextType {
+export interface AuthContextType {
   isLoggedIn: boolean;
   isAdmin: boolean;
   email: string | null;
@@ -14,15 +8,7 @@ interface AuthContextType {
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
-
-export const useAuth = (): AuthContextType => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
-};
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -32,17 +18,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [email, setEmail] = useState<string | null>(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-      const isAdminValue = localStorage.getItem("isAdmin");
-      setIsAdmin(isAdminValue === "true");
-      const userEmail = localStorage.getItem("email");
-      setEmail(userEmail || null);
-    }
-  }, []);
 
   const login = () => {
     setIsLoggedIn(true);
@@ -60,6 +35,27 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     localStorage.removeItem("isAdmin");
     localStorage.removeItem("email");
   };
+
+  const checkTokenExpiration = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const tokenExpiration = localStorage.getItem("tokenExpiration");
+      const expirationTime = tokenExpiration
+        ? new Date(tokenExpiration).getTime()
+        : 0;
+      const currentTime = Date.now();
+
+      if (currentTime < expirationTime) {
+        login();
+      } else {
+        logout();
+      }
+    }
+  };
+
+  useEffect(() => {
+    checkTokenExpiration();
+  });
 
   const authContextValue: AuthContextType = {
     isLoggedIn,

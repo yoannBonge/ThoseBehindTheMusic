@@ -1,21 +1,21 @@
-import { Composer } from "../utils/constants";
-import { getCategoryColor } from "../utils/constants";
-import {
-  IdentityInfos,
-  ComposerInfosElement,
-  PropertyName,
-  PropertyContent,
-  CountryFlag,
-  NotableWorksContainer,
-  NotableWorksList,
-  NotableWorksElement,
-  PhotoSource,
-  SeparationLine,
-} from "../utils/constants";
-import BioAndVideos from "./BioAndVideos";
-import { useAuth } from "../utils/AuthContext";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import {
+  Composer,
+  ComposerInfosElement,
+  CountryFlag,
+  IdentityInfos,
+  NotableWorksContainer,
+  NotableWorksElement,
+  NotableWorksList,
+  PhotoSource,
+  PropertyContent,
+  PropertyName,
+  SeparationLine,
+  getCategoryColor,
+} from "../utils/constants";
+import { useAuth } from "../utils/context/auth/useAuth";
+import BioAndVideos from "./BioAndVideos";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 

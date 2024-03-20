@@ -1,11 +1,5 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from "react";
-import { API_ROUTES, Composer } from "./constants";
+import { ReactNode, createContext, useEffect, useState } from "react";
+import { API_ROUTES, Composer } from "../../constants";
 
 type ComposersContextType = {
   cinemaComposers: Composer[];
@@ -13,15 +7,11 @@ type ComposersContextType = {
   videogameComposers: Composer[];
 };
 
-const ComposersContext = createContext<ComposersContextType>({
+export const ComposersContext = createContext<ComposersContextType>({
   cinemaComposers: [],
   musicComposers: [],
   videogameComposers: [],
 });
-
-export const useComposers = () => {
-  return useContext(ComposersContext);
-};
 
 interface ComposersProviderProps {
   children: ReactNode;

@@ -1,27 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useAuth } from "../utils/AuthContext";
 import {
   API_ROUTES,
   Composer,
-  handleAddPhoto,
-  handleAddBio,
-  isDuplicateStringValue,
-  FormWrapper,
-  FormRadioGroup,
-  RadioGroupContainer,
   ErrorMessage,
   FormField,
-  SubLabel,
-  ImageLabel,
+  FormRadioGroup,
+  FormWrapper,
   ImageInput,
+  ImageLabel,
   Indication,
-  SubmitButtonAndMessageContainer,
+  RadioGroupContainer,
+  SubLabel,
   SubmitButton,
+  SubmitButtonAndMessageContainer,
   SuccessMessage,
+  handleAddBio,
+  handleAddPhoto,
+  isDuplicateStringValue,
 } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../utils/context/auth/useAuth";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -111,8 +111,8 @@ function ComposerForm({
     handleAddBio(event, setValidTextFileSrc, setIsBlinkingToAlert);
   };
 
-  let imageRef = useRef<File | null>(null);
-  let bioRef = useRef<File | null>(null);
+  const imageRef = useRef<File | null>(null);
+  const bioRef = useRef<File | null>(null);
 
   const resetImageAndBio = () => {
     imageRef.current = null;
@@ -143,7 +143,7 @@ function ComposerForm({
         trigger();
       });
     }
-  }, [$initialValues]);
+  }, [$initialValues, setValue, trigger]);
 
   const onSubmit: SubmitHandler<Composer> = async (data) => {
     setIsSubmitting(true);

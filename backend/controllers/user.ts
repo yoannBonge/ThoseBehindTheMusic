@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { Request, Response } from "express";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -62,9 +62,14 @@ export const login = (req: Request, res: Response) => {
             { expiresIn: "4H" }
           );
 
+          const tokenExpiration = new Date(
+            new Date().getTime() + 4 * 60 * 60 * 1000
+          ).toISOString();
+
           res.status(200).json({
             userId: user._id,
             token: token,
+            tokenExpiration: tokenExpiration,
             email: user.email,
             isAdmin: isAdmin,
           });

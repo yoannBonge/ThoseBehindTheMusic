@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { NextFunction, Request, Response } from "express";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -32,6 +32,11 @@ const authMiddleware = (
     }
 
     const userId: string = decodedToken.userId;
+
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+    if (decodedToken.exp < currentTimestamp) {
+      throw new Error("Token expired");
+    }
 
     req.auth = {
       userId: userId,

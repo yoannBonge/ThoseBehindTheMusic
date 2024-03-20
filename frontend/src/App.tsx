@@ -1,17 +1,17 @@
-import { AuthProvider } from "./utils/AuthContext";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ReactModal from "react-modal";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
-import Home from "./pages/Landing";
-import Categories from "./pages/Categories";
-import Music from "./pages/Music";
-import Cinema from "./pages/Cinema";
-import Videogame from "./pages/Videogame";
 import AddComposer from "./pages/AddComposer";
-import { ComposersProvider } from "./utils/ComposersContext";
+import Categories from "./pages/Categories";
+import Cinema from "./pages/Cinema";
+import Home from "./pages/Landing";
 import ModifyComposer from "./pages/ModifyComposer";
-import ReactModal from "react-modal";
+import Music from "./pages/Music";
 import SuggestComposer from "./pages/SuggestComposer";
+import Videogame from "./pages/Videogame";
+import { AuthProvider } from "./utils/context/auth/AuthContext";
+import { ComposersProvider } from "./utils/context/composers/ComposersContext";
 
 ReactModal.setAppElement("#root");
 

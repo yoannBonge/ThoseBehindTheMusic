@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { useAuth } from "../utils/context/auth/useAuth";
 import LoginModal from "./LoginModal";
 import LogoutModal from "./LogoutModal";
-import { useAuth } from "../utils/AuthContext";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const StyledHeader = styled.header`
@@ -61,7 +61,7 @@ function Header() {
 
   //////////////////////////////////////////////////////CONTEXT
   const { isLoggedIn, isAdmin } = useAuth();
-
+  console.log(isLoggedIn);
   //////////////////////////////////////////////////////BEHAVIOR
   const openModal = () => {
     if (isLoggedIn) {
@@ -91,7 +91,9 @@ function Header() {
           {isLoggedIn && isAdmin && (
             <NavLink to='/add-composer'>Ajouter</NavLink>
           )}
-          {isLoggedIn && <NavLink to='/suggest-composer'>Contribuer</NavLink>}
+          {isLoggedIn && !isAdmin && (
+            <NavLink to='/suggest-composer'>Contribuer</NavLink>
+          )}
         </Categories>
       </LogoAndCategories>
       <Login onClick={openModal}>
