@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
+import { device } from "../utils/constants";
 
 interface OverlayCarouselProps {
   imageUrl: string;
@@ -49,14 +50,18 @@ const moveUpFadeOut = keyframes`
 
 const Wrapper = styled.div`
   position: relative;
-  width: 50vw;
-  height: 72vh;
   margin: auto;
   overflow: hidden;
   border-radius: 20px;
   z-index: 3;
   box-sizing: border-box;
   cursor: pointer;
+  @media ${device.md} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Filter = styled.div`
@@ -68,14 +73,22 @@ const Filter = styled.div`
   background: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   z-index: 2;
+  @media ${device.md} {
+  }
 `;
 
 const Image = styled.img`
-  width: 98.7%;
-  height: 98%;
+  width: 50vw;
   border: 5px solid rgba(147, 28, 28, 0.7);
   border-radius: 20px;
+  box-sizing: border-box;
   z-index: 1;
+  @media ${device.lg} {
+    width: 60vw;
+  }
+  @media ${device.md} {
+    width: 70vw;
+  }
 `;
 
 const Title = styled.h3<{ $isHovered: boolean }>`
@@ -95,6 +108,11 @@ const Title = styled.h3<{ $isHovered: boolean }>`
       : css`
           ${moveDown} 0.3s ease-out forwards
         `};
+  @media ${device.md} {
+    font-size: 7vw;
+    animation: inherit;
+    top: 25%;
+  }
 `;
 
 const Description = styled.div<{ $isHovered: boolean }>`
@@ -119,6 +137,14 @@ const Description = styled.div<{ $isHovered: boolean }>`
       : css`
           ${moveUpFadeOut} 0.3s ease-out
         `};
+  @media ${device.md} {
+    position: relative;
+    transform: translate(-50%, 0);
+    font-size: 3vw;
+    animation: inherit;
+    opacity: 1;
+    pointer-events: inherit;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

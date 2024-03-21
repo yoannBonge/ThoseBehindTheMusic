@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import styled from "styled-components";
 import "slick-carousel/slick/slick.css";
+import styled from "styled-components";
+import { device } from "../utils/constants";
 import OverlayCarousel from "./OverlayCarousel";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -10,6 +11,12 @@ const StyledSlider = styled(Slider)`
   height: 30vw;
   align-items: center;
   position: relative;
+  @media ${device.lg} {
+    width: 60vw;
+  }
+  @media ${device.md} {
+    width: 70vw;
+  }
   @supports (-moz-appearance: none) {
     height: 31vw;
   }
@@ -24,15 +31,36 @@ const StyledSlider = styled(Slider)`
     transform: translateY(-50%);
     background: transparent;
     border: none;
+    @media ${device.xs} {
+      width: 4em;
+    }
   }
   .slick-prev {
     left: -5%;
     transform: translate(-50%, 50%);
+    @media ${device.md} {
+      transform: translate(-50%, 95%);
+    }
+    @media ${device.sm} {
+      transform: translate(-50%, 60%);
+    }
+    @media ${device.xs} {
+      transform: translate(-50%, 30%);
+    }
   }
 
   .slick-next {
     right: -5%;
     transform: translate(50%, 50%);
+    @media ${device.md} {
+      transform: translate(50%, 95%);
+    }
+    @media ${device.sm} {
+      transform: translate(50%, 60%);
+    }
+    @media ${device.xs} {
+      transform: translate(50%, 30%);
+    }
   }
 
   .slick-prev::before,
@@ -41,6 +69,9 @@ const StyledSlider = styled(Slider)`
     font-size: 3.5em;
     color: rgba(147, 28, 28, 0.7);
     cursor: pointer;
+    @media ${device.md} {
+      font-size: 6vw;
+    }
   }
 
   .slick-prev::before {

@@ -50,6 +50,33 @@ export const API_ROUTES = {
   SUGGEST_COMPOSER: `${API_URL}/api/mail/suggest-composer`,
 };
 
+////////////////////////////////////// BREAKPOINTS
+interface Size {
+  xs: string;
+  sm: string;
+  md: string;
+  lg: string;
+  xl: string;
+  xxl: string;
+}
+
+const size: Size = {
+  xs: "400px",
+  sm: "600px",
+  md: "800px",
+  lg: "1200px",
+  xl: "1500px",
+  xxl: "1920px",
+};
+export const device = {
+  xs: `(max-width: ${size.xs})`,
+  sm: `(max-width: ${size.sm})`,
+  md: `(max-width: ${size.md})`,
+  lg: `(max-width: ${size.lg})`,
+  xl: `(max-width: ${size.xl})`,
+  xxl: `(max-width: ${size.xxl})`,
+};
+
 ////////////////////////////////////// COLORS
 const colors = {
   music: "#A84BE5",
@@ -388,6 +415,8 @@ export const FormWrapper = styled.form`
   align-items: flex-start;
   padding: 0 0.5em 0.5em 0.5em;
   gap: 1.5em;
+  @media ${device.md} {
+  }
 `;
 
 export const FormRadioGroup = styled.div`
@@ -456,6 +485,10 @@ export const ImageLabel = styled.label`
   font-weight: 500;
   margin-bottom: -1.1em;
   overflow: hidden;
+  @media ${device.md} {
+    align-self: center;
+    text-align: center;
+  }
 `;
 
 export const blinkAnimation = keyframes`
@@ -474,6 +507,7 @@ export const Indication = styled.span<{
 }>`
   font-family: "Afacad";
   font-size: 1em;
+  text-align: center;
   color: ${(props) =>
     props.$validImage || props.$validTextFile ? "#0f9d35" : "#374e66"};
   margin: 0.5em 0 0.8em 0;
@@ -483,6 +517,13 @@ export const Indication = styled.span<{
           ${blinkAnimation} 0.7s infinite
         `
       : "none"};
+  @media ${device.md} {
+    padding: 0 0.2em;
+  }
+  @media ${device.sm} {
+    font-size: 3.5vw;
+    padding: 0 0.2em;
+  }
 `;
 
 export const ImageInput = styled.div`
@@ -490,18 +531,31 @@ export const ImageInput = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  width: 50%;
+  width: 27em;
   height: 20em;
   background-color: #e8f1f6;
   border: 2px solid #374e66;
   border-radius: 4px;
+  @media ${device.md} {
+    align-self: center;
+  }
+  @media ${device.sm} {
+    width: 72vw;
+    height: 55vw;
+  }
   img {
     width: 70%;
+    @media ${device.sm} {
+      width: 70%;
+    }
   }
   i {
     font-family: "FontAwesome";
     font-size: 9em;
     color: #374e66;
+    @media ${device.sm} {
+      font-size: 25vw;
+    }
   }
   button {
     font-family: "Afacad";
@@ -513,6 +567,9 @@ export const ImageInput = styled.div`
     margin-top: 0.3em;
     border-radius: 10px;
     cursor: pointer;
+    @media ${device.sm} {
+      font-size: 3.2vw;
+    }
     &:hover {
       color: #cbd6dc;
       background-color: #374e66;
@@ -529,6 +586,7 @@ export const ErrorMessage = styled.span`
   font-size: 1em;
   font-weight: 500;
   display: flex;
+  text-align: center;
 `;
 
 export const SuccessMessage = styled.span`
@@ -537,6 +595,7 @@ export const SuccessMessage = styled.span`
   font-size: 1em;
   font-weight: 500;
   display: flex;
+  text-align: center;
 `;
 
 export const SubmitButtonAndMessageContainer = styled.div`

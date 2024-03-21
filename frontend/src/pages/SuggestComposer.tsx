@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { PageWrapper } from "../utils/constants";
-import Scrollbar from "smooth-scrollbar";
 import { useEffect, useRef, useState } from "react";
+import Scrollbar from "smooth-scrollbar";
+import styled from "styled-components";
 import SuggestForm from "../components/SuggestForm";
+import { PageWrapper, device } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const Wrapper = styled(PageWrapper)`
@@ -13,17 +13,33 @@ const Wrapper = styled(PageWrapper)`
   background-repeat: no-repeat;
   align-items: flex-start;
   overflow: hidden;
+  @media ${device.md} {
+    display: flex;
+    background-position: inherit;
+    background-image: inherit;
+    background-color: #d1ddcc;
+    align-items: center;
+  }
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 2vw;
+  @media ${device.md} {
+    margin: 0;
+    align-items: center;
+  }
   h2 {
     font-family: "Bakbak One";
     font-size: 3em;
+    line-height: 1em;
     color: black;
     margin: 0.5em 0 0em 0;
+    @media ${device.md} {
+      font-size: 6vw;
+      text-align: center;
+    }
   }
   p {
     font-family: "Afacad";
@@ -32,13 +48,30 @@ const ContentWrapper = styled.div`
     max-width: 60%;
     padding-bottom: 1em;
     border-bottom: 2px solid black;
+    @media ${device.md} {
+      max-width: 90%;
+      font-size: 3.1vw;
+      text-align: center;
+    }
   }
 `;
 
 const FormContainer = styled.div`
-  height: 52vh;
+  height: 19.5%;
   width: 59.5vw;
   overflow: hidden;
+  @media ${device.md} {
+    height: 10%;
+    width: 90vw;
+  }
+  @media ${device.sm} {
+    height: 14%;
+    width: 90vw;
+  }
+  @media ${device.xs} {
+    height: 17%;
+    width: 90vw;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

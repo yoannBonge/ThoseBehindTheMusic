@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
+import { device } from "../utils/constants";
 import { useAuth } from "../utils/context/auth/useAuth";
 import LogForm from "./LogForm";
 
@@ -54,25 +55,35 @@ const StyledModal = styled(ReactModalAdapter)`
   &__content {
     background-color: #1a1a1a;
     display: flex;
-    justify-content: flex-start;
+    justify-content: start;
     position: fixed;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 40vw;
-    min-height: 30vw;
+    min-height: 35vh;
     padding-bottom: 1em;
     border: 1px solid white;
     box-shadow: 0px 0px 10px #ffffff;
     border-radius: 10px;
     overflow: hidden;
     z-index: 4;
+    @media ${device.lg} {
+      width: 50vw;
+    }
   }
   h2 {
     font-family: "Bakbak One";
     font-size: 3em;
     color: white;
     margin: 0.7em 0 0.3em 0;
+    text-align: center;
+    @media ${device.lg} {
+      font-size: 4vw;
+    }
+    @media ${device.sm} {
+      font-size: 4.2vw;
+    }
   }
   p {
     font-family: "Afacad";
@@ -80,17 +91,23 @@ const StyledModal = styled(ReactModalAdapter)`
     color: white;
     margin-bottom: 1.4em;
     text-align: center;
-    /* max-width: 24em; */
-    width: 24em;
+    width: 33vw;
+    @media ${device.lg} {
+      font-size: 1.9vw;
+    }
+    @media ${device.md} {
+      font-size: 2.5vw;
+    }
+    @media ${device.sm} {
+      font-size: 3vw;
+    }
   }
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin-left: -3em;
-  width: 76vw;
 `;
 
 const LoginWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
@@ -99,9 +116,13 @@ const LoginWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
   justify-content: center;
   align-items: center;
   transform: ${({ $isSwitchedToSignup }) =>
-    $isSwitchedToSignup ? "translateX(-100%)" : "translateX(18.5%)"};
+    $isSwitchedToSignup ? "translateX(-100%)" : "translateX(10.5%)"};
   transition: transform 0.5s ease;
   z-index: 0;
+  @media ${device.lg} {
+    transform: ${({ $isSwitchedToSignup }) =>
+      $isSwitchedToSignup ? "translateX(-100%)" : "translateX(25.3%)"};
+  }
 `;
 
 const SignupWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
@@ -110,9 +131,13 @@ const SignupWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
   justify-content: center;
   align-items: center;
   transform: ${({ $isSwitchedToSignup }) =>
-    $isSwitchedToSignup ? "translateX(40%)" : "translateX(-81%)"};
+    $isSwitchedToSignup ? "translateX(40%)" : "translateX(-89.5%)"};
   transition: transform 0.5s ease;
   z-index: 0;
+  @media ${device.lg} {
+    transform: ${({ $isSwitchedToSignup }) =>
+      $isSwitchedToSignup ? "translateX(60%)" : "translateX(-75%)"};
+  }
 `;
 
 const LoginOrSignup = styled.span`
@@ -120,7 +145,17 @@ const LoginOrSignup = styled.span`
   font-family: "Afacad";
   font-size: 1.2em;
   color: #1e84d7;
+  text-align: center;
   cursor: pointer;
+  @media ${device.lg} {
+    font-size: 1.8vw;
+  }
+  @media ${device.md} {
+    font-size: 2.4vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.7vw;
+  }
 `;
 
 const CloseButton = styled.button<{ onClick: () => void }>`
@@ -134,6 +169,9 @@ const CloseButton = styled.button<{ onClick: () => void }>`
   padding: 10px 10px 4px 4px;
   border-radius: 5px;
   cursor: pointer;
+  @media ${device.sm} {
+    font-size: 3.5vw;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
@@ -187,14 +225,14 @@ function LoginModal({
       <ContentWrapper>
         <LoginWrapper $isSwitchedToSignup={isSwitchedToSignup}>
           <h2>Connexion</h2>
-          <p>Si vous avez déjà un compte, entrez vos identifiants :</p>
+          <p>Si vous avez déjà un compte, entrez vos identifiants</p>
           <LogForm formType='login' onLoginSuccess={handleLoginSuccess} />
           <LoginOrSignup onClick={toggleContent}>Créer un compte</LoginOrSignup>
         </LoginWrapper>
 
         <SignupWrapper $isSwitchedToSignup={!isSwitchedToSignup}>
           <h2>Créer un compte</h2>
-          <p>Veuillez entrer votre adresse mail ainsi qu'un mot de passe :</p>
+          <p>Veuillez entrer votre adresse mail ainsi qu'un mot de passe</p>
           <LogForm formType='signup' onSignupSuccess={handleSignupSuccess} />
           <LoginOrSignup onClick={toggleContent}>
             Revenir à la page de connexion

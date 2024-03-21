@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Carousel from "../components/Carousel";
+import { device } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const Wrapper = styled.div`
@@ -27,14 +28,21 @@ const ContentContainer = styled.div`
   text-align: center;
   color: white;
   z-index: 1;
+  @media ${device.md} {
+    top: 30%;
+  }
 `;
 
 const Title = styled.h2`
   font-family: "Bakbak One";
   margin: 0.4em 0 0.3em 0;
   font-size: 3.5em;
+  line-height: 1em;
   color: rgba(147, 28, 28, 0.9);
   text-align: center;
+  @media ${device.md} {
+    font-size: 9vw;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

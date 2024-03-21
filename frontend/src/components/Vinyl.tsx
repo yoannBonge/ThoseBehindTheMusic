@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
+import { device } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const rotateAnimation = keyframes`
@@ -11,12 +12,19 @@ const rotateAnimation = keyframes`
 const VinylContainer = styled.div`
   animation: ${rotateAnimation} 2s linear infinite;
   transform-origin: center center;
-  margin-left: 8.5em;
+  margin: auto;
+  @media ${device.sm} {
+    animation: inherit;
+    transform-origin: initial;
+  }
 `;
 
 const VinylPicture = styled.img`
   height: 29.1vw;
   cursor: pointer;
+  @media ${device.sm} {
+    height: 60vw;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

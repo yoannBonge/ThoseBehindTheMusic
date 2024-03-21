@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Vinyl from "../components/Vinyl";
+import { device } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const Wrapper = styled.div`
@@ -8,26 +9,50 @@ const Wrapper = styled.div`
   width: 100%;
   height: 90vh;
   justify-content: space-between;
-  overflow: hidden;
+  /* overflow: hidden; */
+  @media ${device.sm} {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    /* gap: 1em; */
+  }
 `;
 
 const WelcomeDiv = styled.div`
-  width: 50%;
+  width: 60vw;
   background-color: white;
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+  /* justify-content: space-around; */
   box-shadow: 0px 0px 50px rgb(255, 255, 255);
+  @media ${device.lg} {
+    width: 65vw;
+  }
+  @media ${device.md} {
+    width: 69vw;
+  }
+  @media ${device.sm} {
+    width: 100%;
+    margin-bottom: 1em;
+  }
 `;
 
 const Title = styled.h1`
   color: black;
   font-family: "Bakbak One";
-  font-size: 4em;
+  font-size: 5vw;
+  text-align: center;
+  margin: 0.2em 0 0 0;
   @supports (-moz-appearance: none) {
     line-height: 1em;
-    margin-left: 0.3em;
+  }
+  @media ${device.md} {
+    font-size: 6vw;
+  }
+  @media ${device.sm} {
+    font-size: 5vw;
+    margin-top: 0.7em;
   }
 `;
 
@@ -35,9 +60,21 @@ const About = styled.p`
   font-family: "Afacad";
   font-weight: 500;
   color: #39464a;
-  font-size: 1.5em;
-  text-align: justify;
+  font-size: 1.7em;
   padding: 1em;
+  @media ${device.lg} {
+    font-size: 1.4em;
+  }
+  @media ${device.md} {
+    font-size: 1.2em;
+  }
+  @media ${device.sm} {
+    padding: 0 1em;
+    text-align: center;
+  }
+  @media ${device.xs} {
+    font-size: 4.8vw;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

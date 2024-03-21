@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { API_ROUTES } from "../utils/constants";
+import { API_ROUTES, device } from "../utils/constants";
 import { useAuth } from "../utils/context/auth/useAuth";
 
 /////// The code below is a trick to style the overlay of a react-modal when using styled-components.
@@ -69,12 +69,25 @@ const StyledModal = styled(ReactModalAdapter)`
     border-radius: 10px;
     overflow: hidden;
     z-index: 4;
+    @media ${device.lg} {
+      width: 50vw;
+    }
+    @media ${device.md} {
+      width: 60vw;
+    }
   }
   h2 {
     font-family: "Bakbak One";
     font-size: 3em;
     color: white;
     margin: 0.7em 0 0.3em 0;
+    text-align: center;
+    @media ${device.lg} {
+      font-size: 4vw;
+    }
+    @media ${device.sm} {
+      font-size: 4.2vw;
+    }
   }
   p {
     font-family: "Afacad";
@@ -82,12 +95,29 @@ const StyledModal = styled(ReactModalAdapter)`
     color: white;
     margin-bottom: 1.4em;
     text-align: center;
-    /* max-width: 24em; */
     width: 24em;
+    @media ${device.lg} {
+      font-size: 1.9vw;
+    }
+    @media ${device.md} {
+      font-size: 2.5vw;
+    }
+    @media ${device.sm} {
+      font-size: 3vw;
+    }
     span {
       font-family: "Afacad";
       font-size: 1em;
       color: red;
+      @media ${device.lg} {
+        font-size: 1.9vw;
+      }
+      @media ${device.md} {
+        font-size: 2.5vw;
+      }
+      @media ${device.sm} {
+        font-size: 3vw;
+      }
     }
   }
 `;
@@ -96,7 +126,10 @@ const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 40%;
-  margin: 0.5em 0 1em 0;
+  margin: 0.5em 0 2vw 0;
+  @media ${device.sm} {
+    width: 60%;
+  }
 `;
 
 const Button = styled.button`
@@ -105,6 +138,15 @@ const Button = styled.button`
   font-size: 1.1em;
   border-radius: 4px;
   padding: 0.3em;
+  @media ${device.lg} {
+    font-size: 1.7vw;
+  }
+  @media ${device.md} {
+    font-size: 2.3vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.8vw;
+  }
 `;
 
 const ConfirmationButton = styled(Button)<{
@@ -129,6 +171,15 @@ const ErrorMessage = styled.span`
   font-size: 1em;
   font-weight: 500;
   display: block;
+  @media ${device.lg} {
+    font-size: 1.6vw;
+  }
+  @media ${device.md} {
+    font-size: 2.2vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.5vw;
+  }
 `;
 
 const SuccessMessage = styled.span`
@@ -137,6 +188,15 @@ const SuccessMessage = styled.span`
   font-size: 1em;
   font-weight: 500;
   display: block;
+  @media ${device.lg} {
+    font-size: 1.6vw;
+  }
+  @media ${device.md} {
+    font-size: 2.2vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.5vw;
+  }
 `;
 
 const CloseButton = styled.button<{ onClick: () => void }>`
@@ -150,6 +210,9 @@ const CloseButton = styled.button<{ onClick: () => void }>`
   padding: 10px 10px 4px 4px;
   border-radius: 5px;
   cursor: pointer;
+  @media ${device.sm} {
+    font-size: 3.5vw;
+  }
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function LogoutModal({

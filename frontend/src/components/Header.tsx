@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../utils/constants";
 import { useAuth } from "../utils/context/auth/useAuth";
 import LoginModal from "./LoginModal";
 import LogoutModal from "./LogoutModal";
@@ -16,12 +17,21 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   z-index: 100;
+  @media ${device.md} {
+    /* height: 9vh; */
+  }
 
   a {
     color: white;
     text-decoration: none;
     font-family: "Bakbak One";
-    font-size: 1.7em;
+    font-size: 1.8em;
+    @media ${device.lg} {
+      font-size: 2.5vw;
+    }
+    @media ${device.md} {
+      font-size: 2.6vw;
+    }
   }
 `;
 
@@ -33,13 +43,20 @@ const LogoAndCategories = styled.div`
 const Logo = styled.img`
   width: 4vh;
   display: flex;
-  margin: 0 1em;
+  margin: 0 0.5vw;
 `;
 
 const Categories = styled.div`
   display: flex;
   margin-left: 3em;
-  gap: 3em;
+  gap: 3vw;
+  @media ${device.md} {
+    margin-left: 5vw;
+    gap: 2.5vw;
+  }
+  @media ${device.sm} {
+    margin-left: 3vw;
+  }
 `;
 
 const Login = styled.span<{ onClick: () => void }>`
@@ -47,10 +64,16 @@ const Login = styled.span<{ onClick: () => void }>`
   color: white;
   text-decoration: none;
   font-family: "Bakbak One";
-  font-size: 1.7em;
+  font-size: 1.8em;
   margin-right: 1em;
   padding: 0.5em 0;
   cursor: pointer;
+  @media ${device.lg} {
+    font-size: 2.5vw;
+  }
+  @media ${device.md} {
+    font-size: 2.6vw;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
@@ -61,7 +84,6 @@ function Header() {
 
   //////////////////////////////////////////////////////CONTEXT
   const { isLoggedIn, isAdmin } = useAuth();
-  console.log(isLoggedIn);
   //////////////////////////////////////////////////////BEHAVIOR
   const openModal = () => {
     if (isLoggedIn) {

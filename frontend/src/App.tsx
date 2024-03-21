@@ -10,6 +10,7 @@ import ModifyComposer from "./pages/ModifyComposer";
 import Music from "./pages/Music";
 import SuggestComposer from "./pages/SuggestComposer";
 import Videogame from "./pages/Videogame";
+import { device } from "./utils/constants";
 import { AuthProvider } from "./utils/context/auth/AuthContext";
 import { ComposersProvider } from "./utils/context/composers/ComposersContext";
 
@@ -26,13 +27,16 @@ const GlobalStyle = createGlobalStyle`
     body {
         width: 100vw;
         height: 90vh;
-        overflow-x: hidden;
+        overflow: hidden;
         margin: 10vh 0 0 0;
         background-color: #D1DDCC;
         /* background-image: url("musical-background-1.jpeg");
         background-attachment: fixed;
         background-position: center; */
         box-sizing: border-box;
+        @media ${device.md} {
+      overflow: inherit;
+    }
     } `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

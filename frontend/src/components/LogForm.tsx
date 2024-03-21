@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
-import { API_ROUTES } from "../utils/constants";
+import { API_ROUTES, device } from "../utils/constants";
 import { useAuth } from "../utils/context/auth/useAuth";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -14,8 +14,12 @@ const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 15vw;
-  gap: 1em;
+  justify-content: center;
+  width: 50%;
+  gap: 2vw;
+  @media ${device.lg} {
+    width: 70%;
+  }
 `;
 
 const FormField = styled.div`
@@ -27,11 +31,29 @@ const FormField = styled.div`
     color: white;
     font-family: "Afacad";
     font-size: 1.1em;
+    @media ${device.lg} {
+      font-size: 1.7vw;
+    }
+    @media ${device.md} {
+      font-size: 2.3vw;
+    }
+    @media ${device.sm} {
+      font-size: 2.8vw;
+    }
   }
   input {
-    width: 100%;
-    height: 1.6em;
+    height: 1.7vw;
     border-radius: 4px;
+    @media ${device.lg} {
+      height: 1.8vw;
+    }
+    @media ${device.md} {
+      height: 1.9vw;
+      max-width: 30vw;
+    }
+    @media ${device.sm} {
+      height: 2vw;
+    }
     &:focus {
       outline-color: #0c832c;
     }
@@ -44,10 +66,21 @@ const ErrorMessage = styled.span`
   font-size: 1em;
   font-weight: 500;
   display: block;
+  text-align: center;
+  @media ${device.lg} {
+    font-size: 1.6vw;
+  }
+  @media ${device.md} {
+    font-size: 2.2vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.5vw;
+  }
 `;
 
 const ErrorSubmitMessage = styled(ErrorMessage)`
   white-space: nowrap;
+  text-align: center;
 `;
 
 const SuccessMessage = styled.span`
@@ -56,12 +89,23 @@ const SuccessMessage = styled.span`
   font-size: 1em;
   font-weight: 500;
   display: block;
+  text-align: center;
+  @media ${device.lg} {
+    font-size: 1.6vw;
+  }
+  @media ${device.md} {
+    font-size: 2.2vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.5vw;
+  }
 `;
 
 const SubmitButton = styled.button<{
   $isSubmitting: boolean;
   $formType: string;
 }>`
+  display: flex;
   background-color: ${({ $isSubmitting }) =>
     $isSubmitting ? "#626262" : "#0c832c"};
   margin-top: 0.5em;
@@ -70,7 +114,18 @@ const SubmitButton = styled.button<{
   font-size: 1.1em;
   border-radius: 4px;
   padding: 0.3em;
+  line-height: 1em;
+  align-self: center;
   cursor: ${({ $isSubmitting }) => ($isSubmitting ? "not-allowed" : "pointer")};
+  @media ${device.lg} {
+    font-size: 1.7vw;
+  }
+  @media ${device.md} {
+    font-size: 2.3vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.8vw;
+  }
   &:disabled {
     background-color: #cccccc;
     color: #454545;
