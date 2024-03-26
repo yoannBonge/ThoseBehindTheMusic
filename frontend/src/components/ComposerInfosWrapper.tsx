@@ -1,6 +1,10 @@
-import { Composer } from "../utils/constants";
 import styled from "styled-components";
-import { ComposerInfosContainer, ComposerName } from "../utils/constants";
+import {
+  Composer,
+  ComposerInfosContainer,
+  ComposerName,
+  ComposerNameContainer,
+} from "../utils/constants";
 import ComposerInfos from "./ComposerInfos";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -24,18 +28,28 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
 function ComposerInfosWrapper({
   currentComposerInfos,
   isComposerContentFading,
+  handlePrevComposer,
+  handleNextComposer,
 }: {
   currentComposerInfos: Composer;
   isComposerContentFading: boolean;
+  handlePrevComposer: () => void;
+  handleNextComposer: () => void;
 }) {
   // console.log("RENDER COMPOSER INFOS WRAPPER");
 
   //////////////////////////////////////////////////////RENDER
   return (
-    <ComposerInfosContainer>
+    <ComposerInfosContainer $category={currentComposerInfos.category}>
       <ComposerInfosContent $isComposerContentFading={isComposerContentFading}>
-        <ComposerName>{currentComposerInfos.name}</ComposerName>
-        <ComposerInfos currentComposerInfos={currentComposerInfos} />
+        <ComposerNameContainer $category={currentComposerInfos.category}>
+          <ComposerName>{currentComposerInfos.name}</ComposerName>
+        </ComposerNameContainer>
+        <ComposerInfos
+          currentComposerInfos={currentComposerInfos}
+          handlePrevComposer={handlePrevComposer}
+          handleNextComposer={handleNextComposer}
+        />
       </ComposerInfosContent>
     </ComposerInfosContainer>
   );

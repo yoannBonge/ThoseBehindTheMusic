@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const BioContainer = styled.div`
 
 const BioContent = styled.p`
   font-family: "Afacad";
-  font-size: 1.5em;
+  font-size: 1.6vw;
   color: white;
   line-height: 1.2em;
   padding-right: 1em;

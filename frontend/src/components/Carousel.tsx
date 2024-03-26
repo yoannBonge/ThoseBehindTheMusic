@@ -24,7 +24,7 @@ const StyledSlider = styled(Slider)`
   .slick-next {
     position: absolute;
     top: 45%;
-    width: 5em;
+    width: 4em;
     height: 4em;
     color: transparent;
     z-index: 1;
@@ -75,11 +75,11 @@ const StyledSlider = styled(Slider)`
   }
 
   .slick-prev::before {
-    content: "\uf049";
+    content: "\uf048";
   }
 
   .slick-next::before {
-    content: "\uf050";
+    content: "\uf051";
   }
 `;
 
@@ -108,11 +108,11 @@ function Carousel() {
         onClick={async () => navigate("/music")}
       >
         <p>
-          Les producteurs de musique qui oeuvrent souvent dans l'ombre des
+          Les producteurs de musique qui œuvrent souvent dans l'ombre des
           interprètes (s'ils ne sont pas eux-mêmes interprètes). Des musiciens
           du XVIIIème siècle écrivant leur musique sur papier jusqu'aux
           producteurs de musique assistée par ordinateur, découvrez ces artisans
-          du son et quelques-unes de leurs plus illustres oeuvres.
+          du son et quelques-unes de leurs plus illustres œuvres.
         </p>
       </OverlayCarousel>
       <OverlayCarousel

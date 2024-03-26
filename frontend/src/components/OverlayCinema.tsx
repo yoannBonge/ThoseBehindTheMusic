@@ -1,8 +1,11 @@
-import { Composer, arrayBufferToBase64 } from "../utils/constants";
-import { getCategoryColor } from "../utils/constants";
-import styled, { keyframes, css } from "styled-components";
-import { OverlayContainer, Overlay } from "../utils/constants";
-import { useState } from "react";
+import styled, { css, keyframes } from "styled-components";
+import {
+  Composer,
+  Overlay,
+  OverlayContainer,
+  arrayBufferToBase64,
+  device,
+} from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const pictureFadeInOut = keyframes`
@@ -18,98 +21,50 @@ const pictureFadeInOut = keyframes`
 `;
 
 const ComposerPictureContainer = styled.div`
-  width: 54%;
+  width: 46%;
+  height: 27.2%;
   position: absolute;
-  top: 38.4%;
-  left: 12%;
-  perspective: 800px;
-  transform: rotate(5.2deg);
+  top: 37.4%;
+  left: 11%;
+  perspective: 700px;
+  transform: rotate(2deg);
+  @media ${device.xmd} {
+    width: 20em;
+    height: auto;
+    top: 35%;
+    left: 10%;
+    perspective: inherit;
+    transform: inherit;
+  }
+  @media ${device.md} {
+    width: 40vw;
+  }
 `;
 
-const CinemaComposerPicture = styled.img<{ $isComposerSwitching: boolean }>`
-  width: 82%;
-  height: 11.2vw;
+const CinemaComposerPicture = styled.img<{
+  $isComposerPictureSwitching: boolean;
+}>`
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   transform: rotateY(36deg) skew(8deg, 0deg);
   z-index: 1;
-  ${({ $isComposerSwitching }) =>
-    $isComposerSwitching &&
+  ${({ $isComposerPictureSwitching }) =>
+    $isComposerPictureSwitching &&
     css`
       animation: ${pictureFadeInOut} 0.75s linear;
     `}
-`;
-
-const buttonsBlinkAnimation = ($categoryColor: string) => keyframes`
-  0% {
-    color: #e4cba5;
-  }
-  50% {
-    color: ${$categoryColor};
-  }
-  100% {
-    color: #e4cba5;
-  }
-`;
-
-const ModelOverlayNavigateIndication = styled.div`
-  display: flex;
-  flex-direction: column;
-  line-height: 1em;
-  font-family: "Ultra";
-  font-weight: 100;
-  color: #e4cba5;
-  position: absolute;
-  z-index: 2;
-`;
-
-const OverlayPrevIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 4.5vh;
-  bottom: 11%;
-  left: 21%;
-  transform: rotate(-0.5deg) skew(0deg, 1deg);
-`;
-const OverlayNextIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 3.3vh;
-  bottom: 10%;
-  right: 11%;
-  transform: rotate(-2deg) skew(0deg, 2deg);
-`;
-
-const ModelOverlayButton = styled.div`
-  background-color: #2b0501;
-  position: absolute;
-  border: 4px solid #0f0b08;
-  border-radius: 2px;
-  cursor: pointer;
-  z-index: 2;
-`;
-
-const OverlayPrevButton = styled(ModelOverlayButton)<{
-  $categoryColor: string;
-}>`
-  width: 7vh;
-  height: 23vh;
-  top: 36.5%;
-  left: 5%;
-  transform: rotate(-1deg) skew(0deg, -1deg);
-  &:hover > ${OverlayPrevIndication} {
-    animation: ${({ $categoryColor }) => buttonsBlinkAnimation($categoryColor)}
-      0.6s infinite;
-  }
-`;
-const OverlayNextButton = styled(ModelOverlayButton)<{
-  $categoryColor: string;
-}>`
-  width: 5vh;
-  height: 16.7vh;
-  top: 41.7%;
-  left: 50%;
-  transform: rotate(-1.4deg) skew(0deg, 5deg);
-  &:hover > ${OverlayNextIndication} {
-    animation: ${({ $categoryColor }) => buttonsBlinkAnimation($categoryColor)}
-      0.6s infinite;
+  @media ${device.xmd} {
+    position: static;
+    transform: inherit;
+    z-index: 1;
+    border: 1px solid #ca9708;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0.6px #ca960847, 0px 0px 1.3px #ca960862,
+      0px 0px 2.5px #ca96087a, 0px 0px 4.5px #ca96089b, 0px 0px 8.4px #ca9608c0,
+      0px 0px 20px #ca9708;
   }
 `;
 
@@ -119,42 +74,23 @@ const OverlaySource = styled.span`
   color: white;
   position: absolute;
   opacity: 0.4;
-  right: 1%;
+  left: 1%;
   bottom: 1%;
   z-index: 2;
+  @media ${device.xmd} {
+    display: none;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function OverlayCinema({
   currentComposerInfos,
-  handlePrevComposer,
-  handleNextComposer,
+  isComposerPictureSwitching,
 }: {
   currentComposerInfos: Composer;
-  handlePrevComposer: () => void;
-  handleNextComposer: () => void;
+  isComposerPictureSwitching: boolean;
 }) {
-  //////////////////////////////////////////////////////STATE
-  const [isComposerSwitching, setIsComposerSwitching] = useState(false);
-
   //////////////////////////////////////////////////////BEHAVIOR
-  const categoryColor = getCategoryColor(currentComposerInfos.category);
-
-  const handleClickPrevComposer = () => {
-    setIsComposerSwitching(true);
-    handlePrevComposer();
-    setTimeout(() => {
-      setIsComposerSwitching(false);
-    }, 800);
-  };
-
-  const handleClickNextComposer = () => {
-    setIsComposerSwitching(true);
-    handleNextComposer();
-    setTimeout(() => {
-      setIsComposerSwitching(false);
-    }, 800);
-  };
 
   const composerPictureData = currentComposerInfos.picture.data;
   const base64String = arrayBufferToBase64(composerPictureData);
@@ -164,37 +100,14 @@ function OverlayCinema({
 
   //////////////////////////////////////////////////////////////RENDER
   return (
-    <OverlayContainer>
+    <OverlayContainer $category={currentComposerInfos.category}>
       <Overlay src='cinema-overlay.webp' />
       <ComposerPictureContainer>
         <CinemaComposerPicture
           src={composerPictureUrl}
-          $isComposerSwitching={isComposerSwitching}
+          $isComposerPictureSwitching={isComposerPictureSwitching}
         />
       </ComposerPictureContainer>
-
-      <OverlayPrevButton
-        $categoryColor={categoryColor}
-        onClick={handleClickPrevComposer}
-      >
-        <OverlayPrevIndication>
-          <span>P</span>
-          <span>R</span>
-          <span>E</span>
-          <span>V</span>
-        </OverlayPrevIndication>
-      </OverlayPrevButton>
-      <OverlayNextButton
-        $categoryColor={categoryColor}
-        onClick={handleClickNextComposer}
-      >
-        <OverlayNextIndication>
-          <span>N</span>
-          <span>E</span>
-          <span>X</span>
-          <span>T</span>
-        </OverlayNextIndication>
-      </OverlayNextButton>
       <OverlaySource>crédits image overlay : www.timeout.com</OverlaySource>
     </OverlayContainer>
   );

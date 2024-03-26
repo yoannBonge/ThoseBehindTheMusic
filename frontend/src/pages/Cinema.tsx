@@ -7,6 +7,7 @@ import {
   ComposerPresentation,
   ModelImageInfosSeparationLine,
   PageWrapper,
+  device,
   getCategoryColor,
 } from "../utils/constants";
 import { useComposers } from "../utils/context/composers/useComposers";
@@ -17,9 +18,10 @@ import { useComposers } from "../utils/context/composers/useComposers";
 // come from "/utils/constants".
 
 const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
-  left: calc(54.6%);
-  @supports (-moz-appearance: none) {
-    left: calc(57.6%);
+  right: 44.6%;
+  @media ${device.xmd} {
+    right: 50%;
+    z-index: 10;
   }
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
@@ -27,6 +29,8 @@ function Cinema() {
   //////////////////////////////////////////////////////STATE
   const [currentComposerIndex, setCurrentComposerIndex] = useState<number>(0);
   const [isComposerContentFading, setisComposerContentFading] = useState(false);
+  const [isComposerPictureSwitching, setIsComposerPictureSwitching] =
+    useState(false);
 
   //////////////////////////////////////////////////////CONTEXT
   const cinemaComposers: Composer[] = useComposers().cinemaComposers;
@@ -39,24 +43,33 @@ function Cinema() {
 
   const categoryColor = getCategoryColor(currentComposerInfos.category);
 
-  const handlePrevComposer = () => {
+  const handlePrevComposer = async () => {
     setisComposerContentFading(true);
-    setTimeout(() => {
-      setCurrentComposerIndex((prevIndex) =>
-        prevIndex === 0 ? cinemaComposers.length - 1 : prevIndex - 1
-      );
-      setisComposerContentFading(false);
-    }, 400);
+    setIsComposerPictureSwitching(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 400));
+
+    setCurrentComposerIndex((prevIndex) =>
+      prevIndex === 0 ? cinemaComposers.length - 1 : prevIndex - 1
+    );
+    setisComposerContentFading(false);
+
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    setIsComposerPictureSwitching(false);
   };
 
-  const handleNextComposer = () => {
+  const handleNextComposer = async () => {
     setisComposerContentFading(true);
-    setTimeout(() => {
-      setCurrentComposerIndex((prevIndex) =>
-        prevIndex === cinemaComposers.length - 1 ? 0 : prevIndex + 1
-      );
-      setisComposerContentFading(false);
-    }, 400);
+    setIsComposerPictureSwitching(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    setCurrentComposerIndex((prevIndex) =>
+      prevIndex === cinemaComposers.length - 1 ? 0 : prevIndex + 1
+    );
+    setisComposerContentFading(false);
+
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    setIsComposerPictureSwitching(false);
   };
 
   // console.log("RENDER PAGE CINEMA");
@@ -68,13 +81,14 @@ function Cinema() {
         <ComposerPresentation>
           <OverlayCinema
             currentComposerInfos={currentComposerInfos}
-            handlePrevComposer={handlePrevComposer}
-            handleNextComposer={handleNextComposer}
+            isComposerPictureSwitching={isComposerPictureSwitching}
           />
           <ImageInfosSeparationLine $categoryColor={categoryColor} />
           <ComposerInfosWrapper
             currentComposerInfos={currentComposerInfos}
             isComposerContentFading={!isComposerContentFading}
+            handlePrevComposer={handlePrevComposer}
+            handleNextComposer={handleNextComposer}
           />
         </ComposerPresentation>
       </PageWrapper>

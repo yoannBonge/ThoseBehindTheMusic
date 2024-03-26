@@ -1,7 +1,8 @@
 // import React, { memo } from "react";
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import styled from "styled-components";
+import { device } from "../utils/constants";
 
 interface YoutubeVideoChildProps {
   url: string;
@@ -15,6 +16,9 @@ const VideoContainer = styled.div`
   position: relative;
   width: 30%;
   height: 100%;
+  @media ${device.xmd} {
+    height: 80%;
+  }
 `;
 
 const Video = styled(ReactPlayer)`

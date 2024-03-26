@@ -9,8 +9,8 @@ interface AudioFaderProps {
 const Channel = styled.div`
   display: flex;
   height: 100%;
-  max-height: 100px;
-  margin: 0 1em;
+  max-height: 4vw;
+  margin: 0.5vw 1.5vw;
   background: #b6afaf;
   color: rgba(255, 255, 255, 0.9);
   box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
@@ -21,9 +21,9 @@ const Slider = styled.div`
   flex-direction: column;
   flex-flow: column nowrap;
   justify-content: center;
-  width: 200px;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  width: 13.5vw;
+  padding-right: 1.2vw;
+  padding-left: 1.2vw;
 `;
 
 const FaderTrack = styled.div`
@@ -31,13 +31,13 @@ const FaderTrack = styled.div`
   flex-flow: row nowrap;
   align-items: center;
   width: 100%;
-  height: 1.2em;
+  height: 0.5vw;
   position: relative;
 
   &:after {
     content: "";
     display: block;
-    height: 4px;
+    height: 0.2vw;
     width: 100%;
     background: #131313;
     position: absolute;
@@ -45,8 +45,8 @@ const FaderTrack = styled.div`
 `;
 
 const Fader = styled.div<{ $switched: boolean }>`
-  height: 1.3rem;
-  width: 2.5rem;
+  height: 1.5vw;
+  width: 2.7vw;
   background: linear-gradient(
     to bottom,
     rgba(14, 14, 14, 1) 0%,

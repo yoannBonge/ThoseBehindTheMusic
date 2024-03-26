@@ -12,14 +12,11 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0%;
   background-color: #000000;
-  width: 100%;
+  width: 100vw;
   height: 10vh;
   align-items: center;
   justify-content: space-between;
   z-index: 100;
-  @media ${device.md} {
-    /* height: 9vh; */
-  }
 
   a {
     color: white;
@@ -70,6 +67,10 @@ const Login = styled.span<{ onClick: () => void }>`
   cursor: pointer;
   @media ${device.lg} {
     font-size: 2.5vw;
+    margin-right: 1em;
+  }
+  @media ${device.xmd} {
+    margin-right: 2em;
   }
   @media ${device.md} {
     font-size: 2.6vw;

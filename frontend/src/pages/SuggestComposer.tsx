@@ -61,16 +61,14 @@ const FormContainer = styled.div`
   width: 59.5vw;
   overflow: hidden;
   @media ${device.md} {
-    height: 10%;
     width: 90vw;
+    height: 10%;
   }
   @media ${device.sm} {
     height: 14%;
-    width: 90vw;
   }
   @media ${device.xs} {
     height: 17%;
-    width: 90vw;
   }
 `;
 

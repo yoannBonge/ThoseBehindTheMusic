@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { API_ROUTES, Composer, PageWrapper } from "../utils/constants";
-import Scrollbar from "smooth-scrollbar";
 import { useEffect, useRef, useState } from "react";
-import ComposerForm from "../components/ComposerForm";
 import { useParams } from "react-router-dom";
+import Scrollbar from "smooth-scrollbar";
+import styled from "styled-components";
+import ComposerForm from "../components/ComposerForm";
+import { API_ROUTES, Composer, PageWrapper, device } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -15,17 +15,32 @@ const Wrapper = styled(PageWrapper)`
   background-repeat: no-repeat;
   align-items: flex-start;
   overflow: hidden;
+  @media ${device.md} {
+    display: flex;
+    background-position: inherit;
+    background-image: inherit;
+    background-color: #d1ddcc;
+    align-items: center;
+  }
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 2vw;
+  @media ${device.md} {
+    margin: 0;
+    align-items: center;
+  }
   h2 {
     font-family: "Bakbak One";
     font-size: 3em;
     color: black;
     margin: 0.5em 0 0em 0;
+    @media ${device.md} {
+      font-size: 6vw;
+      text-align: center;
+    }
   }
   p {
     font-family: "Afacad";
@@ -34,6 +49,14 @@ const ContentWrapper = styled.div`
     max-width: 70%;
     padding-bottom: 1em;
     border-bottom: 2px solid black;
+    @media ${device.md} {
+      max-width: 90%;
+      font-size: 3.1vw;
+      text-align: center;
+    }
+    @media ${device.sm} {
+      font-size: 3.7vw;
+    }
   }
 `;
 
@@ -41,6 +64,13 @@ const FormContainer = styled.div`
   height: 56.4vh;
   width: 59.5vw;
   overflow: hidden;
+  @media ${device.md} {
+    width: 90vw;
+    height: 10%;
+  }
+  @media ${device.xs} {
+    height: 14%;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

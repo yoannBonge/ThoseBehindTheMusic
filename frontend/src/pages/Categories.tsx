@@ -18,6 +18,20 @@ const VideoBackground = styled.video`
   height: 100%;
   position: fixed;
   object-fit: cover;
+  @media ${device.sm} {
+    display: none;
+  }
+`;
+
+const PictureBackground = styled.img`
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  object-fit: cover;
+  display: none;
+  @media ${device.sm} {
+    display: flex;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -57,6 +71,10 @@ function Categories() {
           <source src='categories-background-video.mp4' type='video/mp4' />
           Votre navigateur ne peut afficher la vidéo d'arrière-plan.
         </VideoBackground>
+        <PictureBackground
+          src='categories-background-picture.webp'
+          alt="Image d'arrière-plan montrant un vinyl en lecture"
+        />
         <ContentContainer>
           <Title>Par support</Title>
           <Carousel />

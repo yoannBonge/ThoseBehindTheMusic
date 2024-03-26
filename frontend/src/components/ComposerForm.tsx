@@ -17,6 +17,7 @@ import {
   SubmitButton,
   SubmitButtonAndMessageContainer,
   SuccessMessage,
+  device,
   handleAddBio,
   handleAddPhoto,
   isDuplicateStringValue,
@@ -35,6 +36,10 @@ const BioLabel = styled.label`
   font-weight: 500;
   margin-bottom: -1.1em;
   overflow: hidden;
+  @media ${device.md} {
+    align-self: center;
+    text-align: center;
+  }
 `;
 
 const BookIcon = styled.i<{
@@ -49,15 +54,28 @@ const BioInput = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  width: 50%;
-  height: 12em;
+  width: 27em;
+  height: 13em;
   background-color: #e8f1f6;
   border: 2px solid #374e66;
   border-radius: 4px;
+  @media ${device.md} {
+    align-self: center;
+  }
+  @media ${device.sm} {
+    width: 72vw;
+    height: 48vw;
+  }
   i {
     font-family: "FontAwesome";
-    font-size: 5em;
+    font-size: 6em;
     color: #374e66;
+    @media ${device.sm} {
+      font-size: 20vw;
+    }
+    /* @media ${device.xs} {
+      font-size: 18vw;
+    } */
   }
   button {
     font-family: "Afacad";
@@ -69,6 +87,9 @@ const BioInput = styled.div`
     margin-top: 0.5em;
     border-radius: 10px;
     cursor: pointer;
+    @media ${device.sm} {
+      font-size: 3.2vw;
+    }
     &:hover {
       color: #cbd6dc;
       background-color: #374e66;

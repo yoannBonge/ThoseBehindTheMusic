@@ -1,16 +1,17 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-  MainWrapper,
   BioAndVideosSwitch,
   BioAndVideosWrapper,
+  Composer,
+  MainWrapper,
   convertBufferToString,
+  device,
+  getCategoryColor,
 } from "../utils/constants";
 import AudioFader from "./AudioFader";
-import VideosContainer from "./VideosContainer";
-import { useEffect, useState } from "react";
-import { Composer } from "../utils/constants";
-import { getCategoryColor } from "../utils/constants";
 import Bio from "./Bio";
+import VideosContainer from "./VideosContainer";
 
 //////////////////////////////////////////////////////////////STYLE
 
@@ -37,16 +38,20 @@ const VideosWrapper = styled.div<{ $category: string }>`
     ${(props) => {
       switch (props.$category) {
         case "music":
-          return "103%";
-        case "videogame":
-          return "101.3%";
+          return "102%";
         case "cinema":
-          return "103%";
+          return "102%";
+        case "videogame":
+          return "100.7%";
         default:
           return "103%";
       }
     }}
   );
+  @media ${device.xmd} {
+    transform: translateX(105%);
+  }
+
   @supports (-moz-appearance: none) {
     width: 38.3vw;
     transform: translateX(

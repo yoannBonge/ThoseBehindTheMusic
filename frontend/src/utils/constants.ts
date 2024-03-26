@@ -1,6 +1,5 @@
 import ReactCountryFlag from "react-country-flag";
 import styled, { css, keyframes } from "styled-components";
-// import { Link, NavLink } from "react-router-dom";
 
 ////////////////////////////////////// INTERFACES
 
@@ -55,6 +54,7 @@ interface Size {
   xs: string;
   sm: string;
   md: string;
+  xmd: string;
   lg: string;
   xl: string;
   xxl: string;
@@ -64,6 +64,7 @@ const size: Size = {
   xs: "400px",
   sm: "600px",
   md: "800px",
+  xmd: "1050px",
   lg: "1200px",
   xl: "1500px",
   xxl: "1920px",
@@ -72,6 +73,7 @@ export const device = {
   xs: `(max-width: ${size.xs})`,
   sm: `(max-width: ${size.sm})`,
   md: `(max-width: ${size.md})`,
+  xmd: `(max-width: ${size.xmd})`,
   lg: `(max-width: ${size.lg})`,
   xl: `(max-width: ${size.xl})`,
   xxl: `(max-width: ${size.xxl})`,
@@ -248,31 +250,82 @@ export const isDuplicateStringValue = (
 export const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   height: 90vh;
   background-color: black;
 `;
 
 export const ComposerPresentation = styled.div`
-  position: relative;
   display: flex;
   width: 100%;
   height: 100%;
-  /* overflow: hidden; */
 `;
 
 ///////////////////////////////////////////////PARENT : OverlayMusic/OverlayCinema/OverlayVideogame
-export const OverlayContainer = styled.div`
+export const OverlayContainer = styled.div<{
+  $category: string;
+}>`
   background-color: black;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
+  ${({ $category }) => {
+    switch ($category) {
+      case "music":
+        return `
+          width: 50.7em;
+        `;
+      case "cinema":
+        return `
+          width: 50.7em;
+        `;
+      case "videogame":
+        return `
+        width: 51.8em;
+        `;
+      default:
+        return `
+          width: 51vw;
+        `;
+    }
+  }}
+  @media ${device.xmd} {
+    width: 50vw;
+    background-position: center;
+    object-fit: cover;
+    ${({ $category }) => {
+      switch ($category) {
+        case "music":
+          return `
+        background-image: url("background-music.webp");
+        `;
+        case "cinema":
+          return `
+        background-image: url("background-cinema.webp");
+        `;
+        case "videogame":
+          return `
+        background-image: url("background-videogame.webp");
+        `;
+        default:
+          return `
+        background-image: url("background-music.webp");
+        `;
+      }
+    }};
+  }
 `;
 
 export const Overlay = styled.img`
   height: 100%;
+  width: 100%;
   z-index: 2;
+  @media ${device.xmd} {
+    display: none;
+  }
 `;
 
 ///////////////////////////////////////////////PAGES Music/Cinema/Videogame
@@ -280,67 +333,146 @@ export const ModelImageInfosSeparationLine = styled.div<{
   $categoryColor: string;
 }>`
   position: absolute;
-  top: 0%;
-  width: 6px;
-  height: 100%;
+  display: flex;
+  width: 0.6vw;
+  height: 100vh;
   background-color: ${(props) => props.$categoryColor};
   box-shadow: 0px 0px 4.9px ${(props) => props.$categoryColor},
     0px 0px 39px ${(props) => props.$categoryColor};
-  z-index: 2;
+  z-index: 1;
 `;
 
-export const ComposerInfosContainer = styled.div`
+export const ComposerInfosContainer = styled.div<{
+  $category: string;
+}>`
+  position: absolute;
+  top: 10%;
+  right: 0;
   display: flex;
-  height: 100%;
+  height: 90vh;
   background-image: url("acoustic-panel-background.webp");
   background-size: cover;
-  z-index: 0;
+  z-index: 1;
+  ${({ $category }) => {
+    switch ($category) {
+      case "music":
+        return `
+          width: 44.5vw;
+        `;
+      case "cinema":
+        return `
+          width: 44.7vw;
+        `;
+      case "videogame":
+        return `
+          width: 43.4vw;
+        `;
+      default:
+        return `
+          width: 44vw;
+        `;
+    }
+  }}
+  @media ${device.xmd} {
+    width: 50vw;
+    /* max-height: 85vh; */
+  }
 `;
 
 ///////////////////////////////////////////////PARENT: ComposerInfosContent
+export const ComposerNameContainer = styled.div<{
+  $category: string;
+}>`
+  width: 40vw;
+  margin: 0.1em 0 0 2.2vw;
+  ${({ $category }) => {
+    switch ($category) {
+      case "music":
+        return `
+          width: 39.9vw;
+        `;
+      case "cinema":
+        return `
+        width: 40.1vw;
+        `;
+      case "videogame":
+        return `
+        width: 38.8vw;
+        `;
+      default:
+        return `
+        width: 39vw;
+        `;
+    }
+  }}
+  @media ${device.xmd} {
+    width: 41.6vw;
+  }
+`;
+
 export const ComposerName = styled.h2`
   color: white;
   font-family: "Bebas Neue";
-  font-size: 6em;
-  margin: 0.1em 0 0 1.2rem;
+  font-size: 6.1em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  @media ${device.lg} {
+    font-size: 7.1vw;
+    line-height: 0.9em;
+  }
   @supports (-moz-appearance: none) {
-    font-size: 5.5em;
+    font-size: 5.5vw;
   }
 `;
 
 ///////////////////////////////////////////////PARENT: ComposerInfosContent
 export const IdentityInfos = styled.div`
+  /* background-color: aqua; */
   height: 36%;
-  margin-left: 1.2rem;
-  line-height: 2.1em;
+  margin-left: 1.3vw;
+  line-height: 2em;
+  @media ${device.lg} {
+    line-height: 1.8em;
+  }
+  @media ${device.xmd} {
+    height: 40%;
+  }
 `;
 
 export const ComposerInfosElement = styled.li`
   display: flex;
   list-style-type: none;
-  max-width: 50vw;
+  max-width: 42vw;
   color: white;
   font-family: "Afacad";
-  font-size: 1.2em;
+  font-size: 1.2vw;
 `;
 
 export const PropertyName = styled.span<{ $categoryColor: string }>`
   display: inline;
   color: ${(props) => props.$categoryColor};
   font-family: "Afacad";
-  font-size: 1.5rem;
+  font-size: 1.6vw;
+  @media ${device.lg} {
+    font-size: 1.8vw;
+  }
 `;
 
 export const PropertyContent = styled.span`
-  max-width: 30vw;
+  max-width: 34vw;
   color: white;
   font-family: "Afacad";
-  font-size: 1.3em;
-  margin-left: 0.3em;
+  font-size: 1.6vw;
+  margin-left: 0.5vw;
+  @media ${device.lg} {
+    font-size: 1.8vw;
+    max-width: 32vw;
+  }
 `;
 
 export const CountryFlag = styled(ReactCountryFlag)`
-  font-size: 1.3em;
+  font-size: 1.9vw;
   margin: -0.1em 0.5em 0 0.5em;
 `;
 
@@ -352,23 +484,28 @@ export const NotableWorksContainer = styled.div`
 export const NotableWorksList = styled.ul`
   padding-left: 0.3em;
   margin: 0;
-  line-height: 1.4em;
+  line-height: 1.9vw;
 `;
 
 export const NotableWorksElement = styled.li`
   list-style-type: none;
   color: white;
   font-family: "Afacad";
-  font-size: 1.3em;
+  font-size: 1.6vw;
+  @media ${device.lg} {
+    font-size: 1.8vw;
+  }
 `;
 
 ///////////////////////////////////////////////PARENT: ComposerInfosContent
+
 export const PhotoSource = styled.span`
   font-family: "Afacad";
-  font-size: 1em;
+  font-size: 1.2vw;
   color: white;
   line-height: 1em;
-  position: absolute;
+  /* position: absolute; */
+  margin: -1em 0 0 0.5em;
   opacity: 0.5;
   left: 1%;
   bottom: 41%;
@@ -383,29 +520,40 @@ export const SeparationLine = styled.div<{ $categoryColor: string }>`
   border-radius: 25px;
   margin: 0.5em 0 0.5em 0;
   background-color: ${(props) => props.$categoryColor};
+  @media ${device.xmd} {
+    width: 65%;
+  }
 `;
 
 export const MainWrapper = styled.div`
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 37%;
-  margin-left: 1.2rem;
+  height: 35%;
+  margin-left: 1.3vw;
+  overflow-x: hidden;
+  @media ${device.xmd} {
+    height: 35%;
+  }
 `;
 
 export const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
   display: flex;
   font-family: "Afacad";
-  font-size: 1.5em;
+  font-size: 1.5vw;
   font-weight: 400;
   color: ${(props) => props.$categoryColor};
+  @media ${device.lg} {
+    font-size: 1.8vw;
+  }
 `;
 
 export const BioAndVideosWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 77%;
-  margin-top: 1em;
+  height: 78%;
+  margin-top: 1vw;
 `;
 
 ///////////////////////////////////////////////PARENT : ComposerForm/SuggestForm
@@ -415,8 +563,6 @@ export const FormWrapper = styled.form`
   align-items: flex-start;
   padding: 0 0.5em 0.5em 0.5em;
   gap: 1.5em;
-  @media ${device.md} {
-  }
 `;
 
 export const FormRadioGroup = styled.div`
@@ -459,9 +605,18 @@ export const FormField = styled.div`
     font-weight: 500;
   }
   input {
-    width: 62%;
+    width: 32em;
     height: 1.6em;
     border-radius: 4px;
+    @media ${device.md} {
+      width: 55vw;
+    }
+    @media ${device.sm} {
+      width: 65vw;
+    }
+    @media ${device.xs} {
+      width: 100%;
+    }
     &:focus {
       outline-color: #374e66;
     }
@@ -511,18 +666,18 @@ export const Indication = styled.span<{
   color: ${(props) =>
     props.$validImage || props.$validTextFile ? "#0f9d35" : "#374e66"};
   margin: 0.5em 0 0.8em 0;
+  padding: 0 0.2em;
   animation: ${(props) =>
     props.$blinkAlert
       ? css`
           ${blinkAnimation} 0.7s infinite
         `
       : "none"};
-  @media ${device.md} {
-    padding: 0 0.2em;
-  }
   @media ${device.sm} {
+    font-size: 3.2vw;
+  }
+  @media ${device.xs} {
     font-size: 3.5vw;
-    padding: 0 0.2em;
   }
 `;
 

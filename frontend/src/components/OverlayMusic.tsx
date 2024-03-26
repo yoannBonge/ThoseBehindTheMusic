@@ -1,8 +1,11 @@
-import { Composer, arrayBufferToBase64 } from "../utils/constants";
-import { getCategoryColor } from "../utils/constants";
-import styled, { keyframes, css } from "styled-components";
-import { OverlayContainer, Overlay } from "../utils/constants";
-import { useState } from "react";
+import styled, { css, keyframes } from "styled-components";
+import {
+  Composer,
+  Overlay,
+  OverlayContainer,
+  arrayBufferToBase64,
+  device,
+} from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -22,93 +25,50 @@ const pictureFadeInOut = keyframes`
 `;
 
 const ComposerPictureContainer = styled.div`
-  width: 33.3%;
+  width: 34.7%;
+  height: 25.8%;
   position: absolute;
-  top: 34.3%;
-  left: 31.2%;
+  top: 33%;
+  left: 32.8%;
   perspective: 700px;
-  transform: rotate(-14deg);
+  transform: rotate(-11deg);
+  @media ${device.xmd} {
+    width: 20em;
+    height: auto;
+    top: 35%;
+    left: 10%;
+    perspective: inherit;
+    transform: inherit;
+  }
+  @media ${device.md} {
+    width: 40vw;
+  }
 `;
 
-const MusicComposerPicture = styled.img<{ $isComposerSwitching: boolean }>`
+const MusicComposerPicture = styled.img<{
+  $isComposerPictureSwitching: boolean;
+}>`
   width: 100%;
-  height: 9.4em;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  transform: rotateY(-24deg) skew(-10deg, 5deg);
+  transform: rotateY(-24deg) skew(-8deg, 5deg);
   z-index: 0;
-  ${({ $isComposerSwitching }) =>
-    $isComposerSwitching &&
+  ${({ $isComposerPictureSwitching }) =>
+    $isComposerPictureSwitching &&
     css`
       animation: ${pictureFadeInOut} 0.75s linear;
     `}
-`;
-
-const buttonsBlink = ($categoryColor: string) => keyframes`
-  0% {
-    color: white;
-  }
-  50% {
-    color: ${$categoryColor};
-  }
-  100% {
-    color: white;
-  }
-`;
-
-const ModelOverlayNavigateIndication = styled.span`
-  font-family: "Afacad";
-  font-weight: 800;
-  color: white;
-  position: absolute;
-  z-index: 2;
-`;
-
-const OverlayPrevIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 4.7vh;
-  bottom: 1%;
-  left: 11.7%;
-  transform: rotate(-0.5deg) skewX(-2deg);
-`;
-const OverlayNextIndication = styled(ModelOverlayNavigateIndication)`
-  font-size: 5.4vh;
-  bottom: 6%;
-  left: 16%;
-  transform: rotate(0.5deg) skewX(-1deg);
-`;
-
-const ModelOverlayButton = styled.div`
-  background-color: #0d0b14;
-  position: absolute;
-  cursor: pointer;
-  z-index: 2;
-`;
-
-const OverlayPrevButton = styled(ModelOverlayButton)<{
-  $categoryColor: string;
-}>`
-  width: 13.4vh;
-  height: 6.3vh;
-  top: 60.8%;
-  left: 34.4%;
-  transform: rotate(-1deg) skewX(-1deg);
-  &:hover > ${OverlayPrevIndication} {
-    animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
-      infinite;
-  }
-`;
-const OverlayNextButton = styled(ModelOverlayButton)<{
-  $categoryColor: string;
-}>`
-  width: 17.3vh;
-  height: 7.6vh;
-  top: 59.1%;
-  left: 57.1%;
-  transform: rotate(-2deg) skewX(-3deg);
-  &:hover > ${OverlayNextIndication} {
-    animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
-      infinite;
+  @media ${device.xmd} {
+    position: static;
+    transform: inherit;
+    z-index: 1;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0px 0px 0.6px #00000046, 0px 0px 1.3px #0000005f,
+      0px 0px 2.5px #0000007b, 0px 0px 4.5px #0000008a, 0px 0px 8.4px #000000bd,
+      0px 0px 20px #000000;
   }
 `;
 
@@ -118,71 +78,38 @@ const OverlaySource = styled.span`
   color: white;
   position: absolute;
   opacity: 0.4;
-  right: 1%;
+  left: 1%;
   bottom: 1%;
   z-index: 2;
+  @media ${device.xmd} {
+    display: none;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function OverlayMusic({
   currentComposerInfos,
-  handlePrevComposer,
-  handleNextComposer,
+  isComposerPictureSwitching,
 }: {
   currentComposerInfos: Composer;
-  handlePrevComposer: () => void;
-  handleNextComposer: () => void;
+  isComposerPictureSwitching: boolean;
 }) {
-  //////////////////////////////////////////////////////STATE
-  const [isComposerSwitching, setIsComposerSwitching] = useState(false);
-
   //////////////////////////////////////////////////////BEHAVIOR
-  const categoryColor = getCategoryColor(currentComposerInfos.category);
-
-  const handleClickPrevComposer = () => {
-    setIsComposerSwitching(true);
-    handlePrevComposer();
-    setTimeout(() => {
-      setIsComposerSwitching(false);
-    }, 800);
-  };
-
-  const handleClickNextComposer = () => {
-    setIsComposerSwitching(true);
-    handleNextComposer();
-    setTimeout(() => {
-      setIsComposerSwitching(false);
-    }, 800);
-  };
 
   const composerPictureData = currentComposerInfos.picture.data;
   const base64String = arrayBufferToBase64(composerPictureData);
   const composerPictureUrl = `data:image/jpeg;base64,${base64String}`;
 
-  // console.log("RENDER OVERLAY MUSIC");
-
   //////////////////////////////////////////////////////////////RENDER
   return (
-    <OverlayContainer>
+    <OverlayContainer $category={currentComposerInfos.category}>
       <Overlay src='music-overlay.webp' />
       <ComposerPictureContainer>
         <MusicComposerPicture
           src={composerPictureUrl}
-          $isComposerSwitching={isComposerSwitching}
+          $isComposerPictureSwitching={isComposerPictureSwitching}
         />
       </ComposerPictureContainer>
-      <OverlayPrevButton
-        $categoryColor={categoryColor}
-        onClick={handleClickPrevComposer}
-      >
-        <OverlayPrevIndication>PREV</OverlayPrevIndication>
-      </OverlayPrevButton>
-      <OverlayNextButton
-        $categoryColor={categoryColor}
-        onClick={handleClickNextComposer}
-      >
-        <OverlayNextIndication>NEXT</OverlayNextIndication>
-      </OverlayNextButton>
       <OverlaySource>
         crédits image overlay : www.tdbproduction.cz
       </OverlaySource>

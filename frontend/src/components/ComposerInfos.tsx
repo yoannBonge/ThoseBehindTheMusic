@@ -1,5 +1,10 @@
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import {
   Composer,
   ComposerInfosElement,
@@ -12,6 +17,7 @@ import {
   PropertyContent,
   PropertyName,
   SeparationLine,
+  device,
   getCategoryColor,
 } from "../utils/constants";
 import { useAuth } from "../utils/context/auth/useAuth";
@@ -24,7 +30,7 @@ import BioAndVideos from "./BioAndVideos";
 
 const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   font-family: "Afacad";
-  font-size: 0.9em;
+  font-size: 0.9vw;
   background-color: ${(props) => props.$categoryColor};
   color: white;
   text-decoration: none;
@@ -37,11 +43,94 @@ const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   cursor: pointer;
 `;
 
+const FaContainer = styled.div<{
+  $category: string;
+}>`
+  display: flex;
+  position: absolute;
+  top: 4vw;
+  left: -0.3vw;
+  justify-content: space-between;
+  ${({ $category }) => {
+    switch ($category) {
+      case "music":
+        return `
+          width: 44.9vw;
+        `;
+      case "cinema":
+        return `
+        width: 45.1vw;
+        `;
+      case "videogame":
+        return `
+        width: 43.8vw;
+        `;
+      default:
+        return `
+          width: 45vw;
+        `;
+    }
+  }}
+  @media ${device.xmd} {
+    width: 46.6vw;
+  }
+`;
+
+const buttonsBlink = ($categoryColor: string) => keyframes`
+  0% {
+    color: white;
+  }
+  50% {
+    color: ${$categoryColor};
+  }
+  100% {
+    color: white;
+  }
+`;
+
+const FaBackward = styled(FontAwesomeIcon)<{
+  $categoryColor: string;
+}>`
+  transform: translate(50%, -50%);
+  font-size: 2.5vw;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+  &:hover {
+    animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
+      infinite;
+    @media ${device.sm} {
+      animation: inherit;
+    }
+  }
+`;
+
+const FaForward = styled(FontAwesomeIcon)<{
+  $categoryColor: string;
+}>`
+  transform: translate(-50%, -50%);
+  font-size: 2.5vw;
+  color: white;
+  cursor: pointer;
+  z-index: 2;
+  &:hover {
+    animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
+      infinite;
+    @media ${device.sm} {
+      animation: inherit;
+    }
+  }
+`;
+
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function ComposerInfos({
   currentComposerInfos,
+  handlePrevComposer,
+  handleNextComposer,
 }: {
   currentComposerInfos: Composer;
+  handlePrevComposer: () => void;
+  handleNextComposer: () => void;
 }) {
   //////////////////////////////////////////////////////////////CONTEXT
   const { isLoggedIn, isAdmin } = useAuth();
@@ -50,12 +139,40 @@ function ComposerInfos({
   const categoryColor = getCategoryColor(currentComposerInfos.category);
   const composerId = currentComposerInfos._id;
 
+  const handleClickPrevComposer = () => {
+    handlePrevComposer();
+  };
+
+  const handleClickNextComposer = () => {
+    handleNextComposer();
+  };
+
   // console.log("RENDER COMPOSER INFOS");
 
   //////////////////////////////////////////////////////RENDER
   return (
     <>
+      {isLoggedIn && isAdmin && (
+        <ModifyButton
+          to={`/modify-composer/${composerId}`}
+          $categoryColor={categoryColor}
+        >
+          Modifier
+        </ModifyButton>
+      )}
       <IdentityInfos>
+        <FaContainer $category={currentComposerInfos.category}>
+          <FaBackward
+            icon={faChevronLeft}
+            $categoryColor={categoryColor}
+            onClick={handleClickPrevComposer}
+          />
+          <FaForward
+            icon={faChevronRight}
+            $categoryColor={categoryColor}
+            onClick={handleClickNextComposer}
+          />
+        </FaContainer>
         <ComposerInfosElement>
           <PropertyName $categoryColor={categoryColor}>
             Naissance :{" "}
@@ -110,17 +227,10 @@ function ComposerInfos({
           </NotableWorksContainer>
         </ComposerInfosElement>
       </IdentityInfos>
+
       <PhotoSource>
         crédits photo de l'artiste : <br /> {currentComposerInfos.pictureSource}
       </PhotoSource>
-      {isLoggedIn && isAdmin && (
-        <ModifyButton
-          to={`/modify-composer/${composerId}`}
-          $categoryColor={categoryColor}
-        >
-          Modifier
-        </ModifyButton>
-      )}
       <SeparationLine $categoryColor={categoryColor} />
       <BioAndVideos currentComposerInfos={currentComposerInfos} />
     </>
