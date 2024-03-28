@@ -246,7 +246,7 @@ export const isDuplicateStringValue = (
 // that do not need to be re-rendered unnecessarily, displayed in the order of rendering,
 // allowing for control over their styles (parent-dependent values).
 
-///////////////////////////////////////////////PARENT : PAGES Music/Cinema/Videogame
+///////////////////////////////////////////////PARENT : PAGE Composers
 export const PageWrapper = styled.div`
   display: flex;
   width: 100vw;
@@ -284,19 +284,19 @@ export const OverlayContainer = styled.div<{
       switch ($category) {
         case "music":
           return `
-        background-image: url("background-music.webp");
+        background-image: url("/background-music.webp");
         `;
         case "cinema":
           return `
-        background-image: url("background-cinema.webp");
+        background-image: url("/background-cinema.webp");
         `;
         case "videogame":
           return `
-        background-image: url("background-videogame.webp");
+        background-image: url("/background-videogame.webp");
         `;
         default:
           return `
-        background-image: url("background-music.webp");
+        background-image: url("/background-music.webp");
         `;
       }
     }};
@@ -340,12 +340,11 @@ export const ComposerInfosContainer = styled.div<{
   display: flex;
   width: 44.5vw;
   height: 90vh;
-  background-image: url("acoustic-panel-background.webp");
+  background-image: url("/acoustic-panel-background.webp");
   background-size: cover;
   z-index: 1;
   @media ${device.xmd} {
     width: 50vw;
-    /* max-height: 85vh; */
   }
 `;
 
@@ -409,6 +408,9 @@ export const PropertyName = styled.span<{ $categoryColor: string }>`
   @media ${device.lg} {
     font-size: 1.8vw;
   }
+  @media ${device.xmd} {
+    font-size: 1.9vw;
+  }
 `;
 
 export const PropertyContent = styled.span`
@@ -420,6 +422,9 @@ export const PropertyContent = styled.span`
   @media ${device.lg} {
     font-size: 1.8vw;
     max-width: 32vw;
+  }
+  @media ${device.xmd} {
+    font-size: 1.9vw;
   }
 `;
 
@@ -447,6 +452,9 @@ export const NotableWorksElement = styled.li`
   @media ${device.lg} {
     font-size: 1.8vw;
   }
+  @media ${device.xmd} {
+    font-size: 1.9vw;
+  }
 `;
 
 ///////////////////////////////////////////////PARENT: ComposerInfosContent
@@ -456,11 +464,13 @@ export const PhotoSource = styled.span`
   font-size: 1.2vw;
   color: white;
   line-height: 1em;
-  /* position: absolute; */
   margin: -1em 0 0 0.5em;
   opacity: 0.5;
   left: 1%;
   bottom: 41%;
+  @media ${device.xmd} {
+    font-size: 1.5vw;
+  }
   @supports (-moz-appearance: none) {
     bottom: 44%;
   }

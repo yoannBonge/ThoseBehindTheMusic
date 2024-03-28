@@ -2,14 +2,14 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 import { API_ROUTES, Composer } from "../../constants";
 
 type ComposersContextType = {
-  cinemaComposers: Composer[];
   musicComposers: Composer[];
+  cinemaComposers: Composer[];
   videogameComposers: Composer[];
 };
 
 export const ComposersContext = createContext<ComposersContextType>({
-  cinemaComposers: [],
   musicComposers: [],
+  cinemaComposers: [],
   videogameComposers: [],
 });
 

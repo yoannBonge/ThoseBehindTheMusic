@@ -105,12 +105,12 @@ function Header() {
   return (
     <StyledHeader>
       <LogoAndCategories>
-        <Logo src='tbtm-logo.webp' alt='logo du site ThoseBehindTheMusic' />
+        <Logo src='/tbtm-logo.webp' alt='logo du site ThoseBehindTheMusic' />
         <Categories>
           <NavLink to='/'>Accueil</NavLink>
-          <NavLink to='/music'>Musique</NavLink>
-          <NavLink to='/cinema'>Cinéma</NavLink>
-          <NavLink to='/videogame'>Jeu Vidéo</NavLink>
+          <NavLink to='/composers/music'>Musique</NavLink>
+          <NavLink to='/composers/cinema'>Cinéma</NavLink>
+          <NavLink to='/composers/videogame'>Jeu Vidéo</NavLink>
           {isLoggedIn && isAdmin && (
             <NavLink to='/add-composer'>Ajouter</NavLink>
           )}

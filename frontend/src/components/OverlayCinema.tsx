@@ -101,7 +101,7 @@ function OverlayCinema({
   //////////////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer $category={currentComposerInfos.category}>
-      <Overlay src='cinema-overlay.webp' />
+      <Overlay src='/cinema-overlay.webp' />
       <ComposerPictureContainer>
         <CinemaComposerPicture
           src={composerPictureUrl}

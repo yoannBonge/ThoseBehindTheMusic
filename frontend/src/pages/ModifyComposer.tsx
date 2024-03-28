@@ -61,19 +61,15 @@ const ContentWrapper = styled.div`
 `;
 
 const FormContainer = styled.div`
-  height: 15%;
+  height: 57vh;
   width: 59.5vw;
   overflow: hidden;
   @media ${device.md} {
     width: 90vw;
-    height: 11.5%;
   }
   @media ${device.sm} {
+    height: 58vh;
     width: 90vw;
-    height: 12.5%;
-  }
-  @media ${device.xs} {
-    height: 15%;
   }
 `;
 

@@ -4,12 +4,10 @@ import { createGlobalStyle } from "styled-components";
 import Header from "./components/Header";
 import AddComposer from "./pages/AddComposer";
 import Categories from "./pages/Categories";
-import Cinema from "./pages/Cinema";
+import Composers from "./pages/Composers";
 import Home from "./pages/Landing";
 import ModifyComposer from "./pages/ModifyComposer";
-import Music from "./pages/Music";
 import SuggestComposer from "./pages/SuggestComposer";
-import Videogame from "./pages/Videogame";
 import { device } from "./utils/constants";
 import { AuthProvider } from "./utils/context/auth/AuthContext";
 import { ComposersProvider } from "./utils/context/composers/ComposersContext";
@@ -42,9 +40,18 @@ function App() {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/categories' element={<Categories />} />
-              <Route path='/music' element={<Music />} />
-              <Route path='/cinema' element={<Cinema />} />
-              <Route path='/videogame' element={<Videogame />} />
+              <Route
+                path='/composers/music'
+                element={<Composers category='music' />}
+              />
+              <Route
+                path='/composers/cinema'
+                element={<Composers category='cinema' />}
+              />
+              <Route
+                path='/composers/videogame'
+                element={<Composers category='videogame' />}
+              />
               <Route path='/add-composer' element={<AddComposer />} />
               <Route path='/modify-composer/:id' element={<ModifyComposer />} />
               <Route path='/suggest-composer' element={<SuggestComposer />} />

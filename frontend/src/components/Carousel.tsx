@@ -105,7 +105,7 @@ function Carousel() {
       <OverlayCarousel
         imageUrl='music-carousel.webp'
         title='Musique'
-        onClick={async () => navigate("/music")}
+        onClick={async () => navigate("/composers/music")}
       >
         <p>
           Les producteurs de musique qui œuvrent souvent dans l'ombre des
@@ -118,7 +118,7 @@ function Carousel() {
       <OverlayCarousel
         imageUrl='cinema-carousel.webp'
         title='Cinéma'
-        onClick={async () => navigate("/cinema")}
+        onClick={async () => navigate("/composers/cinema")}
       >
         <p>
           Les compositeurs de bandes originales de films, dont certaines ont
@@ -130,7 +130,7 @@ function Carousel() {
       <OverlayCarousel
         imageUrl='videogames-carousel.webp'
         title='Jeu Vidéo'
-        onClick={async () => navigate("/videogame")}
+        onClick={async () => navigate("/composers/videogame")}
       >
         <p>
           Les compositeurs qui se sont spécialisés dans la musique de jeu vidéo

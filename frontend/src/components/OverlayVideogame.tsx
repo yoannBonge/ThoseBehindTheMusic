@@ -154,14 +154,14 @@ function OverlayVideogame({
   //////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer $category={currentComposerInfos.category}>
-      <Overlay src='videogame-overlay.webp' />
+      <Overlay src='/videogame-overlay.webp' />
       <SnowTV
         $isComposerPictureSwitching={isComposerPictureSwitching}
         autoPlay
         muted
         loop
       >
-        <source src='tv-snow-video.mp4' type='video/mp4' />
+        <source src='/tv-snow-video.mp4' type='video/mp4' />
         Votre navigateur ne peut afficher la vidéo de changement d'Composere.
       </SnowTV>
       <ComposerPictureContainer>

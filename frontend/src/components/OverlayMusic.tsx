@@ -103,7 +103,7 @@ function OverlayMusic({
   //////////////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer $category={currentComposerInfos.category}>
-      <Overlay src='music-overlay.webp' />
+      <Overlay src='/music-overlay.webp' />
       <ComposerPictureContainer>
         <MusicComposerPicture
           src={composerPictureUrl}
