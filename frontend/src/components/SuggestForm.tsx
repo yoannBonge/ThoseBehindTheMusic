@@ -382,29 +382,35 @@ function SuggestForm({
       <FormField>
         <label htmlFor='selectedWorks'>
           Veuillez renseigner les liens de vidéos YouTube de{" "}
-          <u>trois productions du compositeur</u>
+          <u>quatre productions (ou plus) du compositeur</u>
           <br />
           <SubLabel>
             (Accédez à chaque musique ou clip sur YouTube et copiez-collez les
             liens de la barre d'adresse dans les champs ci-dessous)
           </SubLabel>
         </label>
-        {[1, 2, 3].map((index) => (
+        {[...Array(12).keys()].map((index) => (
           <div key={index}>
             <input
               id={`selectedWorks${index}`}
               type='text'
-              {...register(`selectedWorks.${index - 1}` as const, {
-                validate: {
-                  duplicateValue: (value) =>
+              {...register(`selectedWorks.${index}` as const, {
+                validate: (value, { selectedWorks }) => {
+                  if (value === "") {
+                    return true;
+                  }
+                  return (
                     !isDuplicateStringValue(
-                      Object.values(getValues().selectedWorks),
+                      Object.values(selectedWorks),
                       value,
-                      index - 1
-                    ) || "Vous avez déjà inséré le lien de ce morceau",
+                      index
+                    ) || "Vous avez déjà inséré le lien de ce morceau"
+                  );
                 },
                 required:
-                  "Vous devez insérer trois liens YouTube de productions du compositeur",
+                  index < 4
+                    ? "Vous devez insérer au moins quatre liens YouTube de productions du compositeur"
+                    : false,
                 pattern: {
                   value: /^https:\/\/www\.youtube\.com\/watch\?v=/,
                   message:
@@ -414,7 +420,7 @@ function SuggestForm({
             />
             {errors.selectedWorks && (
               <ErrorMessage>
-                {errors.selectedWorks[index - 1]?.message}
+                {errors.selectedWorks[index]?.message}
               </ErrorMessage>
             )}
           </div>

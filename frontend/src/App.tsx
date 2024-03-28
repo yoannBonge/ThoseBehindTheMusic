@@ -18,21 +18,12 @@ ReactModal.setAppElement("#root");
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
-   /* @font-face {
-    font-family: 'Rangile';
-    src: url('./src/fonts/rangile.woff2') format("woff2");
-    font-weight: normal;
-    font-style: normal;
-  } */
     body {
         width: 100vw;
         height: 90vh;
         overflow: hidden;
         margin: 10vh 0 0 0;
         background-color: #D1DDCC;
-        /* background-image: url("musical-background-1.jpeg");
-        background-attachment: fixed;
-        background-position: center; */
         box-sizing: border-box;
         @media ${device.md} {
       overflow: inherit;
@@ -41,8 +32,6 @@ const GlobalStyle = createGlobalStyle`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function App() {
-  // console.log("RENDER APP");
-
   return (
     <AuthProvider>
       <ComposersProvider>

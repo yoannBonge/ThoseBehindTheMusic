@@ -14,10 +14,12 @@ interface YoutubeVideoChildProps {
 /////////////////////////////////////////////////////////////////////////////STYLE
 const VideoContainer = styled.div`
   position: relative;
-  width: 30%;
-  height: 100%;
+  /* width: 30%; */
+  width: 12vw;
+  /* height: 95%; */
+  height: 11vw;
   @media ${device.xmd} {
-    height: 80%;
+    /* height: 80%; */
   }
 `;
 
@@ -30,18 +32,30 @@ const Video = styled(ReactPlayer)`
   border: 2px solid #b6afaf;
   border-bottom: none;
   border-radius: 15px;
+  box-sizing: border-box;
   overflow: hidden;
 `;
 
 const Timeline = styled.div`
   position: absolute;
-  bottom: -0.7%;
-  left: 0.4%;
+  bottom: 0%;
   width: 100%;
-  height: 0.6em;
+  height: 7%;
   border-radius: 0 0 15px 15px;
   background-color: #b6afaf;
   cursor: pointer;
+  @media ${device.lg} {
+    height: 8%;
+  }
+  @media ${device.xmd} {
+    height: 10%;
+  }
+  @media ${device.md} {
+    height: 12%;
+  }
+  @media ${device.sm} {
+    height: 14%;
+  }
 `;
 
 const ProgressContainer = styled.div`

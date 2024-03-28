@@ -42,14 +42,14 @@ function ComposerInfosWrapper({
   return (
     <ComposerInfosContainer $category={currentComposerInfos.category}>
       <ComposerInfosContent $isComposerContentFading={isComposerContentFading}>
-        <ComposerNameContainer $category={currentComposerInfos.category}>
+        <ComposerNameContainer>
           <ComposerName>{currentComposerInfos.name}</ComposerName>
         </ComposerNameContainer>
         <ComposerInfos
           currentComposerInfos={currentComposerInfos}
           handlePrevComposer={handlePrevComposer}
           handleNextComposer={handleNextComposer}
-        />
+        ></ComposerInfos>
       </ComposerInfosContent>
     </ComposerInfosContainer>
   );

@@ -4,14 +4,14 @@ import {
   BioAndVideosSwitch,
   BioAndVideosWrapper,
   Composer,
-  MainWrapper,
+  SwitchAndBioAndVideosWrapper,
   convertBufferToString,
   device,
   getCategoryColor,
 } from "../utils/constants";
 import AudioFader from "./AudioFader";
 import Bio from "./Bio";
-import VideosContainer from "./VideosContainer";
+import CarouselVideosContainer from "./CarouselVideosContainer";
 
 //////////////////////////////////////////////////////////////STYLE
 
@@ -27,47 +27,16 @@ const BioAndVideosContent = styled.div<{ $shifted: boolean }>`
   }
 `;
 
-const VideosWrapper = styled.div<{ $category: string }>`
+const VideosWrapper = styled.div`
+  /* background-color: #1a4a73; */
   display: flex;
   justify-content: space-between;
-  align-self: center;
-  width: 40vw;
+  width: 41.6vw;
   height: 100%;
-  margin: auto;
-  transform: translateX(
-    ${(props) => {
-      switch (props.$category) {
-        case "music":
-          return "102%";
-        case "cinema":
-          return "102%";
-        case "videogame":
-          return "100.7%";
-        default:
-          return "103%";
-      }
-    }}
-  );
+  transform: translateX(100.3%);
   @media ${device.xmd} {
-    transform: translateX(105%);
-  }
-
-  @supports (-moz-appearance: none) {
-    width: 38.3vw;
-    transform: translateX(
-      ${(props) => {
-        switch (props.$category) {
-          case "music":
-            return "101%";
-          case "videogame":
-            return "100%";
-          case "cinema":
-            return "101.6%";
-          default:
-            return "103%";
-        }
-      }}
-    );
+    transform: translateX(100.5%);
+    width: 43.1vw;
   }
 `;
 
@@ -110,7 +79,7 @@ function BioAndVideos({
 
   //////////////////////////////////////////////////////RENDER
   return (
-    <MainWrapper>
+    <SwitchAndBioAndVideosWrapper>
       <BioAndVideosSwitch $categoryColor={categoryColor}>
         Présentation
         <AudioFader
@@ -122,14 +91,14 @@ function BioAndVideos({
       <BioAndVideosWrapper>
         <BioAndVideosContent $shifted={isBioAndVideosContentShifted}>
           <Bio bioContent={bioContent} />
-          <VideosWrapper $category={currentComposerInfos.category}>
-            <VideosContainer
+          <VideosWrapper>
+            <CarouselVideosContainer
               currentComposerInfos={currentComposerInfos}
-            ></VideosContainer>
+            ></CarouselVideosContainer>
           </VideosWrapper>
         </BioAndVideosContent>
       </BioAndVideosWrapper>
-    </MainWrapper>
+    </SwitchAndBioAndVideosWrapper>
   );
 }
 

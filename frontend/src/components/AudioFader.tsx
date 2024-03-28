@@ -65,7 +65,7 @@ const Fader = styled.div<{ $switched: boolean }>`
   cursor: pointer;
   transition: transform 0.4s ease-in;
   transform: ${({ $switched }) =>
-    $switched ? "translateX(400%)" : "translateX(0%)"};
+    $switched ? "translateX(400.8%)" : "translateX(0%)"};
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

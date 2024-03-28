@@ -61,7 +61,7 @@ interface Size {
 }
 
 const size: Size = {
-  xs: "400px",
+  xs: "430px",
   sm: "600px",
   md: "800px",
   xmd: "1050px",
@@ -249,16 +249,19 @@ export const isDuplicateStringValue = (
 ///////////////////////////////////////////////PARENT : PAGES Music/Cinema/Videogame
 export const PageWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100vw;
   height: 90vh;
   background-color: black;
+  overflow: hidden;
 `;
 
 export const ComposerPresentation = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+  /* @media ${device.xs} {
+    flex-direction: column-reverse;
+  } */
 `;
 
 ///////////////////////////////////////////////PARENT : OverlayMusic/OverlayCinema/OverlayVideogame
@@ -269,29 +272,10 @@ export const OverlayContainer = styled.div<{
   position: absolute;
   top: 0;
   left: 0;
+  width: 50.7em;
   display: flex;
   height: 100%;
   z-index: 1;
-  ${({ $category }) => {
-    switch ($category) {
-      case "music":
-        return `
-          width: 50.7em;
-        `;
-      case "cinema":
-        return `
-          width: 50.7em;
-        `;
-      case "videogame":
-        return `
-        width: 51.8em;
-        `;
-      default:
-        return `
-          width: 51vw;
-        `;
-    }
-  }}
   @media ${device.xmd} {
     width: 50vw;
     background-position: center;
@@ -329,17 +313,22 @@ export const Overlay = styled.img`
 `;
 
 ///////////////////////////////////////////////PAGES Music/Cinema/Videogame
-export const ModelImageInfosSeparationLine = styled.div<{
+export const ImageInfosSeparationLine = styled.div<{
   $categoryColor: string;
 }>`
   position: absolute;
+  right: 44.5%;
   display: flex;
   width: 0.6vw;
-  height: 100vh;
+  height: 90%;
   background-color: ${(props) => props.$categoryColor};
   box-shadow: 0px 0px 4.9px ${(props) => props.$categoryColor},
     0px 0px 39px ${(props) => props.$categoryColor};
   z-index: 1;
+  @media ${device.xmd} {
+    right: 50%;
+    z-index: 2;
+  }
 `;
 
 export const ComposerInfosContainer = styled.div<{
@@ -349,30 +338,11 @@ export const ComposerInfosContainer = styled.div<{
   top: 10%;
   right: 0;
   display: flex;
+  width: 44.5vw;
   height: 90vh;
   background-image: url("acoustic-panel-background.webp");
   background-size: cover;
   z-index: 1;
-  ${({ $category }) => {
-    switch ($category) {
-      case "music":
-        return `
-          width: 44.5vw;
-        `;
-      case "cinema":
-        return `
-          width: 44.7vw;
-        `;
-      case "videogame":
-        return `
-          width: 43.4vw;
-        `;
-      default:
-        return `
-          width: 44vw;
-        `;
-    }
-  }}
   @media ${device.xmd} {
     width: 50vw;
     /* max-height: 85vh; */
@@ -380,31 +350,11 @@ export const ComposerInfosContainer = styled.div<{
 `;
 
 ///////////////////////////////////////////////PARENT: ComposerInfosContent
-export const ComposerNameContainer = styled.div<{
-  $category: string;
-}>`
+export const ComposerNameContainer = styled.div`
+  /* background-color: red; */
   width: 40vw;
+  height: 8.6vw;
   margin: 0.1em 0 0 2.2vw;
-  ${({ $category }) => {
-    switch ($category) {
-      case "music":
-        return `
-          width: 39.9vw;
-        `;
-      case "cinema":
-        return `
-        width: 40.1vw;
-        `;
-      case "videogame":
-        return `
-        width: 38.8vw;
-        `;
-      default:
-        return `
-        width: 39vw;
-        `;
-    }
-  }}
   @media ${device.xmd} {
     width: 41.6vw;
   }
@@ -413,14 +363,16 @@ export const ComposerNameContainer = styled.div<{
 export const ComposerName = styled.h2`
   color: white;
   font-family: "Bebas Neue";
-  font-size: 6.1em;
+  font-size: 6.4vw;
   margin: 0;
   padding: 0;
   text-align: center;
-  @media ${device.lg} {
+  white-space: nowrap;
+  overflow: hidden;
+  /* @media ${device.lg} {
     font-size: 7.1vw;
     line-height: 0.9em;
-  }
+  } */
   @supports (-moz-appearance: none) {
     font-size: 5.5vw;
   }
@@ -525,7 +477,7 @@ export const SeparationLine = styled.div<{ $categoryColor: string }>`
   }
 `;
 
-export const MainWrapper = styled.div`
+export const SwitchAndBioAndVideosWrapper = styled.div`
   /* background-color: red; */
   display: flex;
   flex-direction: column;
@@ -540,6 +492,7 @@ export const MainWrapper = styled.div`
 
 export const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
   display: flex;
+  align-items: center;
   font-family: "Afacad";
   font-size: 1.5vw;
   font-weight: 400;

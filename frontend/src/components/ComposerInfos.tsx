@@ -43,34 +43,13 @@ const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   cursor: pointer;
 `;
 
-const FaContainer = styled.div<{
-  $category: string;
-}>`
+const FaContainer = styled.div`
   display: flex;
   position: absolute;
+  width: 45.1vw;
   top: 4vw;
   left: -0.3vw;
   justify-content: space-between;
-  ${({ $category }) => {
-    switch ($category) {
-      case "music":
-        return `
-          width: 44.9vw;
-        `;
-      case "cinema":
-        return `
-        width: 45.1vw;
-        `;
-      case "videogame":
-        return `
-        width: 43.8vw;
-        `;
-      default:
-        return `
-          width: 45vw;
-        `;
-    }
-  }}
   @media ${device.xmd} {
     width: 46.6vw;
   }
@@ -161,7 +140,7 @@ function ComposerInfos({
         </ModifyButton>
       )}
       <IdentityInfos>
-        <FaContainer $category={currentComposerInfos.category}>
+        <FaContainer>
           <FaBackward
             icon={faChevronLeft}
             $categoryColor={categoryColor}

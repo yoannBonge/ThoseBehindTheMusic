@@ -1,13 +1,11 @@
 import { useState } from "react";
-import styled from "styled-components";
 import ComposerInfosWrapper from "../components/ComposerInfosWrapper";
 import OverlayVideogame from "../components/OverlayVideogame";
 import {
   Composer,
   ComposerPresentation,
-  ModelImageInfosSeparationLine,
+  ImageInfosSeparationLine,
   PageWrapper,
-  device,
   getCategoryColor,
 } from "../utils/constants";
 import { useComposers } from "../utils/context/composers/useComposers";
@@ -17,13 +15,6 @@ import { useComposers } from "../utils/context/composers/useComposers";
 // Some components appearing in the render are shared and
 // come from "/utils/constants".
 
-const ImageInfosSeparationLine = styled(ModelImageInfosSeparationLine)`
-  right: 43.4%;
-  @media ${device.xmd} {
-    right: 50%;
-    z-index: 10;
-  }
-`;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Videogame() {
   //////////////////////////////////////////////////////////////STATE
