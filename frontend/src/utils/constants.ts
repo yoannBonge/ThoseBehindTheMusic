@@ -35,7 +35,7 @@ export interface Contribution {
 
 ////////////////////////////////////// API ROUTES
 
-const API_URL = "http://localhost:4000";
+const API_URL = "https://those-behind-the-music.vercel.app/";
 export const API_ROUTES = {
   SIGN_UP: `${API_URL}/api/auth/signup`,
   LOG_IN: `${API_URL}/api/auth/login`,
