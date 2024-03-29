@@ -1,8 +1,8 @@
 import express, { Router } from "express";
+import * as composersCtrl from "../controllers/composers";
 import auth from "../middleware/auth";
 import multerUpload from "../middleware/multer-config";
 import sharpTreatment from "../middleware/sharp-config";
-import * as composersCtrl from "../controllers/composers";
 
 const router: Router = express.Router();
 

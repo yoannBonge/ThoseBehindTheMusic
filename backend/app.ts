@@ -1,12 +1,12 @@
-import express, { Application, Request, Response, NextFunction } from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
 import cors from "cors";
+import dotenv from "dotenv";
+import express, { Application } from "express";
+import mongoose from "mongoose";
 
-import composersRoutes from "./routes/composers";
-import userRoutes from "./routes/user";
-import mailRoutes from "./routes/mail";
 import errorHandler from "./middleware/errorHandler";
+import composersRoutes from "./routes/composers";
+import mailRoutes from "./routes/mail";
+import userRoutes from "./routes/user";
 
 dotenv.config();
 

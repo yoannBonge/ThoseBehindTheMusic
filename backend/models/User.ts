@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { UserDocument, UserModel } from "../common/types";
 import uniqueValidator from "mongoose-unique-validator";
+import { UserDocument, UserModel } from "../common/types";
 
 const userSchema: Schema<UserDocument> = new Schema({
   email: { type: String, required: true, unique: true },

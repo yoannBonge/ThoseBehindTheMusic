@@ -1,6 +1,5 @@
-import Composer from "../models/Composer";
-import fs from "fs";
 import { Request, Response } from "express";
+import Composer from "../models/Composer";
 // import path from "path";
 
 export const createComposer = (req: any, res: Response) => {

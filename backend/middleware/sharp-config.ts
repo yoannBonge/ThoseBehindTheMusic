@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import sharp from "sharp";
 
 interface MulterFile extends Express.Multer.File {}

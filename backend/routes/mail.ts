@@ -1,6 +1,6 @@
 import express, { Router } from "express";
-import auth from "../middleware/auth";
 import * as mailCtrl from "../controllers/mail";
+import auth from "../middleware/auth";
 
 const router: Router = express.Router();
 

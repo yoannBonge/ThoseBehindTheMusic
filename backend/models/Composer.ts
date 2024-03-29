@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { ComposerDocument, ComposerModel } from "../common/types";
 import uniqueValidator from "mongoose-unique-validator";
+import { ComposerDocument, ComposerModel } from "../common/types";
 
 const composerSchema: Schema<ComposerDocument> = new Schema({
   category: { type: String, required: true },
