@@ -8,6 +8,10 @@ import {
 } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
+
+// Some styled-components appearing in the render are shared and
+// come from "/utils/constants".
+
 const pictureFadeInOut = keyframes`
   0% {
     opacity: 1;
@@ -101,10 +105,11 @@ function OverlayCinema({
   //////////////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer $category={currentComposerInfos.category}>
-      <Overlay src='/cinema-overlay.webp' />
+      <Overlay src='/cinema-overlay.webp' alt='Salle de cinéma' />
       <ComposerPictureContainer>
         <CinemaComposerPicture
           src={composerPictureUrl}
+          alt='Photo du compositeur'
           $isComposerPictureSwitching={isComposerPictureSwitching}
         />
       </ComposerPictureContainer>

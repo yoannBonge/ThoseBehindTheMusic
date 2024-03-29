@@ -1,16 +1,25 @@
 import styled from "styled-components";
-import {
-  Composer,
-  ComposerInfosContainer,
-  ComposerName,
-  ComposerNameContainer,
-} from "../utils/constants";
+import { Composer, device } from "../utils/constants";
 import ComposerInfos from "./ComposerInfos";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are isolated and
-// come from "/utils/constants".
+export const ComposerInfosContainer = styled.section<{
+  $category: string;
+}>`
+  position: absolute;
+  top: 10%;
+  right: 0;
+  display: flex;
+  width: 44.5vw;
+  height: 90vh;
+  background-image: url("/acoustic-panel-background.webp");
+  background-size: cover;
+  z-index: 1;
+  @media ${device.xmd} {
+    width: 50vw;
+  }
+`;
 
 const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
   position: relative;
@@ -21,6 +30,34 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
   opacity: ${({ $isComposerContentFading }) =>
     $isComposerContentFading ? 1 : 0};
   transition: opacity 0.3s ease-in-out;
+`;
+
+const ComposerNameContainer = styled.div`
+  /* background-color: red; */
+  width: 40vw;
+  height: 8.6vw;
+  margin: 0.1em 0 0 2.2vw;
+  @media ${device.xmd} {
+    width: 41.6vw;
+  }
+`;
+
+const ComposerName = styled.h2`
+  color: white;
+  font-family: "Bebas Neue";
+  font-size: 6.4vw;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  /* @media ${device.lg} {
+    font-size: 7.1vw;
+    line-height: 0.9em;
+  } */
+  @supports (-moz-appearance: none) {
+    font-size: 5.5vw;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

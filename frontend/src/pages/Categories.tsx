@@ -3,7 +3,7 @@ import Carousel from "../components/Carousel";
 import { device } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
-const Wrapper = styled.div`
+const PageWrapper = styled.div`
   width: 100%;
   height: 90vh;
   background-color: white;
@@ -18,7 +18,7 @@ const VideoBackground = styled.video`
   height: 100%;
   position: fixed;
   object-fit: cover;
-  @media ${device.sm} {
+  @media ${device.xs} {
     display: none;
   }
 `;
@@ -29,12 +29,12 @@ const PictureBackground = styled.img`
   position: fixed;
   object-fit: cover;
   display: none;
-  @media ${device.sm} {
+  @media ${device.xs} {
     display: flex;
   }
 `;
 
-const ContentContainer = styled.div`
+const ContentContainer = styled.main`
   position: absolute;
   top: 44%;
   left: 50%;
@@ -66,20 +66,25 @@ function Categories() {
   //////////////////////////////////////////////////////RENDER
   return (
     <>
-      <Wrapper>
+      <PageWrapper>
         <VideoBackground autoPlay muted loop>
-          <source src='categories-background-video.mp4' type='video/mp4' />
+          <source
+            src='categories-background-video.mp4'
+            type='video/mp4'
+            aria-label="Cette vidéo d'arrière-plan montre un disque vinyl 33 tours en cours de lecture."
+          />
           Votre navigateur ne peut afficher la vidéo d'arrière-plan.
         </VideoBackground>
         <PictureBackground
           src='categories-background-picture.webp'
           alt="Image d'arrière-plan montrant un vinyl en lecture"
+          loading='lazy'
         />
         <ContentContainer>
           <Title>Par support</Title>
           <Carousel />
         </ContentContainer>
-      </Wrapper>
+      </PageWrapper>
     </>
   );
 }

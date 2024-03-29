@@ -1,4 +1,3 @@
-import ReactCountryFlag from "react-country-flag";
 import styled, { css, keyframes } from "styled-components";
 
 ////////////////////////////////////// INTERFACES
@@ -66,8 +65,8 @@ const size: Size = {
   md: "800px",
   xmd: "1050px",
   lg: "1200px",
-  xl: "1500px",
-  xxl: "1920px",
+  xl: "1478px",
+  xxl: "1479px",
 };
 export const device = {
   xs: `(max-width: ${size.xs})`,
@@ -76,7 +75,7 @@ export const device = {
   xmd: `(max-width: ${size.xmd})`,
   lg: `(max-width: ${size.lg})`,
   xl: `(max-width: ${size.xl})`,
-  xxl: `(max-width: ${size.xxl})`,
+  xxl: `(min-width: ${size.xxl})`,
 };
 
 ////////////////////////////////////// COLORS
@@ -242,40 +241,26 @@ export const isDuplicateStringValue = (
 
 ////////////////////////////////////// COMPONENTS
 
-// These components are shared across multiple parents as well as isolated components
-// that do not need to be re-rendered unnecessarily, displayed in the order of rendering,
+// These components are shared across multiple parents, displayed in the order of rendering,
 // allowing for control over their styles (parent-dependent values).
 
-///////////////////////////////////////////////PARENT : PAGE Composers
-export const PageWrapper = styled.div`
-  display: flex;
-  width: 100vw;
-  height: 90vh;
-  background-color: black;
-  overflow: hidden;
-`;
-
-export const ComposerPresentation = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  /* @media ${device.xs} {
-    flex-direction: column-reverse;
-  } */
-`;
-
 ///////////////////////////////////////////////PARENT : OverlayMusic/OverlayCinema/OverlayVideogame
-export const OverlayContainer = styled.div<{
+export const OverlayContainer = styled.section<{
   $category: string;
 }>`
   background-color: black;
   position: absolute;
   top: 0;
   left: 0;
-  width: 50.7em;
   display: flex;
   height: 100%;
   z-index: 1;
+  @media ${device.xxl} {
+    width: 54.9%;
+  }
+  @media ${device.xl} {
+    width: 50.7em;
+  }
   @media ${device.xmd} {
     width: 50vw;
     background-position: center;
@@ -312,214 +297,64 @@ export const Overlay = styled.img`
   }
 `;
 
-///////////////////////////////////////////////PAGES Music/Cinema/Videogame
-export const ImageInfosSeparationLine = styled.div<{
-  $categoryColor: string;
-}>`
-  position: absolute;
-  right: 44.5%;
+///////////////////////////////////////////////PARENT : PAGES AddComposer/ModifyComposer/SuggestComposer
+export const FormPageWrapper = styled.div`
   display: flex;
-  width: 0.6vw;
-  height: 90%;
-  background-color: ${(props) => props.$categoryColor};
-  box-shadow: 0px 0px 4.9px ${(props) => props.$categoryColor},
-    0px 0px 39px ${(props) => props.$categoryColor};
-  z-index: 1;
-  @media ${device.xmd} {
-    right: 50%;
-    z-index: 2;
-  }
-`;
-
-export const ComposerInfosContainer = styled.div<{
-  $category: string;
-}>`
-  position: absolute;
-  top: 10%;
-  right: 0;
-  display: flex;
-  width: 44.5vw;
+  align-items: flex-start;
+  width: 100vw;
   height: 90vh;
-  background-image: url("/acoustic-panel-background.webp");
-  background-size: cover;
-  z-index: 1;
-  @media ${device.xmd} {
-    width: 50vw;
-  }
-`;
-
-///////////////////////////////////////////////PARENT: ComposerInfosContent
-export const ComposerNameContainer = styled.div`
-  /* background-color: red; */
-  width: 40vw;
-  height: 8.6vw;
-  margin: 0.1em 0 0 2.2vw;
-  @media ${device.xmd} {
-    width: 41.6vw;
-  }
-`;
-
-export const ComposerName = styled.h2`
-  color: white;
-  font-family: "Bebas Neue";
-  font-size: 6.4vw;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  white-space: nowrap;
+  background-color: black;
   overflow: hidden;
-  /* @media ${device.lg} {
-    font-size: 7.1vw;
-    line-height: 0.9em;
-  } */
-  @supports (-moz-appearance: none) {
-    font-size: 5.5vw;
+  background-image: url("/tape-background.webp");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center 65%;
+  background-repeat: no-repeat;
+  @media ${device.md} {
+    background-position: inherit;
+    background-image: inherit;
+    background-color: #d1ddcc;
+    align-items: center;
   }
 `;
 
-///////////////////////////////////////////////PARENT: ComposerInfosContent
-export const IdentityInfos = styled.div`
-  /* background-color: aqua; */
-  height: 36%;
-  margin-left: 1.3vw;
-  line-height: 2em;
-  @media ${device.lg} {
-    line-height: 1.8em;
-  }
-  @media ${device.xmd} {
-    height: 40%;
-  }
-`;
-
-export const ComposerInfosElement = styled.li`
-  display: flex;
-  list-style-type: none;
-  max-width: 42vw;
-  color: white;
-  font-family: "Afacad";
-  font-size: 1.2vw;
-`;
-
-export const PropertyName = styled.span<{ $categoryColor: string }>`
-  display: inline;
-  color: ${(props) => props.$categoryColor};
-  font-family: "Afacad";
-  font-size: 1.6vw;
-  @media ${device.lg} {
-    font-size: 1.8vw;
-  }
-  @media ${device.xmd} {
-    font-size: 1.9vw;
-  }
-`;
-
-export const PropertyContent = styled.span`
-  max-width: 34vw;
-  color: white;
-  font-family: "Afacad";
-  font-size: 1.6vw;
-  margin-left: 0.5vw;
-  @media ${device.lg} {
-    font-size: 1.8vw;
-    max-width: 32vw;
-  }
-  @media ${device.xmd} {
-    font-size: 1.9vw;
-  }
-`;
-
-export const CountryFlag = styled(ReactCountryFlag)`
-  font-size: 1.9vw;
-  margin: -0.1em 0.5em 0 0.5em;
-`;
-
-export const NotableWorksContainer = styled.div`
-  display: flex;
-  align-items: baseline;
-`;
-
-export const NotableWorksList = styled.ul`
-  padding-left: 0.3em;
-  margin: 0;
-  line-height: 1.9vw;
-`;
-
-export const NotableWorksElement = styled.li`
-  list-style-type: none;
-  color: white;
-  font-family: "Afacad";
-  font-size: 1.6vw;
-  @media ${device.lg} {
-    font-size: 1.8vw;
-  }
-  @media ${device.xmd} {
-    font-size: 1.9vw;
-  }
-`;
-
-///////////////////////////////////////////////PARENT: ComposerInfosContent
-
-export const PhotoSource = styled.span`
-  font-family: "Afacad";
-  font-size: 1.2vw;
-  color: white;
-  line-height: 1em;
-  margin: -1em 0 0 0.5em;
-  opacity: 0.5;
-  left: 1%;
-  bottom: 41%;
-  @media ${device.xmd} {
-    font-size: 1.5vw;
-  }
-  @supports (-moz-appearance: none) {
-    bottom: 44%;
-  }
-`;
-
-export const SeparationLine = styled.div<{ $categoryColor: string }>`
-  width: 56%;
-  height: 2px;
-  border-radius: 25px;
-  margin: 0.5em 0 0.5em 0;
-  background-color: ${(props) => props.$categoryColor};
-  @media ${device.xmd} {
-    width: 65%;
-  }
-`;
-
-export const SwitchAndBioAndVideosWrapper = styled.div`
-  /* background-color: red; */
+export const FormContentWrapper = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 35%;
-  margin-left: 1.3vw;
-  overflow-x: hidden;
-  @media ${device.xmd} {
-    height: 35%;
+  margin-left: 2vw;
+  @media ${device.md} {
+    margin: 0;
+    align-items: center;
+  }
+  h2 {
+    font-family: "Bakbak One";
+    font-size: 3em;
+    color: black;
+    margin: 0.5em 0 0em 0;
+    @media ${device.md} {
+      font-size: 6vw;
+      text-align: center;
+    }
+  }
+  p {
+    font-family: "Afacad";
+    font-size: 1.4em;
+    color: black;
+    max-width: 60%;
+    padding-bottom: 1em;
+    border-bottom: 2px solid black;
+    @media ${device.md} {
+      max-width: 90%;
+      font-size: 3.1vw;
+      text-align: center;
+    }
+    @media ${device.sm} {
+      font-size: 3.7vw;
+    }
   }
 `;
 
-export const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
-  display: flex;
-  align-items: center;
-  font-family: "Afacad";
-  font-size: 1.5vw;
-  font-weight: 400;
-  color: ${(props) => props.$categoryColor};
-  @media ${device.lg} {
-    font-size: 1.8vw;
-  }
-`;
-
-export const BioAndVideosWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 78%;
-  margin-top: 1vw;
-`;
-
-///////////////////////////////////////////////PARENT : ComposerForm/SuggestForm
+///////////////////////////////////////////////PARENT : ComposerForm/SuggestForm (not all for SuggestForm)
 export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
@@ -609,41 +444,6 @@ export const ImageLabel = styled.label`
   }
 `;
 
-export const blinkAnimation = keyframes`
-  0%, 50%, 100% {
-    color: #374e66;
-  }
-  25%, 75% {
-    color: red;
-  }
-`;
-
-export const Indication = styled.span<{
-  $blinkAlert: boolean;
-  $validImage?: string | null;
-  $validTextFile?: string | null;
-}>`
-  font-family: "Afacad";
-  font-size: 1em;
-  text-align: center;
-  color: ${(props) =>
-    props.$validImage || props.$validTextFile ? "#0f9d35" : "#374e66"};
-  margin: 0.5em 0 0.8em 0;
-  padding: 0 0.2em;
-  animation: ${(props) =>
-    props.$blinkAlert
-      ? css`
-          ${blinkAnimation} 0.7s infinite
-        `
-      : "none"};
-  @media ${device.sm} {
-    font-size: 3.2vw;
-  }
-  @media ${device.xs} {
-    font-size: 3.5vw;
-  }
-`;
-
 export const ImageInput = styled.div`
   display: flex;
   flex-direction: column;
@@ -695,6 +495,41 @@ export const ImageInput = styled.div`
   }
   input {
     display: none;
+  }
+`;
+
+export const blinkAnimation = keyframes`
+  0%, 50%, 100% {
+    color: #374e66;
+  }
+  25%, 75% {
+    color: red;
+  }
+`;
+
+export const Indication = styled.span<{
+  $blinkAlert: boolean;
+  $validImage?: string | null;
+  $validTextFile?: string | null;
+}>`
+  font-family: "Afacad";
+  font-size: 1em;
+  text-align: center;
+  color: ${(props) =>
+    props.$validImage || props.$validTextFile ? "#0f9d35" : "#374e66"};
+  margin: 0.5em 0 0.8em 0;
+  padding: 0 0.2em;
+  animation: ${(props) =>
+    props.$blinkAlert
+      ? css`
+          ${blinkAnimation} 0.7s infinite
+        `
+      : "none"};
+  @media ${device.sm} {
+    font-size: 3.2vw;
+  }
+  @media ${device.xs} {
+    font-size: 3.5vw;
   }
 `;
 

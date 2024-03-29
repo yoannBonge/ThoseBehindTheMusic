@@ -171,7 +171,10 @@ function OverlayCarousel({
         await onClick();
       }}
     >
-      <Image src={imageUrl} alt={title}></Image>
+      <Image
+        src={imageUrl}
+        alt={`Image du carousel illustrant la catégorie ${title}`}
+      ></Image>
       <Filter />
       <Title $isHovered={hoverState}>{title}</Title>
       <Description $isHovered={hoverState}>{children}</Description>

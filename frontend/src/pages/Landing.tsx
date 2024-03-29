@@ -3,10 +3,10 @@ import Vinyl from "../components/Vinyl";
 import { device } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
-const Wrapper = styled.div`
+const PageWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   height: 90vh;
   justify-content: space-between;
   /* overflow: hidden; */
@@ -17,14 +17,12 @@ const Wrapper = styled.div`
   }
 `;
 
-const WelcomeDiv = styled.div`
+const WelcomeDiv = styled.main`
   width: 60vw;
   background-color: white;
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: space-around; */
   box-shadow: 0px 0px 50px rgb(255, 255, 255);
   @media ${device.lg} {
     width: 65vw;
@@ -84,7 +82,7 @@ function Landing() {
   //////////////////////////////////////////////////////RENDER
   return (
     <>
-      <Wrapper>
+      <PageWrapper>
         <Vinyl />
         <WelcomeDiv>
           <Title>Those Behind The Music</Title>
@@ -104,7 +102,7 @@ function Landing() {
             leurs meilleures productions !{" "}
           </About>
         </WelcomeDiv>
-      </Wrapper>
+      </PageWrapper>
     </>
   );
 }

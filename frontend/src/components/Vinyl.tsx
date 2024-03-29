@@ -40,7 +40,12 @@ function Vinyl() {
   //////////////////////////////////////////////////////RENDER
   return (
     <VinylContainer>
-      <VinylPicture src='vinyl.webp' onClick={() => handleClick()} />
+      <VinylPicture
+        src='/vinyl.webp'
+        alt='Disque vinyl 33 tours'
+        onClick={() => handleClick()}
+        loading='lazy'
+      />
     </VinylContainer>
   );
 }

@@ -1,21 +1,51 @@
 import { useState } from "react";
+import styled from "styled-components";
 import ComposerInfosWrapper from "../components/ComposerInfosWrapper";
 import OverlayCinema from "../components/OverlayCinema";
 import OverlayMusic from "../components/OverlayMusic";
 import OverlayVideogame from "../components/OverlayVideogame";
-import {
-  Composer,
-  ComposerPresentation,
-  ImageInfosSeparationLine,
-  PageWrapper,
-  getCategoryColor,
-} from "../utils/constants";
+import { Composer, device, getCategoryColor } from "../utils/constants";
 import { useComposers } from "../utils/context/composers/useComposers";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are shared and
+// Some styled-components appearing in the render are shared and
 // come from "/utils/constants".
+
+const PageWrapper = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 90vh;
+  background-color: black;
+  overflow: hidden;
+`;
+
+const ComposerPresentation = styled.main`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  @media ${device.xs} {
+    flex-direction: column-reverse;
+  }
+`;
+
+const ImageInfosSeparationLine = styled.div<{
+  $categoryColor: string;
+}>`
+  position: absolute;
+  right: 44.5%;
+  display: flex;
+  width: 0.6vw;
+  height: 90%;
+  background-color: ${(props) => props.$categoryColor};
+  box-shadow: 0px 0px 4.9px ${(props) => props.$categoryColor},
+    0px 0px 39px ${(props) => props.$categoryColor};
+  z-index: 1;
+  @media ${device.xmd} {
+    right: 50%;
+    z-index: 2;
+  }
+`;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 

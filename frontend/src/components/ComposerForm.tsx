@@ -26,7 +26,7 @@ import { useAuth } from "../utils/context/auth/useAuth";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are shared and
+// Some styled-components appearing in the render are shared and
 // come from "/utils/constants".
 
 const BioLabel = styled.label`
@@ -40,13 +40,6 @@ const BioLabel = styled.label`
     align-self: center;
     text-align: center;
   }
-`;
-
-const BookIcon = styled.i<{
-  $validTextFile: string | null;
-  className: string;
-}>`
-  opacity: ${(props) => (props.$validTextFile ? 1 : 0.2)};
 `;
 
 const BioInput = styled.div`
@@ -98,6 +91,13 @@ const BioInput = styled.div`
   input {
     display: none;
   }
+`;
+
+const BookIcon = styled.i<{
+  $validTextFile: string | null;
+  className: string;
+}>`
+  opacity: ${(props) => (props.$validTextFile ? 1 : 0.2)};
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

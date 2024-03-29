@@ -22,7 +22,7 @@ import { useAuth } from "../utils/context/auth/useAuth";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are shared and
+// Some styled-components appearing in the render are shared and
 // come from "/utils/constants".
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

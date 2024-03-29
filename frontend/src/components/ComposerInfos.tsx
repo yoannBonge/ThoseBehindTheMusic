@@ -3,30 +3,14 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactCountryFlag from "react-country-flag";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-import {
-  Composer,
-  ComposerInfosElement,
-  CountryFlag,
-  IdentityInfos,
-  NotableWorksContainer,
-  NotableWorksElement,
-  NotableWorksList,
-  PhotoSource,
-  PropertyContent,
-  PropertyName,
-  SeparationLine,
-  device,
-  getCategoryColor,
-} from "../utils/constants";
+import { Composer, device, getCategoryColor } from "../utils/constants";
 import { useAuth } from "../utils/context/auth/useAuth";
 import BioAndVideos from "./BioAndVideos";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
-
-// Some components appearing in the render are isolated and
-// come from "/utils/constants".
 
 const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   font-family: "Afacad";
@@ -41,6 +25,19 @@ const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   border-radius: 0 0 8px 0;
   border: none;
   cursor: pointer;
+`;
+
+const IdentityInfos = styled.section`
+  /* background-color: aqua; */
+  height: 36%;
+  margin-left: 1.3vw;
+  line-height: 2em;
+  @media ${device.lg} {
+    line-height: 1.8em;
+  }
+  @media ${device.xmd} {
+    height: 40%;
+  }
 `;
 
 const FaContainer = styled.div`
@@ -98,6 +95,101 @@ const FaForward = styled(FontAwesomeIcon)<{
     @media ${device.sm} {
       animation: inherit;
     }
+  }
+`;
+
+const ComposerInfosElement = styled.li`
+  display: flex;
+  list-style-type: none;
+  max-width: 42vw;
+  color: white;
+  font-family: "Afacad";
+  font-size: 1.2vw;
+`;
+
+const PropertyName = styled.span<{ $categoryColor: string }>`
+  display: inline;
+  color: ${(props) => props.$categoryColor};
+  font-family: "Afacad";
+  font-size: 1.6vw;
+  @media ${device.lg} {
+    font-size: 1.8vw;
+  }
+  @media ${device.xmd} {
+    font-size: 1.9vw;
+  }
+`;
+
+const PropertyContent = styled.span`
+  max-width: 34vw;
+  color: white;
+  font-family: "Afacad";
+  font-size: 1.6vw;
+  margin-left: 0.5vw;
+  @media ${device.lg} {
+    font-size: 1.8vw;
+    max-width: 32vw;
+  }
+  @media ${device.xmd} {
+    font-size: 1.9vw;
+  }
+`;
+
+const CountryFlag = styled(ReactCountryFlag)`
+  font-size: 1.9vw;
+  margin: -0.1em 0.5em 0 0.5em;
+`;
+
+const NotableWorksContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
+const NotableWorksList = styled.ul`
+  padding-left: 0.3em;
+  margin: 0;
+  line-height: 1.9vw;
+`;
+
+const NotableWorksElement = styled.li`
+  list-style-type: none;
+  color: white;
+  font-family: "Afacad";
+  font-size: 1.6vw;
+  @media ${device.lg} {
+    font-size: 1.8vw;
+  }
+  @media ${device.xmd} {
+    font-size: 1.9vw;
+  }
+`;
+
+const PhotoSource = styled.span`
+  font-family: "Afacad";
+  font-size: 1.2vw;
+  color: white;
+  line-height: 1em;
+  margin: -1em 0 0 0.5em;
+  opacity: 0.5;
+  left: 1%;
+  bottom: 41%;
+  @media ${device.xmd} {
+    font-size: 1.5vw;
+  }
+  @supports (-moz-appearance: none) {
+    bottom: 44%;
+  }
+`;
+
+const SeparationLine = styled.hr<{ $categoryColor: string }>`
+  width: 56%;
+  height: 2px;
+  border-radius: 25px;
+  border: none;
+  margin: 0.5em 0 0.5em 0;
+  background-color: ${(props) => props.$categoryColor};
+  @media ${device.xmd} {
+    width: 65%;
   }
 `;
 

@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {
-  BioAndVideosSwitch,
-  BioAndVideosWrapper,
   Composer,
-  SwitchAndBioAndVideosWrapper,
   convertBufferToString,
   device,
   getCategoryColor,
@@ -14,6 +11,38 @@ import Bio from "./Bio";
 import CarouselVideosContainer from "./CarouselVideosContainer";
 
 //////////////////////////////////////////////////////////////STYLE
+
+const MainBioAndVideosWrapper = styled.section`
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 35%;
+  margin-left: 1.3vw;
+  overflow-x: hidden;
+  @media ${device.xmd} {
+    height: 35%;
+  }
+`;
+
+const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
+  display: flex;
+  align-items: center;
+  font-family: "Afacad";
+  font-size: 1.5vw;
+  font-weight: 400;
+  color: ${(props) => props.$categoryColor};
+  @media ${device.lg} {
+    font-size: 1.8vw;
+  }
+`;
+
+const BioAndVideosWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: 78%;
+  margin-top: 1vw;
+`;
 
 const BioAndVideosContent = styled.div<{ $shifted: boolean }>`
   display: flex;
@@ -79,7 +108,7 @@ function BioAndVideos({
 
   //////////////////////////////////////////////////////RENDER
   return (
-    <SwitchAndBioAndVideosWrapper>
+    <MainBioAndVideosWrapper>
       <BioAndVideosSwitch $categoryColor={categoryColor}>
         Présentation
         <AudioFader
@@ -98,7 +127,7 @@ function BioAndVideos({
           </VideosWrapper>
         </BioAndVideosContent>
       </BioAndVideosWrapper>
-    </SwitchAndBioAndVideosWrapper>
+    </MainBioAndVideosWrapper>
   );
 }
 

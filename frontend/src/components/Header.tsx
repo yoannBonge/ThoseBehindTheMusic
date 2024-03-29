@@ -105,7 +105,10 @@ function Header() {
   return (
     <StyledHeader>
       <LogoAndCategories>
-        <Logo src='/tbtm-logo.webp' alt='logo du site ThoseBehindTheMusic' />
+        <Logo
+          src='/tbtm-logo.webp'
+          alt="logo du site représentant la fusion d'une clef de sol et d'un stylo plume"
+        />
         <Categories>
           <NavLink to='/'>Accueil</NavLink>
           <NavLink to='/composers/music'>Musique</NavLink>

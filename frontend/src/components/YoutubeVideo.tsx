@@ -14,12 +14,14 @@ interface YoutubeVideoChildProps {
 /////////////////////////////////////////////////////////////////////////////STYLE
 const VideoContainer = styled.div`
   position: relative;
-  /* width: 30%; */
-  width: 12vw;
-  /* height: 95%; */
-  height: 11vw;
-  @media ${device.xmd} {
-    /* height: 80%; */
+
+  @media ${device.xxl} {
+    width: 12vw;
+    height: 11vw;
+  }
+  @media ${device.xl} {
+    width: 12vw;
+    height: 11vw;
   }
 `;
 
@@ -174,6 +176,7 @@ function YoutubeVideo({
         onProgress={handleProgress}
         width='100%'
         height='100%'
+        loading='lazy'
       />
       <Timeline ref={timelineRef} onMouseDown={handleTimelineMouseDown}>
         <ProgressContainer>

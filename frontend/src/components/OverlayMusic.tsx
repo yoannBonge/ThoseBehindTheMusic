@@ -9,7 +9,7 @@ import {
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are shared and
+// Some styled-components appearing in the render are shared and
 // come from "/utils/constants".
 
 const pictureFadeInOut = keyframes`
@@ -100,13 +100,19 @@ function OverlayMusic({
   const base64String = arrayBufferToBase64(composerPictureData);
   const composerPictureUrl = `data:image/jpeg;base64,${base64String}`;
 
+  // console.log("RENDER OVERLAY MUSIC");
+
   //////////////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer $category={currentComposerInfos.category}>
-      <Overlay src='/music-overlay.webp' />
+      <Overlay
+        src='/music-overlay.webp'
+        alt='Studio de production de musique'
+      />
       <ComposerPictureContainer>
         <MusicComposerPicture
           src={composerPictureUrl}
+          alt='Photo du compositeur'
           $isComposerPictureSwitching={isComposerPictureSwitching}
         />
       </ComposerPictureContainer>

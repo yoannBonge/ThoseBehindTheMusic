@@ -9,7 +9,7 @@ import {
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some components appearing in the render are shared and
+// Some styled-components appearing in the render are shared and
 // come from "/utils/constants".
 
 const SnowTV = styled.video<{ $isComposerPictureSwitching: boolean }>`
@@ -117,33 +117,7 @@ function OverlayVideogame({
   currentComposerInfos: Composer;
   isComposerPictureSwitching: boolean;
 }) {
-  //////////////////////////////////////////////////////STATE
-  // const [isFadingPicture, setIsFadingPicture] = useState(false);
-  // const [isSnowingTV, setIsSnowingTV] = useState(false);
-
   //////////////////////////////////////////////////////BEHAVIOR
-
-  // const handleClickPrevComposer = () => {
-  //   setIsFadingPicture(true);
-  //   setIsSnowingTV(true);
-  //   setTimeout(() => {
-  //     setIsSnowingTV(false);
-  //   }, 500);
-  //   setTimeout(() => {
-  //     setIsFadingPicture(false);
-  //   }, 800);
-  // };
-
-  // const handleClickNextComposer = () => {
-  //   setIsFadingPicture(true);
-  //   setIsSnowingTV(true);
-  //   setTimeout(() => {
-  //     setIsSnowingTV(false);
-  //   }, 500);
-  //   setTimeout(() => {
-  //     setIsFadingPicture(false);
-  //   }, 800);
-  // };
 
   const composerPictureData = currentComposerInfos.picture.data;
   const base64String = arrayBufferToBase64(composerPictureData);
@@ -154,21 +128,32 @@ function OverlayVideogame({
   //////////////////////////////////////////////////////RENDER
   return (
     <OverlayContainer $category={currentComposerInfos.category}>
-      <Overlay src='/videogame-overlay.webp' />
+      <Overlay
+        src='/videogame-overlay.webp'
+        alt="Bureau d'une chambre sur lequel sont posées une console de jeu et une télévision"
+      />
       <SnowTV
         $isComposerPictureSwitching={isComposerPictureSwitching}
         autoPlay
         muted
         loop
       >
-        <source src='/tv-snow-video.mp4' type='video/mp4' />
-        Votre navigateur ne peut afficher la vidéo de changement d'Composere.
+        <source
+          src='/tv-snow-video.mp4'
+          type='video/mp4'
+          aria-label='Cette vidéo sert de transition lors du changement de compositeur et affiche de la "neige" sur une télévision ancienne à tube cathodique.'
+        />
+        Votre navigateur ne peut afficher la vidéo de changement de compositeur.
       </SnowTV>
       <ComposerPictureContainer>
-        <CRTFilter src='crt-filter.webp' />
+        <CRTFilter
+          src='/crt-filter.webp'
+          alt="Filtre verdâtre pour simuler l'image d'une télévision ancienne"
+        />
         <VideogameComposerPicture
           $isComposerPictureSwitching={isComposerPictureSwitching}
           src={composerPictureUrl}
+          alt='Photo du compositeur'
         />
       </ComposerPictureContainer>
       <OverlaySource>
