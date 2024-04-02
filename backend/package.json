@@ -2,7 +2,7 @@
   "name": "those-behind-the-music-backend",
   "private": true,
   "version": "0.0.0",
-  "main": "server.ts",
+  "main": "app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec ts-node server.ts"
