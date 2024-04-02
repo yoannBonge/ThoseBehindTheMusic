@@ -1,8 +1,8 @@
+import cors from "cors";
 import dotenv from "dotenv";
 import express, { Application } from "express";
 import mongoose from "mongoose";
 
-import allowCrossDomain from "./middleware/cors";
 import errorHandler from "./middleware/errorHandler";
 import composersRoutes from "./routes/composers";
 import mailRoutes from "./routes/mail";
@@ -25,8 +25,7 @@ const connectDB = async () => {
 connectDB();
 
 app.use(express.json({ limit: "5mb" }));
-
-app.use(allowCrossDomain);
+app.use(cors());
 
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
