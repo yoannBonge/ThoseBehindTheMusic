@@ -1,6 +1,6 @@
 import cors from "cors";
 import dotenv from "dotenv";
-import express, { Application, Request, Response } from "express";
+import express from "express";
 import mongoose from "mongoose";
 
 import errorHandler from "./middleware/errorHandler";
@@ -10,7 +10,7 @@ import userRoutes from "./routes/user";
 
 dotenv.config();
 
-const app: Application = express();
+const app = express();
 
 app.use(
   cors({
@@ -24,7 +24,7 @@ app.use(express.json());
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI as string);
+    await mongoose.connect(process.env.MONGODB_URI);
     console.log("Connexion à MongoDB réussie !");
   } catch (error) {
     console.error("Connexion à MongoDB échouée :", error);
@@ -34,7 +34,7 @@ const connectDB = async () => {
 
 connectDB();
 
-app.get("/", (req: Request, res: Response) => {
+app.get("/", (req, res) => {
   res.send("Backend is up and running!");
 });
 

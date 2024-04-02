@@ -1,11 +1,4 @@
-import { NextFunction, Request, Response } from "express";
-
-const errorHandler = (
-  err: any,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const errorHandler = () => {
   console.error("Une erreur s'est produite :", err);
 
   res.status(500).json({

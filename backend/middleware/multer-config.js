@@ -1,4 +1,3 @@
-import { Request } from "express";
 import multer from "multer";
 
 const storage = multer.memoryStorage();
@@ -8,15 +7,11 @@ const multerUpload = multer({
   limits: {
     fileSize: 5 * 1024 * 1024,
   },
-  fileFilter: (
-    req: Request,
-    file: Express.Multer.File,
-    cb: multer.FileFilterCallback
-  ) => {
+  fileFilter: () => {
     if (file.fieldname === "picture" || file.fieldname === "bio") {
       cb(null, true);
     } else {
-      const error: any = new Error("Unexpected field");
+      const error = new Error("Unexpected field");
       error.code = "LIMIT_UNEXPECTED_FILE";
       cb(error, false);
     }

@@ -1,8 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
-import { ComposerDocument, ComposerModel } from "../common/types";
 
-const composerSchema: Schema<ComposerDocument> = new Schema({
+const composerSchema = new Schema({
   category: { type: String, required: true },
   name: { type: String, required: true },
   birthName: { type: String, required: false },
@@ -20,9 +19,7 @@ const composerSchema: Schema<ComposerDocument> = new Schema({
 
 composerSchema.plugin(uniqueValidator);
 
-const Composer: ComposerModel = mongoose.model<ComposerDocument>(
-  "Composer",
-  composerSchema
-);
+const Composer =
+  mongoose.model < ComposerDocument > ("Composer", composerSchema);
 
 export default Composer;

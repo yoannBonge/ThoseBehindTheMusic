@@ -1,25 +1,7 @@
-import { NextFunction, Request, Response } from "express";
 import sharp from "sharp";
 
-interface MulterFile extends Express.Multer.File {}
-
-export interface SharpRequest extends Request {
-  files: {
-    picture?: MulterFile[];
-    bio?: MulterFile[];
-  };
-  sharpFileName?: string;
-  pictureBuffer?: Buffer;
-  bioBuffer?: Buffer;
-}
-
-const sharpTreatment = async (
-  req: SharpRequest,
-  res: Response,
-  next: NextFunction
-) => {
-  const { picture, bio }: { picture?: MulterFile[]; bio?: MulterFile[] } =
-    req.files;
+const sharpTreatment = async () => {
+  const { picture, bio } = req.files;
 
   if (!picture || !Array.isArray(picture) || !picture[0]?.buffer) {
     console.log("Aucun fichier 'picture' trouvé dans la requête");

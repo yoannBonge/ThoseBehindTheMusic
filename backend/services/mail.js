@@ -4,21 +4,21 @@ import nodemailer from "nodemailer";
 dotenv.config();
 
 // Fonction pour envoyer un e-mail
-export const sendMail = async (to: string, subject: string, html: string) => {
+export const sendMail = async (to, subject, html) => {
   try {
     // Création d'un transporteur (SMTP)
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.GMAIL_ADMIN as string,
-        pass: process.env.GMAIL_PASSWORD as string,
+        user: process.env.GMAIL_ADMIN,
+        pass: process.env.GMAIL_PASSWORD,
       },
     });
 
     // Configuration de l'e-mail
     const mailOptions = {
-      from: process.env.GMAIL_ADMIN as string,
-      to: process.env.GMAIL_ADMIN as string,
+      from: process.env.GMAIL_ADMIN,
+      to: process.env.GMAIL_ADMIN,
       subject: "Suggestion de compositeur",
       html: html,
     };

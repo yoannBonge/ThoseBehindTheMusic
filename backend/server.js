@@ -4,7 +4,7 @@ import app from "./app";
 
 dotenv.config();
 
-const normalizePort = (val: string | number): number | string | boolean => {
+const normalizePort = (val) => {
   const port = typeof val === "string" ? parseInt(val, 10) : val;
 
   if (isNaN(port)) {
@@ -19,7 +19,7 @@ const normalizePort = (val: string | number): number | string | boolean => {
 const port = normalizePort(process.env.PORT || "4000");
 app.set("port", port);
 
-const errorHandler = (error: NodeJS.ErrnoException): void => {
+const errorHandler = (error) => {
   if (error.syscall !== "listen") {
     throw error;
   }

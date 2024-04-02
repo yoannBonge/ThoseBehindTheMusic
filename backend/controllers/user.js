@@ -1,15 +1,14 @@
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
-import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 dotenv.config();
 
 import User from "../models/User";
 
-export const signup = (req: Request, res: Response) => {
+export const signup = (req, res) => {
   User.findOne({ email: req.body.email })
-    .then((existingUser: any) => {
+    .then((existingUser) => {
       if (existingUser) {
         return res.status(400).json({
           message: "Un compte est déjà affilié à cette adresse mail.",
@@ -18,7 +17,7 @@ export const signup = (req: Request, res: Response) => {
 
       bcrypt
         .hash(req.body.password, 10)
-        .then((hash: string) => {
+        .then((hash) => {
           const user = new User({
             email: req.body.email,
             password: hash,
@@ -27,16 +26,16 @@ export const signup = (req: Request, res: Response) => {
           user
             .save()
             .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
-            .catch((error: any) => res.status(400).json({ error }));
+            .catch((error) => res.status(400).json({ error }));
         })
-        .catch((error: any) => res.status(500).json({ error }));
+        .catch((error) => res.status(500).json({ error }));
     })
-    .catch((error: any) => res.status(500).json({ error }));
+    .catch((error) => res.status(500).json({ error }));
 };
 
-export const login = (req: Request, res: Response) => {
+export const login = (req, res) => {
   User.findOne({ email: req.body.email })
-    .then((user: any) => {
+    .then((user) => {
       if (!user) {
         return res
           .status(401)
@@ -44,7 +43,7 @@ export const login = (req: Request, res: Response) => {
       }
       bcrypt
         .compare(req.body.password, user.password)
-        .then((valid: boolean) => {
+        .then((valid) => {
           if (!valid) {
             return res
               .status(401)
@@ -58,7 +57,7 @@ export const login = (req: Request, res: Response) => {
               userId: user._id,
               isAdmin: isAdmin,
             },
-            process.env.JWT_SECRET!,
+            process.env.JWT_SECRET,
             { expiresIn: "4H" }
           );
 
@@ -75,12 +74,12 @@ export const login = (req: Request, res: Response) => {
           });
           // console.log(token);
         })
-        .catch((error: any) => res.status(500).json({ error }));
+        .catch((error) => res.status(500).json({ error }));
     })
-    .catch((error: any) => res.status(500).json({ error }));
+    .catch((error) => res.status(500).json({ error }));
 };
 
-export const logout = (req: Request, res: Response) => {
+export const logout = (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
@@ -88,7 +87,7 @@ export const logout = (req: Request, res: Response) => {
   }
 
   try {
-    const decodedToken: any = jwt.verify(token, process.env.JWT_SECRET!);
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     res.status(200).json({ message: "Déconnexion réussie." });
   } catch (error) {
     res.status(401).json({

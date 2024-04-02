@@ -1,37 +1,23 @@
 import dotenv from "dotenv";
-import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 dotenv.config();
 
-interface AuthRequest extends Request {
-  auth?: {
-    userId: string;
-  };
-}
-
-const authMiddleware = (
-  req: AuthRequest,
-  res: Response,
-  next: NextFunction
-) => {
+const authMiddleware = () => {
   try {
-    const token: string | undefined = req.headers.authorization?.split(" ")[1];
+    const token = req.headers.authorization?.split(" ")[1];
 
     if (!token) {
       throw new Error("Authorization token missing");
     }
 
-    const decodedToken: any = jwt.verify(
-      token,
-      process.env.JWT_SECRET as string
-    );
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
     if (!decodedToken) {
       throw new Error("Invalid token");
     }
 
-    const userId: string = decodedToken.userId;
+    const userId = decodedToken.userId;
 
     const currentTimestamp = Math.floor(Date.now() / 1000);
     if (decodedToken.exp < currentTimestamp) {
@@ -43,7 +29,7 @@ const authMiddleware = (
     };
 
     next();
-  } catch (error: any) {
+  } catch (error) {
     res.status(401).json({ error: error.message });
   }
 };

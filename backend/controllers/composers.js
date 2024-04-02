@@ -1,8 +1,6 @@
-import { Request, Response } from "express";
 import Composer from "../models/Composer";
-// import path from "path";
 
-export const createComposer = (req: any, res: Response) => {
+export const createComposer = (req, res) => {
   const composerObject = req.body;
 
   // On crée donc un objet "composer" en récupérant toutes les infos du corps de la requête et en ajoutant
@@ -24,7 +22,7 @@ export const createComposer = (req: any, res: Response) => {
     });
 };
 
-export const getAllComposers = (req: Request, res: Response) => {
+export const getAllComposers = (req, res) => {
   Composer.find()
     .then((composers) => {
       console.log("Compositeurs récupérés avec succès");
@@ -36,7 +34,7 @@ export const getAllComposers = (req: Request, res: Response) => {
     });
 };
 
-export const getComposerById = async (req: Request, res: Response) => {
+export const getComposerById = async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -54,7 +52,7 @@ export const getComposerById = async (req: Request, res: Response) => {
   }
 };
 
-export const updateComposer = async (req: any, res: Response) => {
+export const updateComposer = async (req, res) => {
   const id = req.params.id;
 
   try {
