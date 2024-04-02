@@ -1,8 +1,8 @@
-import cors from "cors";
 import dotenv from "dotenv";
 import express, { Application } from "express";
 import mongoose from "mongoose";
 
+import allowCrossDomain from "./middleware/cors";
 import errorHandler from "./middleware/errorHandler";
 import composersRoutes from "./routes/composers";
 import mailRoutes from "./routes/mail";
@@ -25,17 +25,8 @@ const connectDB = async () => {
 connectDB();
 
 app.use(express.json({ limit: "5mb" }));
-const corsOptions = {
-  origin: "https://those-behind-the-music.vercel.app/",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  allowedHeaders: "Content-Type,Authorization",
-  preflightContinue: false,
-  optionsSuccessStatus: 204,
-};
 
-app.use(cors(corsOptions));
-
-app.options("*", cors(corsOptions));
+app.use(allowCrossDomain);
 
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
