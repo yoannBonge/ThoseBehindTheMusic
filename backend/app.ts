@@ -1,6 +1,6 @@
 import cors from "cors";
 import dotenv from "dotenv";
-import express, { Application } from "express";
+import express, { Application, Request, Response } from "express";
 import mongoose from "mongoose";
 
 import errorHandler from "./middleware/errorHandler";
@@ -11,6 +11,16 @@ import userRoutes from "./routes/user";
 dotenv.config();
 
 const app: Application = express();
+
+app.use(
+  cors({
+    origin: ["https://those-behind-the-music.vercel.app"],
+    methods: ["GET", "POST", "PUT"],
+    credentials: true,
+  })
+);
+
+app.use(express.json());
 
 const connectDB = async () => {
   try {
@@ -24,10 +34,7 @@ const connectDB = async () => {
 
 connectDB();
 
-app.use(express.json({ limit: "5mb" }));
-app.use(cors());
-
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   res.send("Backend is up and running!");
 });
 
