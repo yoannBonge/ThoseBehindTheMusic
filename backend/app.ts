@@ -27,6 +27,10 @@ connectDB();
 app.use(express.json({ limit: "5mb" }));
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("Backend is up and running!");
+});
+
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/mail", mailRoutes);
