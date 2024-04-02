@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec ts-node server.ts",
-    "build": "tsc"
+    "dev": "nodemon --exec ts-node server.ts"
   },
   "license": "ISC",
   "dependencies": {
