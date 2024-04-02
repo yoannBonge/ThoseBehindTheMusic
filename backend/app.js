@@ -22,20 +22,22 @@ app.use(
 
 app.use(express.json());
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("Connexion à MongoDB réussie !");
-  } catch (error) {
-    console.error("Connexion à MongoDB échouée :", error);
-    process.exit(1);
-  }
+const connectDB = () => {
+  mongoose
+    .connect(process.env.MONGODB_URI)
+    .then(() => {
+      console.log("Connexion à MongoDB réussie !");
+    })
+    .catch((error) => {
+      console.error("Connexion à MongoDB échouée :", error);
+      process.exit(1);
+    });
 };
 
 connectDB();
 
 app.get("/", (req, res) => {
-  res.send("Backend is up and running!");
+  res.json("Backend is up and running!");
 });
 
 app.use("/api/composers", composersRoutes);
