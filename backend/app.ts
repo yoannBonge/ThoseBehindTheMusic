@@ -25,7 +25,13 @@ const connectDB = async () => {
 connectDB();
 
 app.use(express.json({ limit: "5mb" }));
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://those-behind-the-music.vercel.app",
+    methods: "GET, POST, PUT, OPTIONS",
+    credentials: true,
+  })
+);
 
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
