@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 dotenv.config();
 
-import User from "../models/User";
+import User from "../../models/User";
 
 export const signup = (req, res) => {
   User.findOne({ email: req.body.email })
