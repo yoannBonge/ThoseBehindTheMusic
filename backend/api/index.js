@@ -1,12 +1,12 @@
-import cors from "cors";
-import dotenv from "dotenv";
-import express from "express";
-import mongoose from "mongoose";
+const cors = require("cors");
+const dotenv = require("dotenv");
+const express = require("express");
+const mongoose = require("mongoose");
 
-import errorHandler from "../middleware/errorHandler";
-import composersRoutes from "./routes/composersRoutes";
-import mailRoutes from "./routes/mailRoutes";
-import userRoutes from "./routes/userRoutes";
+const errorHandler = require("../middleware/errorHandler");
+const composersRoutes = require("./routes/composersRoutes");
+const mailRoutes = require("./routes/mailRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 dotenv.config();
 
@@ -43,5 +43,3 @@ app.use("/api/mail", mailRoutes);
 app.use(errorHandler);
 
 module.exports = app;
-
-export default app;

@@ -41,7 +41,8 @@ export const API_ROUTES = {
   LOG_IN: `${API_URL}/api/auth/login`,
   LOG_OUT: `${API_URL}/api/auth/logout`,
   ADD_COMPOSER: `${API_URL}/api/composers/add-composer`,
-  GET_COMPOSERS: `${API_URL}/api/composers/get-composers`,
+  GET_COMPOSERS:
+    "https://those-behind-the-music-server.vercel.app/api/composers/get-composers",
   GET_COMPOSER_BY_ID: (id: string) => `${API_URL}/api/composers/${id}`,
   UPDATE_COMPOSER: (id: string) =>
     `${API_URL}/api/composers/update-composer/${id}`,

@@ -1,11 +1,11 @@
-import express from "express";
-import auth from "../../middleware/auth";
-import multerUpload from "../../middleware/multer-config";
-import sharpTreatment from "../../middleware/sharp-config";
-import { createComposer } from "../controllers/composers/createComposer";
-import { getAllComposers } from "../controllers/composers/getAllComposers";
-import { getComposerById } from "../controllers/composers/getComposerById";
-import { updateComposer } from "../controllers/composers/updateComposer";
+const express = require("express");
+const auth = require("../../middleware/auth");
+const multerUpload = require("../../middleware/multer-config");
+const sharpTreatment = require("../../middleware/sharp-config");
+const createComposer = require("../controllers/composers/createComposer");
+const getAllComposers = require("../controllers/composers/getAllComposers");
+const getComposerById = require("../controllers/composers/getComposerById");
+const updateComposer = require("../controllers/composers/updateComposer");
 
 const router = express.Router();
 
