@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 
-import errorHandler from "./middleware/errorHandler";
-import composersRoutes from "./routes/composers";
-import mailRoutes from "./routes/mail";
-import userRoutes from "./routes/user";
+import errorHandler from "./api/middleware/errorHandler";
+import composersRoutes from "./api/routes/composers";
+import mailRoutes from "./api/routes/mail";
+import userRoutes from "./api/routes/user";
 
 dotenv.config();
 

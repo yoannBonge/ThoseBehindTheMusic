@@ -1,6 +1,6 @@
 import sharp from "sharp";
 
-const sharpTreatment = async () => {
+const sharpTreatment = async (req, res, next) => {
   const { picture, bio } = req.files;
 
   if (!picture || !Array.isArray(picture) || !picture[0]?.buffer) {
