@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 dotenv.config();
 
-const authMiddleware = (req, res, next) => {
+const authMiddleware = () => {
   try {
     const token = req.headers.authorization?.split(" ")[1];
 

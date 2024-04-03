@@ -2,7 +2,7 @@ import multer from "multer";
 
 const storage = multer.memoryStorage();
 
-const multerUpload = multer(req, res, next, {
+const multerUpload = multer({
   storage: storage,
   limits: {
     fileSize: 5 * 1024 * 1024,
