@@ -1,14 +1,11 @@
 {
   "version": 2,
-  "builds": [{ "src": "./app.js", "use": "@vercel/node" }],
+  "builds": [{ "src": "./api/**/*", "use": "@vercel/node" }],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "./app.js",
-      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-      "headers": {
-        "Access-Control-Allow-Origin": "https://those-behind-the-music.vercel.app"
-      }
+      "src": "/api/(.*)",
+      "dest": "api/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE"]
     }
   ]
 }
