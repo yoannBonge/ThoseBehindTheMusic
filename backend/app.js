@@ -14,7 +14,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://those-behind-the-music.vercel.app/"],
+    origin: ["https://those-behind-the-music.vercel.app"],
     methods: ["GET", "POST", "PUT", "OPTIONS"],
     credentials: true,
   })
@@ -35,10 +35,6 @@ const connectDB = () => {
 };
 
 connectDB();
-
-app.get("/", (req, res) => {
-  res.json("Backend is up and running!");
-});
 
 app.get("/", (req, res) => {
   res.json("Backend is up and running!");

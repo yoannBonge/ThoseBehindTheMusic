@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
-import { API_ROUTES, Composer } from "../../constants";
+import { Composer } from "../../constants";
 
 type ComposersContextType = {
   musicComposers: Composer[];
@@ -24,7 +24,9 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
 
   const fetchComposersData = async () => {
     try {
-      const response = await fetch(API_ROUTES.GET_COMPOSERS);
+      const response = await fetch(
+        "https://those-behind-the-music-server.vercel.app/api/composers/get-composers"
+      );
       const data: Composer[] = await response.json();
 
       // Filtrage et tri par catégorie
