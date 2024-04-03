@@ -40,14 +40,14 @@ app.get("/", (req, res) => {
   res.json("Backend is up and running!");
 });
 
+app.get("/", (req, res) => {
+  res.json("Backend is up and running!");
+});
+
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/mail", mailRoutes);
 
 app.use(errorHandler);
-
-app.listen(3000, () => {
-  console.log("Server is running");
-});
 
 export default app;
