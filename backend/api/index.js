@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 
-import composersRoutes from "./api/routes/composersRoutes";
-import mailRoutes from "./api/routes/mailRoutes";
-import userRoutes from "./api/routes/userRoutes";
-import errorHandler from "./middleware/errorHandler";
+import errorHandler from "../middleware/errorHandler";
+import composersRoutes from "./routes/composersRoutes";
+import mailRoutes from "./routes/mailRoutes";
+import userRoutes from "./routes/userRoutes";
 
 dotenv.config();
 
@@ -41,5 +41,7 @@ app.use("/api/auth", userRoutes);
 app.use("/api/mail", mailRoutes);
 
 app.use(errorHandler);
+
+module.exports = app;
 
 export default app;

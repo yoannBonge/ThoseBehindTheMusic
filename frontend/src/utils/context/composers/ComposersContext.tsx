@@ -25,6 +25,11 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
   const fetchComposersData = async () => {
     try {
       const response = await fetch(API_ROUTES.GET_COMPOSERS);
+      if (!response.ok) {
+        throw new Error(
+          `Erreur FATALE lors de la récupération des données: ${response.statusText}`
+        );
+      }
       const data: Composer[] = await response.json();
 
       // Filtrage et tri par catégorie
