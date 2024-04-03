@@ -14,8 +14,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://those-behind-the-music.vercel.app"],
-    methods: ["GET", "POST", "PUT"],
+    origin: ["https://those-behind-the-music.vercel.app/"],
+    methods: ["GET", "POST", "PUT", "OPTIONS"],
     credentials: true,
   })
 );
