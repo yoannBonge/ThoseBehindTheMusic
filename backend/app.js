@@ -46,4 +46,8 @@ app.use("/api/mail", mailRoutes);
 
 app.use(errorHandler);
 
+app.listen(3000, () => {
+  console.log("Server is running");
+});
+
 export default app;
