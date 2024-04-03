@@ -1,4 +1,4 @@
-import { sendMail } from "../services/mail";
+import { mailConfig } from "../../../services/mailConfig";
 
 export const sendEmail = async (req, res) => {
   try {
@@ -12,7 +12,7 @@ export const sendEmail = async (req, res) => {
     }
 
     // Envoyez l'e-mail en utilisant la fonction qui se trouve dans /services/mail.ts
-    await sendMail(
+    await mailConfig(
       contributorName,
       "Nouvelle suggestion de compositeur",
       emailContent

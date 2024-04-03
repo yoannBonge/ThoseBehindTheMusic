@@ -1,9 +1,9 @@
 import express from "express";
 import auth from "../../middleware/auth";
-import * as mailCtrl from "../controllers/mail";
+import { sendEmail } from "../controllers/mail/sendEmail";
 
 const router = express.Router();
 
-router.post("/suggest-composer", auth, mailCtrl.sendEmail);
+router.post("/suggest-composer", auth, sendEmail);
 
 export default router;

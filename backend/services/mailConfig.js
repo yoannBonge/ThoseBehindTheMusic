@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 dotenv.config();
 
 // Fonction pour envoyer un e-mail
-export const sendMail = async (to, subject, html) => {
+export const mailConfig = async (to, subject, html) => {
   try {
     // Création d'un transporteur (SMTP)
     const transporter = nodemailer.createTransport({

@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 
-import composersRoutes from "./api/routes/composers";
-import mailRoutes from "./api/routes/mail";
-import userRoutes from "./api/routes/user";
+import composersRoutes from "./api/routes/composersRoutes";
+import mailRoutes from "./api/routes/mailRoutes";
+import userRoutes from "./api/routes/userRoutes";
 import errorHandler from "./middleware/errorHandler";
 
 dotenv.config();
@@ -35,10 +35,6 @@ const connectDB = () => {
 };
 
 connectDB();
-
-app.get("/", (req, res) => {
-  res.json("Backend is up and running!");
-});
 
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
