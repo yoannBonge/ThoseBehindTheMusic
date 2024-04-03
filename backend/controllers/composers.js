@@ -26,7 +26,7 @@ export const getAllComposers = (req, res) => {
   Composer.find()
     .then((composers) => {
       console.log("Compositeurs récupérés avec succès");
-      res.setHeader("Content-Type", "application/json");
+      res.contentType("application/json");
       res.status(200).json(composers);
     })
     .catch((error) => {
