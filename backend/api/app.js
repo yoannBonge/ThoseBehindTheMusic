@@ -39,6 +39,7 @@ const connectDB = () => {
 connectDB();
 
 app.get("/api/test", (req, res) => {
+  console.log("Endpoint /api/test atteint !");
   res
     .status(200)
     .json({ message: "L'application backend fonctionne correctement !" });
