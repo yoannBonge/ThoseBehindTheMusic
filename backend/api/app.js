@@ -51,6 +51,10 @@ app.use("/api/mail", mailRoutes);
 
 app.use(errorHandler);
 
+app.listen(process.env.PORT || 5173, () => {
+  console.log(`Serveur démarré sur le port ${process.env.PORT || 5173}`);
+});
+
 module.exports = app;
 
 // export default app;
