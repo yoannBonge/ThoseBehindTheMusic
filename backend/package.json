@@ -2,11 +2,11 @@
   "name": "those-behind-the-music-backend",
   "private": true,
   "version": "0.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "node app.js"
   },
   "license": "ISC",
   "dependencies": {
