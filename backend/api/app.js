@@ -38,6 +38,12 @@ const connectDB = () => {
 
 connectDB();
 
+app.get("/api/test", (req, res) => {
+  res
+    .status(200)
+    .json({ message: "L'application backend fonctionne correctement !" });
+});
+
 app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/mail", mailRoutes);
