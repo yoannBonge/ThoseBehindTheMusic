@@ -1,4 +1,4 @@
-import { mailConfig } from "../../../services/mailConfig";
+const mailConfig = require("../../../services/mailConfig");
 
 export const sendEmail = async (req, res) => {
   try {

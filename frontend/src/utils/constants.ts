@@ -34,15 +34,15 @@ export interface Contribution {
 }
 
 ////////////////////////////////////// API ROUTES
+// https://those-behind-the-music-server.vercel.app
 
-const API_URL = "https://those-behind-the-music-server.vercel.app";
+const API_URL = "http://localhost:4000";
 export const API_ROUTES = {
   SIGN_UP: `${API_URL}/api/auth/signup`,
   LOG_IN: `${API_URL}/api/auth/login`,
   LOG_OUT: `${API_URL}/api/auth/logout`,
   ADD_COMPOSER: `${API_URL}/api/composers/add-composer`,
-  GET_COMPOSERS:
-    "https://those-behind-the-music-server.vercel.app/api/composers/get-composers",
+  GET_COMPOSERS: `${API_URL}/api/composers/get-composers`,
   GET_COMPOSER_BY_ID: (id: string) => `${API_URL}/api/composers/${id}`,
   UPDATE_COMPOSER: (id: string) =>
     `${API_URL}/api/composers/update-composer/${id}`,

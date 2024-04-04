@@ -1,5 +1,5 @@
-import bcrypt from "bcrypt";
-import User from "../../models/User";
+const bcrypt = require("bcrypt");
+const User = require("../../models/User");
 
 export const signup = (req, res) => {
   User.findOne({ email: req.body.email })

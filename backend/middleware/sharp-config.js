@@ -1,4 +1,4 @@
-import sharp from "sharp";
+const sharp = require("sharp");
 
 const sharpTreatment = async () => {
   const { picture, bio } = req.files;

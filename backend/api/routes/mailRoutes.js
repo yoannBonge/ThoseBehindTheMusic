@@ -1,6 +1,6 @@
-import express from "express";
-import auth from "../../middleware/auth";
-import { sendEmail } from "../controllers/mail/sendEmail";
+const express = require("express");
+const auth = require("../../middleware/auth");
+const sendEmail = require("../controllers/mail/sendEmail");
 
 const router = express.Router();
 

@@ -1,10 +1,10 @@
-import bcrypt from "bcrypt";
-import dotenv from "dotenv";
-import jwt from "jsonwebtoken";
+const bcrypt = require("bcrypt");
+const dotenv = require("dotenv");
+const jwt = require("jwt");
 
 dotenv.config();
 
-import User from "../../models/User";
+const User = require("../../models/User");
 
 export const login = (req, res) => {
   User.findOne({ email: req.body.email })

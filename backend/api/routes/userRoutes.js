@@ -1,7 +1,7 @@
-import express from "express";
-import { login } from "../controllers/user/login";
-import { logout } from "../controllers/user/logout";
-import { signup } from "../controllers/user/signup";
+const express = require("express");
+const login = require("../controllers/user/login");
+const logout = require("../controllers/user/logout");
+const signup = require("../controllers/user/signup");
 
 const router = express.Router();
 

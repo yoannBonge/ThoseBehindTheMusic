@@ -1,4 +1,4 @@
-import Composer from "../../../models/Composer";
+const Composer = require("../../../models/Composer");
 
 export const updateComposer = async (req, res) => {
   const id = req.params.id;

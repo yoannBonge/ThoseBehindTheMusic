@@ -25,9 +25,6 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
   const fetchComposersData = async () => {
     try {
       const response = await fetch(API_ROUTES.GET_COMPOSERS);
-      if (!response.ok) {
-        throw new Error(`La requête a échoué avec le code ${response.status}`);
-      }
       const data: Composer[] = await response.json();
 
       // Filtrage et tri par catégorie
@@ -54,7 +51,6 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
         a.name.localeCompare(b.name)
       );
       setVideogameComposers(sortedVideogameData);
-      console.log("Données des compositeurs récupérées avec succès :", data);
     } catch (error) {
       console.error(
         "Une erreur s'est produite lors de la récupération des données: ",

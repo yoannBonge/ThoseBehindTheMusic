@@ -1,4 +1,4 @@
-import Composer from "../../../models/Composer";
+const Composer = require("../../../models/Composer");
 
 export const createComposer = (req, res) => {
   const composerObject = req.body;

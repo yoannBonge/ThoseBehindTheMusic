@@ -14,11 +14,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://those-behind-the-music.vercel.app"],
+    origin: ["http://localhost:4000"],
     methods: ["GET", "POST", "PUT", "OPTIONS"],
     credentials: true,
   })
 );
+
+// https://those-behind-the-music.vercel.app
 
 app.use(express.json());
 
@@ -43,3 +45,5 @@ app.use("/api/mail", mailRoutes);
 app.use(errorHandler);
 
 module.exports = app;
+
+export default app;
