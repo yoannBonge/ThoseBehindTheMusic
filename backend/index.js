@@ -3,10 +3,10 @@ const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
 
-const errorHandler = require("../middleware/errorHandler");
-const composersRoutes = require("./routes/composersRoutes");
-const mailRoutes = require("./routes/mailRoutes");
-const userRoutes = require("./routes/userRoutes");
+const errorHandler = require("./middleware/errorHandler");
+const composersRoutes = require("./api/routes/composersRoutes");
+const mailRoutes = require("./api/routes/mailRoutes");
+const userRoutes = require("./api/routes/userRoutes");
 
 dotenv.config();
 
@@ -57,4 +57,4 @@ app.listen(process.env.PORT || 5173, () => {
 
 module.exports = app;
 
-// export default app;
+export default app;
