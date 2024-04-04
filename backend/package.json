@@ -2,12 +2,12 @@
   "name": "those-behind-the-music-backend",
   "private": true,
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "index.cjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node index.js",
-    "start": "node index.js"
+    "dev": "node index.cjs",
+    "start": "node index.cjs"
   },
   "license": "ISC",
   "dependencies": {
