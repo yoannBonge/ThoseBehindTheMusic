@@ -1,10 +1,10 @@
-import dotenv from "dotenv";
-import nodemailer from "nodemailer";
+const dotenv = require("dotenv");
+const nodemailer = require("nodemailer");
 
 dotenv.config();
 
 // Fonction pour envoyer un e-mail
-export const mailConfig = async (to, subject, html) => {
+const mailConfig = async (to, subject, html) => {
   try {
     // Création d'un transporteur (SMTP)
     const transporter = nodemailer.createTransport({
@@ -32,3 +32,5 @@ export const mailConfig = async (to, subject, html) => {
     throw new Error("Une erreur s'est produite lors de l'envoi de l'e-mail.");
   }
 };
+
+module.exports = mailConfig;

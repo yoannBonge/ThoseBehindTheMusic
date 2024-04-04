@@ -6,4 +6,4 @@ const errorHandler = () => {
   });
 };
 
-export default errorHandler;
+module.exports = errorHandler;

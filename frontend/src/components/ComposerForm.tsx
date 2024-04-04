@@ -204,7 +204,9 @@ function ComposerForm({
       formData.append("related", data.related[1]);
       formData.append("related", data.related[2]);
       data.selectedWorks.forEach((selectedWork) => {
-        formData.append("selectedWorks", selectedWork);
+        if (selectedWork !== "") {
+          formData.append("selectedWorks", selectedWork);
+        }
       });
 
       const response = await fetch(apiUrl, {
@@ -235,7 +237,7 @@ function ComposerForm({
         onFormSubmitSuccess();
 
         if ($initialValues) {
-          const redirectUrl = `/${$initialValues.category}`;
+          const redirectUrl = `/composers/${$initialValues.category}`;
           navigate(redirectUrl);
         }
       }, 2000);
@@ -354,7 +356,7 @@ function ComposerForm({
           {...register("birthPlace", {
             required: "Ce champ est requis",
             pattern: {
-              value: /^[a-zA-Z ,.'-]{3,}$/i,
+              value: /^[a-zA-ZÀ-ÖØ-öø-ÿ ,.'-]{3,}$/i,
               message: "Le lieu de naissance doit contenir au moins 3 lettres",
             },
           })}

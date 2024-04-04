@@ -7,7 +7,7 @@ const multerUpload = multer({
   limits: {
     fileSize: 5 * 1024 * 1024,
   },
-  fileFilter: () => {
+  fileFilter: (req, file, cb) => {
     if (file.fieldname === "picture" || file.fieldname === "bio") {
       cb(null, true);
     } else {
@@ -21,4 +21,4 @@ const multerUpload = multer({
   { name: "bio", maxCount: 1 },
 ]);
 
-export default multerUpload;
+module.exports = multerUpload;

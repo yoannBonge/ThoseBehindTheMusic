@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const http = require("http");
-const app = require("app");
+const app = require("./api/app");
 
 dotenv.config();
 

@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
-const User = require("../../models/User");
+const User = require("../../../models/User");
 
-export const signup = (req, res) => {
+const signup = (req, res) => {
   User.findOne({ email: req.body.email })
     .then((existingUser) => {
       if (existingUser) {
@@ -27,3 +27,5 @@ export const signup = (req, res) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+
+module.exports = signup;

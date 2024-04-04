@@ -1,6 +1,6 @@
 const Composer = require("../../../models/Composer");
 
-export const createComposer = (req, res) => {
+const createComposer = (req, res) => {
   const composerObject = req.body;
 
   // On crée donc un objet "composer" en récupérant toutes les infos du corps de la requête et en ajoutant
@@ -21,3 +21,5 @@ export const createComposer = (req, res) => {
       res.status(400).json({ error });
     });
 };
+
+module.exports = createComposer;

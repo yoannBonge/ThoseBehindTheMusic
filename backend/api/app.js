@@ -14,15 +14,15 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:4000"],
+    origin: ["https://those-behind-the-music.vercel.app"],
     methods: ["GET", "POST", "PUT", "OPTIONS"],
     credentials: true,
   })
 );
 
-// https://those-behind-the-music.vercel.app
+// http://localhost:5173
 
-app.use(express.json());
+app.use(express.json({ limit: "5mb" }));
 
 const connectDB = () => {
   mongoose
@@ -46,4 +46,4 @@ app.use(errorHandler);
 
 module.exports = app;
 
-export default app;
+// export default app;

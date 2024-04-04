@@ -1,9 +1,9 @@
 const dotenv = require("dotenv");
-const jwt = require("jwt");
+const jwt = require("jsonwebtoken");
 
 dotenv.config();
 
-export const logout = (req, res) => {
+const logout = (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
@@ -20,3 +20,5 @@ export const logout = (req, res) => {
     });
   }
 };
+
+module.exports = logout;

@@ -1,6 +1,6 @@
 const Composer = require("../../../models/Composer");
 
-export const getAllComposers = (req, res) => {
+const getAllComposers = (req, res) => {
   Composer.find()
     .then((composers) => {
       console.log("Compositeurs récupérés avec succès");
@@ -11,3 +11,5 @@ export const getAllComposers = (req, res) => {
       res.status(400).json({ error });
     });
 };
+
+module.exports = getAllComposers;

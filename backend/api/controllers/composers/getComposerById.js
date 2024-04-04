@@ -1,6 +1,6 @@
 const Composer = require("../../../models/Composer");
 
-export const getComposerById = async (req, res) => {
+const getComposerById = async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -17,3 +17,5 @@ export const getComposerById = async (req, res) => {
     });
   }
 };
+
+module.exports = getComposerById;

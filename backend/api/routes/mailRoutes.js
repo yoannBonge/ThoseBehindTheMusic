@@ -6,4 +6,4 @@ const router = express.Router();
 
 router.post("/suggest-composer", auth, sendEmail);
 
-export default router;
+module.exports = router;

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = require("mongoose");
+const { Schema } = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const composerSchema = new Schema({
@@ -20,7 +20,6 @@ const composerSchema = new Schema({
 
 composerSchema.plugin(uniqueValidator);
 
-const Composer =
-  mongoose.model < ComposerDocument > ("Composer", composerSchema);
+const Composer = mongoose.model("Composer", composerSchema);
 
-export default Composer;
+module.exports = Composer;

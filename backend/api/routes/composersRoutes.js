@@ -26,4 +26,4 @@ router.put(
   updateComposer
 );
 
-export default router;
+module.exports = router;

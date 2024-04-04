@@ -1,6 +1,6 @@
 const mailConfig = require("../../../services/mailConfig");
 
-export const sendEmail = async (req, res) => {
+const sendEmail = async (req, res) => {
   try {
     const { contributorName, emailContent } = req.body;
 
@@ -26,3 +26,5 @@ export const sendEmail = async (req, res) => {
     });
   }
 };
+
+module.exports = sendEmail;

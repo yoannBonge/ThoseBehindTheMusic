@@ -1,12 +1,12 @@
 const bcrypt = require("bcrypt");
 const dotenv = require("dotenv");
-const jwt = require("jwt");
+const jwt = require("jsonwebtoken");
 
 dotenv.config();
 
-const User = require("../../models/User");
+const User = require("../../../models/User");
 
-export const login = (req, res) => {
+const login = (req, res) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
       if (!user) {
@@ -51,3 +51,5 @@ export const login = (req, res) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+
+module.exports = login;
