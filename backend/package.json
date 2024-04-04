@@ -3,10 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "main": "server.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "start": "nodemon app.js"
   },
   "license": "ISC",
   "dependencies": {
