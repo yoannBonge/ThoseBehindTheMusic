@@ -49,11 +49,11 @@ app.use("/api/composers", composersRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/mail", mailRoutes);
 
-app.use(errorHandler);
-
 app.listen(process.env.PORT || 5173, () => {
   console.log(`Serveur démarré sur le port ${process.env.PORT || 5173}`);
 });
+
+app.use(errorHandler);
 
 module.exports = app;
 
