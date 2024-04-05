@@ -42,12 +42,10 @@ app.use("/composers", composersRoutes);
 app.use("/auth", userRoutes);
 app.use("/mail", mailRoutes);
 
-app.listen(process.env.PORT || 5173, () => {
-  console.log(`Serveur démarré sur le port ${process.env.PORT || 5173}`);
-});
+// app.listen(process.env.PORT || 5173, () => {
+//   console.log(`Serveur démarré sur le port ${process.env.PORT || 5173}`);
+// });
 
 app.use(errorHandler);
 
 module.exports = app;
-
-// export default app;
