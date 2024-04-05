@@ -39,15 +39,14 @@ export interface Contribution {
 
 const API_URL = "https://those-behind-the-music-server.vercel.app";
 export const API_ROUTES = {
-  SIGN_UP: `${API_URL}/api/auth/signup`,
-  LOG_IN: `${API_URL}/api/auth/login`,
-  LOG_OUT: `${API_URL}/api/auth/logout`,
-  ADD_COMPOSER: `${API_URL}/api/composers/add-composer`,
-  GET_COMPOSERS: `${API_URL}/api/composers/get-composers`,
-  GET_COMPOSER_BY_ID: (id: string) => `${API_URL}/api/composers/${id}`,
-  UPDATE_COMPOSER: (id: string) =>
-    `${API_URL}/api/composers/update-composer/${id}`,
-  SUGGEST_COMPOSER: `${API_URL}/api/mail/suggest-composer`,
+  SIGN_UP: `${API_URL}/auth/signup`,
+  LOG_IN: `${API_URL}/auth/login`,
+  LOG_OUT: `${API_URL}/auth/logout`,
+  ADD_COMPOSER: `${API_URL}/composers/add-composer`,
+  GET_COMPOSERS: `${API_URL}/composers/get-composers`,
+  GET_COMPOSER_BY_ID: (id: string) => `${API_URL}/composers/${id}`,
+  UPDATE_COMPOSER: (id: string) => `${API_URL}/composers/update-composer/${id}`,
+  SUGGEST_COMPOSER: `${API_URL}/mail/suggest-composer`,
 };
 
 ////////////////////////////////////// BREAKPOINTS

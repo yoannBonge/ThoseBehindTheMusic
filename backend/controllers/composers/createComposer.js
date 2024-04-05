@@ -1,4 +1,4 @@
-const Composer = require("../../../models/Composer");
+const Composer = require("../../models/Composer");
 
 const createComposer = (req, res) => {
   const composerObject = req.body;

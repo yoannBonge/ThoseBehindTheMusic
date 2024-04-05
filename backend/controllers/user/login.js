@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 
 dotenv.config();
 
-const User = require("../../../models/User");
+const User = require("../../models/User");
 
 const login = (req, res) => {
   User.findOne({ email: req.body.email })

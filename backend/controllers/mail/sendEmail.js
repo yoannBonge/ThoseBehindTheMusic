@@ -1,4 +1,4 @@
-const mailConfig = require("../../../services/mailConfig");
+const mailConfig = require("../../services/mailConfig");
 
 const sendEmail = async (req, res) => {
   try {

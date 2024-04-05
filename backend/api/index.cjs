@@ -3,10 +3,10 @@ const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
 
-const errorHandler = require("./middleware/errorHandler");
-const composersRoutes = require("./api/routes/composersRoutes");
-const mailRoutes = require("./api/routes/mailRoutes");
-const userRoutes = require("./api/routes/userRoutes");
+const errorHandler = require("../middleware/errorHandler");
+const composersRoutes = require("../routes/composers");
+const mailRoutes = require("../routes/mail");
+const userRoutes = require("../routes/user");
 
 dotenv.config();
 
@@ -45,9 +45,9 @@ app.get("/api/test", (req, res) => {
     .json({ message: "L'application backend fonctionne correctement !" });
 });
 
-app.use("/api/composers", composersRoutes);
-app.use("/api/auth", userRoutes);
-app.use("/api/mail", mailRoutes);
+app.use("/composers", composersRoutes);
+app.use("/auth", userRoutes);
+app.use("/mail", mailRoutes);
 
 app.listen(process.env.PORT || 5173, () => {
   console.log(`Serveur démarré sur le port ${process.env.PORT || 5173}`);
@@ -57,4 +57,4 @@ app.use(errorHandler);
 
 module.exports = app;
 
-export default app;
+// export default app;

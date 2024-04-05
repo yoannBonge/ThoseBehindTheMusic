@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const User = require("../../../models/User");
+const User = require("../../models/User");
 
 const signup = (req, res) => {
   User.findOne({ email: req.body.email })
