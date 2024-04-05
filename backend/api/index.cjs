@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
 
-const errorHandler = require("../middleware/errorHandler");
+// const errorHandler = require("../middleware/errorHandler");
 const composersRoutes = require("../routes/composers");
 const mailRoutes = require("../routes/mail");
 const userRoutes = require("../routes/user");
@@ -53,8 +53,8 @@ app.listen(process.env.PORT || 5173, () => {
   console.log(`Serveur démarré sur le port ${process.env.PORT || 5173}`);
 });
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
-module.exports = app;
+// module.exports = app;
 
 // export default app;
