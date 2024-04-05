@@ -45,7 +45,7 @@ const ComposerNameContainer = styled.div`
 const ComposerName = styled.h2`
   color: white;
   font-family: "Bebas Neue";
-  font-size: 6.4vw;
+  font-size: 6.3vw;
   margin: 0;
   padding: 0;
   text-align: center;
