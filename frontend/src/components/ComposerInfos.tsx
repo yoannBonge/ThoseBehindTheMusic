@@ -14,7 +14,7 @@ import BioAndVideos from "./BioAndVideos";
 
 const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   font-family: "Afacad";
-  font-size: 0.9vw;
+  font-size: 0.8vw;
   background-color: ${(props) => props.$categoryColor};
   color: white;
   text-decoration: none;

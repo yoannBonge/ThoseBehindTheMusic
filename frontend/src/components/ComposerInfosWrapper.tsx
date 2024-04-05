@@ -45,16 +45,15 @@ const ComposerNameContainer = styled.div`
 const ComposerName = styled.h2`
   color: white;
   font-family: "Bebas Neue";
-  font-size: 6.3vw;
+  font-size: 6.1vw;
   margin: 0;
   padding: 0;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  /* @media ${device.lg} {
-    font-size: 7.1vw;
-    line-height: 0.9em;
-  } */
+  @media ${device.xmd} {
+    font-size: 6.4vw;
+  }
   @supports (-moz-appearance: none) {
     font-size: 5.5vw;
   }
