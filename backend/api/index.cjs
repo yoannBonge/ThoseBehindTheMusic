@@ -55,6 +55,6 @@ app.listen(process.env.PORT || 5173, () => {
 
 app.use(errorHandler);
 
-// module.exports = app;
+module.exports = app;
 
 // export default app;
