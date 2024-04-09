@@ -38,7 +38,7 @@ const LogoAndCategories = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 4vh;
+  height: 6vh;
   display: flex;
   margin: 0 0.5vw;
 `;
@@ -106,7 +106,7 @@ function Header() {
     <StyledHeader>
       <LogoAndCategories>
         <Logo
-          src='/tbtm-logo.webp'
+          src='/favicon.png'
           alt="logo du site représentant la fusion d'une clef de sol et d'un stylo plume"
         />
         <Categories>
