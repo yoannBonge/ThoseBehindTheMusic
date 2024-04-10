@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   background-color: #000000;
-  width: 100%;
+  width: 100vw;
   height: 10vh;
   align-items: center;
   justify-content: space-between;
@@ -24,6 +24,7 @@ const StyledHeader = styled.header`
     text-decoration: none;
     font-family: "Bakbak One";
     font-size: 1.8em;
+    text-align: center;
     @media ${device.lg} {
       font-size: 2.5vw;
     }
@@ -46,6 +47,7 @@ const Logo = styled.img`
 
 const Categories = styled.div`
   display: flex;
+  align-items: center;
   margin-left: 3em;
   gap: 3vw;
   @media ${device.md} {
@@ -65,16 +67,17 @@ const Login = styled.span<{ onClick: () => void }>`
   font-size: 1.8em;
   margin-right: 1em;
   padding: 0.5em 0;
+  text-align: center;
   cursor: pointer;
   @media ${device.lg} {
     font-size: 2.5vw;
     margin-right: 1em;
   }
-  @media ${device.xmd} {
-    margin-right: 2em;
-  }
   @media ${device.md} {
     font-size: 2.6vw;
+  }
+  @media ${device.sm} {
+    margin-right: 0.5em;
   }
 `;
 
