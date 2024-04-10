@@ -23,7 +23,8 @@ const VinylPicture = styled.img`
   height: 29.1vw;
   cursor: pointer;
   @media ${device.sm} {
-    height: 60vw;
+    max-height: 37vw;
+    height: auto;
   }
 `;
 

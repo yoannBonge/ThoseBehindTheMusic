@@ -9,11 +9,9 @@ const PageWrapper = styled.div`
   width: 100vw;
   height: 90vh;
   justify-content: space-between;
-  /* overflow: hidden; */
   @media ${device.sm} {
     flex-direction: column-reverse;
     justify-content: flex-end;
-    /* gap: 1em; */
   }
 `;
 
@@ -32,7 +30,8 @@ const WelcomeDiv = styled.main`
   }
   @media ${device.sm} {
     width: 100%;
-    margin-bottom: 1em;
+    /* height: auto; */
+    margin-bottom: 0.5em;
   }
 `;
 
@@ -50,7 +49,7 @@ const Title = styled.h1`
   }
   @media ${device.sm} {
     font-size: 5vw;
-    margin-top: 0.7em;
+    margin-top: 0.2em;
   }
 `;
 
@@ -67,11 +66,12 @@ const About = styled.p`
     font-size: 1.2em;
   }
   @media ${device.sm} {
+    /* font-size: 3.2vw; */
     padding: 0 1em;
     text-align: center;
   }
   @media ${device.xs} {
-    font-size: 4.8vw;
+    font-size: 4.6vw;
   }
 `;
 

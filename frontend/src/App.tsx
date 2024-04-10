@@ -8,7 +8,6 @@ import Composers from "./pages/Composers";
 import Home from "./pages/Landing";
 import ModifyComposer from "./pages/ModifyComposer";
 import SuggestComposer from "./pages/SuggestComposer";
-import { device } from "./utils/constants";
 import { AuthProvider } from "./utils/context/auth/AuthContext";
 import { ComposersProvider } from "./utils/context/composers/ComposersContext";
 
@@ -23,9 +22,6 @@ const GlobalStyle = createGlobalStyle`
         margin: 10vh 0 0 0;
         background-color: #D1DDCC;
         box-sizing: border-box;
-        /* @media ${device.md} {
-      overflow: inherit;
-    } */
     } `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
