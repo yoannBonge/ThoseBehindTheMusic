@@ -17,6 +17,9 @@ const VinylContainer = styled.div`
     animation: inherit;
     transform-origin: initial;
   }
+  @media ${device.xs} {
+    margin: 0;
+  }
 `;
 
 const VinylPicture = styled.img`
