@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ComposerInfosWrapper from "../components/ComposerInfosWrapper";
 import OverlayCinema from "../components/OverlayCinema";
@@ -65,6 +65,10 @@ function Composers({ category }: CategoriesProps) {
   const videogameComposers: Composer[] = useComposers().videogameComposers;
 
   //////////////////////////////////////////////////////BEHAVIOR
+  useEffect(() => {
+    setCurrentComposerIndex(0);
+  }, [category]);
+
   let currentComposerInfos: Composer | undefined;
   let overlayComponent;
 

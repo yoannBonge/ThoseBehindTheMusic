@@ -28,14 +28,6 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
       const data: Composer[] = await response.json();
 
       // Filtrage et tri par catégorie
-      const cinemaData: Composer[] = data.filter(
-        (composer) => composer.category === "cinema"
-      );
-      const sortedCinemaData: Composer[] = cinemaData.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-      setCinemaComposers(sortedCinemaData);
-
       const musicData: Composer[] = data.filter(
         (composer) => composer.category === "music"
       );
@@ -43,6 +35,14 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
         a.name.localeCompare(b.name)
       );
       setMusicComposers(sortedMusicData);
+
+      const cinemaData: Composer[] = data.filter(
+        (composer) => composer.category === "cinema"
+      );
+      const sortedCinemaData: Composer[] = cinemaData.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setCinemaComposers(sortedCinemaData);
 
       const videogameData: Composer[] = data.filter(
         (composer) => composer.category === "videogame"
