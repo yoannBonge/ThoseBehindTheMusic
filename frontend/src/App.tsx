@@ -17,7 +17,7 @@ ReactModal.setAppElement("#root");
 const GlobalStyle = createGlobalStyle`
     body {
         width: 100vw;
-        height: 90vh;
+        height: 100vh;
         overflow: hidden;
         margin: 10vh 0 0 0;
         background-color: #D1DDCC;

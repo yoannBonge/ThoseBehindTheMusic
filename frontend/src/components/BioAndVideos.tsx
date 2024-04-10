@@ -19,7 +19,6 @@ const MainBioAndVideosWrapper = styled.section`
   margin-bottom: 0.7em;
   flex-direction: column;
   justify-content: flex-end;
-  /* height: 13.4em; */
   margin-left: 1.3vw;
   overflow: hidden;
 `;
@@ -41,8 +40,7 @@ const BioAndVideosWrapper = styled.div`
   /* background-color: red; */
   display: flex;
   width: 51.3%;
-  /* height: 78%; */
-  /* margin-top: 1vw; */
+  margin-top: 1vw;
   overflow: hidden;
 `;
 

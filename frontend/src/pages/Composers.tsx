@@ -12,8 +12,8 @@ import { useComposers } from "../utils/context/composers/useComposers";
 const PageWrapper = styled.div`
   display: flex;
   width: 100vw;
-  height: 90vh;
-  background-color: black;
+  height: 100vh;
+  background-color: #000000;
   overflow: hidden;
 `;
 
@@ -34,7 +34,7 @@ const ImageInfosSeparationLine = styled.div<{
   right: 44.5%;
   display: flex;
   width: 0.6vw;
-  height: 90vh;
+  height: 100vh;
   background-color: ${(props) => props.$categoryColor};
   box-shadow: 0px 0px 4.9px ${(props) => props.$categoryColor},
     0px 0px 39px ${(props) => props.$categoryColor};

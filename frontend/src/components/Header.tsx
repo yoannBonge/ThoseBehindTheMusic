@@ -11,8 +11,9 @@ const StyledHeader = styled.header`
   display: flex;
   position: fixed;
   top: 0;
+  left: 0;
   background-color: #000000;
-  width: 100vw;
+  width: 100%;
   height: 10vh;
   align-items: center;
   justify-content: space-between;

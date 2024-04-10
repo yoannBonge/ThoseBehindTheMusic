@@ -63,7 +63,7 @@ const size: Size = {
   xs: "430px",
   sm: "600px",
   md: "800px",
-  xmd: "1050px",
+  xmd: "1150px",
   lg: "1200px",
   xl: "1478px",
   xxl: "1479px",
@@ -248,7 +248,7 @@ export const isDuplicateStringValue = (
 export const OverlayContainer = styled.section<{
   $category: string;
 }>`
-  background-color: black;
+  /* background-color: red; */
   position: absolute;
   top: 0;
   left: 0;
@@ -256,12 +256,15 @@ export const OverlayContainer = styled.section<{
   height: 100%;
   z-index: 1;
   @media ${device.xxl} {
-    width: 54.9%;
+    /* width: 54.9%; */
+    width: 99em;
   }
   @media ${device.xl} {
-    width: 50.7em;
+    /* width: 50.7em; */
+    width: 57em;
   }
   @media ${device.xmd} {
+    position: relative;
     width: 50vw;
     background-position: center;
     object-fit: cover;

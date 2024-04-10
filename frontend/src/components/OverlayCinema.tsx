@@ -25,12 +25,12 @@ const pictureFadeInOut = keyframes`
 `;
 
 const ComposerPictureContainer = styled.div`
-  width: 46%;
-  height: 27.2%;
+  width: 47%;
+  height: 28.3%;
   position: absolute;
-  top: 37.4%;
-  left: 11%;
-  perspective: 700px;
+  top: 36.8%;
+  left: 10.7%;
+  perspective: 1000px;
   transform: rotate(2deg);
   @media ${device.xmd} {
     width: 20em;

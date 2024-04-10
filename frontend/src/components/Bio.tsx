@@ -26,9 +26,7 @@ const BioContent = styled.p`
   overflow-wrap: break-word;
   word-wrap: break-word;
   white-space: pre-wrap;
-  /* @media ${device.xl} {
-    font-size: 1.7vw;
-  } */
+
   @media ${device.lg} {
     font-size: 2vw;
   }

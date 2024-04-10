@@ -57,7 +57,7 @@ const About = styled.p`
   font-family: "Afacad";
   font-weight: 500;
   color: #39464a;
-  font-size: 1.7em;
+  font-size: 1.6em;
   padding: 1em;
   @media ${device.lg} {
     font-size: 1.4em;

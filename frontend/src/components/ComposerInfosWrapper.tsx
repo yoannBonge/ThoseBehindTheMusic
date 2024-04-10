@@ -12,7 +12,7 @@ export const ComposerInfosContainer = styled.section<{
   right: 0;
   display: flex;
   width: 44.5vw;
-  height: 90vh;
+  height: 100vh;
   background-image: url("/acoustic-panel-background.webp");
   background-size: cover;
   z-index: 1;
@@ -26,10 +26,13 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  height: 100%;
+  height: 90%;
   opacity: ${({ $isComposerContentFading }) =>
     $isComposerContentFading ? 1 : 0};
   transition: opacity 0.3s ease-in-out;
+  @media ${device.xmd} {
+    height: 95%;
+  }
 `;
 
 const ComposerNameContainer = styled.div`
