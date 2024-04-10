@@ -30,7 +30,7 @@ const WelcomeDiv = styled.main`
   }
   @media ${device.sm} {
     width: 100%;
-    /* height: auto; */
+    height: auto;
     margin-bottom: 0.5em;
   }
 `;
@@ -66,12 +66,12 @@ const About = styled.p`
     font-size: 1.2em;
   }
   @media ${device.sm} {
-    /* font-size: 3.2vw; */
+    font-size: 1.2em;
     padding: 0 1em;
     text-align: center;
   }
   @media ${device.xs} {
-    font-size: 4.6vw;
+    font-size: 4.7vw;
   }
 `;
 
