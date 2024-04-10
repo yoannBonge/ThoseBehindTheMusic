@@ -29,26 +29,30 @@ const ModifyButton = styled(Link)<{ $categoryColor: string }>`
 
 const IdentityInfos = styled.section`
   /* background-color: aqua; */
-  height: 36%;
+  width: 22.2%;
+  flex: none;
   margin-left: 1.3vw;
-  line-height: 2em;
+  line-height: 2vw;
   @media ${device.lg} {
-    line-height: 1.8em;
+    line-height: 3vw;
   }
   @media ${device.xmd} {
-    height: 40%;
+    width: 26%;
+  }
+  @media ${device.xmd} {
+    line-height: 4vw;
   }
 `;
 
 const FaContainer = styled.div`
   display: flex;
   position: absolute;
-  width: 45.1vw;
+  width: 27.5%;
   top: 4vw;
   left: -0.3vw;
   justify-content: space-between;
   @media ${device.xmd} {
-    width: 46.6vw;
+    width: 27.7%;
   }
 `;
 
@@ -99,24 +103,50 @@ const FaForward = styled(FontAwesomeIcon)<{
 `;
 
 const ComposerInfosElement = styled.li`
+  /* background-color: aliceblue; */
   display: flex;
   list-style-type: none;
-  max-width: 42vw;
+  width: 100%;
   color: white;
   font-family: "Afacad";
   font-size: 1.2vw;
+  @media ${device.lg} {
+    font-size: 1.6vw;
+  }
+  @media ${device.xmd} {
+    font-size: 1.8vw;
+  }
+  @media ${device.md} {
+    font-size: 2vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.2vw;
+  }
+  @media ${device.xs} {
+    font-size: 2.4vw;
+  }
 `;
 
 const PropertyName = styled.span<{ $categoryColor: string }>`
   display: inline;
+  white-space: nowrap;
   color: ${(props) => props.$categoryColor};
   font-family: "Afacad";
   font-size: 1.6vw;
   @media ${device.lg} {
-    font-size: 1.8vw;
+    font-size: 2vw;
   }
   @media ${device.xmd} {
-    font-size: 1.9vw;
+    font-size: 2.2vw;
+  }
+  @media ${device.md} {
+    font-size: 2.4vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.6vw;
+  }
+  @media ${device.xs} {
+    font-size: 2.8vw;
   }
 `;
 
@@ -127,11 +157,20 @@ const PropertyContent = styled.span`
   font-size: 1.6vw;
   margin-left: 0.5vw;
   @media ${device.lg} {
-    font-size: 1.8vw;
+    font-size: 2vw;
     max-width: 32vw;
   }
   @media ${device.xmd} {
-    font-size: 1.9vw;
+    font-size: 2.2vw;
+  }
+  @media ${device.md} {
+    font-size: 2.4vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.6vw;
+  }
+  @media ${device.xs} {
+    font-size: 2.8vw;
   }
 `;
 
@@ -182,14 +221,14 @@ const PhotoSource = styled.span`
 `;
 
 const SeparationLine = styled.hr<{ $categoryColor: string }>`
-  width: 56%;
+  width: 27.17%;
   height: 2px;
   border-radius: 25px;
   border: none;
   margin: 0.5em 0 0.5em 0;
   background-color: ${(props) => props.$categoryColor};
   @media ${device.xmd} {
-    width: 65%;
+    width: 27.45%;
   }
 `;
 

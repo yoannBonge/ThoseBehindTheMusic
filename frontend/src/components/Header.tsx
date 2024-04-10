@@ -10,7 +10,7 @@ import LogoutModal from "./LogoutModal";
 const StyledHeader = styled.header`
   display: flex;
   position: fixed;
-  top: 0%;
+  top: 0;
   background-color: #000000;
   width: 100vw;
   height: 10vh;

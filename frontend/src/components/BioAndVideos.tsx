@@ -15,19 +15,19 @@ import CarouselVideosContainer from "./CarouselVideosContainer";
 const MainBioAndVideosWrapper = styled.section`
   /* background-color: red; */
   display: flex;
+  flex-grow: 1;
+  margin-bottom: 0.7em;
   flex-direction: column;
   justify-content: flex-end;
-  height: 35%;
+  /* height: 13.4em; */
   margin-left: 1.3vw;
-  overflow-x: hidden;
-  @media ${device.xmd} {
-    height: 35%;
-  }
+  overflow: hidden;
 `;
 
 const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
   display: flex;
   align-items: center;
+  width: 45%;
   font-family: "Afacad";
   font-size: 1.5vw;
   font-weight: 400;
@@ -38,10 +38,12 @@ const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
 `;
 
 const BioAndVideosWrapper = styled.div`
+  /* background-color: red; */
   display: flex;
-  width: 100%;
-  height: 78%;
-  margin-top: 1vw;
+  width: 51.3%;
+  /* height: 78%; */
+  /* margin-top: 1vw; */
+  overflow: hidden;
 `;
 
 const BioAndVideosContent = styled.div<{ $shifted: boolean }>`
@@ -65,7 +67,7 @@ const VideosWrapper = styled.div`
   transform: translateX(100.3%);
   @media ${device.xmd} {
     transform: translateX(100.5%);
-    width: 43.1vw;
+    width: 45.8vw;
   }
 `;
 

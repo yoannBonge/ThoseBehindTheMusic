@@ -9,9 +9,6 @@ import { useComposers } from "../utils/context/composers/useComposers";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
-// Some styled-components appearing in the render are shared and
-// come from "/utils/constants".
-
 const PageWrapper = styled.div`
   display: flex;
   width: 100vw;
@@ -24,9 +21,10 @@ const ComposerPresentation = styled.main`
   display: flex;
   width: 100%;
   height: 100%;
-  @media ${device.xs} {
+  overflow: hidden;
+  /* @media ${device.xs} {
     flex-direction: column-reverse;
-  }
+  } */
 `;
 
 const ImageInfosSeparationLine = styled.div<{
@@ -36,11 +34,12 @@ const ImageInfosSeparationLine = styled.div<{
   right: 44.5%;
   display: flex;
   width: 0.6vw;
-  height: 90%;
+  height: 90vh;
   background-color: ${(props) => props.$categoryColor};
   box-shadow: 0px 0px 4.9px ${(props) => props.$categoryColor},
     0px 0px 39px ${(props) => props.$categoryColor};
   z-index: 1;
+  overflow: hidden;
   @media ${device.xmd} {
     right: 50%;
     z-index: 2;

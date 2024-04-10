@@ -23,9 +23,9 @@ const GlobalStyle = createGlobalStyle`
         margin: 10vh 0 0 0;
         background-color: #D1DDCC;
         box-sizing: border-box;
-        @media ${device.md} {
+        /* @media ${device.md} {
       overflow: inherit;
-    }
+    } */
     } `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

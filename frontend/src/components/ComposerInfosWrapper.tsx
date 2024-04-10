@@ -34,11 +34,11 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
 
 const ComposerNameContainer = styled.div`
   /* background-color: red; */
-  width: 40vw;
+  width: 24.4%;
   height: 8.6vw;
   margin: 0.1em 0 0 2.2vw;
   @media ${device.xmd} {
-    width: 41.6vw;
+    width: 25.1%;
   }
 `;
 
