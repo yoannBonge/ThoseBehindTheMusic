@@ -499,8 +499,7 @@ function ComposerForm({
           type='file'
           accept='.txt'
           {...register("bio", {
-            required:
-              "Vous devez charger une présentation du compositeur au format .txt",
+            required: false,
           })}
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) {
