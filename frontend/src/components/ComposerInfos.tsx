@@ -33,11 +33,12 @@ const IdentityInfos = styled.section`
   flex: none;
   margin-left: 1.3vw;
   line-height: 2vw;
-  @media ${device.lg} {
+  /* @media ${device.lg} {
     line-height: 3vw;
-  }
+  } */
   @media ${device.xmd} {
     width: 26%;
+    line-height: 3vw;
   }
   @media ${device.xmd} {
     line-height: 4vw;
@@ -110,9 +111,9 @@ const ComposerInfosElement = styled.li`
   color: white;
   font-family: "Afacad";
   font-size: 1.2vw;
-  @media ${device.lg} {
+  /* @media ${device.lg} {
     font-size: 1.6vw;
-  }
+  } */
   @media ${device.xmd} {
     font-size: 1.8vw;
   }
@@ -133,9 +134,9 @@ const PropertyName = styled.span<{ $categoryColor: string }>`
   color: ${(props) => props.$categoryColor};
   font-family: "Afacad";
   font-size: 1.6vw;
-  @media ${device.lg} {
+  /* @media ${device.lg} {
     font-size: 2vw;
-  }
+  } */
   @media ${device.xmd} {
     font-size: 2.2vw;
   }
@@ -156,12 +157,13 @@ const PropertyContent = styled.span`
   font-family: "Afacad";
   font-size: 1.6vw;
   margin-left: 0.5vw;
-  @media ${device.lg} {
+  /* @media ${device.lg} {
     font-size: 2vw;
     max-width: 32vw;
-  }
+  } */
   @media ${device.xmd} {
     font-size: 2.2vw;
+    max-width: 32vw;
   }
   @media ${device.md} {
     font-size: 2.4vw;
@@ -195,9 +197,9 @@ const NotableWorksElement = styled.li`
   color: white;
   font-family: "Afacad";
   font-size: 1.6vw;
-  @media ${device.lg} {
+  /* @media ${device.lg} {
     font-size: 1.8vw;
-  }
+  } */
   @media ${device.xmd} {
     font-size: 1.9vw;
   }
