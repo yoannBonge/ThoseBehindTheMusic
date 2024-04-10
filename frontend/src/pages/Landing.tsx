@@ -71,7 +71,7 @@ const About = styled.p`
     text-align: center;
   }
   @media ${device.xs} {
-    font-size: 4.7vw;
+    font-size: 4.65vw;
   }
 `;
 

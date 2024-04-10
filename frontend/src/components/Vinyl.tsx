@@ -26,9 +26,6 @@ const VinylPicture = styled.img`
     max-height: 47vw;
     height: auto;
   }
-  @media ${device.xs} {
-    height: auto;
-  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
