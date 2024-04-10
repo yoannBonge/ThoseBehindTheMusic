@@ -57,11 +57,12 @@ const StyledModal = styled(ReactModalAdapter)`
     display: flex;
     justify-content: start;
     position: fixed;
-    top: 55%;
-    left: 50%;
+    top: 55vh;
+    left: 50vw;
     transform: translate(-50%, -50%);
     width: 40vw;
     min-height: 35vh;
+    max-height: 87vh;
     padding-bottom: 1em;
     border: 1px solid white;
     box-shadow: 0px 0px 10px #ffffff;
@@ -70,6 +71,9 @@ const StyledModal = styled(ReactModalAdapter)`
     z-index: 4;
     @media ${device.lg} {
       width: 50vw;
+    }
+    @media ${device.sm} {
+      width: 60vw;
     }
   }
   h2 {
@@ -81,8 +85,11 @@ const StyledModal = styled(ReactModalAdapter)`
     @media ${device.lg} {
       font-size: 4vw;
     }
+    @media ${device.md} {
+      font-size: 5vw;
+    }
     @media ${device.sm} {
-      font-size: 4.2vw;
+      font-size: 7vw;
     }
   }
   p {
@@ -99,7 +106,7 @@ const StyledModal = styled(ReactModalAdapter)`
       font-size: 2.5vw;
     }
     @media ${device.sm} {
-      font-size: 3vw;
+      font-size: 3.5vw;
     }
   }
 `;
@@ -111,6 +118,7 @@ const ContentWrapper = styled.div`
 `;
 
 const LoginWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
+  /* background-color: aqua; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,9 +131,14 @@ const LoginWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
     transform: ${({ $isSwitchedToSignup }) =>
       $isSwitchedToSignup ? "translateX(-100%)" : "translateX(25.3%)"};
   }
+  @media ${device.sm} {
+    transform: ${({ $isSwitchedToSignup }) =>
+      $isSwitchedToSignup ? "translateX(-100%)" : "translateX(40.5%)"};
+  }
 `;
 
 const SignupWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
+  /* background-color: green; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -137,6 +150,10 @@ const SignupWrapper = styled.div<{ $isSwitchedToSignup: boolean }>`
   @media ${device.lg} {
     transform: ${({ $isSwitchedToSignup }) =>
       $isSwitchedToSignup ? "translateX(60%)" : "translateX(-75%)"};
+  }
+  @media ${device.sm} {
+    transform: ${({ $isSwitchedToSignup }) =>
+      $isSwitchedToSignup ? "translateX(90%)" : "translateX(-60%)"};
   }
 `;
 
@@ -154,7 +171,7 @@ const LoginOrSignup = styled.span`
     font-size: 2.4vw;
   }
   @media ${device.sm} {
-    font-size: 2.7vw;
+    font-size: 2.9vw;
   }
 `;
 

@@ -38,7 +38,7 @@ const FormField = styled.div`
       font-size: 2.3vw;
     }
     @media ${device.sm} {
-      font-size: 2.8vw;
+      font-size: 3vw;
     }
   }
   input {
@@ -124,7 +124,7 @@ const SubmitButton = styled.button<{
     font-size: 2.3vw;
   }
   @media ${device.sm} {
-    font-size: 2.8vw;
+    font-size: 3vw;
   }
   &:disabled {
     background-color: #cccccc;

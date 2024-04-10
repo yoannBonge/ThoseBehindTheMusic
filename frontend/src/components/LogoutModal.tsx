@@ -58,8 +58,8 @@ const StyledModal = styled(ReactModalAdapter)`
     flex-direction: column;
     align-items: center;
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 50vh;
+    left: 50vw;
     transform: translate(-50%, -50%);
     width: 40vw;
     min-height: 18vw;
