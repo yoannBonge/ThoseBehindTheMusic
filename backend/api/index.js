@@ -14,13 +14,13 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://those-behind-the-music.vercel.app"],
     methods: ["GET", "POST", "PUT", "OPTIONS"],
     credentials: true,
   })
 );
-// https://those-behind-the-music.vercel.app
 //
+// http://localhost:5173
 
 app.use(express.json({ limit: "5mb" }));
 
