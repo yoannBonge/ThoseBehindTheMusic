@@ -18,7 +18,6 @@ const MainBioAndVideosWrapper = styled.section`
   flex-grow: 1;
   margin-bottom: 0.7em;
   flex-direction: column;
-  justify-content: flex-end;
   margin-left: 1.3vw;
   overflow: hidden;
 `;

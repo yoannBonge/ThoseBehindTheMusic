@@ -16,11 +16,12 @@ ReactModal.setAppElement("#root");
 /////////////////////////////////////////////////////////////////////////////STYLE
 const GlobalStyle = createGlobalStyle`
     body {
-        width: 100vw;
-        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vw;
         overflow: hidden;
         margin: 10vh 0 0 0;
-        background-color: #D1DDCC;
+        /* background-color: #D1DDCC; */
+        background-color: #424242;
         box-sizing: border-box;
     } `;
 
