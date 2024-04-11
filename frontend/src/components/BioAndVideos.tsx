@@ -83,25 +83,31 @@ function BioAndVideos({
 
   //////////////////////////////////////////////////////BEHAVIOR
   const categoryColor = getCategoryColor(currentComposerInfos.category);
+  const defaultMessage =
+    "La présentation du compositeur arrive prochainement... Vous pouvez toujours écouter quelques-unes de ses œuvres en cliquant sur le bouton ci-dessus !";
   const handleSwitchBioAndVideosContent = () => {
     setisBioAndVideosContentShifted(!isBioAndVideosContentShifted);
     setIsSwitched(!isSwitched);
   };
 
   useEffect(() => {
-    const fetchBio = async () => {
-      try {
-        const textData = convertBufferToString(currentComposerInfos.bio.data);
-        setBioContent(textData);
-      } catch (error) {
-        console.error(
-          "Erreur lors de la tentative de récupération des données du fichier bio:",
-          error
-        );
-      }
-    };
+    if (!currentComposerInfos.bio) {
+      setBioContent(defaultMessage);
+    } else {
+      const fetchBio = async () => {
+        try {
+          const textData = convertBufferToString(currentComposerInfos.bio.data);
+          setBioContent(textData);
+        } catch (error) {
+          console.error(
+            "Erreur lors de la tentative de récupération des données du fichier bio:",
+            error
+          );
+        }
+      };
 
-    fetchBio();
+      fetchBio();
+    }
   }, [currentComposerInfos.bio]);
 
   // console.log("RENDER BIO AND VIDEOS");

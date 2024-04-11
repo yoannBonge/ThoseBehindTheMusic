@@ -13,7 +13,7 @@ const composerSchema = new Schema({
   picture: { type: Buffer, required: true },
   pictureSource: { type: String, required: true },
   musicalGenre: { type: String, required: false },
-  bio: { type: Buffer, required: true },
+  bio: { type: Buffer, required: false },
   related: [{ type: String, required: true }],
   selectedWorks: [{ type: String, required: false }],
 });

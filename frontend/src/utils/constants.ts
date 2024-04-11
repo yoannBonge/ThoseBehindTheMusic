@@ -14,7 +14,7 @@ export interface Composer {
   picture: any;
   pictureSource: string;
   musicalGenre?: string;
-  bio: any;
+  bio?: any;
   related: string[];
   selectedWorks: string[];
 }

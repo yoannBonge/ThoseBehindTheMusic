@@ -10,7 +10,10 @@ const sharpTreatment = async (req, res, next) => {
 
   if (!bio || !Array.isArray(bio) || !bio[0]?.buffer) {
     console.log("Aucun fichier 'bio' trouvé dans la requête");
-    return next();
+    req.bioBuffer = null;
+  } else {
+    const bioBuffer = bio[0].buffer;
+    req.bioBuffer = bioBuffer;
   }
 
   try {
@@ -21,10 +24,7 @@ const sharpTreatment = async (req, res, next) => {
 
     console.log("Image traitée avec succès !");
 
-    const bioBuffer = bio[0].buffer;
-
     req.pictureBuffer = pictureBuffer;
-    req.bioBuffer = bioBuffer;
 
     next();
   } catch (error) {
