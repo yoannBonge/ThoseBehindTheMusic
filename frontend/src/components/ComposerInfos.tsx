@@ -32,7 +32,7 @@ const ModifyButton = styled(Link)<{ $categoryColor: string }>`
 
 const IdentityInfos = styled.section`
   /* background-color: aqua; */
-  width: 22.2%;
+  width: 25%;
   flex: none;
   margin-left: 1.3vw;
   line-height: 2vw;
@@ -47,8 +47,53 @@ const IdentityInfos = styled.section`
     line-height: 4vw;
   }
   @media ${device.switchDisplay} {
-    width: 16.14%;
+    width: 97vw;
     line-height: 1.2em;
+    margin-left: 1.5vw;
+    /* display: flex;
+    flex-direction: column; */
+  }
+`;
+
+const ComposerNameContainer = styled.div`
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 7.5vw;
+  margin: 0.1em 0 0 0.4vw;
+  @media ${device.xmd} {
+    width: 25.1%;
+  }
+  @media ${device.switchDisplay} {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 30px;
+    margin: 0 0 10px 0;
+  }
+`;
+
+const ComposerName = styled.h2`
+  color: white;
+  font-family: "Bebas Neue";
+  /* font-size: 6.1vw; */
+  font-size: 6.1vw;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  white-space: nowrap;
+  /* overflow: hidden; */
+  @media ${device.xmd} {
+    font-size: 2em;
+  }
+  @media ${device.switchDisplay} {
+    overflow: inherit;
+  }
+  @supports (-moz-appearance: none) {
+    font-size: 5.5vw;
   }
 `;
 
@@ -63,7 +108,7 @@ const FaMainWrapper = styled.div`
   @media ${device.switchDisplay} {
     display: flex;
     width: 100vw;
-    top: 3.3%;
+    top: 9px;
     left: 0%;
   }
 `;
@@ -293,7 +338,9 @@ const SeparationLine = styled.hr<{ $categoryColor: string }>`
   } */
   @media ${device.switchDisplay} {
     width: 55%;
-    margin: 0.3em 0 0.5em 0;
+    height: 1px;
+    margin: 0.5em 0 0.5em 0;
+    border-radius: 0;
   }
 `;
 
@@ -336,20 +383,23 @@ function ComposerInfos({
         </ModifyButton>
       )}
       <IdentityInfos>
-        <FaMainWrapper>
-          <FaContainer>
-            <FaBackward
-              icon={faChevronLeft}
-              $categoryColor={categoryColor}
-              onClick={handleClickPrevComposer}
-            />
-            <FaForward
-              icon={faChevronRight}
-              $categoryColor={categoryColor}
-              onClick={handleClickNextComposer}
-            />
-          </FaContainer>
-        </FaMainWrapper>
+        <ComposerNameContainer>
+          <FaMainWrapper>
+            <FaContainer>
+              <FaBackward
+                icon={faChevronLeft}
+                $categoryColor={categoryColor}
+                onClick={handleClickPrevComposer}
+              />
+              <FaForward
+                icon={faChevronRight}
+                $categoryColor={categoryColor}
+                onClick={handleClickNextComposer}
+              />
+            </FaContainer>
+          </FaMainWrapper>
+          <ComposerName>{currentComposerInfos.name}</ComposerName>
+        </ComposerNameContainer>
         <ComposerInfosElement>
           <PropertyName $categoryColor={categoryColor}>
             Naissance :{" "}

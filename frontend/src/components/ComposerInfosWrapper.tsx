@@ -40,44 +40,7 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
     height: 95%;
   }
   @media ${device.switchDisplay} {
-    /* flex-direction: row; */
     height: 83%;
-    /* height: 99%; */
-  }
-`;
-
-const ComposerNameContainer = styled.div`
-  /* background-color: red; */
-  width: 24.4%;
-  height: 8.6vw;
-  margin: 0.1em 0 0 2.2vw;
-  @media ${device.xmd} {
-    width: 25.1%;
-  }
-  @media ${device.switchDisplay} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 7.5vh;
-    margin: 0;
-  }
-`;
-
-const ComposerName = styled.h2`
-  color: white;
-  font-family: "Bebas Neue";
-  font-size: 6.1vw;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  @media ${device.xmd} {
-    font-size: 1.9em;
-  }
-  @supports (-moz-appearance: none) {
-    font-size: 5.5vw;
   }
 `;
 
@@ -100,9 +63,6 @@ function ComposerInfosWrapper({
   return (
     <ComposerInfosContainer $category={currentComposerInfos.category}>
       <ComposerInfosContent $isComposerContentFading={isComposerContentFading}>
-        <ComposerNameContainer>
-          <ComposerName>{currentComposerInfos.name}</ComposerName>
-        </ComposerNameContainer>
         <ComposerInfos
           currentComposerInfos={currentComposerInfos}
           handlePrevComposer={handlePrevComposer}
