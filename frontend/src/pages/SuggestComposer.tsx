@@ -25,21 +25,11 @@ const ContentWrapper = styled(FormContentWrapper)`
 `;
 
 const FormContainer = styled.div`
-  height: 55vh;
+  height: 100%;
   width: 59.5vw;
   overflow: hidden;
-  @media ${device.xmd} {
-    height: 48vh;
-  }
   @media ${device.md} {
-    height: 52vh;
     width: 90vw;
-  }
-  @media ${device.sm} {
-    height: 62.5vh;
-  }
-  @media ${device.xs} {
-    height: 70vh;
   }
 `;
 

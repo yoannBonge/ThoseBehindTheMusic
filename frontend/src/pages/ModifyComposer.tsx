@@ -17,14 +17,10 @@ import {
 // come from "/utils/constants".
 
 const FormContainer = styled.div`
-  height: 57vh;
+  height: 100%;
   width: 59.5vw;
   overflow: hidden;
   @media ${device.md} {
-    width: 90vw;
-  }
-  @media ${device.sm} {
-    height: 58vh;
     width: 90vw;
   }
 `;

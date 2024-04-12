@@ -332,6 +332,7 @@ export const FormPageWrapper = styled.div`
 
 export const FormContentWrapper = styled.main`
   display: flex;
+  height: 88vh;
   flex-direction: column;
   margin-left: 2vw;
   @media ${device.md} {
