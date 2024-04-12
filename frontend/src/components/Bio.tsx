@@ -14,7 +14,7 @@ const BioContainer = styled.div`
   }
   @media ${device.switchDisplay} {
     /* width: 233.5vw; */
-    width: 715vw;
+    width: 690vw;
     /* width: 50%; */
   }
 `;

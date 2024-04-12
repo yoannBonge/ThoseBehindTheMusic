@@ -49,7 +49,7 @@ const BioAndVideosWrapper = styled.div`
   @media ${device.switchDisplay} {
     width: 23.8%;
     margin-top: 1.5vw;
-    height: 100%;
+    height: 82%;
   }
 `;
 
