@@ -20,6 +20,9 @@ const FormContainer = styled.div`
   @media ${device.md} {
     width: 90vw;
   }
+  @media ${device.switchDisplay} {
+    height: 90%;
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
