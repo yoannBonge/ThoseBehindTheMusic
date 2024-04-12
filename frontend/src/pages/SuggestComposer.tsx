@@ -32,7 +32,7 @@ const FormContainer = styled.div`
     width: 90vw;
   }
   @media ${device.switchDisplay} {
-    height: 90%;
+    height: 70%;
   }
 `;
 
