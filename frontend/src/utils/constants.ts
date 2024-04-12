@@ -53,6 +53,7 @@ interface Size {
   xs: string;
   sm: string;
   md: string;
+  switchDisplay: string;
   xmd: string;
   lg: string;
   xl: string;
@@ -63,6 +64,7 @@ const size: Size = {
   xs: "430px",
   sm: "600px",
   md: "800px",
+  switchDisplay: "460px",
   xmd: "1150px",
   lg: "1200px",
   xl: "1478px",
@@ -72,6 +74,7 @@ export const device = {
   xs: `(max-width: ${size.xs})`,
   sm: `(max-width: ${size.sm})`,
   md: `(max-width: ${size.md})`,
+  switchDisplay: `(max-width: ${size.switchDisplay})`,
   xmd: `(max-width: ${size.xmd})`,
   lg: `(max-width: ${size.lg})`,
   xl: `(max-width: ${size.xl})`,
@@ -288,6 +291,12 @@ export const OverlayContainer = styled.section<{
         `;
       }
     }};
+  }
+  @media ${device.switchDisplay} {
+    width: 100%;
+    background-position: center;
+    object-fit: cover;
+    height: 35%;
   }
 `;
 

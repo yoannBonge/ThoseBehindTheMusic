@@ -19,9 +19,15 @@ export const ComposerInfosContainer = styled.section<{
   @media ${device.xmd} {
     width: 50vw;
   }
+  @media ${device.switchDisplay} {
+    position: static;
+    width: 100vw;
+    height: 65vh;
+  }
 `;
 
 const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
+  /* background-color: #2c279a; */
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -33,6 +39,11 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
   @media ${device.xmd} {
     height: 95%;
   }
+  @media ${device.switchDisplay} {
+    /* flex-direction: row; */
+    height: 87%;
+    /* height: 99%; */
+  }
 `;
 
 const ComposerNameContainer = styled.div`
@@ -42,6 +53,11 @@ const ComposerNameContainer = styled.div`
   margin: 0.1em 0 0 2.2vw;
   @media ${device.xmd} {
     width: 25.1%;
+  }
+  @media ${device.switchDisplay} {
+    width: 11.7%;
+    height: 7.6vh;
+    /* margin: 0.1em 0 0 0; */
   }
 `;
 
@@ -55,7 +71,7 @@ const ComposerName = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   @media ${device.xmd} {
-    font-size: 6.4vw;
+    font-size: 1.9em;
   }
   @supports (-moz-appearance: none) {
     font-size: 5.5vw;

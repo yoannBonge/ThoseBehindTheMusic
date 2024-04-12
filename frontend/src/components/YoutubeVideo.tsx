@@ -23,6 +23,10 @@ const VideoContainer = styled.div`
     width: 12vw;
     height: 11vw;
   }
+  @media ${device.switchDisplay} {
+    width: 85%;
+    height: 22vw;
+  }
 `;
 
 const Video = styled(ReactPlayer)`
@@ -51,6 +55,8 @@ const Timeline = styled.div`
   }
   @media ${device.xmd} {
     height: 10%;
+  }
+  @media ${device.switchDisplay} {
   }
   @media ${device.md} {
     height: 12%;

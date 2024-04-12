@@ -22,9 +22,9 @@ const ComposerPresentation = styled.main`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  /* @media ${device.xs} {
-    flex-direction: column-reverse;
-  } */
+  @media ${device.switchDisplay} {
+    flex-direction: column;
+  }
 `;
 
 const ImageInfosSeparationLine = styled.div<{
@@ -43,6 +43,12 @@ const ImageInfosSeparationLine = styled.div<{
   @media ${device.xmd} {
     right: 50%;
     z-index: 2;
+  }
+  @media ${device.switchDisplay} {
+    top: 44.7%;
+    right: 0;
+    width: 100vw;
+    height: 0.15em;
   }
 `;
 

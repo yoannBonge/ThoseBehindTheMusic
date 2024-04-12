@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../utils/constants";
 
 interface AudioFaderProps {
   switched: boolean;
@@ -14,6 +15,11 @@ const Channel = styled.div`
   background: #b6afaf;
   color: rgba(255, 255, 255, 0.9);
   box-shadow: inset 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
+  @media ${device.switchDisplay} {
+    height: 1em;
+    max-height: inherit;
+    width: 5.1em;
+  }
 `;
 
 const Slider = styled.div`
@@ -24,6 +30,11 @@ const Slider = styled.div`
   width: 13.5vw;
   padding-right: 1.2vw;
   padding-left: 1.2vw;
+  @media ${device.switchDisplay} {
+    width: 4.8em;
+    padding-right: 9%;
+    padding-left: 9%;
+  }
 `;
 
 const FaderTrack = styled.div`
@@ -33,6 +44,9 @@ const FaderTrack = styled.div`
   width: 100%;
   height: 0.5vw;
   position: relative;
+  @media ${device.switchDisplay} {
+    height: 0.5%;
+  }
 
   &:after {
     content: "";
@@ -41,6 +55,9 @@ const FaderTrack = styled.div`
     width: 100%;
     background: #131313;
     position: absolute;
+    @media ${device.switchDisplay} {
+      height: 1px;
+    }
   }
 `;
 
@@ -66,6 +83,12 @@ const Fader = styled.div<{ $switched: boolean }>`
   transition: transform 0.4s ease-in;
   transform: ${({ $switched }) =>
     $switched ? "translateX(400.8%)" : "translateX(0%)"};
+  @media ${device.switchDisplay} {
+    height: 7px;
+    width: 12px;
+    transform: ${({ $switched }) =>
+      $switched ? "translateX(406%)" : "translateX(0%)"};
+  }
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT

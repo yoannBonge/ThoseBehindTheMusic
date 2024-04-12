@@ -25,6 +25,9 @@ const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   border-radius: 0 0 8px 0;
   border: none;
   cursor: pointer;
+  @media ${device.switchDisplay} {
+    font-size: 2vw;
+  }
 `;
 
 const IdentityInfos = styled.section`
@@ -43,17 +46,42 @@ const IdentityInfos = styled.section`
   @media ${device.xmd} {
     line-height: 4vw;
   }
+  @media ${device.switchDisplay} {
+    width: 16.14%;
+    line-height: 1.2em;
+  }
+`;
+
+const FaMainWrapper = styled.div`
+  /* background-color: blue; */
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+  top: -1%;
+  left: 0%;
+  @media ${device.switchDisplay} {
+    display: flex;
+    width: 100vw;
+    top: 6.8%;
+    left: 0%;
+  }
 `;
 
 const FaContainer = styled.div`
+  /* background-color: aqua; */
   display: flex;
   position: absolute;
-  width: 27.5%;
+  width: 45%;
   top: 4vw;
   left: -0.3vw;
   justify-content: space-between;
   @media ${device.xmd} {
     width: 27.7%;
+  }
+  @media ${device.switchDisplay} {
+    position: static;
+    width: 253px;
   }
 `;
 
@@ -77,10 +105,13 @@ const FaBackward = styled(FontAwesomeIcon)<{
   color: white;
   cursor: pointer;
   z-index: 2;
+  @media ${device.switchDisplay} {
+    font-size: 1.2em;
+  }
   &:hover {
     animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
       infinite;
-    @media ${device.sm} {
+    @media ${device.switchDisplay} {
       animation: inherit;
     }
   }
@@ -94,10 +125,13 @@ const FaForward = styled(FontAwesomeIcon)<{
   color: white;
   cursor: pointer;
   z-index: 2;
+  @media ${device.switchDisplay} {
+    font-size: 1.2em;
+  }
   &:hover {
     animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
       infinite;
-    @media ${device.sm} {
+    @media ${device.switchDisplay} {
       animation: inherit;
     }
   }
@@ -114,18 +148,21 @@ const ComposerInfosElement = styled.li`
   /* @media ${device.lg} {
     font-size: 1.6vw;
   } */
-  @media ${device.xmd} {
+  /* @media ${device.xmd} {
     font-size: 1.8vw;
+  } */
+  @media ${device.switchDisplay} {
+    font-size: 0.7em;
   }
-  @media ${device.md} {
+  /* @media ${device.md} {
     font-size: 2vw;
   }
   @media ${device.sm} {
     font-size: 2.2vw;
-  }
-  @media ${device.xs} {
+  } */
+  /* @media ${device.xs} {
     font-size: 2.4vw;
-  }
+  } */
 `;
 
 const PropertyName = styled.span<{ $categoryColor: string }>`
@@ -137,21 +174,25 @@ const PropertyName = styled.span<{ $categoryColor: string }>`
   /* @media ${device.lg} {
     font-size: 2vw;
   } */
-  @media ${device.xmd} {
+  /* @media ${device.xmd} {
     font-size: 2.2vw;
+  } */
+  @media ${device.switchDisplay} {
+    font-size: 1.4em;
   }
-  @media ${device.md} {
+  /* @media ${device.md} {
     font-size: 2.4vw;
   }
   @media ${device.sm} {
     font-size: 2.6vw;
-  }
-  @media ${device.xs} {
+  } */
+  /* @media ${device.xs} {
     font-size: 2.8vw;
-  }
+  } */
 `;
 
 const PropertyContent = styled.span`
+  /* background-color: aliceblue; */
   max-width: 34vw;
   color: white;
   font-family: "Afacad";
@@ -161,24 +202,31 @@ const PropertyContent = styled.span`
     font-size: 2vw;
     max-width: 32vw;
   } */
-  @media ${device.xmd} {
+  /* @media ${device.xmd} {
     font-size: 2.2vw;
     max-width: 32vw;
+  } */
+  @media ${device.switchDisplay} {
+    font-size: 1.4em;
+    max-width: 60%;
   }
-  @media ${device.md} {
+  /* @media ${device.md} {
     font-size: 2.4vw;
-  }
-  @media ${device.sm} {
+  } */
+  /* @media ${device.sm} {
     font-size: 2.6vw;
-  }
-  @media ${device.xs} {
+  } */
+  /* @media ${device.xs} {
     font-size: 2.8vw;
-  }
+  } */
 `;
 
 const CountryFlag = styled(ReactCountryFlag)`
   font-size: 1.9vw;
   margin: -0.1em 0.5em 0 0.5em;
+  @media ${device.switchDisplay} {
+    font-size: 0.8em;
+  }
 `;
 
 const NotableWorksContainer = styled.div`
@@ -190,6 +238,9 @@ const NotableWorksList = styled.ul`
   padding-left: 0.3em;
   margin: 0;
   line-height: 1.9vw;
+  @media ${device.switchDisplay} {
+    line-height: 1.4em;
+  }
 `;
 
 const NotableWorksElement = styled.li`
@@ -200,8 +251,11 @@ const NotableWorksElement = styled.li`
   /* @media ${device.lg} {
     font-size: 1.8vw;
   } */
-  @media ${device.xmd} {
+  /* @media ${device.xmd} {
     font-size: 1.9vw;
+  } */
+  @media ${device.switchDisplay} {
+    font-size: 1.2em;
   }
 `;
 
@@ -214,8 +268,11 @@ const PhotoSource = styled.span`
   opacity: 0.5;
   left: 1%;
   bottom: 41%;
-  @media ${device.xmd} {
+  /* @media ${device.xmd} {
     font-size: 1.5vw;
+  } */
+  @media ${device.switchDisplay} {
+    font-size: 0.7em;
   }
   @supports (-moz-appearance: none) {
     bottom: 44%;
@@ -229,8 +286,12 @@ const SeparationLine = styled.hr<{ $categoryColor: string }>`
   border: none;
   margin: 0.5em 0 0.5em 0;
   background-color: ${(props) => props.$categoryColor};
-  @media ${device.xmd} {
+  /* @media ${device.xmd} {
     width: 27.45%;
+  } */
+  @media ${device.switchDisplay} {
+    width: 55%;
+    margin: 0.3em 0 0.5em 0;
   }
 `;
 
@@ -273,18 +334,20 @@ function ComposerInfos({
         </ModifyButton>
       )}
       <IdentityInfos>
-        <FaContainer>
-          <FaBackward
-            icon={faChevronLeft}
-            $categoryColor={categoryColor}
-            onClick={handleClickPrevComposer}
-          />
-          <FaForward
-            icon={faChevronRight}
-            $categoryColor={categoryColor}
-            onClick={handleClickNextComposer}
-          />
-        </FaContainer>
+        <FaMainWrapper>
+          <FaContainer>
+            <FaBackward
+              icon={faChevronLeft}
+              $categoryColor={categoryColor}
+              onClick={handleClickPrevComposer}
+            />
+            <FaForward
+              icon={faChevronRight}
+              $categoryColor={categoryColor}
+              onClick={handleClickNextComposer}
+            />
+          </FaContainer>
+        </FaMainWrapper>
         <ComposerInfosElement>
           <PropertyName $categoryColor={categoryColor}>
             Naissance :{" "}

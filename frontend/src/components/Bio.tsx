@@ -6,12 +6,16 @@ import { device } from "../utils/constants";
 /////////////////////////////////////////////////////////////////////////////STYLE
 const BioContainer = styled.div`
   /* background-color: red; */
-  /* width: 40vw; */
   width: 121vw;
   height: 100%;
   overflow: hidden;
   @media ${device.xmd} {
     width: 135vw;
+  }
+  @media ${device.switchDisplay} {
+    /* width: 233.5vw; */
+    width: 715vw;
+    /* width: 50%; */
   }
 `;
 
@@ -33,7 +37,10 @@ const BioContent = styled.p`
   @media ${device.xmd} {
     font-size: 2.2vw;
   }
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
+    font-size: 0.9em;
+  }
+  /* @media ${device.md} {
     font-size: 2.4vw;
   }
   @media ${device.sm} {
@@ -41,7 +48,7 @@ const BioContent = styled.p`
   }
   @media ${device.xs} {
     font-size: 2.8vw;
-  }
+  } */
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Bio({ bioContent }: { bioContent: string }) {

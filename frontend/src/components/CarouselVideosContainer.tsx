@@ -13,6 +13,9 @@ const StyledSlider = styled(Slider)`
   width: 100%;
   height: 100%;
   flex-wrap: nowrap;
+  @media ${device.switchDisplay} {
+    width: 89.9vw;
+  }
   .slick-prev,
   .slick-next {
     top: 20%;
@@ -34,6 +37,9 @@ const StyledSlider = styled(Slider)`
     /* @media ${device.md} {
       font-size: 6vw;
     } */
+    @media ${device.switchDisplay} {
+      font-size: 20px;
+    }
   }
 
   .slick-prev::before {
@@ -42,10 +48,16 @@ const StyledSlider = styled(Slider)`
     @media ${device.xmd} {
       margin-right: 1vw;
     }
+    @media ${device.switchDisplay} {
+      margin-right: 3.8vw;
+    }
   }
 
   .slick-next::before {
     content: "\uf054";
+    @media ${device.switchDisplay} {
+      margin-left: -0.1vw;
+    }
   }
 `;
 

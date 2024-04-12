@@ -15,6 +15,7 @@ import CarouselVideosContainer from "./CarouselVideosContainer";
 const MainBioAndVideosWrapper = styled.section`
   /* background-color: red; */
   display: flex;
+  height: auto;
   flex-grow: 1;
   margin-bottom: 0.7em;
   flex-direction: column;
@@ -33,23 +34,37 @@ const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
   @media ${device.lg} {
     font-size: 1.8vw;
   }
+  @media ${device.switchDisplay} {
+    width: 14.5em;
+    font-size: 0.9em;
+  }
 `;
 
 const BioAndVideosWrapper = styled.div`
-  /* background-color: red; */
+  /* background-color: #aa2a95; */
   display: flex;
   width: 51.3%;
   margin-top: 1vw;
   overflow: hidden;
+  @media ${device.switchDisplay} {
+    width: 23.8%;
+    margin-top: 1.5vw;
+    height: 100%;
+  }
 `;
 
 const BioAndVideosContent = styled.div<{ $shifted: boolean }>`
+  /* background-color: #28248d; */
   display: flex;
   width: 100%;
   height: 100%;
   transition: transform 0.4s ease-in-out;
   transform: ${(props) =>
     props.$shifted ? "translateX(-100%)" : "translateX(0)"};
+  @media ${device.switchDisplay} {
+    transform: ${(props) =>
+      props.$shifted ? "translateX(-98.3%)" : "translateX(0)"};
+  }
   @supports (-moz-appearance: none) {
     height: 107%;
   }
@@ -64,7 +79,10 @@ const VideosWrapper = styled.div`
   transform: translateX(100.3%);
   @media ${device.xmd} {
     transform: translateX(100.5%);
-    width: 45.8vw;
+    width: 100vw;
+  }
+  @media ${device.switchDisplay} {
+    /* transform: translateX(101%); */
   }
 `;
 
