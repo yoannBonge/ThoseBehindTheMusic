@@ -41,12 +41,13 @@ const ComposerPictureContainer = styled.div`
     transform: inherit;
   }
   @media ${device.switchDisplay} {
+    position: static;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100vw;
-    top: 3.4%;
-    left: 0;
+    height: 90%;
+    width: auto;
+    margin: auto;
   }
   /* @media ${device.md} {
     width: 40vw;

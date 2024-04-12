@@ -41,7 +41,7 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
   }
   @media ${device.switchDisplay} {
     /* flex-direction: row; */
-    height: 87%;
+    height: 83%;
     /* height: 99%; */
   }
 `;
