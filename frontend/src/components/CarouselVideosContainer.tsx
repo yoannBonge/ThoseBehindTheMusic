@@ -9,7 +9,7 @@ import YoutubeVideo from "./YoutubeVideo";
 const StyledSlider = styled(Slider)`
   /* background-color: #1541b9; */
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
   height: 100%;
   flex-wrap: nowrap;
@@ -18,7 +18,6 @@ const StyledSlider = styled(Slider)`
   }
   .slick-prev,
   .slick-next {
-    top: 20%;
     font-size: 0;
     margin: 0;
     padding: 0;

@@ -39,7 +39,7 @@ const BioContent = styled.p`
     font-size: 2.6vw;
   }
   @media ${device.switchDisplay} {
-    font-size: 0.9em;
+    font-size: 1em;
   }
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT

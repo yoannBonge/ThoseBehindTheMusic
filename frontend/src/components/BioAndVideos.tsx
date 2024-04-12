@@ -75,7 +75,7 @@ const VideosWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 41.6vw;
-  height: 100%;
+  height: 11vw;
   transform: translateX(100.3%);
   @media ${device.xmd} {
     transform: translateX(100.5%);
@@ -83,6 +83,7 @@ const VideosWrapper = styled.div`
   }
   @media ${device.switchDisplay} {
     width: 100vw;
+    height: 100%;
   }
 `;
 

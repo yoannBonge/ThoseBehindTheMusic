@@ -25,7 +25,13 @@ const VideoContainer = styled.div`
   }
   @media ${device.switchDisplay} {
     width: 85%;
-    height: 22vw;
+    height: 18vh;
+  }
+  @media ${device.sm} {
+    height: 18.5vh;
+  }
+  @media ${device.xs} {
+    height: 19vh;
   }
 `;
 
