@@ -61,9 +61,9 @@ const ComposerPictureContainer = styled.div`
     width: auto;
     margin: auto;
   }
-  /* @media ${device.md} {
+  @media ${device.md} {
     width: 40vw;
-  } */
+  }
 `;
 
 const CRTFilter = styled.img`

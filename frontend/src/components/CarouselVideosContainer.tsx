@@ -34,9 +34,9 @@ const StyledSlider = styled(Slider)`
     font-size: 2vw;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    /* @media ${device.md} {
+    @media ${device.md} {
       font-size: 6vw;
-    } */
+    }
     @media ${device.switchDisplay} {
       font-size: 20px;
     }
@@ -46,7 +46,7 @@ const StyledSlider = styled(Slider)`
     content: "\uf053";
     margin-right: 0.6vw;
     @media ${device.xmd} {
-      margin-right: 1vw;
+      margin-right: 2.1vw;
     }
     @media ${device.switchDisplay} {
       margin-right: 3.8vw;

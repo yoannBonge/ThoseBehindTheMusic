@@ -10,7 +10,7 @@ const BioContainer = styled.div`
   height: 100%;
   overflow: hidden;
   @media ${device.xmd} {
-    width: 135vw;
+    width: 139vw;
   }
   @media ${device.switchDisplay} {
     width: 690vw;
@@ -29,24 +29,18 @@ const BioContent = styled.p`
   word-wrap: break-word;
   white-space: pre-wrap;
 
-  /* @media ${device.lg} {
+  @media ${device.lg} {
     font-size: 2vw;
-  } */
-  @media ${device.xmd} {
-    font-size: 2.2vw;
   }
   @media ${device.switchDisplay} {
     font-size: 0.9em;
   }
-  /* @media ${device.md} {
+  @media ${device.md} {
     font-size: 2.4vw;
   }
   @media ${device.sm} {
     font-size: 2.6vw;
   }
-  @media ${device.xs} {
-    font-size: 2.8vw;
-  } */
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function Bio({ bioContent }: { bioContent: string }) {

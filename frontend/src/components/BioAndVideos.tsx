@@ -79,10 +79,10 @@ const VideosWrapper = styled.div`
   transform: translateX(100.3%);
   @media ${device.xmd} {
     transform: translateX(100.5%);
-    width: 100vw;
+    width: 47vw;
   }
   @media ${device.switchDisplay} {
-    /* transform: translateX(101%); */
+    width: 100vw;
   }
 `;
 

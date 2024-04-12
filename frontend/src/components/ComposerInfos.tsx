@@ -14,7 +14,7 @@ import BioAndVideos from "./BioAndVideos";
 
 const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   font-family: "Afacad";
-  font-size: 0.8vw;
+  font-size: 0.7vw;
   background-color: ${(props) => props.$categoryColor};
   color: white;
   text-decoration: none;
@@ -36,22 +36,17 @@ const IdentityInfos = styled.section`
   flex: none;
   margin-left: 1.3vw;
   line-height: 2vw;
-  /* @media ${device.lg} {
-    line-height: 3vw;
-  } */
-  @media ${device.xmd} {
-    width: 26%;
-    line-height: 3vw;
+  @media ${device.lg} {
+    /* line-height: 3vw; */
   }
   @media ${device.xmd} {
-    line-height: 4vw;
+    width: 47.4vw;
+    line-height: 3vw;
   }
   @media ${device.switchDisplay} {
     width: 97vw;
     line-height: 1.2em;
     margin-left: 1.5vw;
-    /* display: flex;
-    flex-direction: column; */
   }
 `;
 
@@ -64,11 +59,10 @@ const ComposerNameContainer = styled.div`
   height: 7.5vw;
   margin: 0.1em 0 0 0.4vw;
   @media ${device.xmd} {
-    width: 25.1%;
+    width: 100%;
+    margin: 0 0 0 0;
   }
   @media ${device.switchDisplay} {
-    display: flex;
-    justify-content: center;
     align-items: flex-end;
     width: 100%;
     height: 30px;
@@ -86,9 +80,6 @@ const ComposerName = styled.h2`
   text-align: center;
   white-space: nowrap;
   /* overflow: hidden; */
-  @media ${device.xmd} {
-    font-size: 2em;
-  }
   @media ${device.switchDisplay} {
     overflow: inherit;
   }
@@ -105,8 +96,10 @@ const FaMainWrapper = styled.div`
   width: 100vw;
   top: -1%;
   left: 0%;
+  @media ${device.xmd} {
+    width: 76.9%;
+  }
   @media ${device.switchDisplay} {
-    display: flex;
     width: 100vw;
     top: 9px;
     left: 0%;
@@ -122,7 +115,7 @@ const FaContainer = styled.div`
   left: -0.3vw;
   justify-content: space-between;
   @media ${device.xmd} {
-    width: 27.7%;
+    width: 35.1%;
   }
   @media ${device.switchDisplay} {
     position: static;
@@ -192,24 +185,21 @@ const ComposerInfosElement = styled.li`
   color: white;
   font-family: "Afacad";
   font-size: 1.2vw;
-  /* @media ${device.lg} {
+  @media ${device.lg} {
     font-size: 1.6vw;
-  } */
-  /* @media ${device.xmd} {
-    font-size: 1.8vw;
-  } */
-  @media ${device.switchDisplay} {
-    font-size: 0.7em;
   }
-  /* @media ${device.md} {
+  @media ${device.xmd} {
+    font-size: 1.8vw;
+  }
+  @media ${device.md} {
     font-size: 2vw;
   }
   @media ${device.sm} {
     font-size: 2.2vw;
-  } */
-  /* @media ${device.xs} {
-    font-size: 2.4vw;
-  } */
+  }
+  @media ${device.switchDisplay} {
+    font-size: 0.7em;
+  }
 `;
 
 const PropertyName = styled.span<{ $categoryColor: string }>`
@@ -218,24 +208,21 @@ const PropertyName = styled.span<{ $categoryColor: string }>`
   color: ${(props) => props.$categoryColor};
   font-family: "Afacad";
   font-size: 1.6vw;
-  /* @media ${device.lg} {
-    font-size: 2vw;
-  } */
-  /* @media ${device.xmd} {
+  @media ${device.lg} {
+    font-size: 1.7vw;
+  }
+  @media ${device.xmd} {
     font-size: 2.2vw;
-  } */
+  }
   @media ${device.switchDisplay} {
     font-size: 1.4em;
   }
-  /* @media ${device.md} {
+  @media ${device.md} {
     font-size: 2.4vw;
   }
   @media ${device.sm} {
     font-size: 2.6vw;
-  } */
-  /* @media ${device.xs} {
-    font-size: 2.8vw;
-  } */
+  }
 `;
 
 const PropertyContent = styled.span`
@@ -245,27 +232,23 @@ const PropertyContent = styled.span`
   font-family: "Afacad";
   font-size: 1.6vw;
   margin-left: 0.5vw;
-  /* @media ${device.lg} {
-    font-size: 2vw;
+  @media ${device.lg} {
     max-width: 32vw;
-  } */
-  /* @media ${device.xmd} {
+  }
+  @media ${device.xmd} {
     font-size: 2.2vw;
     max-width: 32vw;
-  } */
+  }
+  @media ${device.md} {
+    font-size: 2.4vw;
+  }
+  @media ${device.sm} {
+    font-size: 2.6vw;
+  }
   @media ${device.switchDisplay} {
     font-size: 1.4em;
     max-width: 60%;
   }
-  /* @media ${device.md} {
-    font-size: 2.4vw;
-  } */
-  /* @media ${device.sm} {
-    font-size: 2.6vw;
-  } */
-  /* @media ${device.xs} {
-    font-size: 2.8vw;
-  } */
 `;
 
 const CountryFlag = styled(ReactCountryFlag)`
@@ -295,12 +278,12 @@ const NotableWorksElement = styled.li`
   color: white;
   font-family: "Afacad";
   font-size: 1.6vw;
-  /* @media ${device.lg} {
+  @media ${device.lg} {
     font-size: 1.8vw;
-  } */
-  /* @media ${device.xmd} {
+  }
+  @media ${device.xmd} {
     font-size: 1.9vw;
-  } */
+  }
   @media ${device.switchDisplay} {
     font-size: 1.2em;
   }
@@ -333,9 +316,9 @@ const SeparationLine = styled.hr<{ $categoryColor: string }>`
   border: none;
   margin: 0.5em 0 0.5em 0;
   background-color: ${(props) => props.$categoryColor};
-  /* @media ${device.xmd} {
-    width: 27.45%;
-  } */
+  @media ${device.xmd} {
+    width: 26.7%;
+  }
   @media ${device.switchDisplay} {
     width: 55%;
     height: 1px;
