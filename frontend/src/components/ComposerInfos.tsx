@@ -63,7 +63,7 @@ const FaMainWrapper = styled.div`
   @media ${device.switchDisplay} {
     display: flex;
     width: 100vw;
-    top: 6.8%;
+    top: 3.3%;
     left: 0%;
   }
 `;
@@ -81,7 +81,7 @@ const FaContainer = styled.div`
   }
   @media ${device.switchDisplay} {
     position: static;
-    width: 253px;
+    width: 250px;
   }
 `;
 
@@ -107,6 +107,7 @@ const FaBackward = styled(FontAwesomeIcon)<{
   z-index: 2;
   @media ${device.switchDisplay} {
     font-size: 1.2em;
+    transform: inherit;
   }
   &:hover {
     animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
@@ -127,6 +128,7 @@ const FaForward = styled(FontAwesomeIcon)<{
   z-index: 2;
   @media ${device.switchDisplay} {
     font-size: 1.2em;
+    transform: inherit;
   }
   &:hover {
     animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s

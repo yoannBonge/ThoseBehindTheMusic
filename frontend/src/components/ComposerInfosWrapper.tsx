@@ -55,9 +55,9 @@ const ComposerNameContainer = styled.div`
     width: 25.1%;
   }
   @media ${device.switchDisplay} {
-    width: 11.7%;
-    height: 7.6vh;
-    /* margin: 0.1em 0 0 0; */
+    width: 100vw;
+    height: 7.5vh;
+    margin: 0.1em 0 0 0;
   }
 `;
 
