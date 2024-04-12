@@ -45,6 +45,7 @@ const ImageInfosSeparationLine = styled.div<{
     z-index: 2;
   }
   @media ${device.switchDisplay} {
+    position: static;
     top: 44.7%;
     right: 0;
     width: 100vw;
