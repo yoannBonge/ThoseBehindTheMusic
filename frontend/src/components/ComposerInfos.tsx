@@ -32,19 +32,16 @@ const ModifyButton = styled(Link)<{ $categoryColor: string }>`
 
 const IdentityInfos = styled.section`
   /* background-color: aqua; */
-  width: 25%;
+  width: 41.8vw;
   flex: none;
   margin-left: 1.3vw;
   line-height: 2vw;
-  @media ${device.lg} {
-    /* line-height: 3vw; */
-  }
   @media ${device.xmd} {
-    width: 47.4vw;
+    width: 47vw;
     line-height: 3vw;
   }
   @media ${device.switchDisplay} {
-    width: 97vw;
+    width: 12.26%;
     line-height: 1.2em;
     margin-left: 1.5vw;
   }
@@ -57,7 +54,7 @@ const ComposerNameContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 7.5vw;
-  margin: 0.1em 0 0 0.4vw;
+  margin: 0.1em 0 0 0;
   @media ${device.xmd} {
     width: 100%;
     margin: 0 0 0 0;
@@ -73,7 +70,6 @@ const ComposerNameContainer = styled.div`
 const ComposerName = styled.h2`
   color: white;
   font-family: "Bebas Neue";
-  /* font-size: 6.1vw; */
   font-size: 6.1vw;
   margin: 0;
   padding: 0;
@@ -81,6 +77,7 @@ const ComposerName = styled.h2`
   white-space: nowrap;
   /* overflow: hidden; */
   @media ${device.switchDisplay} {
+    font-size: 2em;
     overflow: inherit;
   }
   @supports (-moz-appearance: none) {
@@ -115,7 +112,7 @@ const FaContainer = styled.div`
   left: -0.3vw;
   justify-content: space-between;
   @media ${device.xmd} {
-    width: 35.1%;
+    width: 50.6vw;
   }
   @media ${device.switchDisplay} {
     position: static;
@@ -214,14 +211,14 @@ const PropertyName = styled.span<{ $categoryColor: string }>`
   @media ${device.xmd} {
     font-size: 2.2vw;
   }
-  @media ${device.switchDisplay} {
-    font-size: 1.4em;
-  }
   @media ${device.md} {
     font-size: 2.4vw;
   }
   @media ${device.sm} {
     font-size: 2.6vw;
+  }
+  @media ${device.switchDisplay} {
+    font-size: 1.4em;
   }
 `;
 
@@ -247,7 +244,7 @@ const PropertyContent = styled.span`
   }
   @media ${device.switchDisplay} {
     font-size: 1.4em;
-    max-width: 60%;
+    max-width: 90%;
   }
 `;
 
@@ -310,19 +307,15 @@ const PhotoSource = styled.span`
 `;
 
 const SeparationLine = styled.hr<{ $categoryColor: string }>`
-  width: 27.17%;
+  width: 35.2%;
   height: 2px;
   border-radius: 25px;
   border: none;
   margin: 0.5em 0 0.5em 0;
   background-color: ${(props) => props.$categoryColor};
-  @media ${device.xmd} {
-    width: 26.7%;
-  }
   @media ${device.switchDisplay} {
-    width: 55%;
+    margin: 0.3em 0 0.3em 0;
     height: 1px;
-    margin: 0.5em 0 0.5em 0;
     border-radius: 0;
   }
 `;

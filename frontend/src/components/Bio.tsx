@@ -6,7 +6,7 @@ import { device } from "../utils/constants";
 /////////////////////////////////////////////////////////////////////////////STYLE
 const BioContainer = styled.div`
   /* background-color: red; */
-  width: 121vw;
+  width: 122vw;
   height: 100%;
   overflow: hidden;
   @media ${device.xmd} {
@@ -32,14 +32,14 @@ const BioContent = styled.p`
   @media ${device.lg} {
     font-size: 2vw;
   }
-  @media ${device.switchDisplay} {
-    font-size: 0.9em;
-  }
   @media ${device.md} {
     font-size: 2.4vw;
   }
   @media ${device.sm} {
     font-size: 2.6vw;
+  }
+  @media ${device.switchDisplay} {
+    font-size: 0.9em;
   }
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
