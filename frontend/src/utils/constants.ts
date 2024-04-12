@@ -64,7 +64,7 @@ const size: Size = {
   xs: "430px",
   sm: "600px",
   md: "800px",
-  switchDisplay: "460px",
+  switchDisplay: "800px",
   xmd: "1150px",
   lg: "1200px",
   xl: "1478px",
