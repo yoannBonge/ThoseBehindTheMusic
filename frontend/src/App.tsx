@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ReactModal from "react-modal";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
@@ -10,6 +11,7 @@ import ModifyComposer from "./pages/ModifyComposer";
 import SuggestComposer from "./pages/SuggestComposer";
 import { AuthProvider } from "./utils/context/auth/AuthContext";
 import { ComposersProvider } from "./utils/context/composers/ComposersContext";
+import { useComposers } from "./utils/context/composers/useComposers";
 
 ReactModal.setAppElement("#root");
 
@@ -27,6 +29,11 @@ const GlobalStyle = createGlobalStyle`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function App() {
+  const { fetchComposersData } = useComposers();
+
+  useEffect(() => {
+    fetchComposersData();
+  }, [fetchComposersData]);
   return (
     <AuthProvider>
       <ComposersProvider>

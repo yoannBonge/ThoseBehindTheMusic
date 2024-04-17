@@ -5,12 +5,14 @@ type ComposersContextType = {
   musicComposers: Composer[];
   cinemaComposers: Composer[];
   videogameComposers: Composer[];
+  fetchComposersData: () => void;
 };
 
 export const ComposersContext = createContext<ComposersContextType>({
   musicComposers: [],
   cinemaComposers: [],
   videogameComposers: [],
+  fetchComposersData: () => {},
 });
 
 interface ComposersProviderProps {
@@ -65,7 +67,12 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
 
   return (
     <ComposersContext.Provider
-      value={{ cinemaComposers, musicComposers, videogameComposers }}
+      value={{
+        cinemaComposers,
+        musicComposers,
+        videogameComposers,
+        fetchComposersData,
+      }}
     >
       {children}
     </ComposersContext.Provider>
