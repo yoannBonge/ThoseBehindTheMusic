@@ -84,10 +84,10 @@ const Fader = styled.div<{ $switched: boolean }>`
   transform: ${({ $switched }) =>
     $switched ? "translateX(400.8%)" : "translateX(0%)"};
   @media ${device.switchDisplay} {
-    height: 7px;
-    width: 12px;
+    height: 10px;
+    width: 15px;
     transform: ${({ $switched }) =>
-      $switched ? "translateX(570%)" : "translateX(0%)"};
+      $switched ? "translateX(438%)" : "translateX(0%)"};
   }
   @media ${device.xs} {
     height: 7px;
