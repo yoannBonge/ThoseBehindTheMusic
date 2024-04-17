@@ -9,12 +9,21 @@ import YoutubeVideo from "./YoutubeVideo";
 const StyledSlider = styled(Slider)`
   /* background-color: #1541b9; */
   display: flex;
-  /* align-items: center; */
-  width: 100%;
-  height: 100%;
+  align-items: center;
+  justify-content: space-between;
   flex-wrap: nowrap;
+  width: 41.6vw;
+  height: 11vw;
+  margin-top: 0.5em;
+  transform: translateX(100.3%);
+  @media ${device.xmd} {
+    transform: translateX(100.5%);
+    width: 47vw;
+  }
   @media ${device.switchDisplay} {
     width: 89.9vw;
+    height: 100%;
+    margin-top: 0;
   }
   .slick-prev,
   .slick-next {
@@ -48,7 +57,7 @@ const StyledSlider = styled(Slider)`
       margin-right: 2.1vw;
     }
     @media ${device.switchDisplay} {
-      margin-right: 3.8vw;
+      margin-right: 2.2vw;
     }
   }
 

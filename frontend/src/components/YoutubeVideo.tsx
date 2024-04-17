@@ -24,14 +24,16 @@ const VideoContainer = styled.div`
     height: 11vw;
   }
   @media ${device.switchDisplay} {
-    width: 85%;
-    height: 18vh;
+    width: 26vw;
+    height: 14vh;
   }
   @media ${device.sm} {
-    height: 18.5vh;
+    width: 25vw;
+    height: 15vh;
   }
-  @media ${device.xs} {
-    height: 19vh;
+  @media (max-width: 450px) {
+    width: 24vw;
+    height: 13vh;
   }
 `;
 
@@ -188,7 +190,7 @@ function YoutubeVideo({
         onProgress={handleProgress}
         width='100%'
         height='100%'
-        loading='lazy'
+        // loading='lazy'
       />
       <Timeline ref={timelineRef} onMouseDown={handleTimelineMouseDown}>
         <ProgressContainer>

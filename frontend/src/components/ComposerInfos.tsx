@@ -307,7 +307,7 @@ const PhotoSource = styled.span`
 `;
 
 const SeparationLine = styled.hr<{ $categoryColor: string }>`
-  width: 35.2%;
+  width: 27%;
   height: 2px;
   border-radius: 25px;
   border: none;

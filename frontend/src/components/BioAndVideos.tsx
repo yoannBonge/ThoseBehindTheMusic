@@ -70,23 +70,6 @@ const BioAndVideosContent = styled.div<{ $shifted: boolean }>`
   }
 `;
 
-const VideosWrapper = styled.div`
-  /* background-color: #1a4a73; */
-  display: flex;
-  justify-content: space-between;
-  width: 41.6vw;
-  height: 11vw;
-  transform: translateX(100.3%);
-  @media ${device.xmd} {
-    transform: translateX(100.5%);
-    width: 47vw;
-  }
-  @media ${device.switchDisplay} {
-    width: 100vw;
-    height: 100%;
-  }
-`;
-
 //////////////////////////////////////////////////////////////COMPONENT
 function BioAndVideos({
   currentComposerInfos,
@@ -144,11 +127,9 @@ function BioAndVideos({
       <BioAndVideosWrapper>
         <BioAndVideosContent $shifted={isBioAndVideosContentShifted}>
           <Bio bioContent={bioContent} />
-          <VideosWrapper>
-            <CarouselVideosContainer
-              currentComposerInfos={currentComposerInfos}
-            ></CarouselVideosContainer>
-          </VideosWrapper>
+          <CarouselVideosContainer
+            currentComposerInfos={currentComposerInfos}
+          ></CarouselVideosContainer>
         </BioAndVideosContent>
       </BioAndVideosWrapper>
     </MainBioAndVideosWrapper>
