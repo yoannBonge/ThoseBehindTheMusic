@@ -1,3 +1,8 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "rewrites": [
+    { "source": "/composers(.*)", "destination": "/api/composers$1" },
+    { "source": "/auth(.*)", "destination": "/api/auth$1" },
+    { "source": "/mail(.*)", "destination": "/api/mail$1" },
+    { "source": "/(.*)", "destination": "/api$1" }
+  ]
 }
