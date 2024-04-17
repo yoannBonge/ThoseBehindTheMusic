@@ -36,7 +36,7 @@ const BioLabel = styled.label`
   font-weight: 500;
   margin-bottom: -1.1em;
   overflow: hidden;
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     align-self: center;
     text-align: center;
   }
@@ -52,7 +52,7 @@ const BioInput = styled.div`
   background-color: #e8f1f6;
   border: 2px solid #374e66;
   border-radius: 4px;
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     align-self: center;
   }
   @media ${device.sm} {

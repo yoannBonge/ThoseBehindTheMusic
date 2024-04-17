@@ -42,9 +42,9 @@ const StyledSlider = styled(Slider)`
     font-size: 2vw;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    @media ${device.md} {
+    /* @media ${device.switchDisplay} {
       font-size: 6vw;
-    }
+    } */
     @media ${device.switchDisplay} {
       font-size: 20px;
     }

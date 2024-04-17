@@ -36,7 +36,11 @@ const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
   }
   @media ${device.switchDisplay} {
     width: 14.5em;
-    font-size: 0.9em;
+    font-size: 1.2em;
+  }
+  @media ${device.xs} {
+    width: 14.5em;
+    font-size: 1em;
   }
 `;
 

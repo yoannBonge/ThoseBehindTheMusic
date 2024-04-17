@@ -17,7 +17,7 @@ const FormContainer = styled.div`
   height: 100%;
   width: 59.5vw;
   overflow: hidden;
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     width: 90vw;
   }
   @media ${device.switchDisplay} {

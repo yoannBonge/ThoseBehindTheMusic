@@ -41,7 +41,7 @@ const IdentityInfos = styled.section`
     line-height: 3vw;
   }
   @media ${device.switchDisplay} {
-    width: 12.26%;
+    width: 12.42%;
     line-height: 1.2em;
     margin-left: 1.5vw;
   }
@@ -116,7 +116,7 @@ const FaContainer = styled.div`
   }
   @media ${device.switchDisplay} {
     position: static;
-    width: 250px;
+    width: 300px;
   }
 `;
 
@@ -141,7 +141,7 @@ const FaBackward = styled(FontAwesomeIcon)<{
   cursor: pointer;
   z-index: 2;
   @media ${device.switchDisplay} {
-    font-size: 1.2em;
+    font-size: 1.3em;
     transform: inherit;
   }
   &:hover {
@@ -162,7 +162,7 @@ const FaForward = styled(FontAwesomeIcon)<{
   cursor: pointer;
   z-index: 2;
   @media ${device.switchDisplay} {
-    font-size: 1.2em;
+    font-size: 1.3em;
     transform: inherit;
   }
   &:hover {
@@ -188,13 +188,16 @@ const ComposerInfosElement = styled.li`
   @media ${device.xmd} {
     font-size: 1.8vw;
   }
-  @media ${device.md} {
+  /* @media ${device.switchDisplay} {
     font-size: 2vw;
-  }
+  } */
   @media ${device.sm} {
     font-size: 2.2vw;
   }
   @media ${device.switchDisplay} {
+    font-size: 0.8em;
+  }
+  @media ${device.xs} {
     font-size: 0.7em;
   }
 `;
@@ -211,9 +214,9 @@ const PropertyName = styled.span<{ $categoryColor: string }>`
   @media ${device.xmd} {
     font-size: 2.2vw;
   }
-  @media ${device.md} {
+  /* @media ${device.switchDisplay} {
     font-size: 2.4vw;
-  }
+  } */
   @media ${device.sm} {
     font-size: 2.6vw;
   }
@@ -236,9 +239,9 @@ const PropertyContent = styled.span`
     font-size: 2.2vw;
     max-width: 32vw;
   }
-  @media ${device.md} {
+  /* @media ${device.switchDisplay} {
     font-size: 2.4vw;
-  }
+  } */
   @media ${device.sm} {
     font-size: 2.6vw;
   }
@@ -295,10 +298,10 @@ const PhotoSource = styled.span`
   opacity: 0.5;
   left: 1%;
   bottom: 41%;
-  /* @media ${device.xmd} {
-    font-size: 1.5vw;
-  } */
   @media ${device.switchDisplay} {
+    font-size: 0.8em;
+  }
+  @media ${device.xs} {
     font-size: 0.7em;
   }
   @supports (-moz-appearance: none) {

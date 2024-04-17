@@ -52,7 +52,6 @@ export const API_ROUTES = {
 interface Size {
   xs: string;
   sm: string;
-  md: string;
   switchDisplay: string;
   xmd: string;
   lg: string;
@@ -63,7 +62,6 @@ interface Size {
 const size: Size = {
   xs: "430px",
   sm: "600px",
-  md: "800px",
   switchDisplay: "800px",
   xmd: "1150px",
   lg: "1200px",
@@ -73,7 +71,6 @@ const size: Size = {
 export const device = {
   xs: `(max-width: ${size.xs})`,
   sm: `(max-width: ${size.sm})`,
-  md: `(max-width: ${size.md})`,
   switchDisplay: `(max-width: ${size.switchDisplay})`,
   xmd: `(max-width: ${size.xmd})`,
   lg: `(max-width: ${size.lg})`,
@@ -322,7 +319,7 @@ export const FormPageWrapper = styled.div`
   background-attachment: fixed;
   background-position: center 65%;
   background-repeat: no-repeat;
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     background-position: inherit;
     background-image: inherit;
     background-color: #d1ddcc;
@@ -335,7 +332,7 @@ export const FormContentWrapper = styled.main`
   height: 88vh;
   flex-direction: column;
   margin-left: 2vw;
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     margin: 0;
     align-items: center;
   }
@@ -344,7 +341,7 @@ export const FormContentWrapper = styled.main`
     font-size: 3em;
     color: black;
     margin: 0.5em 0 0em 0;
-    @media ${device.md} {
+    @media ${device.switchDisplay} {
       font-size: 6vw;
       text-align: center;
     }
@@ -356,7 +353,7 @@ export const FormContentWrapper = styled.main`
     max-width: 60%;
     padding-bottom: 1em;
     border-bottom: 2px solid black;
-    @media ${device.md} {
+    @media ${device.switchDisplay} {
       max-width: 90%;
       font-size: 3.1vw;
       text-align: center;
@@ -419,7 +416,7 @@ export const FormField = styled.div`
     width: 32em;
     height: 1.6em;
     border-radius: 4px;
-    @media ${device.md} {
+    @media ${device.switchDisplay} {
       width: 55vw;
     }
     @media ${device.sm} {
@@ -451,7 +448,7 @@ export const ImageLabel = styled.label`
   font-weight: 500;
   margin-bottom: -1.1em;
   overflow: hidden;
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     align-self: center;
     text-align: center;
   }
@@ -467,7 +464,7 @@ export const ImageInput = styled.div`
   background-color: #e8f1f6;
   border: 2px solid #374e66;
   border-radius: 4px;
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     align-self: center;
   }
   @media ${device.sm} {

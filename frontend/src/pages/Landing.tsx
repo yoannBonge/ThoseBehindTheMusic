@@ -25,7 +25,7 @@ const WelcomeDiv = styled.main`
   @media ${device.lg} {
     width: 65vw;
   }
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     width: 69vw;
   }
   @media ${device.sm} {
@@ -44,7 +44,7 @@ const Title = styled.h1`
   @supports (-moz-appearance: none) {
     line-height: 1em;
   }
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     font-size: 6vw;
   }
   @media ${device.sm} {
@@ -62,7 +62,7 @@ const About = styled.p`
   @media ${device.lg} {
     font-size: 1.4em;
   }
-  @media ${device.md} {
+  @media ${device.switchDisplay} {
     font-size: 1.2em;
   }
   @media ${device.sm} {

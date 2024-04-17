@@ -65,8 +65,6 @@ const Timeline = styled.div`
     height: 10%;
   }
   @media ${device.switchDisplay} {
-  }
-  @media ${device.md} {
     height: 12%;
   }
   @media ${device.sm} {
