@@ -47,7 +47,7 @@ const ComposerPictureContainer = styled.div`
     justify-content: center;
     height: 90%;
     width: auto;
-    /* max-width: 320px; */
+    max-width: 90%;
     margin: auto;
   }
 `;
