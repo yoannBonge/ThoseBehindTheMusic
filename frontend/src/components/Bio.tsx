@@ -35,9 +35,6 @@ const BioContent = styled.p`
   @media ${device.md} {
     font-size: 1.2em;
   }
-  @media ${device.sm} {
-    font-size: 2.6vw;
-  }
   @media ${device.xs} {
     font-size: 1em;
   }

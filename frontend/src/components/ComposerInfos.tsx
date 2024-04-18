@@ -191,9 +191,6 @@ const ComposerInfosElement = styled.li`
   @media ${device.md} {
     font-size: 0.8em;
   }
-  @media ${device.sm} {
-    font-size: 2.2vw;
-  }
   @media ${device.xs} {
     font-size: 0.7em;
   }
@@ -214,9 +211,6 @@ const PropertyName = styled.span<{ $categoryColor: string }>`
   @media ${device.md} {
     font-size: 1.4em;
   }
-  @media ${device.sm} {
-    font-size: 2.6vw;
-  }
 `;
 
 const PropertyContent = styled.span`
@@ -236,9 +230,6 @@ const PropertyContent = styled.span`
   @media ${device.md} {
     font-size: 1.4em;
     max-width: 90%;
-  }
-  @media ${device.sm} {
-    font-size: 2.6vw;
   }
 `;
 

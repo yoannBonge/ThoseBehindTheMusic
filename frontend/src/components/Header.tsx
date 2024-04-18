@@ -25,11 +25,17 @@ const StyledHeader = styled.header`
     font-family: "Bakbak One";
     font-size: 1.8em;
     text-align: center;
-    @media ${device.lg} {
+    /* @media ${device.lg} {
       font-size: 2.5vw;
+    } */
+    @media ${device.xmd} {
+      font-size: 1.4em;
     }
     @media ${device.md} {
-      font-size: 2.6vw;
+      font-size: 2.8vw;
+    }
+    @media (max-width: 450px) {
+      font-size: 2.73vw;
     }
   }
 `;
@@ -50,12 +56,11 @@ const Categories = styled.div`
   align-items: center;
   margin-left: 3em;
   gap: 3vw;
-  @media ${device.md} {
-    margin-left: 5vw;
-    gap: 2.5vw;
+  @media ${device.xmd} {
+    margin-left: 2vw;
   }
-  @media ${device.sm} {
-    margin-left: 3vw;
+  @media ${device.md} {
+    gap: 2.5vw;
   }
 `;
 
@@ -69,15 +74,17 @@ const Login = styled.span<{ onClick: () => void }>`
   padding: 0.5em 0;
   text-align: center;
   cursor: pointer;
-  @media ${device.lg} {
-    font-size: 2.5vw;
-    margin-right: 1em;
+  @media ${device.xmd} {
+    font-size: 1.4em;
   }
   @media ${device.md} {
-    font-size: 2.6vw;
+    font-size: 2.8vw;
   }
   @media ${device.sm} {
     margin-right: 0.5em;
+  }
+  @media (max-width: 450px) {
+    font-size: 2.73vw;
   }
 `;
 
