@@ -22,7 +22,7 @@ const ComposerPresentation = styled.main`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     flex-direction: column;
   }
 `;
@@ -44,10 +44,10 @@ const ImageInfosSeparationLine = styled.div<{
     right: 50%;
     z-index: 2;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     position: static;
     width: 100vw;
-    height: 0.15em;
+    height: 0.4%;
   }
 `;
 

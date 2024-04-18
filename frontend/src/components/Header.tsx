@@ -28,7 +28,7 @@ const StyledHeader = styled.header`
     @media ${device.lg} {
       font-size: 2.5vw;
     }
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       font-size: 2.6vw;
     }
   }
@@ -50,7 +50,7 @@ const Categories = styled.div`
   align-items: center;
   margin-left: 3em;
   gap: 3vw;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     margin-left: 5vw;
     gap: 2.5vw;
   }
@@ -73,7 +73,7 @@ const Login = styled.span<{ onClick: () => void }>`
     font-size: 2.5vw;
     margin-right: 1em;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2.6vw;
   }
   @media ${device.sm} {

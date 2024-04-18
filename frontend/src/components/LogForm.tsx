@@ -34,7 +34,7 @@ const FormField = styled.div`
     @media ${device.lg} {
       font-size: 1.7vw;
     }
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       font-size: 2.3vw;
     }
     @media ${device.sm} {
@@ -47,7 +47,7 @@ const FormField = styled.div`
     @media ${device.lg} {
       height: 1.8vw;
     }
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       height: 1.9vw;
       max-width: 30vw;
     }
@@ -70,7 +70,7 @@ const ErrorMessage = styled.span`
   @media ${device.lg} {
     font-size: 1.6vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2.2vw;
   }
   @media ${device.sm} {
@@ -93,7 +93,7 @@ const SuccessMessage = styled.span`
   @media ${device.lg} {
     font-size: 1.6vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2.2vw;
   }
   @media ${device.sm} {
@@ -120,7 +120,7 @@ const SubmitButton = styled.button<{
   @media ${device.lg} {
     font-size: 1.7vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2.3vw;
   }
   @media ${device.sm} {

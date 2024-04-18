@@ -34,7 +34,7 @@ const BioAndVideosSwitch = styled.div<{ $categoryColor: string }>`
   @media ${device.lg} {
     font-size: 1.8vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 14.5em;
     font-size: 1.2em;
   }
@@ -50,7 +50,7 @@ const BioAndVideosWrapper = styled.div`
   width: 51.3%;
   margin-top: 1vw;
   overflow: hidden;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 23.8%;
     margin-top: 1.5vw;
     height: 82%;
@@ -65,7 +65,7 @@ const BioAndVideosContent = styled.div<{ $shifted: boolean }>`
   transition: transform 0.4s ease-in-out;
   transform: ${(props) =>
     props.$shifted ? "translateX(-100%)" : "translateX(0)"};
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     transform: ${(props) =>
       props.$shifted ? "translateX(-98.3%)" : "translateX(0)"};
   }

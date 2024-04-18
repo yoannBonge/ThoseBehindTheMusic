@@ -85,7 +85,7 @@ const StyledModal = styled(ReactModalAdapter)`
     @media ${device.lg} {
       font-size: 4vw;
     }
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       font-size: 5vw;
     }
     @media ${device.sm} {
@@ -102,7 +102,7 @@ const StyledModal = styled(ReactModalAdapter)`
     @media ${device.lg} {
       font-size: 1.9vw;
     }
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       font-size: 2.5vw;
     }
     @media ${device.sm} {
@@ -167,7 +167,7 @@ const LoginOrSignup = styled.span`
   @media ${device.lg} {
     font-size: 1.8vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2.4vw;
   }
   @media ${device.sm} {

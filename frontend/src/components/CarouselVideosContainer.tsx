@@ -20,7 +20,7 @@ const StyledSlider = styled(Slider)`
     transform: translateX(100.5%);
     width: 47vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 89.9vw;
     height: 100%;
     margin-top: 0;
@@ -42,10 +42,7 @@ const StyledSlider = styled(Slider)`
     font-size: 2vw;
     color: rgb(255, 255, 255);
     cursor: pointer;
-    /* @media ${device.switchDisplay} {
-      font-size: 6vw;
-    } */
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       font-size: 20px;
     }
   }
@@ -56,14 +53,14 @@ const StyledSlider = styled(Slider)`
     @media ${device.xmd} {
       margin-right: 2.1vw;
     }
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       margin-right: 2.2vw;
     }
   }
 
   .slick-next::before {
     content: "\uf054";
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       margin-left: -0.1vw;
     }
   }

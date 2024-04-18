@@ -14,7 +14,7 @@ const StyledSlider = styled(Slider)`
   @media ${device.lg} {
     width: 60vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 70vw;
   }
   @supports (-moz-appearance: none) {
@@ -38,7 +38,7 @@ const StyledSlider = styled(Slider)`
   .slick-prev {
     left: -5%;
     transform: translate(-50%, 50%);
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       transform: translate(-50%, 95%);
     }
     @media ${device.sm} {
@@ -52,7 +52,7 @@ const StyledSlider = styled(Slider)`
   .slick-next {
     right: -5%;
     transform: translate(50%, 50%);
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       transform: translate(50%, 95%);
     }
     @media ${device.sm} {
@@ -69,7 +69,7 @@ const StyledSlider = styled(Slider)`
     font-size: 3.5em;
     color: rgba(147, 28, 28, 0.7);
     cursor: pointer;
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       font-size: 6vw;
     }
   }

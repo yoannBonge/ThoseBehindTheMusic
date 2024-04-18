@@ -42,7 +42,7 @@ const ContentContainer = styled.main`
   text-align: center;
   color: white;
   z-index: 1;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     top: 30%;
   }
 `;
@@ -54,7 +54,7 @@ const Title = styled.h2`
   line-height: 1em;
   color: rgba(147, 28, 28, 0.9);
   text-align: center;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 9vw;
   }
 `;

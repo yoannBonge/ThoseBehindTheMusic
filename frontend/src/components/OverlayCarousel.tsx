@@ -56,7 +56,7 @@ const Wrapper = styled.div`
   z-index: 3;
   box-sizing: border-box;
   cursor: pointer;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,8 +73,6 @@ const Filter = styled.div`
   background: rgba(0, 0, 0, 0.3);
   border-radius: 20px;
   z-index: 2;
-  @media ${device.switchDisplay} {
-  }
 `;
 
 const Image = styled.img`
@@ -86,7 +84,7 @@ const Image = styled.img`
   @media ${device.lg} {
     width: 60vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 70vw;
   }
 `;
@@ -108,7 +106,7 @@ const Title = styled.h3<{ $isHovered: boolean }>`
       : css`
           ${moveDown} 0.3s ease-out forwards
         `};
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 7vw;
     animation: inherit;
     top: 25%;
@@ -137,7 +135,7 @@ const Description = styled.div<{ $isHovered: boolean }>`
       : css`
           ${moveUpFadeOut} 0.3s ease-out
         `};
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     position: relative;
     transform: translate(-50%, 0);
     font-size: 3vw;

@@ -72,7 +72,7 @@ const StyledModal = styled(ReactModalAdapter)`
     @media ${device.lg} {
       width: 50vw;
     }
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       width: 60vw;
     }
   }
@@ -99,7 +99,7 @@ const StyledModal = styled(ReactModalAdapter)`
     @media ${device.lg} {
       font-size: 1.9vw;
     }
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       font-size: 2.5vw;
     }
     @media ${device.sm} {
@@ -112,7 +112,7 @@ const StyledModal = styled(ReactModalAdapter)`
       @media ${device.lg} {
         font-size: 1.9vw;
       }
-      @media ${device.switchDisplay} {
+      @media ${device.md} {
         font-size: 2.5vw;
       }
       @media ${device.sm} {
@@ -141,7 +141,7 @@ const Button = styled.button`
   @media ${device.lg} {
     font-size: 1.7vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2.3vw;
   }
   @media ${device.sm} {
@@ -174,7 +174,7 @@ const ErrorMessage = styled.span`
   @media ${device.lg} {
     font-size: 1.6vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2.2vw;
   }
   @media ${device.sm} {
@@ -191,7 +191,7 @@ const SuccessMessage = styled.span`
   @media ${device.lg} {
     font-size: 1.6vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2.2vw;
   }
   @media ${device.sm} {

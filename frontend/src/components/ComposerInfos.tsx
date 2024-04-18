@@ -25,7 +25,7 @@ const ModifyButton = styled(Link)<{ $categoryColor: string }>`
   border-radius: 0 0 8px 0;
   border: none;
   cursor: pointer;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2vw;
   }
 `;
@@ -40,7 +40,7 @@ const IdentityInfos = styled.section`
     width: 47vw;
     line-height: 3vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 12.42%;
     line-height: 1.2em;
     margin-left: 1.5vw;
@@ -59,7 +59,7 @@ const ComposerNameContainer = styled.div`
     width: 100%;
     margin: 0 0 0 0;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     align-items: flex-end;
     width: 100%;
     height: 30px;
@@ -76,7 +76,7 @@ const ComposerName = styled.h2`
   text-align: center;
   white-space: nowrap;
   /* overflow: hidden; */
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 2em;
     overflow: inherit;
   }
@@ -96,7 +96,7 @@ const FaMainWrapper = styled.div`
   @media ${device.xmd} {
     width: 76.9%;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 100vw;
     top: 9px;
     left: 0%;
@@ -114,7 +114,7 @@ const FaContainer = styled.div`
   @media ${device.xmd} {
     width: 50.6vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     position: static;
     width: 300px;
   }
@@ -140,14 +140,14 @@ const FaBackward = styled(FontAwesomeIcon)<{
   color: white;
   cursor: pointer;
   z-index: 2;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 1.3em;
     transform: inherit;
   }
   &:hover {
     animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
       infinite;
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       animation: inherit;
     }
   }
@@ -161,14 +161,14 @@ const FaForward = styled(FontAwesomeIcon)<{
   color: white;
   cursor: pointer;
   z-index: 2;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 1.3em;
     transform: inherit;
   }
   &:hover {
     animation: ${({ $categoryColor }) => buttonsBlink($categoryColor)} 0.6s
       infinite;
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       animation: inherit;
     }
   }
@@ -188,14 +188,11 @@ const ComposerInfosElement = styled.li`
   @media ${device.xmd} {
     font-size: 1.8vw;
   }
-  /* @media ${device.switchDisplay} {
-    font-size: 2vw;
-  } */
+  @media ${device.md} {
+    font-size: 0.8em;
+  }
   @media ${device.sm} {
     font-size: 2.2vw;
-  }
-  @media ${device.switchDisplay} {
-    font-size: 0.8em;
   }
   @media ${device.xs} {
     font-size: 0.7em;
@@ -214,14 +211,11 @@ const PropertyName = styled.span<{ $categoryColor: string }>`
   @media ${device.xmd} {
     font-size: 2.2vw;
   }
-  /* @media ${device.switchDisplay} {
-    font-size: 2.4vw;
-  } */
+  @media ${device.md} {
+    font-size: 1.4em;
+  }
   @media ${device.sm} {
     font-size: 2.6vw;
-  }
-  @media ${device.switchDisplay} {
-    font-size: 1.4em;
   }
 `;
 
@@ -239,22 +233,19 @@ const PropertyContent = styled.span`
     font-size: 2.2vw;
     max-width: 32vw;
   }
-  /* @media ${device.switchDisplay} {
-    font-size: 2.4vw;
-  } */
-  @media ${device.sm} {
-    font-size: 2.6vw;
-  }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 1.4em;
     max-width: 90%;
+  }
+  @media ${device.sm} {
+    font-size: 2.6vw;
   }
 `;
 
 const CountryFlag = styled(ReactCountryFlag)`
   font-size: 1.9vw;
   margin: -0.1em 0.5em 0 0.5em;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 0.8em;
   }
 `;
@@ -268,7 +259,7 @@ const NotableWorksList = styled.ul`
   padding-left: 0.3em;
   margin: 0;
   line-height: 1.9vw;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     line-height: 1.4em;
   }
 `;
@@ -284,7 +275,7 @@ const NotableWorksElement = styled.li`
   @media ${device.xmd} {
     font-size: 1.9vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 1.2em;
   }
 `;
@@ -298,7 +289,7 @@ const PhotoSource = styled.span`
   opacity: 0.5;
   left: 1%;
   bottom: 41%;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     font-size: 0.8em;
   }
   @media ${device.xs} {
@@ -316,9 +307,9 @@ const SeparationLine = styled.hr<{ $categoryColor: string }>`
   border: none;
   margin: 0.5em 0 0.5em 0;
   background-color: ${(props) => props.$categoryColor};
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     margin: 0.3em 0 0.3em 0;
-    height: 1px;
+    height: 1%;
     border-radius: 0;
   }
 `;

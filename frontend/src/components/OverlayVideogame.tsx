@@ -52,18 +52,16 @@ const ComposerPictureContainer = styled.div`
     perspective: inherit;
     transform: inherit;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     position: static;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 90%;
     width: auto;
+    max-width: 320px;
     margin: auto;
   }
-  /* @media ${device.switchDisplay} {
-    width: 40vw;
-  } */
 `;
 
 const CRTFilter = styled.img`
@@ -101,10 +99,6 @@ const VideogameComposerPicture = styled.img<{
       css`
         animation: ${pictureFadeInOut} 0.75s linear;
       `}
-  }
-  @media ${device.switchDisplay} {
-    height: 12.2em;
-    width: auto;
   }
 `;
 

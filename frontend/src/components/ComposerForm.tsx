@@ -36,7 +36,7 @@ const BioLabel = styled.label`
   font-weight: 500;
   margin-bottom: -1.1em;
   overflow: hidden;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     align-self: center;
     text-align: center;
   }
@@ -52,7 +52,7 @@ const BioInput = styled.div`
   background-color: #e8f1f6;
   border: 2px solid #374e66;
   border-radius: 4px;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     align-self: center;
   }
   @media ${device.sm} {
@@ -66,9 +66,6 @@ const BioInput = styled.div`
     @media ${device.sm} {
       font-size: 20vw;
     }
-    /* @media ${device.xs} {
-      font-size: 18vw;
-    } */
   }
   button {
     font-family: "Afacad";

@@ -23,7 +23,7 @@ const VideoContainer = styled.div`
     width: 12vw;
     height: 11vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 26vw;
     height: 14vh;
   }
@@ -64,7 +64,7 @@ const Timeline = styled.div`
   @media ${device.xmd} {
     height: 10%;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     height: 12%;
   }
   @media ${device.sm} {

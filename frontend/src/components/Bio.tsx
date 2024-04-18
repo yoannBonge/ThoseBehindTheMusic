@@ -12,7 +12,7 @@ const BioContainer = styled.div`
   @media ${device.xmd} {
     width: 139vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 690vw;
   }
 `;
@@ -32,11 +32,11 @@ const BioContent = styled.p`
   @media ${device.lg} {
     font-size: 2vw;
   }
+  @media ${device.md} {
+    font-size: 1.2em;
+  }
   @media ${device.sm} {
     font-size: 2.6vw;
-  }
-  @media ${device.switchDisplay} {
-    font-size: 1.2em;
   }
   @media ${device.xs} {
     font-size: 1em;

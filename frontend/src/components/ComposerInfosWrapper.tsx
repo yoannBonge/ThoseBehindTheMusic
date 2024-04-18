@@ -19,7 +19,7 @@ export const ComposerInfosContainer = styled.section<{
   @media ${device.xmd} {
     width: 50vw;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     position: static;
     width: 100vw;
     height: 65vh;
@@ -39,7 +39,7 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
   @media ${device.xmd} {
     height: 95%;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     height: 82%;
   }
 `;

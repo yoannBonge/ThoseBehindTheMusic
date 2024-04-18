@@ -40,18 +40,16 @@ const ComposerPictureContainer = styled.div`
     perspective: inherit;
     transform: inherit;
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     position: static;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 90%;
     width: auto;
+    max-width: 320px;
     margin: auto;
   }
-  /* @media ${device.switchDisplay} {
-    width: 40vw;
-  } */
 `;
 
 const MusicComposerPicture = styled.img<{
@@ -78,10 +76,6 @@ const MusicComposerPicture = styled.img<{
     box-shadow: 0px 0px 0.6px #00000046, 0px 0px 1.3px #0000005f,
       0px 0px 2.5px #0000007b, 0px 0px 4.5px #0000008a, 0px 0px 8.4px #000000bd,
       0px 0px 20px #000000;
-  }
-  @media ${device.switchDisplay} {
-    height: 12.2em;
-    width: auto;
   }
 `;
 

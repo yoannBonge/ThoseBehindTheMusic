@@ -52,7 +52,7 @@ export const API_ROUTES = {
 interface Size {
   xs: string;
   sm: string;
-  switchDisplay: string;
+  md: string;
   xmd: string;
   lg: string;
   xl: string;
@@ -62,7 +62,7 @@ interface Size {
 const size: Size = {
   xs: "430px",
   sm: "600px",
-  switchDisplay: "800px",
+  md: "800px",
   xmd: "1150px",
   lg: "1200px",
   xl: "1478px",
@@ -71,7 +71,7 @@ const size: Size = {
 export const device = {
   xs: `(max-width: ${size.xs})`,
   sm: `(max-width: ${size.sm})`,
-  switchDisplay: `(max-width: ${size.switchDisplay})`,
+  md: `(max-width: ${size.md})`,
   xmd: `(max-width: ${size.xmd})`,
   lg: `(max-width: ${size.lg})`,
   xl: `(max-width: ${size.xl})`,
@@ -289,11 +289,11 @@ export const OverlayContainer = styled.section<{
       }
     }};
   }
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     width: 100%;
     background-position: center;
     object-fit: cover;
-    height: 35%;
+    height: 34.6%;
   }
 `;
 
@@ -319,7 +319,7 @@ export const FormPageWrapper = styled.div`
   background-attachment: fixed;
   background-position: center 65%;
   background-repeat: no-repeat;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     background-position: inherit;
     background-image: inherit;
     background-color: #d1ddcc;
@@ -332,7 +332,7 @@ export const FormContentWrapper = styled.main`
   height: 88vh;
   flex-direction: column;
   margin-left: 2vw;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     margin: 0;
     align-items: center;
   }
@@ -341,7 +341,7 @@ export const FormContentWrapper = styled.main`
     font-size: 3em;
     color: black;
     margin: 0.5em 0 0em 0;
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       font-size: 6vw;
       text-align: center;
     }
@@ -353,7 +353,7 @@ export const FormContentWrapper = styled.main`
     max-width: 60%;
     padding-bottom: 1em;
     border-bottom: 2px solid black;
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       max-width: 90%;
       font-size: 3.1vw;
       text-align: center;
@@ -416,7 +416,7 @@ export const FormField = styled.div`
     width: 32em;
     height: 1.6em;
     border-radius: 4px;
-    @media ${device.switchDisplay} {
+    @media ${device.md} {
       width: 55vw;
     }
     @media ${device.sm} {
@@ -448,7 +448,7 @@ export const ImageLabel = styled.label`
   font-weight: 500;
   margin-bottom: -1.1em;
   overflow: hidden;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     align-self: center;
     text-align: center;
   }
@@ -464,7 +464,7 @@ export const ImageInput = styled.div`
   background-color: #e8f1f6;
   border: 2px solid #374e66;
   border-radius: 4px;
-  @media ${device.switchDisplay} {
+  @media ${device.md} {
     align-self: center;
   }
   @media ${device.sm} {
