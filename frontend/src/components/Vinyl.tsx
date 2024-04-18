@@ -23,7 +23,7 @@ const VinylContainer = styled.div`
 `;
 
 const VinylPicture = styled.img`
-  height: 29.1vw;
+  height: 25vw;
   cursor: pointer;
   @media ${device.sm} {
     max-height: 47vw;

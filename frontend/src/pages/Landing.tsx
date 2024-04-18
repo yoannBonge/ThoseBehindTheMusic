@@ -4,6 +4,10 @@ import { device } from "../utils/constants";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 const PageWrapper = styled.div`
+  background-image: url("/background-landing.webp");
+  background-position: left;
+  background-size: 90vh;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   width: 100vw;
