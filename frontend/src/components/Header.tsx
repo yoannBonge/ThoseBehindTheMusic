@@ -46,7 +46,7 @@ const LogoAndCategories = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 6vh;
+  height: 8vh;
   display: flex;
   margin: 0 0.5vw;
 `;
