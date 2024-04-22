@@ -11,6 +11,7 @@ import {
   ImageInput,
   ImageLabel,
   Indication,
+  Loading,
   RadioGroupContainer,
   SubLabel,
   SubmitButton,
@@ -74,15 +75,15 @@ function SuggestForm({
 
   const imageRef = useRef<File | null>(null);
 
-  const resetImage = () => {
-    imageRef.current = null;
-    setValidImageUrl(null);
-  };
+  // const resetImage = () => {
+  //   imageRef.current = null;
+  //   setValidImageUrl(null);
+  // };
 
   const {
     register,
     handleSubmit,
-    reset,
+    // reset,
     getValues,
     formState: { errors, isValid },
   } = useForm<Contribution>({
@@ -178,8 +179,8 @@ function SuggestForm({
       setTimeout(() => {
         setIsSubmitting(false);
         setSuccessMessage(null);
-        reset();
-        resetImage();
+        // reset();
+        // resetImage();
         onFormSubmitSuccess();
       }, 2000);
     } catch (error: any) {
@@ -498,6 +499,13 @@ function SuggestForm({
         >
           Envoyer votre suggestion
         </SubmitButton>
+        {errorMessage === null && successMessage === null && isSubmitting && (
+          <Loading>
+            <span></span>
+            <span></span>
+            <span></span>
+          </Loading>
+        )}
         {errorMessage === null && successMessage && (
           <SuccessMessage>{successMessage}</SuccessMessage>
         )}

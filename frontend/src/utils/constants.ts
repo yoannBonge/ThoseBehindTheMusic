@@ -544,6 +544,37 @@ export const Indication = styled.span<{
   }
 `;
 
+export const Loading = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin-bottom: -2em; */
+  span {
+    width: 1px;
+    height: 1px;
+    background-color: black;
+    border-radius: 100%;
+    border: 4px solid black;
+    margin: 0 6px 0 6px;
+  }
+  span:nth-child(1) {
+    animation: preloader 0.6s ease-in-out alternate infinite;
+  }
+  span:nth-child(2) {
+    animation: preloader 0.6s ease-in-out alternate 0.2s infinite;
+  }
+  span:nth-child(3) {
+    animation: preloader 0.6s ease-in-out alternate 0.4s infinite;
+  }
+  @keyframes preloader {
+    100% {
+      transform: scale(1.7);
+    }
+  }
+`;
+
 export const ErrorMessage = styled.span`
   color: #fb2c2c;
   font-family: "Afacad";
