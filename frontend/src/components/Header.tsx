@@ -46,9 +46,15 @@ const LogoAndCategories = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 8vh;
+  height: 6vh;
   display: flex;
-  margin: 0 0.5vw;
+  margin: 0 0 0 5px;
+  @media ${device.md} {
+    height: 7vw;
+  }
+  @media ${device.sm} {
+    height: 8vw;
+  }
 `;
 
 const Categories = styled.div`
@@ -79,6 +85,7 @@ const Login = styled.span<{ onClick: () => void }>`
   }
   @media ${device.md} {
     font-size: 2.8vw;
+    margin-right: 0.8em;
   }
   @media ${device.sm} {
     margin-right: 0.5em;
@@ -117,7 +124,7 @@ function Header() {
     <StyledHeader>
       <LogoAndCategories>
         <Logo
-          src='/favicon.png'
+          src='/tbtm-logo.webp'
           alt="logo du site représentant la fusion d'une clef de sol et d'un stylo plume"
         />
         <Categories>
