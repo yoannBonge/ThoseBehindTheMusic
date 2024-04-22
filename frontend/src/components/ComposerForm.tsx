@@ -12,6 +12,7 @@ import {
   ImageInput,
   ImageLabel,
   Indication,
+  Loading,
   RadioGroupContainer,
   SubLabel,
   SubmitButton,
@@ -594,6 +595,13 @@ function ComposerForm({
             ? "Modifier le compositeur"
             : "Ajouter le compositeur"}
         </SubmitButton>
+        {errorMessage === null && successMessage === null && isSubmitting && (
+          <Loading>
+            <span></span>
+            <span></span>
+            <span></span>
+          </Loading>
+        )}
         {errorMessage === null && successMessage && (
           <SuccessMessage>{successMessage}</SuccessMessage>
         )}

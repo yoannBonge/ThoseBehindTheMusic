@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { API_ROUTES, device } from "../utils/constants";
+import { API_ROUTES, LogLoading, device } from "../utils/constants";
 import { useAuth } from "../utils/context/auth/useAuth";
 
 /////// The code below is a trick to style the overlay of a react-modal when using styled-components.
@@ -310,6 +310,13 @@ function LogoutModal({
           Annuler
         </CancelButton>
       </ButtonsWrapper>
+      {errorMessage === null && successMessage === null && isSubmitting && (
+        <LogLoading>
+          <span></span>
+          <span></span>
+          <span></span>
+        </LogLoading>
+      )}
       {errorMessage === null && successMessage && (
         <SuccessMessage>{successMessage}</SuccessMessage>
       )}

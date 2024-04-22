@@ -550,7 +550,6 @@ export const Loading = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin-bottom: -2em; */
   span {
     width: 1px;
     height: 1px;
@@ -572,6 +571,13 @@ export const Loading = styled.div`
     100% {
       transform: scale(1.7);
     }
+  }
+`;
+
+export const LogLoading = styled(Loading)`
+  span {
+    background-color: white;
+    border: 4px solid white;
   }
 `;
 

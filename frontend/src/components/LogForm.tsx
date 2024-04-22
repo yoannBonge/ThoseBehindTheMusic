@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
-import { API_ROUTES, device } from "../utils/constants";
+import { API_ROUTES, LogLoading, device } from "../utils/constants";
 import { useAuth } from "../utils/context/auth/useAuth";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -289,6 +289,13 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       >
         {formType === "login" ? "Se connecter" : "Créer mon compte"}
       </SubmitButton>
+      {errorMessage === null && successMessage === null && isSubmitting && (
+        <LogLoading>
+          <span></span>
+          <span></span>
+          <span></span>
+        </LogLoading>
+      )}
       {errorMessage === null && successMessage && (
         <SuccessMessage>{successMessage}</SuccessMessage>
       )}
