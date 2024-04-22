@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import styled from "styled-components";
 import {
   API_ROUTES,
   Contribution,
@@ -15,6 +16,7 @@ import {
   SubmitButton,
   SubmitButtonAndMessageContainer,
   SuccessMessage,
+  device,
   handleAddPhoto,
   isDuplicateStringValue,
 } from "../utils/constants";
@@ -25,6 +27,29 @@ import { useAuth } from "../utils/context/auth/useAuth";
 // Some styled-components appearing in the render are shared and
 // come from "/utils/constants".
 
+const FormMessageField = styled(FormField)`
+  textarea {
+    width: 32em;
+    height: 6em;
+    border-left: 2px solid #000000;
+    border-top: 2px solid #000000;
+    border-right: 2px solid #767676;
+    border-bottom: 2px solid #767676;
+    border-radius: 4px;
+    @media ${device.md} {
+      width: 55vw;
+    }
+    @media ${device.sm} {
+      width: 65vw;
+    }
+    @media ${device.xs} {
+      width: 100%;
+    }
+    &:focus {
+      outline-color: #374e66;
+    }
+  }
+`;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function SuggestForm({
   onFormSubmitSuccess,
@@ -122,7 +147,10 @@ function SuggestForm({
         <img src="${imageDataUrl}" alt="Image du compositeur" style="max-width: 100%; height: auto;" /><br>
     </div>`;
       }
-      emailContent += `<br>Source de l'image : ${data.pictureSource}`;
+      emailContent += `<br>Source de l'image : ${data.pictureSource}<br><br>`;
+      if (data.contributorMessage) {
+        emailContent += `Message du contributeur :<br> ${data.contributorMessage}`;
+      }
       const apiUrl = API_ROUTES.SUGGEST_COMPOSER;
 
       const response = await fetch(apiUrl, {
@@ -435,13 +463,32 @@ function SuggestForm({
           {...register("contributorName", {
             required: "Ce champ est requis",
             pattern: {
-              value: /^[A-Za-z0-9._%+-]*[A-Za-z][A-Za-z0-9._%+-]*[A-Za-z0-9]$/i,
+              value:
+                /^[A-Za-z0-9._%+\- ]*[A-Za-z][A-Za-z0-9._%+\- ]*[A-Za-z0-9]$/i,
               message: "Indiquez votre nom ou alias",
             },
           })}
         />
-        {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+        {errors.contributorName && (
+          <ErrorMessage>{errors.contributorName.message}</ErrorMessage>
+        )}
       </FormField>
+
+      <FormMessageField>
+        <label htmlFor='contributorMessage'>
+          Si vous voulez ajouter quelque-chose, c'est ici
+        </label>
+        <textarea
+          id='contributorMessage'
+          {...register("contributorMessage")}
+          rows={4}
+          maxLength={400}
+          style={{ resize: "none" }}
+        />
+        {errors.contributorMessage && (
+          <ErrorMessage>{errors.contributorMessage.message}</ErrorMessage>
+        )}
+      </FormMessageField>
 
       <SubmitButtonAndMessageContainer>
         <SubmitButton

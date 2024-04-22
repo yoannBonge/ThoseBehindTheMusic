@@ -31,6 +31,7 @@ export interface Contribution {
   related: string[];
   selectedWorks: string[];
   contributorName: string;
+  contributorMessage: string;
 }
 
 ////////////////////////////////////// API ROUTES
