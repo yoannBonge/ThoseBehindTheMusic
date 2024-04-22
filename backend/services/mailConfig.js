@@ -1,36 +1,51 @@
 const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
 
 dotenv.config();
 
-// Fonction pour envoyer un e-mail
-const mailConfig = async (to, subject, html) => {
-  try {
-    // Création d'un transporteur (SMTP)
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.GMAIL_ADMIN,
-        pass: process.env.GMAIL_PASSWORD,
-      },
+const mailConfig = async (contributorName, subject, emailContent) => {
+  const oauth2Client = new OAuth2(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    "https://developers.google.com/oauthplayground"
+  );
+
+  oauth2Client.setCredentials({
+    refresh_token: process.env.REFRESH_TOKEN,
+  });
+
+  const accessToken = await new Promise((resolve, reject) => {
+    oauth2Client.getAccessToken((err, token) => {
+      if (err) {
+        reject();
+      }
+      resolve(token);
     });
+  });
 
-    // Configuration de l'e-mail
-    const mailOptions = {
-      from: process.env.GMAIL_ADMIN,
-      to: process.env.GMAIL_ADMIN,
-      subject: "Suggestion de compositeur",
-      html: html,
-    };
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      type: "OAuth2",
+      user: process.env.EMAIL,
+      accessToken,
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      refreshToken: process.env.REFRESH_TOKEN,
+    },
+  });
 
-    // Envoi de l'e-mail
-    await transporter.sendMail(mailOptions);
+  const mailOptions = {
+    from: process.env.EMAIL,
+    to: process.env.EMAIL,
+    subject: subject,
+    html: emailContent,
+  };
 
-    console.log("E-mail envoyé avec succès !");
-  } catch (error) {
-    console.error("Erreur lors de l'envoi de l'e-mail :", error);
-    throw new Error("Une erreur s'est produite lors de l'envoi de l'e-mail.");
-  }
+  // Envoi de l'e-mail
+  await transporter.sendMail(mailOptions);
 };
 
 module.exports = mailConfig;

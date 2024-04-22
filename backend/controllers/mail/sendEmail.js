@@ -4,14 +4,13 @@ const sendEmail = async (req, res) => {
   try {
     const { contributorName, emailContent } = req.body;
 
-    // Vérifiez ici les données reçues du formulaire
     if (!emailContent) {
       return res.status(400).json({
         error: "Le contenu de l'e-mail est vide.",
       });
     }
 
-    // Envoyez l'e-mail en utilisant la fonction qui se trouve dans /services/mail.ts
+    // Appel de mailConfig avec les paramètres nécessaires
     await mailConfig(
       contributorName,
       "Nouvelle suggestion de compositeur",

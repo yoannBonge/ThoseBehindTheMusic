@@ -381,12 +381,13 @@ function SuggestForm({
       </FormField>
       <FormField>
         <label htmlFor='selectedWorks'>
-          Veuillez renseigner les liens de vidéos YouTube de{" "}
-          <u>quatre productions (ou plus) du compositeur</u>
+          Veuillez renseigner les titres de{" "}
+          <u>quatre productions (ou plus) du compositeur</u> (ex: pour Quincy
+          Jones, "Michael Jackson - Thriller")
           <br />
           <SubLabel>
-            (Accédez à chaque musique ou clip sur YouTube et copiez-collez les
-            liens de la barre d'adresse dans les champs ci-dessous)
+            (Attention : il doit s'agir de titres composés/produits par le
+            compositeur)
           </SubLabel>
         </label>
         {[...Array(12).keys()].map((index) => (
@@ -404,17 +405,16 @@ function SuggestForm({
                       Object.values(selectedWorks),
                       value,
                       index
-                    ) || "Vous avez déjà inséré le lien de ce morceau"
+                    ) || "Vous avez déjà renseigné ce morceau"
                   );
                 },
                 required:
                   index < 4
-                    ? "Vous devez insérer au moins quatre liens YouTube de productions du compositeur"
+                    ? "Vous devez insérer au moins quatre titres produits par le compositeur"
                     : false,
                 pattern: {
-                  value: /^https:\/\/www\.youtube\.com\/watch\?v=/,
-                  message:
-                    "Il doit s'agir d'un lien d'une vidéo provenant de YouTube",
+                  value: /^.{10,}$/,
+                  message: "Précisez l'interprète et le titre",
                 },
               })}
             />
