@@ -33,10 +33,10 @@ const BioContent = styled.p`
     font-size: 2vw;
   }
   @media ${device.md} {
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
   @media ${device.xs} {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 `;
 /////////////////////////////////////////////////////////////////////////////COMPONENT
