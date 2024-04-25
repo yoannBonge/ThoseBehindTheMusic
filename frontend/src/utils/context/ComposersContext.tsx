@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useEffect, useState } from "react";
-import { API_ROUTES, Composer } from "../../constants";
+import { API_ROUTES, Composer } from "../constants";
 
 type ComposersContextType = {
   musicComposers: Composer[];
@@ -65,7 +65,7 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
 
   return (
     <ComposersContext.Provider
-      value={{ cinemaComposers, musicComposers, videogameComposers }}
+      value={{ musicComposers, cinemaComposers, videogameComposers }}
     >
       {children}
     </ComposersContext.Provider>

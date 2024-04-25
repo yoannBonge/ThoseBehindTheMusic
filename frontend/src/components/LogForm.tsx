@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styled from "styled-components";
 import { API_ROUTES, LogLoading, device } from "../utils/constants";
-import { useAuth } from "../utils/context/auth/useAuth";
+import { useAuthStore } from "../utils/store/authStore";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 type FormInputs = {
@@ -146,7 +146,7 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   //////////////////////////////////////////////////////CONTEXT
-  const { login } = useAuth();
+  const { login } = useAuthStore();
 
   //////////////////////////////////////////////////////BEHAVIOR
   const {

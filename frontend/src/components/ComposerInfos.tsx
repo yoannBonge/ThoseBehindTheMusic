@@ -7,7 +7,7 @@ import ReactCountryFlag from "react-country-flag";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { Composer, device, getCategoryColor } from "../utils/constants";
-import { useAuth } from "../utils/context/auth/useAuth";
+import { useAuthStore } from "../utils/store/authStore";
 import BioAndVideos from "./BioAndVideos";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -316,7 +316,7 @@ function ComposerInfos({
   handleNextComposer: () => void;
 }) {
   //////////////////////////////////////////////////////////////CONTEXT
-  const { isLoggedIn, isAdmin } = useAuth();
+  const { isLoggedIn, isAdmin } = useAuthStore();
 
   //////////////////////////////////////////////////////BEHAVIOR
   const categoryColor = getCategoryColor(currentComposerInfos.category);

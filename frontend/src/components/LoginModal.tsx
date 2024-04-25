@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import styled from "styled-components";
 import { device } from "../utils/constants";
-import { useAuth } from "../utils/context/auth/useAuth";
+import { useAuthStore } from "../utils/store/authStore";
 import LogForm from "./LogForm";
 
 /////// The code below is a trick to style the overlay of a react-modal when using styled-components.
@@ -202,7 +202,7 @@ function LoginModal({
   //////////////////////////////////////////////////////STATE
   const [isSwitchedToSignup, setIsSwitchedToSignup] = useState(false);
   //////////////////////////////////////////////////////CONTEXT
-  const { login } = useAuth();
+  const { login } = useAuthStore();
 
   //////////////////////////////////////////////////////BEHAVIOR
   const handleCloseModal = () => {

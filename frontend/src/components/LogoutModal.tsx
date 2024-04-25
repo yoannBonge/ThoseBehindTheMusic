@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { API_ROUTES, LogLoading, device } from "../utils/constants";
-import { useAuth } from "../utils/context/auth/useAuth";
+import { useAuthStore } from "../utils/store/authStore";
 
 /////// The code below is a trick to style the overlay of a react-modal when using styled-components.
 interface Props extends ReactModal.Props {
@@ -228,7 +228,7 @@ function LogoutModal({
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   //////////////////////////////////////////////////////CONTEXT
-  const { logout } = useAuth();
+  const { logout } = useAuthStore();
 
   //////////////////////////////////////////////////////BEHAVIOR
   const navigate = useNavigate();

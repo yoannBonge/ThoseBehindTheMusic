@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { device } from "../utils/constants";
-import { useAuth } from "../utils/context/auth/useAuth";
+import { useAuthStore } from "../utils/store/authStore";
 import LoginModal from "./LoginModal";
 import LogoutModal from "./LogoutModal";
 
@@ -25,9 +25,6 @@ const StyledHeader = styled.header`
     font-family: "Bakbak One";
     font-size: 1.8em;
     text-align: center;
-    /* @media ${device.lg} {
-      font-size: 2.5vw;
-    } */
     @media ${device.xmd} {
       font-size: 1.4em;
     }
@@ -102,7 +99,7 @@ function Header() {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   //////////////////////////////////////////////////////CONTEXT
-  const { isLoggedIn, isAdmin } = useAuth();
+  const { isLoggedIn, isAdmin } = useAuthStore();
   //////////////////////////////////////////////////////BEHAVIOR
   const openModal = () => {
     if (isLoggedIn) {

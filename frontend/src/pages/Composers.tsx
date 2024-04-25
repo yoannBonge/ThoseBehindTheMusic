@@ -5,7 +5,7 @@ import OverlayCinema from "../components/OverlayCinema";
 import OverlayMusic from "../components/OverlayMusic";
 import OverlayVideogame from "../components/OverlayVideogame";
 import { Composer, device, getCategoryColor } from "../utils/constants";
-import { useComposers } from "../utils/context/composers/useComposers";
+import { useComposers } from "../utils/context/useComposers";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 

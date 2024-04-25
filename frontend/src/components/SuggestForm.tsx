@@ -21,7 +21,7 @@ import {
   handleAddPhoto,
   isDuplicateStringValue,
 } from "../utils/constants";
-import { useAuth } from "../utils/context/auth/useAuth";
+import { useAuthStore } from "../utils/store/authStore";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -64,7 +64,7 @@ function SuggestForm({
   const [isBlinkingToAlert, setIsBlinkingToAlert] = useState(false);
   const [validImageUrl, setValidImageUrl] = useState<string | null>(null);
   //////////////////////////////////////////////////////////////CONTEXT
-  const { isLoggedIn, email } = useAuth();
+  const { isLoggedIn, email } = useAuthStore();
   //////////////////////////////////////////////////////////////BEHAVIOR
 
   const handleAddPhotoClick = (

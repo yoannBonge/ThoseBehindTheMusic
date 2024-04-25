@@ -179,6 +179,7 @@ function YoutubeVideo({
     <VideoContainer key={indexComponent}>
       <Video
         url={url}
+        light
         playing={indexComponent === 0 && playing}
         onPause={onPause}
         onStart={handleVideoStarted}
@@ -188,7 +189,7 @@ function YoutubeVideo({
         onProgress={handleProgress}
         width='100%'
         height='100%'
-        // loading='lazy'
+        loading='lazy'
       />
       <Timeline ref={timelineRef} onMouseDown={handleTimelineMouseDown}>
         <ProgressContainer>

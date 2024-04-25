@@ -23,7 +23,7 @@ import {
   handleAddPhoto,
   isDuplicateStringValue,
 } from "../utils/constants";
-import { useAuth } from "../utils/context/auth/useAuth";
+import { useAuthStore } from "../utils/store/authStore";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
 
@@ -114,7 +114,7 @@ function ComposerForm({
   const [validImageUrl, setValidImageUrl] = useState<string | null>(null);
   const [validTextFileSrc, setValidTextFileSrc] = useState<string | null>(null);
   //////////////////////////////////////////////////////////////CONTEXT
-  const { isLoggedIn, isAdmin } = useAuth();
+  const { isLoggedIn, isAdmin } = useAuthStore();
   //////////////////////////////////////////////////////////////BEHAVIOR
   const navigate = useNavigate();
 
