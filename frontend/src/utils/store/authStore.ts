@@ -12,9 +12,9 @@ interface AuthActions {
 }
 
 export const useAuthStore = create<AuthState & AuthActions>((set) => ({
-  isLoggedIn: false,
-  isAdmin: false,
-  email: null,
+  isLoggedIn: !!localStorage.getItem("token"),
+  isAdmin: localStorage.getItem("isAdmin") === "true",
+  email: localStorage.getItem("email") || null,
   login: () =>
     set((state) => ({
       ...state,

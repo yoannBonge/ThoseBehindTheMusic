@@ -178,7 +178,6 @@ function LogForm({ formType, onSignupSuccess, onLoginSuccess }: FormProps) {
       const responseData = await response.json();
 
       if (!response.ok) {
-        // setSuccessMessage(null);
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
 

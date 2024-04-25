@@ -43,7 +43,7 @@ const LogoAndCategories = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 6vh;
+  height: 7vh;
   display: flex;
   margin: 0 0 0 5px;
   @media ${device.md} {
@@ -121,7 +121,7 @@ function Header() {
     <StyledHeader>
       <LogoAndCategories>
         <Logo
-          src='/tbtm-logo.webp'
+          src='/favicon.png'
           alt="logo du site représentant la fusion d'une clef de sol et d'un stylo plume"
         />
         <Categories>
