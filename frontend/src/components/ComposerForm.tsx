@@ -548,7 +548,7 @@ function ComposerForm({
             liens de la barre d'adresse dans les champs ci-dessous)
           </SubLabel>
         </label>
-        {[...Array(12).keys()].map((index) => (
+        {[...Array(30).keys()].map((index) => (
           <div key={index}>
             <input
               id={`selectedWorks${index}`}
@@ -570,11 +570,6 @@ function ComposerForm({
                   index < 4
                     ? "Vous devez insérer au moins quatre liens YouTube de productions du compositeur"
                     : false,
-                pattern: {
-                  value: /^https:\/\/www\.youtube\.com\/watch\?v=/,
-                  message:
-                    "Il doit s'agir d'un lien d'une vidéo provenant de YouTube",
-                },
               })}
             />
             {errors.selectedWorks && (

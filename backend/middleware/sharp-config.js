@@ -19,7 +19,7 @@ const sharpTreatment = async (req, res, next) => {
   try {
     const pictureBuffer = await sharp(picture[0].buffer)
       .resize(500)
-      .webp({ quality: 60 })
+      .webp()
       .toBuffer();
 
     console.log("Image traitée avec succès !");

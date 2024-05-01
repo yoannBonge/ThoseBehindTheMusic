@@ -171,6 +171,7 @@ const ErrorMessage = styled.span`
   font-size: 1em;
   font-weight: 500;
   display: block;
+  text-align: center;
   @media ${device.lg} {
     font-size: 1.6vw;
   }

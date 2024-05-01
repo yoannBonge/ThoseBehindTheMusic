@@ -30,7 +30,7 @@ const FormContainer = styled.div`
   overflow: hidden;
   @media ${device.md} {
     width: 90vw;
-    height: 75%;
+    height: 70%;
   }
 `;
 
