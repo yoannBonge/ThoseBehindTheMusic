@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import ComposerInfosWrapper from "../components/ComposerInfosWrapper";
 import OverlayCinema from "../components/OverlayCinema";
@@ -51,100 +51,64 @@ const ImageInfosSeparationLine = styled.div<{
   }
 `;
 
+const Indication = styled.div`
+  color: white;
+  font-family: "Afacad";
+  font-size: 3em;
+  text-align: center;
+  margin-top: 40vh;
+`;
+
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 
-interface CategoriesProps {
-  category: "music" | "cinema" | "videogame";
-}
-function Composers({ category }: CategoriesProps) {
+function SpecificComposer() {
   //////////////////////////////////////////////////////STATE
-  const [currentComposerIndex, setCurrentComposerIndex] = useState<number>(0);
-  const [isComposerContentFading, setisComposerContentFading] = useState(false);
-  const [isComposerPictureSwitching, setIsComposerPictureSwitching] =
-    useState(false);
 
+  //////////////////////////////////////////////////////////////ID
+  const { id } = useParams();
   //////////////////////////////////////////////////////CONTEXT
-  let composers = null;
-  const musicComposers: Composer[] = useComposers().musicComposers;
-  const cinemaComposers: Composer[] = useComposers().cinemaComposers;
-  const videogameComposers: Composer[] = useComposers().videogameComposers;
+  const allComposers: Composer[] = useComposers().allComposers;
 
   //////////////////////////////////////////////////////BEHAVIOR
-  useEffect(() => {
-    setCurrentComposerIndex(0);
-  }, [category]);
+  const currentComposerInfos = allComposers.find(
+    (composer) => composer._id === id
+  );
+  if (!currentComposerInfos) {
+    return <Indication>Compositeur non trouvé...</Indication>;
+  }
 
-  let currentComposerInfos: Composer | undefined;
   let overlayComponent;
 
-  switch (category) {
+  switch (currentComposerInfos.category) {
     case "music":
-      composers = musicComposers;
-      currentComposerInfos = musicComposers[currentComposerIndex];
       overlayComponent = (
         <OverlayMusic
           currentComposerInfos={currentComposerInfos}
-          isComposerPictureSwitching={isComposerPictureSwitching}
+          isComposerPictureSwitching={false}
         />
       );
       break;
     case "cinema":
-      composers = cinemaComposers;
-      currentComposerInfos = cinemaComposers[currentComposerIndex];
       overlayComponent = (
         <OverlayCinema
           currentComposerInfos={currentComposerInfos}
-          isComposerPictureSwitching={isComposerPictureSwitching}
+          isComposerPictureSwitching={false}
         />
       );
       break;
     case "videogame":
-      composers = videogameComposers;
-      currentComposerInfos = videogameComposers[currentComposerIndex];
       overlayComponent = (
         <OverlayVideogame
           currentComposerInfos={currentComposerInfos}
-          isComposerPictureSwitching={isComposerPictureSwitching}
+          isComposerPictureSwitching={false}
         />
       );
       break;
   }
-  if (!currentComposerInfos) {
-    return null;
-  }
 
   const categoryColor = getCategoryColor(currentComposerInfos.category);
 
-  const handlePrevComposer = async () => {
-    setisComposerContentFading(true);
-    setIsComposerPictureSwitching(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 400));
-
-    setCurrentComposerIndex((prevIndex) =>
-      prevIndex === 0 ? composers.length - 1 : prevIndex - 1
-    );
-    setisComposerContentFading(false);
-
-    await new Promise((resolve) => setTimeout(resolve, 400));
-    setIsComposerPictureSwitching(false);
-  };
-
-  const handleNextComposer = async () => {
-    setisComposerContentFading(true);
-    setIsComposerPictureSwitching(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 400));
-    setCurrentComposerIndex((prevIndex) =>
-      prevIndex === composers.length - 1 ? 0 : prevIndex + 1
-    );
-    setisComposerContentFading(false);
-
-    await new Promise((resolve) => setTimeout(resolve, 400));
-    setIsComposerPictureSwitching(false);
-  };
-
-  // console.log("RENDER PAGE COMPOSERS");
+  // console.log("RENDER PAGE SPECIFIC COMPOSER");
 
   //////////////////////////////////////////////////////RENDER
   return (
@@ -154,14 +118,14 @@ function Composers({ category }: CategoriesProps) {
         <ImageInfosSeparationLine $categoryColor={categoryColor} />
         <ComposerInfosWrapper
           currentComposerInfos={currentComposerInfos}
-          isSpecificComposer={false}
-          isComposerContentFading={!isComposerContentFading}
-          handlePrevComposer={handlePrevComposer}
-          handleNextComposer={handleNextComposer}
+          isComposerContentFading={true}
+          isSpecificComposer={true}
+          handlePrevComposer={() => {}}
+          handleNextComposer={() => {}}
         />
       </ComposerPresentation>
     </PageWrapper>
   );
 }
 
-export default Composers;
+export default SpecificComposer;

@@ -98,6 +98,67 @@ export function getCategoryColor(category: string): string {
   }
 }
 
+////////////////////////////////////// FUNCTION TO CALCULATE AGE
+const months = [
+  "janvier",
+  "février",
+  "mars",
+  "avril",
+  "mai",
+  "juin",
+  "juillet",
+  "août",
+  "septembre",
+  "octobre",
+  "novembre",
+  "décembre",
+];
+
+export const calculateAge = (birth: string) => {
+  const parts = birth.split(" ");
+
+  let year = 0;
+  let month = 0;
+  let day = 1;
+
+  if (parts.length === 3) {
+    const [dayStr, monthStr, yearStr] = parts;
+    day = parseInt(dayStr);
+    month = months.findIndex((month) => month === monthStr.toLowerCase());
+    year = parseInt(yearStr);
+  } else if (parts.length === 1) {
+    year = parseInt(parts[0]);
+  } else {
+    year = parseInt(parts[0]);
+  }
+
+  const dateOfBirth = new Date(year, month, day);
+
+  const ageDiffMs = Date.now() - dateOfBirth.getTime();
+  const ageDate = new Date(ageDiffMs);
+
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+};
+
+export const calculateAgeOfDeath = (birth: string, death: string) => {
+  const [day, monthStr, yearStr] = birth.split(" ");
+  const month = months.findIndex((month) => month === monthStr.toLowerCase());
+  const year = parseInt(yearStr);
+  const dateOfBirth = new Date(year, month, parseInt(day));
+
+  const [deathDay, deathMonthStr, deathYearStr] = death.split(" ");
+  const deathMonth = months.findIndex(
+    (month) => month === deathMonthStr.toLowerCase()
+  );
+  const deathYear = parseInt(deathYearStr);
+  const dateOfDeath = new Date(deathYear, deathMonth, parseInt(deathDay));
+
+  const ageDiffMs = dateOfDeath.getTime() - dateOfBirth.getTime();
+  const ageDate = new Date(ageDiffMs);
+
+  return Math.abs(ageDate.getUTCFullYear() - 1970);
+};
+
 ////////////////////////////////////// FUNCTION TO HANDLE ADD COMPOSER PICTURE IN ADD COMPOSER FORM
 export const handleAddPhoto = (
   event: React.MouseEvent<HTMLButtonElement>,

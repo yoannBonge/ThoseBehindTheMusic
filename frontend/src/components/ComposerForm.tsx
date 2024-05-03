@@ -101,10 +101,10 @@ const BookIcon = styled.i<{
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function ComposerForm({
   onFormSubmitSuccess,
-  $initialValues,
+  initialValues,
 }: {
   onFormSubmitSuccess: () => void;
-  $initialValues?: Composer | null;
+  initialValues?: Composer | null;
 }) {
   //////////////////////////////////////////////////////////////STATE
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -153,25 +153,25 @@ function ComposerForm({
   });
 
   useEffect(() => {
-    if ($initialValues) {
-      Object.keys($initialValues).forEach((key) => {
-        setValue(key as keyof Composer, $initialValues[key as keyof Composer], {
+    if (initialValues) {
+      Object.keys(initialValues).forEach((key) => {
+        setValue(key as keyof Composer, initialValues[key as keyof Composer], {
           shouldValidate: true,
         });
         trigger(key as keyof Composer);
         trigger();
       });
     }
-  }, [$initialValues, setValue, trigger]);
+  }, [initialValues, setValue, trigger]);
 
   const onSubmit: SubmitHandler<Composer> = async (data) => {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = $initialValues
-        ? API_ROUTES.UPDATE_COMPOSER($initialValues._id)
+      const apiUrl = initialValues
+        ? API_ROUTES.UPDATE_COMPOSER(initialValues._id)
         : API_ROUTES.ADD_COMPOSER;
-      const method = $initialValues ? "PUT" : "POST";
+      const method = initialValues ? "PUT" : "POST";
       const token = localStorage.getItem("token");
 
       if (!isLoggedIn || !isAdmin) {
@@ -222,7 +222,7 @@ function ComposerForm({
         throw new Error(responseData.message || "Une erreur s'est produite.");
       }
       ////////////////////////////SUCCESS
-      const successMessage = $initialValues
+      const successMessage = initialValues
         ? "Compositeur modifié !"
         : "Compositeur enregistré !";
       setSuccessMessage(successMessage);
@@ -234,8 +234,8 @@ function ComposerForm({
         resetImageAndBio();
         onFormSubmitSuccess();
 
-        if ($initialValues) {
-          const redirectUrl = `/composers/${$initialValues.category}`;
+        if (initialValues) {
+          const redirectUrl = `/composers/${initialValues.category}`;
           navigate(redirectUrl);
         }
       }, 2000);
@@ -586,9 +586,7 @@ function ComposerForm({
           $isSubmitting={isSubmitting}
           disabled={!isValid}
         >
-          {$initialValues
-            ? "Modifier le compositeur"
-            : "Ajouter le compositeur"}
+          {initialValues ? "Modifier le compositeur" : "Ajouter le compositeur"}
         </SubmitButton>
         {errorMessage === null && successMessage === null && isSubmitting && (
           <Loading>

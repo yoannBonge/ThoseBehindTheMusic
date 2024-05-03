@@ -6,7 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactCountryFlag from "react-country-flag";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-import { Composer, device, getCategoryColor } from "../utils/constants";
+import {
+  Composer,
+  calculateAge,
+  calculateAgeOfDeath,
+  device,
+  getCategoryColor,
+} from "../utils/constants";
 import { useAuthStore } from "../utils/store/authStore";
 import BioAndVideos from "./BioAndVideos";
 
@@ -85,9 +91,11 @@ const ComposerName = styled.h2`
   }
 `;
 
-const FaMainWrapper = styled.div`
+const FaMainWrapper = styled.div<{
+  $isSpecificComposer: boolean;
+}>`
   /* background-color: blue; */
-  display: flex;
+  display: ${(props) => (props.$isSpecificComposer ? "none" : "flex")};
   justify-content: center;
   position: absolute;
   width: 100vw;
@@ -308,10 +316,12 @@ const SeparationLine = styled.hr<{ $categoryColor: string }>`
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function ComposerInfos({
   currentComposerInfos,
+  isSpecificComposer,
   handlePrevComposer,
   handleNextComposer,
 }: {
   currentComposerInfos: Composer;
+  isSpecificComposer: boolean;
   handlePrevComposer: () => void;
   handleNextComposer: () => void;
 }) {
@@ -345,7 +355,7 @@ function ComposerInfos({
       )}
       <IdentityInfos>
         <ComposerNameContainer>
-          <FaMainWrapper>
+          <FaMainWrapper $isSpecificComposer={isSpecificComposer}>
             <FaContainer>
               <FaBackward
                 icon={faChevronLeft}
@@ -366,7 +376,10 @@ function ComposerInfos({
             Naissance :{" "}
           </PropertyName>
           <PropertyContent>
-            {currentComposerInfos.birth} - {currentComposerInfos.birthPlace}{" "}
+            {currentComposerInfos.birth}{" "}
+            {!currentComposerInfos.death &&
+              "(" + calculateAge(currentComposerInfos.birth) + " ans)"}{" "}
+            - {currentComposerInfos.birthPlace}{" "}
             <CountryFlag countryCode={currentComposerInfos.countryFlag} svg />
           </PropertyContent>
         </ComposerInfosElement>
@@ -381,7 +394,14 @@ function ComposerInfos({
         {currentComposerInfos.death && (
           <ComposerInfosElement>
             <PropertyName $categoryColor={categoryColor}>Décès : </PropertyName>
-            <PropertyContent>{currentComposerInfos.death} </PropertyContent>
+            <PropertyContent>
+              {currentComposerInfos.death}{" "}
+              {currentComposerInfos.death &&
+                `(à ${calculateAgeOfDeath(
+                  currentComposerInfos.birth,
+                  currentComposerInfos.death
+                )} ans)`}
+            </PropertyContent>
           </ComposerInfosElement>
         )}
         {currentComposerInfos.musicalGenre && (

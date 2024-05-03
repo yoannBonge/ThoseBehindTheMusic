@@ -67,7 +67,8 @@ const StyledSlider = styled(Slider)`
   .slick-next::before {
     font-family: "FontAwesome";
     font-size: 3.5em;
-    color: rgba(147, 28, 28, 0.7);
+    /* color: rgba(147, 28, 28, 0.7); */
+    color: rgba(125, 55, 61, 0.8);
     cursor: pointer;
     @media ${device.md} {
       font-size: 6vw;

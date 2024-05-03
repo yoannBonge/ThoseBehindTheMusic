@@ -2,12 +2,14 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 import { API_ROUTES, Composer } from "../constants";
 
 type ComposersContextType = {
+  allComposers: Composer[];
   musicComposers: Composer[];
   cinemaComposers: Composer[];
   videogameComposers: Composer[];
 };
 
 export const ComposersContext = createContext<ComposersContextType>({
+  allComposers: [],
   musicComposers: [],
   cinemaComposers: [],
   videogameComposers: [],
@@ -18,8 +20,9 @@ interface ComposersProviderProps {
 }
 
 export const ComposersProvider = ({ children }: ComposersProviderProps) => {
-  const [cinemaComposers, setCinemaComposers] = useState<Composer[]>([]);
+  const [allComposers, setAllComposers] = useState<Composer[]>([]);
   const [musicComposers, setMusicComposers] = useState<Composer[]>([]);
+  const [cinemaComposers, setCinemaComposers] = useState<Composer[]>([]);
   const [videogameComposers, setVideogameComposers] = useState<Composer[]>([]);
 
   const fetchComposersData = async () => {
@@ -28,29 +31,26 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
       const data: Composer[] = await response.json();
 
       // Filtrage et tri par catégorie
+      const allComposersData = data;
+      const sortedAllComposersData: Composer[] = allComposersData.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setAllComposers(sortedAllComposersData);
+
       const musicData: Composer[] = data.filter(
         (composer) => composer.category === "music"
       );
-      const sortedMusicData: Composer[] = musicData.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-      setMusicComposers(sortedMusicData);
+      setMusicComposers(musicData);
 
       const cinemaData: Composer[] = data.filter(
         (composer) => composer.category === "cinema"
       );
-      const sortedCinemaData: Composer[] = cinemaData.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-      setCinemaComposers(sortedCinemaData);
+      setCinemaComposers(cinemaData);
 
       const videogameData: Composer[] = data.filter(
         (composer) => composer.category === "videogame"
       );
-      const sortedVideogameData: Composer[] = videogameData.sort((a, b) =>
-        a.name.localeCompare(b.name)
-      );
-      setVideogameComposers(sortedVideogameData);
+      setVideogameComposers(videogameData);
     } catch (error) {
       console.error(
         "Une erreur s'est produite lors de la récupération des données: ",
@@ -65,7 +65,12 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
 
   return (
     <ComposersContext.Provider
-      value={{ musicComposers, cinemaComposers, videogameComposers }}
+      value={{
+        allComposers,
+        musicComposers,
+        cinemaComposers,
+        videogameComposers,
+      }}
     >
       {children}
     </ComposersContext.Provider>

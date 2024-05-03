@@ -5,8 +5,10 @@ import Header from "./components/Header";
 import AddComposer from "./pages/AddComposer";
 import Categories from "./pages/Categories";
 import Composers from "./pages/Composers";
+import Index from "./pages/Index";
 import Home from "./pages/Landing";
 import ModifyComposer from "./pages/ModifyComposer";
+import SpecificComposer from "./pages/SpecificComposer";
 import SuggestComposer from "./pages/SuggestComposer";
 import { ComposersProvider } from "./utils/context/ComposersContext";
 
@@ -46,6 +48,8 @@ function App() {
               path='/composers/videogame'
               element={<Composers category='videogame' />}
             />
+            <Route path='/index' element={<Index />} />
+            <Route path='/composer/:id' element={<SpecificComposer />} />
             <Route path='/add-composer' element={<AddComposer />} />
             <Route path='/modify-composer/:id' element={<ModifyComposer />} />
             <Route path='/suggest-composer' element={<SuggestComposer />} />

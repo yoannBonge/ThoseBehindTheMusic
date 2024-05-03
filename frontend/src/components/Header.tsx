@@ -28,11 +28,14 @@ const StyledHeader = styled.header`
     @media ${device.xmd} {
       font-size: 1.4em;
     }
+    @media (max-width: 920px) {
+      font-size: 2.4vw;
+    }
     @media ${device.md} {
-      font-size: 2.8vw;
+      /* font-size: 2.8vw; */
     }
     @media (max-width: 450px) {
-      font-size: 2.73vw;
+      /* font-size: 2.73vw; */
     }
   }
 `;
@@ -47,10 +50,13 @@ const Logo = styled.img`
   display: flex;
   margin: 0 0 0 5px;
   @media ${device.md} {
-    height: 7vw;
+    /* height: 7vw; */
   }
   @media ${device.sm} {
-    height: 8vw;
+    /* height: 8vw; */
+  }
+  @media (max-width: 450px) {
+    height: 8.2vw;
   }
 `;
 
@@ -80,15 +86,14 @@ const Login = styled.span<{ onClick: () => void }>`
   @media ${device.xmd} {
     font-size: 1.4em;
   }
+  @media (max-width: 920px) {
+    font-size: 2.4vw;
+  }
   @media ${device.md} {
-    font-size: 2.8vw;
     margin-right: 0.8em;
   }
   @media ${device.sm} {
     margin-right: 0.5em;
-  }
-  @media (max-width: 450px) {
-    font-size: 2.73vw;
   }
 `;
 
@@ -129,6 +134,7 @@ function Header() {
           <NavLink to='/composers/music'>Musique</NavLink>
           <NavLink to='/composers/cinema'>Cinéma</NavLink>
           <NavLink to='/composers/videogame'>Jeu Vidéo</NavLink>
+          <NavLink to='/index'>Index</NavLink>
           {isLoggedIn && isAdmin && (
             <NavLink to='/add-composer'>Ajouter</NavLink>
           )}

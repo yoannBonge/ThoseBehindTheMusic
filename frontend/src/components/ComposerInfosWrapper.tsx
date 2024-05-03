@@ -49,11 +49,13 @@ const ComposerInfosContent = styled.div<{ $isComposerContentFading: boolean }>`
 function ComposerInfosWrapper({
   currentComposerInfos,
   isComposerContentFading,
+  isSpecificComposer,
   handlePrevComposer,
   handleNextComposer,
 }: {
   currentComposerInfos: Composer;
   isComposerContentFading: boolean;
+  isSpecificComposer: boolean;
   handlePrevComposer: () => void;
   handleNextComposer: () => void;
 }) {
@@ -65,6 +67,7 @@ function ComposerInfosWrapper({
       <ComposerInfosContent $isComposerContentFading={isComposerContentFading}>
         <ComposerInfos
           currentComposerInfos={currentComposerInfos}
+          isSpecificComposer={isSpecificComposer}
           handlePrevComposer={handlePrevComposer}
           handleNextComposer={handleNextComposer}
         ></ComposerInfos>
