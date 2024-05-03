@@ -96,7 +96,7 @@ const FilterButton = styled.button<{ active: boolean }>`
   border-radius: 5px;
   cursor: pointer;
   background-color: ${(props) => (props.active ? "rgb(125, 55, 61)" : "white")};
-  color: ${(props) => (props.active ? "white" : "rgb(125, 55, 61)")};
+  color: ${(props) => (props.active ? "white" : "rgb(95, 41, 46)")};
   border-color: ${(props) => (props.active ? "white" : "rgb(125, 55, 61)")};
   @media ${device.xmd} {
     width: 46%;
@@ -130,7 +130,7 @@ const FilterOption = styled.select`
   display: flex;
   align-self: center;
   background-color: white;
-  color: rgb(125, 55, 61);
+  color: rgb(95, 41, 46);
   font-family: "Afacad";
   font-size: 1.2em;
   border: 2px solid rgb(125, 55, 61);
@@ -181,6 +181,9 @@ const ComposerLink = styled(NavLink)`
   }
   @media ${device.md} {
     font-size: 3vw;
+  }
+  @media ${device.sm} {
+    font-size: 3.5vw;
   }
 `;
 
