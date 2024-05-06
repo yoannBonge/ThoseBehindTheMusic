@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { device } from "../utils/constants";
+import { colors, device } from "../utils/constants";
 import { useAuthStore } from "../utils/store/authStore";
 import LoginModal from "./LoginModal";
 import LogoutModal from "./LogoutModal";
@@ -25,17 +25,14 @@ const StyledHeader = styled.header`
     font-family: "Bakbak One";
     font-size: 1.8em;
     text-align: center;
-    @media ${device.xmd} {
-      font-size: 1.4em;
+    @media (max-width: 990px) {
+      font-size: 1.6em;
     }
-    @media (max-width: 920px) {
-      font-size: 2.4vw;
+    @media (max-width: 890px) {
+      font-size: 2.8vw;
     }
-    @media ${device.md} {
-      /* font-size: 2.8vw; */
-    }
-    @media (max-width: 450px) {
-      /* font-size: 2.73vw; */
+    &.active {
+      color: ${colors.tbtm};
     }
   }
 `;
@@ -49,12 +46,6 @@ const Logo = styled.img`
   height: 7vh;
   display: flex;
   margin: 0 0 0 5px;
-  @media ${device.md} {
-    /* height: 7vw; */
-  }
-  @media ${device.sm} {
-    /* height: 8vw; */
-  }
   @media (max-width: 450px) {
     height: 8.2vw;
   }
@@ -79,15 +70,15 @@ const Login = styled.span<{ onClick: () => void }>`
   text-decoration: none;
   font-family: "Bakbak One";
   font-size: 1.8em;
-  margin-right: 1em;
+  margin-right: 0.5em;
   padding: 0.5em 0;
   text-align: center;
   cursor: pointer;
-  @media ${device.xmd} {
-    font-size: 1.4em;
+  @media (max-width: 990px) {
+    font-size: 1.6em;
   }
-  @media (max-width: 920px) {
-    font-size: 2.4vw;
+  @media (max-width: 890px) {
+    font-size: 2.8vw;
   }
   @media ${device.md} {
     margin-right: 0.8em;
@@ -125,12 +116,14 @@ function Header() {
   return (
     <StyledHeader>
       <LogoAndCategories>
-        <Logo
-          src='/favicon.png'
-          alt="logo du site représentant la fusion d'une clef de sol et d'un stylo plume"
-        />
+        <NavLink to='/'>
+          <Logo
+            src='/favicon.png'
+            alt="logo du site représentant la fusion d'une clef de sol et d'un stylo plume"
+          />
+        </NavLink>
+
         <Categories>
-          <NavLink to='/'>Accueil</NavLink>
           <NavLink to='/composers/music'>Musique</NavLink>
           <NavLink to='/composers/cinema'>Cinéma</NavLink>
           <NavLink to='/composers/videogame'>Jeu Vidéo</NavLink>

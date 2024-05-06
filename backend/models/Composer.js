@@ -6,7 +6,7 @@ const composerSchema = new Schema({
   category: { type: String, required: true },
   name: { type: String, required: true },
   birthName: { type: String, required: false },
-  birth: { type: String, required: true },
+  birth: { type: String, required: false },
   birthPlace: { type: String, required: true },
   countryFlag: { type: String, required: true },
   death: { type: String, required: false },

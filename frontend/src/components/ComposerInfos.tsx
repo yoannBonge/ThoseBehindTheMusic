@@ -378,8 +378,10 @@ function ComposerInfos({
           <PropertyContent>
             {currentComposerInfos.birth}{" "}
             {!currentComposerInfos.death &&
-              "(" + calculateAge(currentComposerInfos.birth) + " ans)"}{" "}
-            - {currentComposerInfos.birthPlace}{" "}
+              currentComposerInfos.birth &&
+              "(" + calculateAge(currentComposerInfos.birth) + " ans)"}
+            {currentComposerInfos.birth && " - "}
+            {currentComposerInfos.birthPlace}{" "}
             <CountryFlag countryCode={currentComposerInfos.countryFlag} svg />
           </PropertyContent>
         </ComposerInfosElement>
@@ -397,6 +399,7 @@ function ComposerInfos({
             <PropertyContent>
               {currentComposerInfos.death}{" "}
               {currentComposerInfos.death &&
+                currentComposerInfos.birth &&
                 `(à ${calculateAgeOfDeath(
                   currentComposerInfos.birth,
                   currentComposerInfos.death

@@ -186,7 +186,7 @@ function ComposerForm({
       {
         data.birthName && formData.append("birthName", data.birthName);
       }
-      formData.append("birth", data.birth);
+      data.birth && formData.append("birth", data.birth);
       formData.append("birthPlace", data.birthPlace);
       formData.append("countryFlag", data.countryFlag);
       {
@@ -336,7 +336,7 @@ function ComposerForm({
           id='birth'
           type='text'
           {...register("birth", {
-            required: "Ce champ est requis",
+            required: false,
             pattern: {
               value: /\d{4}/,
               message: "Veuillez saisir au minimum une année de naissance",
@@ -354,7 +354,7 @@ function ComposerForm({
           {...register("birthPlace", {
             required: "Ce champ est requis",
             pattern: {
-              value: /^[a-zA-ZÀ-ÖØ-öø-ÿ ,.'-]{3,}$/i,
+              value: /^[a-zA-ZÀ-ÖØ-öø-ÿ •,'-.]{3,}$/i,
               message: "Le lieu de naissance doit contenir au moins 3 lettres",
             },
           })}

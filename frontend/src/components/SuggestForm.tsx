@@ -108,7 +108,9 @@ function SuggestForm({
 
       emailContent += `Catégorie : ${data.category}<br><br>`;
       emailContent += `Nom : ${data.name}<br><br>`;
-      emailContent += `Date de naissance : ${data.birth}<br><br>`;
+      if (data.birth) {
+        emailContent += `Date de naissance : ${data.birth}<br><br>`;
+      }
       emailContent += `Lieu de naissance : ${data.birthPlace}<br><br>`;
       if (data.death) {
         emailContent += `Date de décès : ${data.death}<br><br>`;
@@ -258,7 +260,7 @@ function SuggestForm({
           id='birth'
           type='text'
           {...register("birth", {
-            required: "Ce champ est requis",
+            required: false,
             pattern: {
               value: /\d{4}/,
               message: "Veuillez saisir au minimum une année de naissance",

@@ -2,7 +2,7 @@ import { countries } from "countries-list";
 import { ChangeEvent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { Composer, device } from "../utils/constants";
+import { Composer, colors, device } from "../utils/constants";
 import { useComposers } from "../utils/context/useComposers";
 
 /////////////////////////////////////////////////////////////////////////////STYLE
@@ -22,7 +22,7 @@ const PageWrapper = styled.div`
 const Title = styled.h3`
   font-family: "Bakbak One";
   font-size: 3.5em;
-  color: rgb(125, 55, 61);
+  color: ${colors.tbtm};
   text-align: center;
   margin: 0.4em 0 0.3em 0;
   @media ${device.md} {
@@ -88,16 +88,16 @@ const Categories = styled.div`
 
 const FilterButton = styled.button<{ active: boolean }>`
   background-color: white;
-  color: rgb(125, 55, 61);
+  color: ${colors.tbtm};
   font-family: "Afacad";
   font-size: 1.2em;
   white-space: nowrap;
-  border: 2px solid rgb(125, 55, 61);
+  border: 2px solid ${colors.tbtm};
   border-radius: 5px;
   cursor: pointer;
-  background-color: ${(props) => (props.active ? "rgb(125, 55, 61)" : "white")};
+  background-color: ${(props) => (props.active ? "${colors.tbtm}" : "white")};
   color: ${(props) => (props.active ? "white" : "rgb(95, 41, 46)")};
-  border-color: ${(props) => (props.active ? "white" : "rgb(125, 55, 61)")};
+  border-color: ${(props) => (props.active ? "white" : "${colors.tbtm}")};
   @media ${device.xmd} {
     width: 46%;
   }
@@ -133,11 +133,11 @@ const FilterOption = styled.select`
   color: rgb(95, 41, 46);
   font-family: "Afacad";
   font-size: 1.2em;
-  border: 2px solid rgb(125, 55, 61);
+  border: 2px solid ${colors.tbtm};
   border-radius: 5px;
   cursor: pointer;
   &:focus {
-    background-color: rgb(125, 55, 61);
+    background-color: ${colors.tbtm};
     color: white;
   }
   @media ${device.xmd} {
@@ -154,7 +154,7 @@ const FilterOption = styled.select`
 const SeparationLine = styled.hr`
   width: 100%;
   height: 2px;
-  background-color: rgb(125, 55, 61);
+  background-color: ${colors.tbtm};
   border: none;
 `;
 
@@ -177,7 +177,7 @@ const ComposerLink = styled(NavLink)`
   font-family: "Afacad";
   font-size: 1.4em;
   &:visited {
-    color: rgb(125, 55, 61);
+    color: ${colors.tbtm};
   }
   @media ${device.md} {
     font-size: 3vw;

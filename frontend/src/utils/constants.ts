@@ -6,7 +6,7 @@ export interface Composer {
   category: string;
   name: string;
   birthName?: string;
-  birth: string;
+  birth?: string;
   birthPlace: string;
   countryFlag: string;
   death?: string;
@@ -21,7 +21,7 @@ export interface Composer {
 export interface Contribution {
   category: string;
   name: string;
-  birth: string;
+  birth?: string;
   birthPlace: string;
   death?: string;
   picture: any;
@@ -79,10 +79,11 @@ export const device = {
 };
 
 ////////////////////////////////////// COLORS
-const colors = {
+export const colors = {
   music: "#A84BE5",
   cinema: "#CA9708",
   videogame: "#464E98",
+  tbtm: "#7D373D",
 };
 
 export function getCategoryColor(category: string): string {

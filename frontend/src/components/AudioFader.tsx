@@ -1,3 +1,4 @@
+import { useSwipeable } from "react-swipeable";
 import styled from "styled-components";
 import { device } from "../utils/constants";
 
@@ -99,11 +100,19 @@ const Fader = styled.div<{ $switched: boolean }>`
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
 function AudioFader({ switched, onToggle }: AudioFaderProps) {
+  const handlers = useSwipeable({
+    onSwipedLeft: () => {
+      onToggle();
+    },
+    onSwipedRight: () => {
+      onToggle();
+    },
+  });
   return (
     <Channel>
       <Slider>
         <FaderTrack>
-          <Fader $switched={switched} onClick={onToggle} />
+          <Fader $switched={switched} {...handlers} onClick={onToggle} />
         </FaderTrack>
       </Slider>
     </Channel>
