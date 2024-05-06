@@ -95,9 +95,9 @@ const FilterButton = styled.button<{ active: boolean }>`
   border: 2px solid ${colors.tbtm};
   border-radius: 5px;
   cursor: pointer;
-  background-color: ${(props) => (props.active ? "${colors.tbtm}" : "white")};
+  background-color: ${(props) => (props.active ? "#7D373D" : "white")};
   color: ${(props) => (props.active ? "white" : "rgb(95, 41, 46)")};
-  border-color: ${(props) => (props.active ? "white" : "${colors.tbtm}")};
+  border-color: ${(props) => (props.active ? "white" : "#7D373D")};
   @media ${device.xmd} {
     width: 46%;
   }
