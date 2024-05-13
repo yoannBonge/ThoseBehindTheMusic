@@ -11,8 +11,14 @@ interface AuthActions {
   logout: () => void;
 }
 
+const isTokenValid = () => {
+  const tokenExpiration = localStorage.getItem("tokenExpiration");
+  if (!tokenExpiration) return false;
+  return new Date(tokenExpiration) > new Date();
+};
+
 export const useAuthStore = create<AuthState & AuthActions>((set) => ({
-  isLoggedIn: !!localStorage.getItem("token"),
+  isLoggedIn: !!localStorage.getItem("token") && isTokenValid(),
   isAdmin: localStorage.getItem("isAdmin") === "true",
   email: localStorage.getItem("email") || null,
   login: () =>

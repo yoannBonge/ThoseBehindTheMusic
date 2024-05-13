@@ -45,7 +45,6 @@ const login = (req, res) => {
             email: user.email,
             isAdmin: isAdmin,
           });
-          // console.log(token);
         })
         .catch((error) => res.status(500).json({ error }));
     })
