@@ -50,10 +50,10 @@ const Video = styled(ReactPlayer)`
 `;
 
 const TopPreventClick = styled.div`
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   display: none;
   width: 100%;
-  height: 35%;
+  height: 40%;
   position: absolute;
   top: 0%;
   @media ${device.xmd} {
@@ -61,10 +61,10 @@ const TopPreventClick = styled.div`
   }
 `;
 const BottomPreventClick = styled.div`
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
   display: none;
   width: 100%;
-  height: 25%;
+  height: 30%;
   position: absolute;
   bottom: 7%;
   @media ${device.xmd} {
