@@ -49,6 +49,29 @@ const Video = styled(ReactPlayer)`
   overflow: hidden;
 `;
 
+const TopPreventClick = styled.div`
+  background-color: aquamarine;
+  display: none;
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 0%;
+  @media ${device.xmd} {
+    display: flex;
+  }
+`;
+const BottomPreventClick = styled.div`
+  background-color: aquamarine;
+  display: none;
+  width: 100%;
+  height: 30%;
+  position: absolute;
+  bottom: 7%;
+  @media ${device.xmd} {
+    display: flex;
+  }
+`;
+
 const Timeline = styled.div`
   position: absolute;
   bottom: 0%;
@@ -178,6 +201,8 @@ function YoutubeVideo({ url, playing, onPlay }: YoutubeVideoChildProps) {
         height='100%'
         loading='lazy'
       />
+      <TopPreventClick />
+      <BottomPreventClick />
       <Timeline ref={timelineRef} onMouseDown={handleTimelineMouseDown}>
         <ProgressContainer>
           <Progress $progress={progress} />
