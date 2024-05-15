@@ -53,7 +53,7 @@ const TopPreventClick = styled.div`
   background-color: aquamarine;
   display: none;
   width: 100%;
-  height: 40%;
+  height: 35%;
   position: absolute;
   top: 0%;
   @media ${device.xmd} {
@@ -64,7 +64,7 @@ const BottomPreventClick = styled.div`
   background-color: aquamarine;
   display: none;
   width: 100%;
-  height: 30%;
+  height: 25%;
   position: absolute;
   bottom: 7%;
   @media ${device.xmd} {
