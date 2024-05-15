@@ -73,9 +73,8 @@ function CarouselVideosContainer({
   currentComposerInfos: Composer;
 }) {
   //////////////////////////////////////////////////////////////STATE
-  const [currentVideoUrl, setCurrentVideoUrl] = useState("");
   const [sliderKey, setSliderKey] = useState(0);
-
+  const [playingIndex, setPlayingIndex] = useState<number | null>(0);
   //////////////////////////////////////////////////////////////BEHAVIOR
 
   const settings = {
@@ -92,22 +91,14 @@ function CarouselVideosContainer({
     return null;
   }
 
-  const handlePlay = (videoUrl: string) => {
-    if (currentVideoUrl !== videoUrl) {
-      setCurrentVideoUrl("");
-
-      const timeOut = setTimeout(() => {
-        setCurrentVideoUrl(videoUrl);
-      }, 4);
-
-      return () => clearTimeout(timeOut);
-    }
-  };
-
   useEffect(() => {
-    setCurrentVideoUrl("");
     setSliderKey((prevKey) => prevKey + 1);
+    setPlayingIndex(0);
   }, [currentComposerInfos]);
+
+  const handlePlay = (index: number) => {
+    setPlayingIndex(index);
+  };
 
   // console.log("RENDER VIDEO CONTAINER");
 
@@ -119,9 +110,8 @@ function CarouselVideosContainer({
           <YoutubeVideo
             key={index}
             url={track}
-            playing={currentVideoUrl === track}
-            onPause={() => setCurrentVideoUrl("")}
-            onPlay={() => handlePlay(track)}
+            playing={playingIndex === index}
+            onPlay={() => handlePlay(index)}
           />
         ))}
       </StyledSlider>

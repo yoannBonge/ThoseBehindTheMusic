@@ -7,7 +7,6 @@ import { device } from "../utils/constants";
 interface YoutubeVideoChildProps {
   url: string;
   playing: boolean;
-  onPause: () => void;
   onPlay: () => void;
 }
 
@@ -96,16 +95,10 @@ const Progress = styled.div<{ $progress: number }>`
 `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
-function YoutubeVideo({
-  url,
-  playing,
-  onPause,
-  onPlay,
-}: YoutubeVideoChildProps) {
+function YoutubeVideo({ url, playing, onPlay }: YoutubeVideoChildProps) {
   //////////////////////////////////////////////////////////////STATE
   const [progress, setProgress] = useState(0);
   const [isScrubbing, setIsScrubbing] = useState(false);
-  const [indexComponent, setindexComponent] = useState(0);
 
   //////////////////////////////////////////////////////////////BEHAVIOR
 
@@ -164,27 +157,21 @@ function YoutubeVideo({
     setIsScrubbing(true);
   };
 
-  const handleVideoStarted = () => {
-    setindexComponent(0);
-  };
-
-  const handleVideoEnded = () => {
-    setindexComponent(1);
+  const handleClick = () => {
+    if (!playing) {
+      onPlay();
+    }
   };
 
   // console.log("RENDER YOUTUBE VIDEO");
 
   //////////////////////////////////////////////////////////////RENDER
   return (
-    <VideoContainer key={indexComponent}>
+    <VideoContainer onClick={handleClick}>
       <Video
         url={url}
         light
-        playing={indexComponent === 0 && playing}
-        onPause={onPause}
-        onStart={handleVideoStarted}
-        onPlay={onPlay}
-        onEnded={handleVideoEnded}
+        playing={playing}
         ref={playerRef}
         onProgress={handleProgress}
         width='100%'
