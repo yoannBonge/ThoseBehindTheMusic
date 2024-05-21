@@ -1,30 +1,30 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Those Behind The Music
 
-Currently, two official plugins are available:
+MERN application aimed at showcasing music composers working in the fields of music (obviously), cinema, and video games.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Screenshots
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![Responsive-Illustration](https://github.com/yoannBonge/Portfolio/blob/main/public/those-behind-the-music-responsive.webp)
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Authors
+
+- [@YoannBonge](https://www.github.com/yoannBonge)
+
+
+## Deployment
+
+To see this application run
+
+https://those-behind-the-music.vercel.app/
+
+
+## 🚀 About Me
+I am a french junior web developer.
+
+
+![Logo](https://github.com/yoannBonge/ThoseBehindTheMusic/blob/main/frontend/public/favicon.png)
+

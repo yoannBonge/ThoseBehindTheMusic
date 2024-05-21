@@ -50,7 +50,6 @@ const Video = styled(ReactPlayer)`
 `;
 
 const TopPreventClick = styled.div`
-  /* background-color: aquamarine; */
   display: none;
   width: 100%;
   height: 40%;
@@ -61,7 +60,6 @@ const TopPreventClick = styled.div`
   }
 `;
 const BottomPreventClick = styled.div`
-  /* background-color: aquamarine; */
   display: none;
   width: 100%;
   height: 30%;
