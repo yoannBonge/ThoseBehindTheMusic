@@ -29,8 +29,8 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <ComposersProvider>
+      <GlobalStyle />
       <BrowserRouter>
-        <GlobalStyle />
         <div>
           <Header />
           <Routes>

@@ -77,7 +77,6 @@ const Filter = styled.div`
 
 const Image = styled.img`
   width: 50vw;
-  /* border: 5px solid rgba(147, 28, 28, 0.7); */
   border: 5px solid rgba(125, 55, 61, 0.8);
   border-radius: 20px;
   box-sizing: border-box;

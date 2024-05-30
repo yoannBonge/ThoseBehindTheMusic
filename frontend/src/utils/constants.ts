@@ -84,6 +84,7 @@ export const colors = {
   cinema: "#CA9708",
   videogame: "#464E98",
   tbtm: "#7D373D",
+  tbtm2: "#F0E5E3",
 };
 
 export function getCategoryColor(category: string): string {

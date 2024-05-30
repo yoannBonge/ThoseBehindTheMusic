@@ -52,7 +52,6 @@ const Title = styled.h2`
   margin: 0.4em 0 0.3em 0;
   font-size: 3.5em;
   line-height: 1em;
-  /* color: rgba(147, 28, 28, 0.9); */
   color: rgba(125, 55, 61, 0.9);
   text-align: center;
   @media ${device.md} {

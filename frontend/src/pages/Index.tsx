@@ -86,7 +86,7 @@ const Categories = styled.div`
   }
 `;
 
-const FilterButton = styled.button<{ active: boolean }>`
+const FilterButton = styled.button<{ $active: boolean }>`
   background-color: white;
   color: ${colors.tbtm};
   font-family: "Afacad";
@@ -95,9 +95,9 @@ const FilterButton = styled.button<{ active: boolean }>`
   border: 2px solid ${colors.tbtm};
   border-radius: 5px;
   cursor: pointer;
-  background-color: ${(props) => (props.active ? "#7D373D" : "white")};
-  color: ${(props) => (props.active ? "white" : "rgb(95, 41, 46)")};
-  border-color: ${(props) => (props.active ? "white" : "#7D373D")};
+  background-color: ${(props) => (props.$active ? "#7D373D" : "white")};
+  color: ${(props) => (props.$active ? "white" : "rgb(95, 41, 46)")};
+  border-color: ${(props) => (props.$active ? "white" : "#7D373D")};
   @media ${device.xmd} {
     width: 46%;
   }
@@ -285,25 +285,25 @@ function Index() {
           <FilterTitle>Catégorie</FilterTitle>
           <Categories>
             <FilterButton
-              active={activeButton === "all"}
+              $active={activeButton === "all"}
               onClick={() => handleFilterClick("all")}
             >
               Tous
             </FilterButton>
             <FilterButton
-              active={activeButton === "music"}
+              $active={activeButton === "music"}
               onClick={() => handleFilterClick("music")}
             >
               Musique
             </FilterButton>
             <FilterButton
-              active={activeButton === "cinema"}
+              $active={activeButton === "cinema"}
               onClick={() => handleFilterClick("cinema")}
             >
               Cinéma
             </FilterButton>
             <FilterButton
-              active={activeButton === "videogame"}
+              $active={activeButton === "videogame"}
               onClick={() => handleFilterClick("videogame")}
             >
               Jeu Vidéo

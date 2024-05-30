@@ -60,7 +60,6 @@ function ComposerInfosWrapper({
   handleNextComposer: () => void;
 }) {
   // console.log("RENDER COMPOSER INFOS WRAPPER");
-
   //////////////////////////////////////////////////////RENDER
   return (
     <ComposerInfosContainer $category={currentComposerInfos.category}>

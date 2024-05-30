@@ -20,7 +20,7 @@ const StyledHeader = styled.header`
   z-index: 100;
 
   a {
-    color: white;
+    color: ${colors.tbtm2};
     text-decoration: none;
     font-family: "Bakbak One";
     font-size: 1.8em;
@@ -66,7 +66,7 @@ const Categories = styled.div`
 
 const Login = styled.span<{ onClick: () => void }>`
   display: flex;
-  color: white;
+  color: ${colors.tbtm2};
   text-decoration: none;
   font-family: "Bakbak One";
   font-size: 1.8em;

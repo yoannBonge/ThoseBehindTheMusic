@@ -30,6 +30,8 @@ export const ComposersProvider = ({ children }: ComposersProviderProps) => {
       const response = await fetch(API_ROUTES.GET_COMPOSERS);
       const data: Composer[] = await response.json();
 
+      // await new Promise((resolve) => setTimeout(resolve, 1500));
+
       // Filtrage et tri par catégorie
       const allComposersData = data;
       const sortedAllComposersData: Composer[] = allComposersData.sort((a, b) =>

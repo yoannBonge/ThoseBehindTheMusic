@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ComposerInfosWrapper from "../components/ComposerInfosWrapper";
+import LoadingSpinner from "../components/LoadingSpinner";
 import OverlayCinema from "../components/OverlayCinema";
 import OverlayMusic from "../components/OverlayMusic";
 import OverlayVideogame from "../components/OverlayVideogame";
@@ -59,15 +60,14 @@ interface CategoriesProps {
 function Composers({ category }: CategoriesProps) {
   //////////////////////////////////////////////////////STATE
   const [currentComposerIndex, setCurrentComposerIndex] = useState<number>(0);
-  const [isComposerContentFading, setisComposerContentFading] = useState(false);
+  const [isComposerContentFading, setIsComposerContentFading] = useState(false);
   const [isComposerPictureSwitching, setIsComposerPictureSwitching] =
     useState(false);
 
   //////////////////////////////////////////////////////CONTEXT
   let composers = null;
-  const musicComposers: Composer[] = useComposers().musicComposers;
-  const cinemaComposers: Composer[] = useComposers().cinemaComposers;
-  const videogameComposers: Composer[] = useComposers().videogameComposers;
+  const { musicComposers, cinemaComposers, videogameComposers } =
+    useComposers();
 
   //////////////////////////////////////////////////////BEHAVIOR
   useEffect(() => {
@@ -110,13 +110,13 @@ function Composers({ category }: CategoriesProps) {
       break;
   }
   if (!currentComposerInfos) {
-    return null;
+    return <LoadingSpinner />;
   }
 
   const categoryColor = getCategoryColor(currentComposerInfos.category);
 
   const handlePrevComposer = async () => {
-    setisComposerContentFading(true);
+    setIsComposerContentFading(true);
     setIsComposerPictureSwitching(true);
 
     await new Promise((resolve) => setTimeout(resolve, 400));
@@ -124,21 +124,21 @@ function Composers({ category }: CategoriesProps) {
     setCurrentComposerIndex((prevIndex) =>
       prevIndex === 0 ? composers.length - 1 : prevIndex - 1
     );
-    setisComposerContentFading(false);
+    setIsComposerContentFading(false);
 
     await new Promise((resolve) => setTimeout(resolve, 400));
     setIsComposerPictureSwitching(false);
   };
 
   const handleNextComposer = async () => {
-    setisComposerContentFading(true);
+    setIsComposerContentFading(true);
     setIsComposerPictureSwitching(true);
 
     await new Promise((resolve) => setTimeout(resolve, 400));
     setCurrentComposerIndex((prevIndex) =>
       prevIndex === composers.length - 1 ? 0 : prevIndex + 1
     );
-    setisComposerContentFading(false);
+    setIsComposerContentFading(false);
 
     await new Promise((resolve) => setTimeout(resolve, 400));
     setIsComposerPictureSwitching(false);
@@ -148,19 +148,22 @@ function Composers({ category }: CategoriesProps) {
 
   //////////////////////////////////////////////////////RENDER
   return (
-    <PageWrapper>
-      <ComposerPresentation>
-        {overlayComponent}
-        <ImageInfosSeparationLine $categoryColor={categoryColor} />
-        <ComposerInfosWrapper
-          currentComposerInfos={currentComposerInfos}
-          isSpecificComposer={false}
-          isComposerContentFading={!isComposerContentFading}
-          handlePrevComposer={handlePrevComposer}
-          handleNextComposer={handleNextComposer}
-        />
-      </ComposerPresentation>
-    </PageWrapper>
+    <>
+      <LoadingSpinner isLoaded short />
+      <PageWrapper>
+        <ComposerPresentation>
+          {overlayComponent}
+          <ImageInfosSeparationLine $categoryColor={categoryColor} />
+          <ComposerInfosWrapper
+            currentComposerInfos={currentComposerInfos}
+            isSpecificComposer={false}
+            isComposerContentFading={!isComposerContentFading}
+            handlePrevComposer={handlePrevComposer}
+            handleNextComposer={handleNextComposer}
+          />
+        </ComposerPresentation>
+      </PageWrapper>
+    </>
   );
 }
 

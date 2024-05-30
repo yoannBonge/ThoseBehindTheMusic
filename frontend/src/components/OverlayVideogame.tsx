@@ -157,11 +157,13 @@ function OverlayVideogame({
           src='/crt-filter.webp'
           alt="Filtre verdâtre pour simuler l'image d'une télévision ancienne"
         />
+        (
         <VideogameComposerPicture
           $isComposerPictureSwitching={isComposerPictureSwitching}
           src={composerPictureUrl}
           alt='Photo du compositeur'
         />
+        )
       </ComposerPictureContainer>
       <OverlaySource>
         crédits image overlay : dalay-lamma on www.deviantart.com
