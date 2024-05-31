@@ -102,8 +102,8 @@ function SuggestForm({
         );
       }
 
-      let emailContent = `L'utilisateur "${data.contributorName}" enregistré sous l'adresse
-      e-mail : "${email}" vient de vous suggérer l'ajout de "${data.name}" à la
+      let emailContent = `L'utilisateur <strong style='color: #34971b;'>"${data.contributorName}"</strong> enregistré sous l'adresse
+      e-mail : <strong style='color: #34971b;'>"${email}"</strong> vient de vous suggérer l'ajout de <strong style='color: #0011ff;'>"${data.name}"</strong> à la
       base de données de votre site ! Voici les informations du compositeur proposé :<br><br>`;
 
       emailContent += `Catégorie : ${data.category}<br><br>`;
@@ -145,14 +145,13 @@ function SuggestForm({
         reader.readAsDataURL(file);
 
         const imageDataUrl = await readImage;
-        emailContent += "<br><br>Image choisie :<br>";
-        emailContent += `<div style="max-width: 600px;">
+        emailContent += `<br><br><div style="max-width: 600px;">
         <img src="${imageDataUrl}" alt="Image du compositeur" style="max-width: 100%; height: auto;" /><br>
     </div>`;
       }
       emailContent += `<br>Source de l'image : ${data.pictureSource}<br><br>`;
       if (data.contributorMessage) {
-        emailContent += `Message du contributeur :<br> ${data.contributorMessage}`;
+        emailContent += `Message du contributeur :<br><i>"${data.contributorMessage}"</i>`;
       }
       const apiUrl = API_ROUTES.SUGGEST_COMPOSER;
 
