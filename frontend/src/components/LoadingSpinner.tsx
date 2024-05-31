@@ -93,6 +93,7 @@ function LoadingSpinner({
 
   useEffect(() => {
     if (isLoaded) {
+      setIsAnimationStarted(false);
       const timer = setTimeout(() => {
         setIsAnimationStarted(true);
       }, 500);
