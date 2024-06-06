@@ -12,7 +12,7 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #000000;
+  background-color: #1f1f1f;
   width: 100vw;
   height: 10vh;
   align-items: center;

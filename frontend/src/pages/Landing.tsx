@@ -60,7 +60,7 @@ const Title = styled.h1`
 const About = styled.p`
   font-family: "Afacad";
   font-weight: 500;
-  color: #39464a;
+  color: #1f1f1f;
   font-size: 1.6em;
   padding: 1em;
   @media ${device.lg} {
