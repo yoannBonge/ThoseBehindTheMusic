@@ -38,7 +38,7 @@ const Overlay = styled.div<{ $isFadingOut: boolean; $isVisible: boolean }>`
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: #000000;
+  background-color: #1f1f1f;
   box-sizing: border-box;
   z-index: 1000;
   ${({ $isFadingOut }) =>
