@@ -22,8 +22,9 @@ const BioContent = styled.p`
   font-family: "Afacad";
   font-size: 1.6vw;
   /* font-size: 1.5em; */
-  color: white;
+  color: #e4e4e4;
   line-height: 1.2em;
+  letter-spacing: -1px;
   padding-right: 1em;
   overflow-wrap: break-word;
   word-wrap: break-word;

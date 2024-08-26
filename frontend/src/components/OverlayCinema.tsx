@@ -83,8 +83,9 @@ const OverlaySource = styled.span`
   font-family: "Afacad";
   font-size: 1em;
   color: white;
+  letter-spacing: -1px;
   position: absolute;
-  opacity: 0.4;
+  opacity: 0.5;
   left: 1%;
   bottom: 1%;
   z-index: 2;

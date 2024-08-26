@@ -74,7 +74,7 @@ const ComposerNameContainer = styled.div`
 `;
 
 const ComposerName = styled.h2`
-  color: white;
+  color: #e4e4e4;
   font-family: "Bebas Neue";
   font-size: 6.1vw;
   margin: 0;
@@ -136,7 +136,7 @@ const buttonsBlink = ($categoryColor: string) => keyframes`
     color: ${$categoryColor};
   }
   100% {
-    color: white;
+    color: #e4e4e4;
   }
 `;
 
@@ -145,7 +145,7 @@ const FaBackward = styled(FontAwesomeIcon)<{
 }>`
   transform: translate(50%, -50%);
   font-size: 2.5vw;
-  color: white;
+  color: #e4e4e4;
   cursor: pointer;
   z-index: 2;
   @media ${device.md} {
@@ -166,7 +166,7 @@ const FaForward = styled(FontAwesomeIcon)<{
 }>`
   transform: translate(-50%, -50%);
   font-size: 2.5vw;
-  color: white;
+  color: #e4e4e4;
   cursor: pointer;
   z-index: 2;
   @media ${device.md} {
@@ -187,7 +187,8 @@ const ComposerInfosElement = styled.li`
   display: flex;
   list-style-type: none;
   width: 100%;
-  color: white;
+  color: #e4e4e4;
+  letter-spacing: -1px;
   font-family: "Afacad";
   font-size: 1.2vw;
   @media ${device.lg} {
@@ -224,7 +225,7 @@ const PropertyName = styled.span<{ $categoryColor: string }>`
 const PropertyContent = styled.span`
   /* background-color: aliceblue; */
   max-width: 34vw;
-  color: white;
+  color: #e4e4e4;
   font-family: "Afacad";
   font-size: 1.6vw;
   margin-left: 0.5vw;
@@ -265,7 +266,8 @@ const NotableWorksList = styled.ul`
 
 const NotableWorksElement = styled.li`
   list-style-type: none;
-  color: white;
+  color: #e4e4e4;
+  letter-spacing: -1px;
   font-family: "Afacad";
   font-size: 1.6vw;
   @media ${device.lg} {
@@ -284,6 +286,7 @@ const PhotoSource = styled.span`
   font-size: 1.2vw;
   color: white;
   line-height: 1em;
+  letter-spacing: -1px;
   margin: -1em 0 0 0.5em;
   opacity: 0.5;
   left: 1%;

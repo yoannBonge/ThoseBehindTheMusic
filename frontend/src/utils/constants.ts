@@ -412,6 +412,7 @@ export const FormContentWrapper = styled.main`
   p {
     font-family: "Afacad";
     font-size: 1.4em;
+    letter-spacing: -1px;
     color: black;
     max-width: 60%;
     padding-bottom: 1em;

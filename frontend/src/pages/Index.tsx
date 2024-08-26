@@ -176,6 +176,7 @@ const ComposerLink = styled(NavLink)`
   text-decoration: none;
   font-family: "Afacad";
   font-size: 1.4em;
+  letter-spacing: -1px;
   &:visited {
     color: ${colors.tbtm};
   }

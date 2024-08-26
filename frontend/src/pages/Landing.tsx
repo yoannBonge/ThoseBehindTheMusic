@@ -21,7 +21,7 @@ const PageWrapper = styled.div`
 
 const WelcomeDiv = styled.main`
   width: 60vw;
-  background-color: white;
+  background-color: #ececec;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -62,6 +62,7 @@ const About = styled.p`
   font-weight: 500;
   color: #1f1f1f;
   font-size: 1.6em;
+  letter-spacing: -1px;
   padding: 1em;
   @media ${device.lg} {
     font-size: 1.4em;
