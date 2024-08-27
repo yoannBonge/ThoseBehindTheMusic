@@ -10,6 +10,7 @@ import Home from "./pages/Landing";
 import ModifyComposer from "./pages/ModifyComposer";
 import SpecificComposer from "./pages/SpecificComposer";
 import SuggestComposer from "./pages/SuggestComposer";
+import { colors } from "./utils/constants";
 import { ComposersProvider } from "./utils/context/ComposersContext";
 
 ReactModal.setAppElement("#root");
@@ -23,6 +24,10 @@ const GlobalStyle = createGlobalStyle`
         margin: 10vh 0 0 0;
         background-color: #424242;
         box-sizing: border-box;
+        ::selection {
+          color:${colors.tbtm2};
+          background-color: ${colors.tbtm};
+        }
     } `;
 
 /////////////////////////////////////////////////////////////////////////////COMPONENT
